@@ -180,7 +180,7 @@ const validateExtension = (value) => {
                         <div class="text-[#000] dark:text-[#fff] truncate w-[30vw] md:w-[250px]">{{ fileInfo.name }}</div>
                     </div>
                 </template>
-                <template v-else-if="fileInfo.type == 'audio/wav' || fileInfo.type == 'audio/mpeg' || fileInfo.type == 'audio/mp3'">
+                <template v-else-if="fileInfo.type == 'audio/wav' || fileInfo.type == 'audio/mpeg' || fileInfo.type == 'video/mpeg' || fileInfo.type == 'audio/mp3'">
                     <img src="@/assets/images/mp3-icon.svg" :alt="fileInfo.name" />
                     <div class="text-[#000] dark:text-[#fff] truncate w-[30vw] md:w-[auto]">{{ fileInfo.name }}</div>
                 </template>
