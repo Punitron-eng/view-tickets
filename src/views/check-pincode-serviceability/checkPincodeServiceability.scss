@@ -1,0 +1,368 @@
+@import '../../assets/itl-common-css/common-css.scss';
+
+
+.check-pin-outer {
+    min-height: 89.5vh;
+}
+
+.header {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    .header__heading {
+        font-weight: $fontWeight600;
+        font-size: $fontSize20;
+        font-family: $interSemiBold;
+      
+        @include theme(){
+            color: theme-get('check-value');
+    
+        }
+    }
+   
+}
+
+// <!-- //card start  -->
+.panel--deafult1 {
+    // @include theme(){
+    //     background-color: theme-get('background');
+    // }
+    box-sizing: border-box;
+    // background-color: #fff;
+
+    padding-left: 40px;
+    border-radius: $borderRadius8;      
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 27px;
+
+   
+    .panel--deafult {
+        width: 66%;
+
+        .pincodecard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            @media screen and (max-width: 767px) {
+                flex-direction: column;
+            }
+        
+            .pincodecard--section {
+                box-sizing: border-box;
+                label {
+                    display: block;
+                    line-height: $lineHight16;
+                    font-size: $fontSize13;
+                    font-weight: $fontWeight500;
+                    margin-bottom: 8px;
+                    span {
+                        @include theme() {
+                            color:theme-get('red-clr');
+                        }
+                    }
+                }
+                input {
+                    @include theme(){
+                        background-color: theme-get("check-input-background");
+                            border: 2px solid theme-get("border-black-400");
+                  }
+              
+                  
+                    padding: 0px 15px;
+                    text-align: left;
+                    // background-color: #4d4d4d  ;
+                    // border: solid 1px $disableBtnBackgroundClr;
+                    height: 32px;
+                    border-radius: $borderRadius6;
+                    display: block;
+                    // width: 89%;
+                    width: 216px;
+                    height: 40px;
+                }
+                .input-errors,.error-msg{
+                    @include theme(){
+                        background-color: theme-get('background');
+                
+                    
+                    }
+                    color: red-clr;
+                       /* padding: 0px 15px; */
+                       text-align: left;
+                    //    background-color: #fff;
+                       border-radius: $borderRadius4;
+                       /* border: solid 1px #e5e7eb; */
+                       display: block;
+                       width: 216px;
+                       height: 30px;
+                       font-size: $fontSize14;
+                   }
+                img {
+                    margin-top: 31px;
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+                .pincodecard--section.has-error {
+                
+                    .error-msg {
+                        @include theme() {
+                            color:theme-get('red-clr');
+                        }
+                  }
+            }
+        }
+        .button-submit {
+            padding-top: 40px;
+            @media only screen and (max-width: 576px) {
+                padding-top: 14px;
+            }
+
+            button {
+                width: 102px;
+                height: 36px;
+                border-radius: $borderRadius30;
+                border: solid 1px $applyBtnClr;
+                background-color: $applyBtnClr;
+                color: $whiteColor;
+                font-family:$interMedium;
+            }
+        }
+    }
+
+    .second {
+        img {
+            width: 220px;
+            height: 184px;
+            padding-left: 22px;
+        }
+    }
+}
+
+// para- output start
+.para-output {
+    margin: 0 auto;
+    text-align: center;
+    font-size: $fontSize16;
+    padding-top: 80px;
+    color: $inputPlaceholderColor;
+    line-height: 1;
+}
+.serviceability-value {
+    @include theme(){
+        color: theme-get('check-value');
+
+    }
+}
+// responsive design start for /
+
+@media screen and (max-width: 767px) {
+    .header {
+        flex-direction: column;
+        gap: 10px;
+        .domestic-intl-section-outer {
+            width: 20%;
+            margin-left: 0px;
+        }
+    }
+    .panel--deafult1 {
+        padding: 24px 16px;
+        margin-top: 13px;
+    }
+    #carddivimg {
+        display: none;
+    }
+    #carddivimg2 {
+        display: none;
+    }
+    .para-output {
+        padding-top: 90px;
+        text-align: center;
+    }
+}
+
+.servicable {
+    @include theme(){
+        background-color: theme-get('background');
+
+        // border: theme-get('$disableBtnBackgroundCl');
+    }
+    @include theme(){
+        border-top: 1px solid theme-get("check-border");
+
+    }
+  
+    background-color: $whiteColor;
+    margin-top: -10px;
+    padding: 24px 0px 24px 30px;
+    border-radius: 0 0 12px 12px;   
+
+    // margin-left: auto;
+    // margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+    text-align: left;
+
+    @media screen and (max-width: 767px) {
+        gap: 10px;
+        text-align: left;
+        padding: 24px 0px 24px 24px;
+    }
+
+    .servicable-city,
+    .servicable-state {
+        opacity: 0.84;
+        font-family: $interRegular;
+        font-size: $fontSize16;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        color: $inputPlaceholderColor;
+        .Serviceable-Spancity{
+            color: $disabledColor;
+        }
+        .serviceability-value {
+            @include theme (){
+                color: theme-get($whiteColor);
+            }
+            // color: $blackColor;
+            padding-left: 4px;
+            font-family: $interRegular;
+            font-size: $fontSize16;
+            font-weight: $fontWeight500;
+        
+        }
+    }
+    .servicable-state {
+        margin-left: 20px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    .check-pin-outer {
+        min-height: 100vh;
+    }
+    .panel--deafult1 {
+        .panel--deafult {
+            .pincodecard {
+                flex-wrap: nowrap;
+            }
+        }
+    }
+    .para-output {
+        margin-top: 0;
+    }
+}
+
+// checkCard scss start
+.cardparent {
+
+    margin:0;
+    color: $blackColor;
+    .cardparent--child{
+        
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+                
+@media screen and (max-width: 767px) {
+    gap: 14px;
+   
+   
+}
+        
+   .checkCard {
+    width: 256px;
+    height: 175px;
+        border-radius: 16px;
+        
+@media screen and (max-width: 767px) {
+    width: 100%;
+   
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    width: 237px;
+}
+@media only screen and (min-width: 820px) and (max-width: 1024px) {
+    width: 285px;
+}
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+    width: 244px;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1280px) {
+    width: 288px;
+}
+
+      
+        @include theme(){
+            background-color: theme-get('background');
+        }
+        // margin-top: 16px;
+        padding: 24px 16px 32px 24px;
+       
+        .checkCard-parent {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size:$fontSize14;
+            font-family: $interRegular;
+            @include theme(){
+                color: theme-get('check-value');
+        
+            }
+            .checkCard-parent--first {
+                display: flex;
+                // justify-content: space-between;
+                align-items: center;
+             
+                .checkCard-parent--first__para {
+                    margin-left: 8px;
+                }
+                .checkCard-parent--first__img {
+                    margin-right: 8px;
+                 
+                }
+                .checkCard-parent--first__paragraph{
+                    // color: blue;
+                    @include theme(){
+                        color: theme-get('check-font-color');
+                
+                    }
+                }
+            }
+          
+            
+            
+        }
+        
+        .cardOuter--child__first {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          
+          #cardOuter--child__para{
+         margin: 0;
+         font-size:$fontSize14;
+         font-family: $interRegular;
+         @include theme(){
+            color: theme-get('check-value');
+    
+        }
+          }
+          
+            
+        }
+    }
+    }
+    
+}
+.cardOuter--child{
+    margin-top: 12px;
+}
+

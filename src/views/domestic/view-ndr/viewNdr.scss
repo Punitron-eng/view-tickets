@@ -1,0 +1,62 @@
+#store-action .p-dialog-header-icons {
+    display: flex;
+    flex-direction: row-reverse;
+    width: fit-content;
+    gap: 8px;
+}
+.ndr .p-datatable-wrapper {
+    min-height: 50vh;
+    max-height: 65vh;
+}
+#store-action .p-dialog .p-dialog-header .p-dialog-header-icon:focus {
+    box-shadow: none !important;
+}
+#store-action .p-dialog .p-dialog-header .p-dialog-header-icon:hover {
+    background: transparent !important;
+}
+
+#store-action .p-column-title {
+    font-size: 10px;
+    @include theme() {
+        color: theme-get('check-value');
+    }
+}
+#store-action th {
+    padding: 6px 16px !important;
+}
+#store-action .p-datatable-thead > tr {
+    font-size: 10px !important;
+    background-color: #f4f7f9;
+    text-transform: uppercase;
+    border-bottom: none !important;
+}
+#store-action .p-datatable-tbody > tr > td {
+    padding: 0.5rem 0.5rem !important;
+
+    border-top: none !important;
+    @include theme() {
+        color: theme-get('black-900');
+        border-bottom: 1px solid theme-get('modal-header-border-bottom') !important;
+    }
+    text-align: left !important;
+    padding-left: 16px !important;
+}
+#store-action .p-dialog-content {
+    border-radius: 0px !important;
+}
+#store-action .p-dialog-header {
+    padding: 1.3rem 3px 3px 1.3rem !important;
+    position: absolute !important;
+    z-index: 99 !important;
+}
+#store-action .p-dialog-content {
+    position: relative;
+}
+
+.ndr {
+    .search-outer {
+        @media (max-width: 432px) {
+            max-width: 180px !important;
+        }
+    }
+}

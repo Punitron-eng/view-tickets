@@ -1,0 +1,115 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Layout */
+@import "@/assets/layout/layout.scss";
+
+/* Prime */
+// @import 'primevue/resources/primevue.min.css'; // version deplicated. You must open the command line if you are using < 3.29.00
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.scss";
+
+:root {
+  --dark-black-500:#101010;
+  --black-500:green;
+}
+
+
+/* Demos */
+@import "@/assets/demo/demo.scss";
+
+/* Poppins Font CSS Start */
+@font-face {
+  font-family: "Poppins-Medium";
+  font-display: swap;
+  src: url("../assets/fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins-Bold";
+  font-weight: bold;
+  font-display: swap;
+  src: url("../assets/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins-SemiBold";
+  font-display: swap;
+  src: url("../assets/fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins-Regular";
+  font-display: swap;
+  src: url("../assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+}
+/* Poppins Font CSS End */
+
+/* SegoeUI Font CSS start */
+@font-face {
+  font-family: "SegoeUI-Bold";
+  font-display: swap;
+  src: url("../assets/fonts/SegoeUI/SegoeUI-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "SegoeUI-Light";
+  font-display: swap;
+  src: url("../assets/fonts/SegoeUI/SegoeUI-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "SegoeUI-Regular";
+  font-display: swap;
+  src: url("../assets/fonts/SegoeUI/SegoeUI-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "SegoeUI-Semibold";
+  font-display: swap;
+  src: url("../assets/fonts/SegoeUI/SegoeUI-Semibold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "SegoeUI-Semilight";
+  font-display: swap;
+  src: url("../assets/fonts/SegoeUI/SegoeUI-Semilight.ttf") format("truetype");
+}
+/* SegoeUI Font CSS End */
+
+/* HelveticaNowText Font CSS Start */ 
+  @font-face {
+    font-family: 'HelveticaNowText-Regular';
+    font-weight: normal;
+    font-display: swap;
+    src: url('../assets/fonts/HelveticaNowText/HelveticaNowText-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'HelveticaNowText-Medium';
+    font-weight: 500;
+    font-display: swap;
+    src: url('../assets/fonts/HelveticaNowText/HelveticaNowText-Medium.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'HelveticaNowText-Bold';
+    font-weight: bold;
+    font-display: swap;
+    src: url('../assets/fonts/HelveticaNowText/HelveticaNowText-Bold.ttf') format('truetype');
+  }
+/* HelveticaNowText Font CSS End */ 
+/* Inter Font CSS start */
+@font-face {
+  font-family: "Inter-Medium";
+  font-display: swap;
+  src: url("../assets/fonts/Inter/Inter-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Inter-Regular";
+  font-display: swap;
+  src: url("../assets/fonts/Inter/Inter-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Inter-SemiBold";
+  font-display: swap;
+  src: url("../assets/fonts/Inter/Inter-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Inter-Bold";
+  font-display: swap;
+  src: url("../assets/fonts/Inter/Inter-Bold.ttf") format("truetype");
+}
+/* Inter Font CSS End */

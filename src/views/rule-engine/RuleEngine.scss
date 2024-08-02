@@ -1,0 +1,183 @@
+@import '../../assets/itl-common-css/common-css.scss';
+.re-main-outer {
+    width: calc(100% - 338px);
+    @media (min-width: 320px) and (max-width: 1200px) {
+        width: 100%;
+    }
+    @media (min-width: 1200px) and (max-width: 1440px) {
+        width: calc(100% - 200px);
+    }
+}
+.rule-engine-drop {
+    .layout-content {
+        padding: 0 !important;
+    }
+    .font-inter {
+        font-family: $interMedium !important;
+    }
+    .p-dropdown {
+        align-items: center;
+    }
+    .p-dropdown:not(.p-disabled):hover {
+        border-color: #d4d6d9 !important;
+    }
+    .p-dropdown:not(.p-disabled).p-focus {
+        outline: 0 none;
+        outline-offset: 0;
+        box-shadow: none;
+        border-color: none;
+    }
+
+    .header,
+    .content,
+    .content_inner {
+        border: 1px solid black;
+    }
+
+    .flip-list-move {
+        transition: transform 0.5s;
+    }
+
+    .no-move {
+        transition: transform 0s;
+    }
+
+    .ghost {
+        opacity: 0.5;
+        background: #c8ebfb;
+    }
+    // focus DropDown
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus,
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+        background-color: #dfdfdf;
+    }
+    .p-dropdown-label {
+        text-overflow: clip;
+    }
+
+    .rule::placeholder{
+        color:#1f2937 !important;
+    }
+}
+.darkTheme .rule::placeholder{
+    color:#bfc2c6 !important;
+}
+
+.add-rule-engine {
+    font-family: $interRegular;
+    .font-inter {
+        font-family: $interMedium !important;
+    }
+    .p-dropdown {
+        height: 40px;
+        border-radius: 6px !important;
+
+        .p-dropdown-label.p-placeholder {
+            // color: #374151 !important;
+        }
+    }
+    .truncate {
+        text-overflow: clip;
+    }
+
+    //radio
+    .p-radiobutton .p-radiobutton-box {
+        width: 16px;
+        height: 16px;
+        margin-top: 3px;
+    }
+
+    //input to from
+    .p-dropdown-items-wrapper {
+        width: auto !important;
+    }
+
+    //input
+    .p-inputtext {
+        background: transparent !important;
+        padding: 6px 9px !important;
+        padding-right: 25px !important;
+
+        &:enabled:focus {
+            box-shadow: none;
+            border-color: #dfe1e4;
+        }
+
+        &:enabled:hover {
+            border-color: #dfe1e4;
+        }
+    }
+
+    // dropdown
+    .p-dropdown-items-wrapper {
+        width: auto !important;
+    }
+
+    //time
+    .p-calendar {
+        .p-inputtext {
+            border-radius: 6px 0 0 6px;
+
+            &:enabled:hover {
+                border-color: #d1d5db;
+            }
+
+            &:enabled:focus {
+                box-shadow: none;
+                border-color: #d1d5db;
+            }
+        }
+        .p-button {
+            border: 1px solid #d1d5db;
+            color: #212121;
+            border-radius: 0 6px 6px 0;
+
+            &:enabled:hover,
+            &:enabled:active {
+                background: transparent;
+                color: #d1d5db;
+                border-color: #d1d5db;
+            }
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+// vue datepicker 
+.darkTheme .add-rule-engine .dp__overlay {
+    height: 105px !important;
+    background-color: #4d4d4d !important;
+}
+.lightTheme .add-rule-engine .dp__overlay {
+    height: 105px !important;
+}
+.darkTheme .add-rule-engine .dp__input {
+    background: #313131 !important;
+    border : 1px solid #5d5d5d !important
+}
+
+.darkTheme .add-rule-engine .dp__instance_calendar, .darkTheme .add-rule-engine .dp__action_row{
+    background : #4d4d4d !important;
+}
+
+.darkTheme .add-rule-engine .dp__arrow_top{
+    background : #4d4d4d !important;
+}
+.darkTheme .add-rule-engine .dp__action_cancel{
+    border-color: #5d5d5d !important;
+}
+
+.add-rule-engine .dp__action_cancel:hover{
+    border-color: #d4d6d9;
+}
+
+#primary-dropdown.p-dropdown-items .p-dropdown-item {
+    padding: 5px 6px !important;
+}
+.rulename-icon{
+    width:40px;
+    height: 40px;;
+}

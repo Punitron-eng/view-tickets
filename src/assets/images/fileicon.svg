@@ -1,0 +1,33 @@
+<svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#yaecrvv8ba)">
+        <circle cx="34" cy="26" r="20" fill="#fff"/>
+    </g>
+    <g clip-path="url(#kvo48n587b)" stroke="#3C4249" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M39.333 24h-6c-.736 0-1.333.597-1.333 1.333v6c0 .737.597 1.334 1.333 1.334h6c.737 0 1.334-.597 1.334-1.334v-6c0-.736-.597-1.333-1.334-1.333z"/>
+        <path d="M29.333 28h-.666a1.334 1.334 0 0 1-1.334-1.333v-6a1.333 1.333 0 0 1 1.334-1.334h6A1.333 1.333 0 0 1 36 20.667v.666"/>
+    </g>
+    <defs>
+        <clipPath id="kvo48n587b">
+            <path fill="#fff" transform="translate(26 18)" d="M0 0h16v16H0z"/>
+        </clipPath>
+        <filter id="yaecrvv8ba" x="0" y="0" width="68" height="68" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy=".798"/>
+            <feGaussianBlur stdDeviation=".865"/>
+            <feColorMatrix values="0 0 0 0 0.160784 0 0 0 0 0.160784 0 0 0 0 0.160784 0 0 0 0.121168 0"/>
+            <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_4087_94657"/>
+            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="2"/>
+            <feGaussianBlur stdDeviation="2.5"/>
+            <feColorMatrix values="0 0 0 0 0.160784 0 0 0 0 0.160784 0 0 0 0 0.160784 0 0 0 0.12 0"/>
+            <feBlend in2="effect1_dropShadow_4087_94657" result="effect2_dropShadow_4087_94657"/>
+            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="8"/>
+            <feGaussianBlur stdDeviation="7"/>
+            <feColorMatrix values="0 0 0 0 0.160784 0 0 0 0 0.160784 0 0 0 0 0.160784 0 0 0 0.1 0"/>
+            <feBlend in2="effect2_dropShadow_4087_94657" result="effect3_dropShadow_4087_94657"/>
+            <feBlend in="SourceGraphic" in2="effect3_dropShadow_4087_94657" result="shape"/>
+        </filter>
+    </defs>
+</svg>

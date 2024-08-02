@@ -1,0 +1,24 @@
+@import "../../assets/itl-common-css/common-css.scss";
+
+.view-store-page {
+    font-family: $helveticaRegular !important;
+
+    .p-card .p-card-content {
+        padding: 0px;
+    }
+    .p-card .p-card-body {
+        padding: 16px;
+        font-family: $interRegular;
+    }
+
+    #form-card,
+    #status-card {
+        .p-card-header,
+        .p-card-body {
+            padding: 24px;
+            @media screen and (min-width: 767px) {
+                padding: 24px 40px;
+            }
+        }
+    }
+}

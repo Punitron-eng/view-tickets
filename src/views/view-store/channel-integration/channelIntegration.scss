@@ -1,0 +1,14 @@
+@import "../../../assets/itl-common-css/common-css.scss";
+
+.channel-integration-page {
+    font-family: $helveticaRegular !important;
+
+    .parent-card {
+        .p-card-body {
+            padding: 40px 32px;
+        }
+        .p-card-content {
+            padding: 0;
+        }
+    }
+}

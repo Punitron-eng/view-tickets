@@ -1,0 +1,28 @@
+import { ref } from 'vue';
+import config from '@/util/config';
+export const dataTableVariables = ref({
+    filters: null,
+    loading: false,
+    checkboxValues: [],
+    config: config,
+    filter: '',
+    checked: false,
+    hiddenClass: 'hidden',
+    isOverlayOpen: false,
+    selectedCharge: null,
+    columnsData: [],
+    customizeColumns: [],
+    getTempColumns: [],
+    isScrolling: false,
+    initialScrollX: 0,
+    storeSelectedColumn: '',
+    pinColumnsLength: [],
+    dataOverlay: null,
+    isResetWidthAvail: true,
+    defaultColumns: [],
+    tempHeaderLoader: true,
+    tempCheckboxTest: false,
+    tempHeaderTest: true,
+    selectedRowId: '',
+    windowWidth: '',
+});

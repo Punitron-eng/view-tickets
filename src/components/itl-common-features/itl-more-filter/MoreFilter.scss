@@ -1,0 +1,196 @@
+@import '../../../assets/itl-common-css/common-css.scss';
+#more-filters {
+    margin: 0;
+    @include height($minHeight: 100vh);
+    @include width($width: 480px);
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+    .p-dialog-content {
+        padding: 0 !important;
+        overflow: hidden;
+    }
+    .p-dialog-header {
+        @include borderRadius(0px);
+        @include padding(12px, 24px, 12px, 24px);
+        @include theme(){
+            border-bottom: 1px solid theme-get('border-black-400');
+        }
+        // @include borderStyle(0, none, #000, null, null, null, 1px solid $customizedColumnHeadingBorder);
+    }
+    .p-dialog-content {
+        border-radius: 0px;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+    .p-dialog .p-dialog-content:last-of-type {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .p-dialog-title {
+        @include font-size(18px);
+        @extend .common-font-styles;
+        font-weight: $fontWeight600;
+        line-height: $lineHight24;
+        letter-spacing: normal;
+        text-align: left;
+        // color: $headingColor;
+        @include theme(){
+            color:theme-get('black-800') !important;
+        }
+        font-family: $segoeUISemiBoldFont;
+    }
+    .filter-popup-body {
+        height: calc(100vh - 105px) !important;
+        overflow-y: auto;
+        background: $inputBackgroundColor;
+        display: flex;
+        .tab-modal-content-left {
+            width: 50%;
+            flex-grow: 0;
+            padding: 16px;
+            // background: $whiteColor;
+            @include theme(){
+                background: theme-get('dt-filter-header');
+            }
+            overflow-y: scroll;
+            @media (max-width: 767px) {
+                padding: 16px 8px;
+            }
+            .tabs-left {
+                border-bottom: none;
+                list-style: none;
+                li {
+                    padding: 8px 12px;
+                    cursor: pointer;
+                    text-decoration: none;
+                    .selected-option {
+                        display: flex;
+                        @include justifycontent(space-between);
+                        // color: $inputLabelColor;
+                        @include theme(){
+                            color: theme-get('dt-filter-select-text');
+                        }
+                        font-size: $fontSize13;
+                        font-family: $segoeUIRegularFont;
+                    }
+                }
+                .filter-d-none {
+                    display: none;
+                }
+                .active {
+                    // background: $moreFilterBackgroundActive;
+                    @include theme(){
+                        background-color: theme-get('dt-filter-active-tab');
+                    }
+                    @include borderRadius(4px);
+                    line-height: $lineHight16;
+                    align-items: center;
+                    font-weight: $fontWeight600;
+                    .selected-option {
+                        color: #1d252b;
+                        font-family: $segoeUISemiBoldFont;
+                    }
+                    .selected-items {
+                        @include displayFlex;
+                        float: right;
+                        color: $blueColor;
+                        img {
+                            @include margin($left: 14px);
+                            vertical-align: middle;
+                            border-style: none;
+                        }
+                    }
+                }
+            }
+            .nav-tabs {
+                @include margin($bottom: 16px);
+                @include position(relative);
+                padding-left: 0;
+                @include margin($top: 0);
+            }
+            .d-md-block {
+                @media (min-width: 768px) {
+                    display: block !important;
+                }
+            }
+        }
+        .tab-modal-content-right {
+            @include theme(){
+                background-color: theme-get('dt-filter-header-right');
+            }
+            @include width($width: 300px);
+            overflow: hidden;
+            overflow-y: auto;
+            @include padding(20px, 16px, 20px, 16px);
+            .dp--menu-wrapper {
+                left: -50px !important;
+            }
+            .dp__menu {
+                background: $whiteColor;
+                left: -50px !important;
+            }
+            .dp__month_year_wrap {
+                @include justifycontent(center);
+            }
+            .dp__clear_icon {
+                display: none;
+            }
+            .dp__input_icons {
+                padding: 0;
+                left: 10px;
+            }
+        }
+    }
+    .filter-popup-footer {
+        padding: 12px;
+        @include theme(){
+            border-top: 1px solid theme-get('border-black-400');
+        }
+        // @include borderStyle(0, none, #000, 1px solid $disableBtnBackgroundClr, null, null, null);
+        display: flex;
+        @include justifycontent(flex-end);
+        gap: 0 8px;
+        &.text-right {
+            text-align: right !important;
+            .common-footer-button {
+                @include height($height: 28px);
+                @include displayFlex;
+                flex-grow: 0;
+                flex-direction: row;
+                @include justifycontent(center);
+                @include borderRadius(4px);
+                @include font-size(12px);
+                font-weight: $fontWeight600;
+                line-height: 10px;
+                font-family: $segoeUISemiBoldFont;
+                @include cursor(pointer);
+            }
+            .cancle-btn {
+                width: 62px;
+                // border: solid 1px #dfe3e6;
+                // background-color: #fff;
+                // color: #575f6c;
+                @include theme(){
+                    color:theme-get('dt-filter-cancle-btn-text');
+                    background-color: theme-get('dt-filter-cancle-btn-bg');
+                    border:solid 1px theme-get('border-black-400')
+                }
+                @extend .common-footer-button;
+            }
+            .apply-btn {
+                width: 64px;
+                border: solid 1px #0168ed;
+                background-color: #1279ff;
+                color: #fff;
+                @extend .common-footer-button;
+            }
+        }
+    }
+}
+#more-filters .p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
+    background: none;
+}
+#more-filters .p-dialog .p-dialog-header .p-dialog-header-icon:focus {
+    box-shadow: none;
+}

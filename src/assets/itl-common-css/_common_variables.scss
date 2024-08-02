@@ -1,0 +1,74 @@
+:root {
+    --primary-color: #1279ff;
+    --primary-color-dark: #0168ed;
+    --error-color: #ee596b;
+    --error-color-dark: #e13a4e;
+    --success-color: #78d674;
+    --success-color-dark: #25b81f;
+    --light-0: #ffffff;
+    --light-50: #fbfcfd;
+    --light-100: #f9fafb;
+    --light-200: #f1f3f5;
+    --light-300: #e9ecef;
+    --light-400: #dfe3e6;
+    --light-500: #d0d6dc;
+    --light-600: #a3ae88;
+    --light-700: #808898;
+    --light-740: #8e929b;
+    --light-800: #575f6c;
+    --light-900: #4c5450;
+    --light-1000: #3c4249;
+    --light-1100: #282e34;
+    --light-1200: #1d252b;
+    --light-1300: #16181a;
+    --light-1400: #0c0c0d;
+    --border-color: #dfe1e4;
+    --bi-green: #78d674;
+    --bi-yellow: #fcc73f;
+    --bi-gray: #e9ecef;
+    --input-border-color: #dfe3e6;
+    --input-text-color: #1d252b;
+    --input-focused-border: #acd0ff;
+
+    // dark mode colors
+    --dark-0: #212121;
+    --dark-100: #313131;
+    --dark-200: #383b40;
+    --dark-300: #4d4d4d;
+    --dark-400: #787878;
+    --dark-500: #9ca3af;
+    --dark-600: #bcbcbc;
+    --dark-700: #d1d5db;
+    --dark-800: #dfdfdf;
+    --dark-900: #e5e7eb;
+    --dark-1000: #ffffff;
+}
+.dark {
+    --light-100: #313131;
+    // --dark-0: #212121;
+    // --dark-100: #313131;
+    // --dark-200: #383B40;
+    // --dark-300: #4D4D4D;
+    // --dark-400: #787878;
+    // --dark-500: #9CA3AF;
+    // --dark-600: #BCBCBC;
+    // --dark-700: #D1D5DB;
+    // --dark-800: #DFDFDF;
+    // --dark-900: #E5E7EB;
+    // --dark-1000: #FFFFFF;
+    // unused colors
+    // --dark-50: #fbfcfd;
+    // --dark-740: #8e929b;
+    // --dark-1100: #282e34;
+    // --dark-1200: #1d252b;
+    // --dark-1300: #16181a;
+    // --dark-1400: #0c0c0d;
+
+    // --border-color: #dfe1e4;
+    // --bi-green: #78d674;
+    // --bi-yellow: #fcc73f;
+    // --bi-gray: #e9ecef;
+    // --input-border-color: #dfe3e6;
+    // --input-text-color: #1d252b;
+    // --input-focused-border: #acd0ff;
+}

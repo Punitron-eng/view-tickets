@@ -1,0 +1,135 @@
+@import '@/assets/itl-common-css/common-css.scss';
+#remark-modal {
+    box-shadow: 0 25px 50px 0 rgba(0, 0, 0, 0.25);
+    .p-dialog-header {
+        position: absolute !important;
+        right: 16px;
+        // margin-top: 16px !important;
+        // padding-bottom: 0px !important;
+        padding: 15px 6px 0 6px !important;
+    }
+    .p-dialog-content {
+        border-radius: 12px !important;
+        padding: 0;
+    }
+}
+
+.remark-main-container,
+.weight-main-container {
+    @include theme() {
+        background-color: theme-get('background');
+    }
+    padding: 24px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 20px !important;
+}
+.weight-container {
+    min-width: 400px;
+    max-height: fit-content;
+}
+.heading {
+    font-family: $interSemiBold;
+    font-size: 16px;
+    @include theme() {
+        color: theme-get('black-900');
+    }
+    font-weight: 600;
+    line-height: 1;
+    text-align: left;
+}
+.input-bar {
+    gap: 4px;
+    label {
+        @include theme() {
+            color: theme-get('label-clr');
+        }
+        font-family: $interRegular;
+    }
+    input {
+        font-family: $interRegular;
+        color: #1d252b;
+        padding: 9px 12px;
+        border-radius: 4px;
+        border: 1px solid #dfe3e6;
+        @include theme() {
+            background: theme-get('input-bg-clr');
+        }
+    }
+}
+.textarea {
+    @include theme() {
+        border: 1px solid theme-get('input-border-clr');
+        color: theme-get('black-900');
+    }
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 14px;
+    font-family: $interRegular;
+    margin-bottom: 22px;
+    &:focus {
+        outline: none;
+    }
+}
+.container-footer {
+    padding: 12px;
+    display: flex;
+    gap: 8px;
+    flex-direction: row-reverse;
+    @include theme() {
+        background-color: theme-get('background');
+        border-top: 1px solid theme-get('modal-border-bottom');
+    }
+    .btn-submit {
+        padding: 8px 10px;
+        font-size: 12px;
+        font-family: $interSemiBold;
+        color: #fff;
+        background-color: #1279ff;
+        border-radius: 4px;
+        border: 1px solid #0168ed;
+        cursor: pointer;
+        // width: 85px;
+    }
+    .btn-cancel {
+        padding: 8px 10px;
+        font-family: $interSemiBold;
+        font-size: 12px;
+        border-radius: 5px;
+        @include theme() {
+            background: theme-get('background');
+            color: theme-get('input-text-clr');
+            border: 2px solid theme-get('border-black-400');
+        }
+        cursor: pointer;
+    }
+}
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo-weight-details {
+        display: flex;
+        align-items: center;
+    }
+    .aws-li {
+        @include theme() {
+            color: theme-get('dt-filter-cancle-btn-text');
+        }
+        font-size: 12px;
+        line-height: 16px;
+        font-family: $interRegular;
+        margin-left: 8px;
+        span {
+            font-size: 12px;
+            font-family: $interSemiBold;
+            line-height: 16px;
+            @include theme() {
+                color: theme-get('black-800');
+            }
+            font-weight: 600;
+            margin-left: 8px;
+        }
+    }
+}

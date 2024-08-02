@@ -1,0 +1,64 @@
+@import '../../assets/common-css/mixing.scss';
+.InputField{
+        .form-field{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            .form-field-left {
+                width: 50%;
+            }
+            .form-field-right {
+                width: 50%;
+                padding-left: 16px;
+            }
+            .main-input{
+                width: 100%;
+                padding-top: 7px;
+                .input-label{
+                    @include label();
+                    display: block; 
+                    margin-bottom: 5px;
+                }
+                .input-text {
+                    @include bd-radius(4px);
+                    @include text();
+                    width: 100%;
+                    padding: 9px 12px;
+                    margin-bottom: 14px;       
+                }
+                }
+                .select{
+                    display: flex;
+                    align-items: center;
+                    padding-top: 25px;   
+                    span{   
+                    color: #1d252b;
+                    font-size: 13px;
+                    line-height: 14px;
+                  }
+                  .select-option1{
+                    margin-left: 32px;
+                    font-size: 14px;
+                  }
+                  .select-option2{
+                    margin-left: 24px;
+                    font-size: 14px;
+                  }
+            }
+        }
+        @media screen and (min-device-width: 320px) and (max-device-width: 480px) { 
+            .conatiner{
+                padding:0px !important;
+            }
+            .form-field{
+                flex-wrap: wrap;
+                .form-field-left {
+                    width: 100%;
+                }
+                .form-field-right {
+                    width: 100%;
+                }
+        }
+    }
+}

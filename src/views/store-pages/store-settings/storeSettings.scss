@@ -1,0 +1,13 @@
+@import '../../../assets/itl-common-css/common-css.scss';
+
+.store-settings-page {
+    font-family: $interRegular !important;
+
+    .p-card {
+        border-radius: $md-border-radius;
+        font-family: $interRegular;
+    }
+    .p-card .p-card-content {
+        padding: 0px;
+    }
+}

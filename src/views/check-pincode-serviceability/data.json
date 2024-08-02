@@ -1,0 +1,119 @@
+{
+    "all_logistic_pincode_services_data_array": [
+      {
+        "logistics_name": "Xpressbees",
+        "logistics_id": "",
+        "image_name": "xpressbees",
+        "is_air": true,
+        "cod_available": true,
+        "prepaid_available": true,
+        "reverse_pickup": true,
+        "pickup_available": true
+      },
+      {
+        "logistics_name": "Ecom Express",
+        "logistics_id": "",
+        "image_name": "ecomexpress",
+        "is_air": false,
+        "cod_available": true,
+        "prepaid_available": true,
+        "reverse_pickup": true,
+        "pickup_available": true
+      },
+      {
+        "logistics_name": "Ecom Express",
+        "logistics_id": "",
+        "image_name": "ecomexpress",
+        "is_air": true,
+        "cod_available": true,
+        "prepaid_available": true,
+        "reverse_pickup": true,
+        "pickup_available": true
+      },
+      {
+        "logistics_name": "Ekart",
+        "logistics_id": "",
+        "image_name": "ekart",
+        "is_air": true,
+        "cod_available": true,
+        "prepaid_available": true,
+        "reverse_pickup": true,
+        "pickup_available": true
+      },
+      {
+        "logistics_name": "BlueDart",
+        "logistics_id": "",
+        "image_name": "bluedart",
+        "is_air": false,
+        "cod_available": true,
+        "prepaid_available": true,
+        "reverse_pickup": true,
+        "pickup_available": true
+      },
+      {
+        "logistics_name": "Shadowfax",
+        "logistics_id": "",
+        "image_name": "shadowfax",
+        "is_air": true,
+        "cod_available": false,
+        "prepaid_available": true,
+        "reverse_pickup": true,
+        "pickup_available": true
+      },
+      {
+        "logistics_name": "DTDC",
+        "logistics_id": "",
+        "image_name": "dtdc",
+        "is_air": true,
+        "cod_available": true,
+        "prepaid_available": true,
+        "reverse_pickup": false,
+        "pickup_available": true
+      },
+      {
+        "logistics_name": "Smartr",
+        "logistics_id": "",
+        "image_name": "smartr",
+        "is_air": false,
+        "cod_available": false,
+        "prepaid_available": false,
+        "reverse_pickup": false,
+        "pickup_available": true
+      },
+      {
+        "logistics_name": "Kerryindev",
+        "logistics_id": "",
+        "image_name": "kerryindev",
+        "is_air": false,
+        "cod_available": true,
+        "prepaid_available": true,
+        "reverse_pickup": false,
+        "pickup_available": true
+      },
+      {
+        "logistics_name": "Dakia India",
+        "logistics_id": "",
+        "image_name": "dakiaindia",
+        "is_air": true,
+        "cod_available": false,
+        "prepaid_available": true,
+        "reverse_pickup": false,
+        "pickup_available": true
+      },
+      {
+        "logistics_name": "Kerryindev SND",
+        "logistics_id": "",
+        "image_name": "kerryindevsnd",
+        "is_air": true,
+        "cod_available": true,
+        "prepaid_available": true,
+        "reverse_pickup": false,
+        "pickup_available": true
+      }
+    ],
+    "loop_itl_state_name": "Maharashtra",
+    "loop_itl_city_name": "Mumbai",
+    "all_logistic_pincode_services_data_count": 11,
+    "status": "success"
+  }
+  

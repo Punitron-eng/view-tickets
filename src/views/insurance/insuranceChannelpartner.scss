@@ -1,0 +1,391 @@
+@import "../../assets/itl-common-css/common-css.scss";
+
+.insurance {
+    .p-checkbox {
+        height: 16px;
+        width: 16px;
+    }
+    .p-checkbox .p-checkbox-box {
+        border-radius: 3px;
+    }
+    .p-checkbox .p-checkbox-box {
+        width: 16px;
+        height: 16px;
+    }
+    .p-checkbox .p-checkbox-box.p-highlight {
+        border-color: #0168ed;
+        background: #1279ff;
+    }
+    .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+        box-shadow: none;
+        border-color: #1279ff;
+    }
+    .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+        border-color: #0168ed;
+        background: #1279ff;
+    }
+    .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+        border-color: lightgray;
+    }
+    .p-checkbox .p-checkbox-box .p-checkbox-icon {
+        color: white;
+    }
+
+
+    .page-header {
+        @media screen and (max-width: 768px) {
+            padding-bottom: 16px;
+        }
+        @media screen and (max-width: 1024px) {
+            max-width: none;
+        }
+        .sub-heading {
+            width: 324px;
+        }
+    }
+    .insurance-business {
+        // max-width: 944px;
+        width: 100%;
+        @media screen and (min-width: 1025px) {
+            // margin: 0 20px
+            width: 944px;
+        }
+        // background-color: white;
+        @include theme() {
+            background-color: theme-get("background");
+        }
+        padding: 48px 64px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px 0 rgba(63, 71, 79, 0.15);
+        @media screen and (max-width: 768px) {
+            padding: 48px 22px 28px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section2-card {
+            @media screen and (max-width: 768px) {
+                margin: 0 20px;
+            }
+            .heading {
+                font-family: $interSemiBold;
+                font-size: 24px;
+                font-weight: 600;
+                margin: 0;
+                @include theme() {
+                    color: theme-get("black-800");
+                }
+                @media screen and (max-width: 480px) {
+                    margin: 24px 0;
+                    max-width: 212px;
+                }
+            }
+            .business-content,
+            .content-light {
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.43;
+            }
+            .business-content {
+                font-family: $interMedium;
+                margin: 24px 0 0;
+                max-width: 333px;
+                @include theme() {
+                    color: theme-get("black-700");
+                }
+                @media screen and (max-width: 768px) {
+                    max-width: 280px;
+                }
+                @media screen and (max-width: 480px) {
+                    margin: 0;
+                }
+                .content-light {
+                    font-family: $interRegular;
+                    display: block;
+                }
+            }
+            .termscondition {
+                gap: 2px;
+                font-family: $interMedium;
+                font-size: 13px;
+                font-weight: 500;
+                line-height: 1.33;
+                padding-top: 16px;
+                .emptyCheck {
+                    position: relative;
+                    width: 16px;
+                    height: 16px;
+                    bottom: 3px;
+                    right: 2px;
+                    @media screen and (max-width: 768px) {
+                        bottom: 3px;
+                    }
+                }
+                .tnc-text {
+                    margin-left: 8px;
+                    @media screen and (min-width: 768px) and (max-width: 1025px) {
+                        margin-left: 16px;
+                    }
+                }
+                span {
+                    @media screen and (max-width: 768px) {
+                        max-width: 300px;
+                    }
+                    .tandc {
+                        color: #1279ff;
+                        padding-bottom: 1px;
+                        border-bottom: 1px solid #1279ff;
+                    }
+                }
+                .conditions {
+                    @media screen and (max-width: 768px) {
+                        display: block;
+                        margin-left: 24px;
+                        width: 62px;
+                        border-bottom: 1px solid #1279ff;
+                    }
+                }
+            }
+            div {
+                .activate-insurance {
+                    width: 296px;
+                    border-radius: 6px;
+                    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+                    border: solid 1px #0168ed;
+                    background-color: #1279ff;
+                    margin: 24px 321px 16px 0;
+                    padding: 12px 70px 12px 70px;
+                    color: white;
+                    font-family: $interSemiBold;
+                    font-size: 14px;
+                    font-weight: 600;
+                    line-height: 1.14;
+                    text-align: center;
+                    cursor: pointer;
+
+                    -webkit-user-select: none; /* Safari */
+                    -ms-user-select: none; /* IE 10 and IE 11 */
+                    user-select: none; /* Standard syntax */
+
+                    @media screen and (max-width: 768px) {
+                        margin: 24px 0 16px;
+                    }
+                }
+                .disabled-btn {
+                    pointer-events: none !important;
+                    cursor: default !important;
+                }
+            }
+
+            .note {
+                font-size: 13px;
+                font-family: $interMedium;
+                font-weight: 600;
+                @media screen and (max-width: 480px) {
+                    padding-right: 18px;
+                }
+                span {
+                    font-weight: normal;
+                }
+            }
+        }
+        .insurance-package {
+            img {
+                position: relative;
+                max-width: 200px !important;
+                @media screen and (min-width: 768px) and (max-width: 769px) {
+                    right: 50px;
+                }
+                @media screen and (min-width: 820px) and (max-width: 821px) {
+                    right: 150px !important;
+                    top: 26px;
+                }
+                @media screen and (min-width: 912px) and (max-width: 913px) {
+                    right: 72px !important;
+                }
+            }
+        }
+    }
+
+    .section3-card {
+        // background-color: #fff;
+        @include theme() {
+            background-color: theme-get("background");
+        }
+        margin-top: 16px;
+        margin-bottom: 32px;
+        border-radius: 8px;
+        // max-width: 944px;
+        width: 100%;
+        @media screen and (min-width: 1025px) {
+            // margin: 0 20px
+            width: 944px;
+        }
+        box-shadow: 0 4px 10px 0 rgba(63, 71, 79, 0.15);
+        .section3-card-title {
+            padding: 16px 24px;
+            font-size: 16px;
+            // color: #1d252b;
+            @include theme() {
+                color: theme-get("black-800");
+            }
+            line-height: 1.5;
+            font-family: $interSemiBold;
+            @include theme() {
+                border-bottom: 1px solid theme-get("border-black-400");
+            }
+            @media screen and (min-width: 400px) and (max-width: 480px) {
+                padding: 16px 42px;
+            }
+        }
+        .section3-card-content {
+            padding: 32px 64px;
+            gap: 15px;
+            @media screen and (max-width: 768px) {
+                gap: 8px;
+                padding: 16px 24px 0;
+            }
+            @media screen and (min-width: 768px) and (max-width: 769px) {
+                padding: 32px 24px;
+            }
+            @media screen and (min-width: 400px) and (max-width: 480px) {
+                padding: 16px 42px 0;
+            }
+            .section3-subcard {
+                padding: 24px 33px;
+                @include theme() {
+                    color: theme-get("black-700");
+                    background-color: theme-get("rise-background");
+                }
+                @media screen and (max-width: 768px) {
+                    padding: 18px;
+                }
+                @media screen and (max-width: 360px) {
+                    padding: 11px;
+                }
+                border-radius: 6px;
+                @media screen and (min-width: 541px) and (max-width: 767px) {
+                    padding: 16px;
+                }
+                .section3-subcard-title {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    @media screen and (min-width: 480px) and (max-width: 768px) {
+                        flex-direction: column-reverse;
+                        align-items: flex-start;
+                        gap: 16px;
+                    }
+                    span {
+                        font-size: 14px;
+                        font-family: $interSemiBold;
+                        line-height: 1.43;
+                        @media screen and (max-width: 480px) {
+                            padding-top: 16px;
+                        }
+                        span {
+                            @media screen and (min-width: 480px) and (max-width: 768px) {
+                                display: table-header-group;
+                            }
+                        }
+                    }
+                    img {
+                        @media screen and (max-width: 480px) {
+                            position: relative;
+                            top: 6px;
+                        }
+                    }
+                    .loss-damage {
+                        width: 150px;
+                        @media screen and (min-width: 480px) and (max-width: 768px) {
+                            max-width: 147px;
+                        }
+                        @media screen and (max-width: 480px) {
+                            width: none;
+                        }
+                    }
+                    .insuranceprotection {
+                        position: relative;
+                        bottom: 8px;
+                        left: 10px;
+                        @media screen and (max-width: 768px) {
+                            left: 0;
+                            bottom: 0;
+                        }
+                        @media screen and (max-width: 480px) {
+                            bottom: 0;
+                            top: 0;
+                        }
+                    }
+                }
+                .section3-subcard-content {
+                    max-width: 198px;
+                    margin: 8px 0 0px;
+                    @include theme() {
+                        color: theme-get("black-700");
+                    }
+                    font-size: 13px;
+                    line-height: 1.23;
+                    font-family: $interRegular;
+                    @media screen and (min-width: 480px) and (max-width: 768px) {
+                        max-width: 500px;
+                        margin: 8px 0 0;
+                    }
+                }
+            }
+        }
+
+        .parcels-secure {
+            margin-bottom: 32px;
+            p {
+                font-family: $interMedium;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.43;
+                text-align: center;
+                margin: 0;
+                @media screen and (min-width: 480px) and (max-width: 767px) {
+                    margin-top: 32px;
+                }
+
+                span {
+                    @media screen and (max-width: 480px) {
+                        padding-top: 24px;
+                        display: block;
+                    }
+                }
+            }
+
+            .activate-btn {
+                width: 140px;
+                height: 40px;
+                margin: 16px 0 0 0;
+                padding: 12px;
+                border-radius: 6px;
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+                border: solid 1px #0168ed;
+                background-color: #1279ff;
+                color: white;
+                font-family: $interSemiBold;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 1.14;
+                text-align: center;
+                cursor: pointer;
+                
+                -webkit-user-select: none; /* Safari */
+                -ms-user-select: none; /* IE 10 and IE 11 */
+                user-select: none; /* Standard syntax */
+
+                @media screen and (max-width: 480px) {
+                    width: 296px;
+                    margin: 16px 24px 0 25px;
+                }
+            }
+            .disabled-btn {
+                pointer-events: none !important;
+                cursor: default !important;
+            }
+        }
+    }
+}

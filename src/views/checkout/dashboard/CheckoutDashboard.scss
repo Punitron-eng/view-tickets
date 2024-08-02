@@ -1,0 +1,775 @@
+@import '../../../assets/itl-common-css/common-css.scss';
+@media (min-width: 768px) and (max-width: 1023px) {
+    .checkout-dashboard .layout-container.layout-transparent-topbar.layout-drawer.layout-sidebar-active.layout-sidebar-anchored .layout-content-wrapper {
+        margin-left: 0 !important;
+    }
+}
+.checkout-dashboard .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    padding: 8px !important;
+}
+.dp__input {
+    @include theme() {
+        background-color: transparent !important;
+        color: theme-get('daterange-header-item') !important;
+        border: 1px solid theme-get('border-black-400');
+    }
+}
+
+.section-6 {
+    width: 66.2%;
+
+    .section-6-funnel {
+        @include theme() {
+            background-color: theme-get('checkout-card-bg');
+        }
+
+        // background-color: white;
+        width: 66.2%;
+        height: 500px;
+        min-width: 100%;
+        height: 500px;
+    }
+}
+
+.heading-calender {
+    .dp__input {
+        padding-right: 12px !important;
+    }
+
+    .dp__clear_icon {
+        display: none !important;
+    }
+}
+
+.p-dropdown {
+    max-width: 152px !important;
+    max-height: 32px !important;
+    font-size: 14px !important;
+    border-radius: 0px !important;
+}
+
+.dp__pointer {
+    max-height: 35px !important;
+}
+
+.p-tooltip-arrow {
+    border-bottom-color: rgba(9, 30, 66, 0.96) !important;
+}
+
+.p-tooltip.p-tooltip-top,
+.p-tooltip.p-tooltip-bottom {
+    padding: 3px 0 !important;
+}
+
+.p-tooltip-text {
+    background-color: rgba(9, 30, 66, 0.96) !important;
+}
+
+.p-inputtext {
+    display: flex !important;
+}
+
+.p-dropdown {
+    border-radius: 4px !important;
+}
+
+.p-dropdown:not(.p-disabled).p-focus {
+    border-color: #aaaeb7 !important;
+    box-shadow: none !important;
+}
+
+.p-dropdown:not(.p-disabled):hover {
+    border-color: #aaaeb7 !important;
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
+    @include theme() {
+        background-color: theme-get('daterange-disable-cell') !important;
+    }
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    @include theme() {
+        background-color: theme-get('daterange-disable-cell') !important;
+    }
+}
+.dp--year-select:hover,
+.dp__month_year_select:hover {
+    @include theme() {
+        background-color: theme-get('daterange-disable-cell') !important;
+    }
+}
+.dp__inner_nav:hover {
+    @include theme() {
+        background-color: theme-get('daterange-disable-cell') !important;
+    }
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+    @include theme() {
+        background-color: theme-get('disabledInput') !important;
+    }
+    // background-color: #dfdfdf !important;
+}
+
+.dashboard-main-outer-layer {
+    max-width: 1393px;
+
+    margin: 0 auto;
+    font-family: $interRegular;
+    font-size: 12px;
+    .dashboard-title {
+        font-size: 20px;
+        font-family: $interSemiBold;
+        line-height: 1.2;
+        @media screen and (max-width: 767px) {
+            font-size: 12px;
+        }
+    }
+    .dashbord-heading-dropdown {
+        display: flex;
+        gap: 8px;
+        @media screen and (min-width: 1200px) {
+            // margin-right: 32px;
+        }
+        @media screen and (max-width: 767px) {
+            margin-top: 12px;
+        }
+        .option-image {
+            max-width: 16px;
+            max-height: 16px;
+        }
+        .heading-calender {
+            max-width: 45vw;
+            @include theme() {
+                background: theme-get('background');
+            }
+            border-radius: 6px;
+            @media screen and (max-width: 767px) {
+                z-index: 9;
+            }
+        }
+    }
+    .dashboard-section1 {
+        margin-top: 12px;
+        gap: 16px;
+
+        @media screen and (max-width: 1200px) {
+            gap: 12px;
+        }
+        @media screen and (max-width: 850px) {
+            gap: 8px;
+        }
+
+        .dashboard-section-card {
+            // background-color: #fff;
+            @include theme() {
+                background-color: theme-get('checkout-card-bg');
+            }
+            border-radius: 4px;
+            min-width: calc(33.33% - 10.66px);
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px 0 rgba(0, 0, 0, 0.06);
+
+            // @media screen and (min-width: 1000px) and (max-width: 1300px) {
+            //     min-width: 30%;
+            // }
+            @media screen and (max-width: 999px) {
+                // max-width: 432px !important;
+            }
+            .section-card-header {
+                display: flex;
+                padding: 20px 20px 11px 20px;
+                @media screen and (max-width: 788px) {
+                    padding: 20px 12px 5px 12px;
+                }
+            }
+            .section-card-header-last {
+                gap: 109px;
+                padding: 20px 11px 11px 20px;
+                @media screen and (max-width: 740px) {
+                    padding: 20px 12px 0 12px;
+                }
+                @media screen and (max-width: 1300px) {
+                    justify-content: space-between;
+                    gap: 0px;
+                }
+            }
+            .section-card-title {
+                // color: #1d252b;
+                @include theme() {
+                    color: theme-get('black-800');
+                }
+            }
+            .section-card-subtitle {
+                font-size: 20px;
+                // color: #0c0c0d;
+                @include theme() {
+                    color: theme-get('black-900');
+                }
+                font-family: $interSemiBold;
+                padding-top: 12px;
+                padding-bottom: 0px;
+            }
+            .section-last-card-number {
+                @include theme() {
+                    border-top: 1px solid theme-get('modal-border-bottom');
+                }
+                padding: 8px 20px 8px 20px;
+                gap: 120px;
+
+                @media screen and (max-width: 1300px) {
+                    justify-content: space-between;
+                    gap: 0px;
+                    padding: 8px 2px;
+                }
+                @media screen and (max-width: 767px) {
+                    padding: 8px !important;
+                }
+                div {
+                    font-size: 11px;
+                    letter-spacing: -0.2px;
+                    font-family: $interRegular;
+                    span {
+                        font-size: 12px;
+                        // color: #575f6c;
+                        @include theme() {
+                            // color: theme-get('checkout-card-span-text');
+                        }
+                    }
+                }
+            }
+            .section-card-contains {
+                font-size: 12px;
+                display: flex;
+                flex-direction: column;
+            }
+            .section-card-number {
+                font-size: 20px;
+                font-family: $interSemiBold;
+                margin-top: 12px;
+                gap: 8px;
+                @media screen and (max-width: 1200px) {
+                    gap: 4px;
+                }
+                @media screen and (max-width: 762px) {
+                    gap: 3px;
+                }
+                span {
+                    font-size: 11px;
+                    letter-spacing: -0.2px;
+                    font-family: $interRegular;
+                    span {
+                        font-size: 12px;
+                    }
+                }
+            }
+            .section-card-footer {
+                padding: 8px 0px 8px 20px;
+                @media screen and (max-width: 768px) {
+                    padding: 8px 0px 8px 12px;
+                }
+                @include theme() {
+                    border-top: 1px solid theme-get('modal-border-bottom');
+                }
+
+                // color: #575f6c;
+                @include theme() {
+                    color: theme-get('checkout-card-span-text');
+                }
+                span {
+                    font-family: $interSemiBold;
+                    // color: #3c4249;
+                    @include theme() {
+                        color: theme-get('black-700');
+                    }
+                }
+            }
+        }
+    }
+
+    .dashboard-section2 {
+        margin-top: 16px;
+        gap: 16px;
+
+        .section2-contain1 {
+            @include theme() {
+                background-color: theme-get('checkout-card-bg');
+            }
+            padding: 20px;
+            @media screen and (max-width: 768px) {
+                padding: 16px;
+            }
+            min-width: calc(66.6% - 8px);
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px 0 rgba(0, 0, 0, 0.06);
+            @media screen and (max-width: 1200px) {
+                min-width: 100%;
+            }
+            @media screen and (min-width: 1200px) {
+                max-width: calc(66.6% - 8px);
+            }
+            height: auto;
+            border-radius: 4px;
+            .section2-contain1-title {
+                font-family: $interSemiBold;
+                font-size: 16px;
+                // color: #1d252b;
+                @include theme() {
+                    color: theme-get('black-800');
+                }
+            }
+            .graph-section {
+                // gap: 81px;
+                justify-content: space-between;
+                @media screen and (max-width: 768px) {
+                    gap: 20px;
+                }
+            }
+            .section2-graph {
+                margin-top: 16px;
+                margin-left: 16px;
+                min-width: 50%;
+
+                @media screen and (max-width: 1000px) {
+                    min-width: 100%;
+                }
+            }
+            .section2-graph-info {
+                gap: 35px;
+                @media screen and (max-width: 768px) {
+                    gap: 12px;
+                }
+                .graph-info-title {
+                    // color: #3c4249;
+                    @include theme() {
+                        color: theme-get('black-700');
+                    }
+                    line-height: 1;
+                    font-size: 14px;
+                    @media screen and (max-width: 768px) {
+                        font-size: 12px;
+                    }
+                }
+
+                .graph-info-subtitle {
+                    // color: #0c0c0d;
+                    @include theme() {
+                        color: theme-get('black-900');
+                    }
+                    font-size: 20px;
+                    font-family: $interSemiBold;
+                    margin-top: 8px;
+                    @media screen and (max-width: 768px) {
+                        font-size: 16px;
+                    }
+                    span {
+                        // margin-left: 12px;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+        .section2-contain2 {
+            @include theme() {
+                background-color: theme-get('checkout-card-bg');
+            }
+            min-width: calc(33.33% - 8px);
+            padding: 20px;
+            @media screen and (max-width: 850px) {
+                min-width: 100% !important;
+            }
+            @media screen and (max-width: 1100px) {
+                min-width: 49%;
+            }
+            @media screen and (min-width: 1200px) {
+                width: auto;
+                max-width: 18vw;
+            }
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px 0 rgba(0, 0, 0, 0.06);
+            .section2-contain2-title {
+                font-size: 16px;
+                // color: #1d252b;
+                font-family: $interSemiBold;
+                @include theme() {
+                    color: theme-get('black-800');
+                }
+            }
+            .section2-contain2-subtitle {
+                .span-month {
+                    font-family: $interRegular;
+                }
+                margin-top: 20px;
+                @media screen and (max-width: 767px) {
+                    margin-top: 16px;
+                }
+                font-size: 20px;
+                // color: #0c0c0d;
+                @include theme() {
+                    color: theme-get('black-900');
+                }
+                font-family: $interSemiBold;
+                span {
+                    font-size: 12px;
+
+                    span {
+                        font-size: 11px;
+                        // color: #575f6c;
+                        @include theme() {
+                            color: theme-get('checkout-card-span-text');
+                        }
+                        font-family: $interRegular;
+                    }
+                }
+            }
+            .section2-graph {
+                min-width: 50%;
+                // margin-top: 36px;
+                @media screen and (max-width: 1200px) {
+                    min-width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                @media screen and (max-width: 380px) {
+                    margin-left: 15px;
+                }
+                height: auto;
+            }
+        }
+    }
+
+    // .dashboard-section3 {
+    //     margin-top: 16px;
+    //     gap: 16px;
+    .section3-card {
+        @include theme() {
+            background-color: theme-get('checkout-card-bg');
+        }
+        padding: 20px;
+        min-width: calc(33.33% - 13px);
+        @media screen and (max-width: 850px) {
+            min-width: 100% !important;
+        }
+        @media screen and (min-width: 1200px) {
+            max-width: 18vw;
+            max-height: 356px;
+        }
+        @media screen and (max-width: 1100px) {
+            min-width: 49%;
+            max-width: 49%;
+        }
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px 0 rgba(0, 0, 0, 0.06);
+        height: auto;
+        border-radius: 4px;
+        .section3-title {
+            font-size: 16px;
+            font-family: $interSemiBold;
+        }
+        .section3-subtitle {
+            margin-top: 10px;
+            @media screen and (max-width: 767px) {
+                margin-top: 16px;
+            }
+
+            font-size: 20px;
+            // color: #0c0c0d;
+            @include theme() {
+                color: theme-get('black-900');
+            }
+            font-family: $interSemiBold;
+            span {
+                font-size: 12px;
+                span {
+                    // color: #575f6c;
+                    @include theme() {
+                        color: theme-get('checkout-card-span-text');
+                    }
+                    font-size: 11px;
+                    margin: 0 0 0 4px;
+                }
+            }
+        }
+        .section3-span {
+            font-family: $interRegular;
+        }
+        .section3-graph1 {
+            margin-top: 36px;
+            @media screen and (max-width: 767px) {
+                margin-top: 28px;
+            }
+        }
+        .section3-graph2 {
+            margin: 12px 12px 0 12px;
+            display: flex;
+        }
+        .section3-footer {
+            .section3-footer-heading {
+                font-size: 14px;
+                // color: #3c4249;
+                @include theme() {
+                    color: theme-get('black-700');
+                }
+            }
+            .section3-footer-subheading {
+                font-size: 16px;
+                font-family: $interSemiBold;
+                font-weight: bold;
+                margin-bottom: 16px;
+            }
+            .section3-heading-center {
+                padding: 12px;
+                font-size: 14px;
+                font-family: $interSemiBold;
+                text-align: center;
+            }
+        }
+        .section3-prepaid-footer {
+            min-width: 111px;
+            text-align: end;
+        }
+        .section3-footer-content {
+            gap: 35px;
+            .footer-content-title {
+                font-size: 16px;
+                font-family: $interSemiBold;
+                // color: #1d252b;
+                @include theme() {
+                    color: theme-get('black-800');
+                }
+            }
+        }
+    }
+    // }
+
+    // .dashboard-section4 {
+    //     margin-top: 16px;
+    //     gap: 16px;
+    .section4-left-card {
+        @include theme() {
+            background-color: theme-get('checkout-card-bg');
+        }
+        min-width: calc(66.6% - 8px);
+        padding: 20px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px 0 rgba(0, 0, 0, 0.06);
+        @media screen and (min-width: 1200px) {
+            max-width: 65.6%;
+        }
+        @media screen and (max-width: 1200px) {
+            min-width: 100%;
+        }
+        height: auto;
+        border-radius: 4px;
+        .section4-title {
+            font-size: 16px;
+            // color: #1d252b;
+            @include theme() {
+                color: theme-get('black-800');
+            }
+            font-family: $interSemiBold;
+        }
+        .section4-graph {
+            margin-top: 60px;
+            display: flex;
+            @media screen and (max-width: 767px) {
+                margin-top: 24px;
+                display: block;
+            }
+
+            .funnel-labels {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                min-height: 50vh;
+                @media (max-width: 767px) {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    min-height: auto;
+                    flex-flow: wrap;
+                    gap: 20px;
+                    align-items: center;
+                    justify-content: center;
+                }
+                // gap:16px;
+                .funnel-labels-data {
+                    text-align: center;
+                    padding: 8px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    // border-bottom: 1px dashed black;
+                    @include theme() {
+                        border-top: 1px dashed theme-get('modal-border-bottom');
+                    }
+                    .funnel-heading {
+                        font-size: 16px;
+                        font-family: $interSemiBold;
+                        // color:#1d252b;
+                        @include theme() {
+                            color: theme-get('black-800');
+                        }
+                        line-height: 1.25;
+                        // text-align: left;
+                    }
+                    .funnel-preg {
+                        font-size: 16px;
+                        // color:#0c0c0d;
+                        @include theme() {
+                            color: theme-get('black-900');
+                        }
+                        font-family: $interSemiBold;
+                    }
+                    .funnel-preg-subheading {
+                        margin-left: 12px;
+                        font-size: 12px;
+                        // color:#3c4249;
+                        @include theme() {
+                            color: theme-get('black-700');
+                        }
+                        font-family: $interRegular;
+                    }
+                    .dropdown-status {
+                        padding-right: 12px;
+                    }
+                    .funnel-dropStatus {
+                        font-size: 12px;
+                        font-family: $interSemiBold;
+                        color: #ee596b;
+                        letter-spacing: -0.2px;
+                        font-weight: 600;
+                    }
+                    .funnel-converstionRate {
+                        font-size: 12px;
+                        font-family: $interSemiBold;
+                        color: #178713;
+                        letter-spacing: -0.2px;
+                        font-weight: 600;
+                    }
+                }
+            }
+            .funnel-data-outer {
+                @media screen and (max-width: 767px) {
+                    width: 100% !important;
+                    height: 300px;
+                    max-width: 100% !important;
+                }
+            }
+            .funnelChart {
+                height: 500px;
+                min-width: 200px !important;
+
+                canvas {
+                    width: 600px !important;
+                    height: 439px !important;
+                }
+            }
+        }
+    }
+    .section4-right-card-div {
+        gap: 16px;
+        min-width: calc(33.33% - 8px);
+        @media screen and (max-width: 850px) {
+            min-width: 100% !important;
+        }
+        @media screen and (min-width: 1200px) {
+            max-width: 18vw;
+            // max-height: 356px;
+        }
+
+        @media screen and (max-width: 1100px) {
+            flex-direction: row !important;
+            width: 100%;
+        }
+        @media screen and (max-width: 1050px) {
+            flex-direction: column !important;
+            width: 100%;
+        }
+        .section4-right-card {
+            @include theme() {
+                background-color: theme-get('checkout-card-bg');
+            }
+            // max-height: 400px !important;
+            padding: 20px;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px 0 rgba(0, 0, 0, 0.06);
+
+            min-width: 100%;
+            @media screen and (max-width: 850px) {
+                min-width: 100% !important;
+            }
+            @media screen and (min-width: 1200px) {
+                max-width: 432px;
+                // max-height: max-content;
+            }
+            @media screen and (max-width: 1100px) {
+                // min-width: 49%;
+                // max-width: 49%;
+            }
+            height: auto;
+            border-radius: 4px;
+            .section4-right-title {
+                font-size: 16px;
+                font-family: $interSemiBold;
+                // color: #1d252b;
+                @include theme() {
+                    color: theme-get('black-800');
+                }
+                font-weight: 600;
+                line-height: 1;
+            }
+            .section4-right-graph-1 {
+                margin-top: 34px;
+            }
+            .section4-right-graph-2 {
+                margin-top: 24px;
+            }
+        }
+    }
+    // }
+
+    // .dashboard-section5 {
+    //     margin-top: 16px;
+    .section5-card {
+        @include theme() {
+            background-color: theme-get('checkout-card-bg');
+        }
+        padding: 20px;
+        min-width: calc(33.33% - 12px);
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px 0 rgba(0, 0, 0, 0.06);
+        @media screen and (min-width: 1200px) {
+            max-width: 18vw;
+        }
+        @media screen and (max-width: 1100px) {
+            min-width: 49%;
+        }
+        height: auto;
+        border-radius: 4px;
+    }
+    .section5-title {
+        font-size: 16px;
+        font-family: $interSemiBold;
+        // color: #1d252b;
+        @include theme() {
+            color: theme-get('black-800');
+        }
+    }
+    .section5-table {
+        margin-top: 24px;
+    }
+    // }
+}
+
+.opition-class {
+    font-family: $interRegular;
+    font-size: 14px;
+    // color:#1d252b;
+    @include theme() {
+        color: theme-get('black-800');
+    }
+}
+.dashboard-main-outer-layer .p-datatable .p-datatable-tbody > tr {
+    background: transparent;
+}
+.dashboard-main-outer-layer .p-datatable .p-datatable-tbody > tr > td {
+    min-width: 100px;
+    @include theme() {
+        border: 1px solid theme-get('border-black-400');
+    }
+}

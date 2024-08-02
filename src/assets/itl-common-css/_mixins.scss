@@ -1,0 +1,326 @@
+/***mixins **/
+@mixin theme() {
+    @each $theme, $map in $themes {
+        $theme-map: $map !global;
+        .#{$theme} & {
+            @content;
+        }
+    }
+    $theme-map: null !global;
+}
+
+@function theme-get($key) {
+    @return map-get($theme-map, $key);
+}
+
+@mixin buttonBackground($val) {
+    @if $val == blue {
+        background: $backgroundBlue;
+    } @else if $val == green {
+        background: $backgroundGreen;
+    } @else if $val == lightGray {
+        background: $lightGrayColor;
+    } @else {
+        background: transparent;
+    }
+}
+@mixin buttonFormat($round-button) {
+    border: none;
+    color: $whiteColor;
+    font-weight: $fontWeight400;
+    @if $round-button {
+        border-radius: $borderRadius50;
+    } @else {
+        border-radius: $borderRadius6;
+    }
+}
+@mixin displayFlex() {
+    display: flex;
+    align-items: center;
+    @media (max-width: 767px) {
+        display: block;
+    }
+}
+@mixin justifycontent($value) {
+    justify-content: $value;
+}
+@mixin position($value) {
+    position: $value;
+}
+@mixin font-size($size) {
+    font-size: $size;
+}
+@mixin borderRadius($value) {
+    border-radius: $value;
+}
+@mixin cursor($type) {
+    cursor: $type;
+}
+@mixin padding($top: null, $right: null, $bottom: null, $left: null) {
+    @if $top != null {
+        padding-top: $top;
+    }
+    @if $right != null {
+        padding-right: $right;
+    }
+    @if $bottom != null {
+        padding-bottom: $bottom;
+    }
+    @if $left != null {
+        padding-left: $left;
+    }
+}
+@mixin maxWidth($maxWidth) {
+    max-width: $maxWidth;
+}
+@mixin box-shadow($x, $y, $blur, $spread, $color) {
+    box-shadow: $x $y $blur $spread $color;
+}
+@mixin width($width: null, $minWidth: null, $maxWidth: null) {
+    @if $width != null {
+        width: $width;
+    }
+    @if $minWidth != null {
+        min-width: $minWidth;
+    }
+    @if $maxWidth != null {
+        max-width: $maxWidth;
+    }
+}
+@mixin height($height: null, $minHeight: null, $maxHeight: null) {
+    @if $height != null {
+        height: $height;
+    }
+    @if $minHeight != null {
+        min-height: $minHeight;
+    }
+    @if $maxHeight != null {
+        max-height: $maxHeight;
+    }
+}
+@mixin margin($top: null, $right: null, $bottom: null, $left: null) {
+    @if $top != null {
+        margin-top: $top;
+    }
+    @if $right != null {
+        margin-right: $right;
+    }
+    @if $bottom != null {
+        margin-bottom: $bottom;
+    }
+    @if $left != null {
+        margin-left: $left;
+    }
+}
+@mixin custom-positioning($top: null, $right: null, $bottom: null, $left: null) {
+    top: $top;
+    left: $left;
+    right: $right;
+    bottom: $bottom;
+}
+@mixin border($width, $style, $color) {
+    @if $style == none {
+        border: none;
+    } @else {
+        border: $width $style $color;
+    }
+}
+@mixin borderStyle($width, $style, $color, $top: null, $left: null, $right: null, $bottom: null) {
+    @if $top != null {
+        border-top: $top;
+    }
+    @if $left != null {
+        border-left: $left;
+    }
+    @if $right != null {
+        border-right: $right;
+    }
+    @if $bottom != null {
+        border-bottom: $bottom;
+    }
+    @if $style != none {
+        border: $width $style $color;
+    }
+}
+@mixin formInput($roundInput) {
+    font-size: $fontSize14;
+    height: 40px;
+    @if $roundInput {
+        border-radius: $borderRadius50;
+        border: none;
+    } @else {
+        border-radius: $borderRadius6;
+        @include theme() {
+            border: solid 1px theme-get('input-border-clr');
+        }
+    }
+}
+@mixin outer-main-section {
+    background-color: $whiteColor;
+    border-bottom: 1px solid #e5e7eb;
+    border-radius: 0px;
+    @include padding(16px 0);
+    @media (max-width: 1400px) {
+        @include padding(16px);
+    }
+}
+@mixin mainContainer {
+    @media (max-width: 767px) {
+        max-width: 100%;
+        min-width: 100%;
+        margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+        min-width: 720px;
+        margin: 0 auto;
+        padding: 16px;
+    }
+    @media (min-width: 992px) {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+    @media (min-width: 1200px) {
+        max-width: 1140px;
+        margin: 0 auto;
+    }
+    @media (min-width: 1440px) {
+        max-width: 1136px;
+        margin: 0 auto;
+    }
+}
+@mixin sectionCard {
+    border-radius: $borderRadius12;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 6%), 0 1px 3px 0 rgb(0 0 0 / 10%);
+    background-color: $whiteColor;
+}
+
+@mixin bd-radius($value) {
+    -webkit-border-radius: $value;
+    -moz-border-radius: $value;
+    border-radius: $value;
+}
+@mixin main-section() {
+    @include theme() {
+        background-color: theme-get('background');
+    }
+    border-radius: 4px;
+}
+//label comman scss //
+@mixin label() {
+    font-size: 12px;
+    color: #575f6c;
+    line-height: 16px;
+    display: block;
+    margin-bottom: 5px;
+    font-family: $interRegular;
+}
+//text-box start scss//
+@mixin text() {
+    @include theme() {
+        border: 1px solid theme-get('dropdown-border');
+        color: theme-get('black-900');
+        // background-color: theme-get("input-color") ;
+    }
+    line-height: $lineHight14;
+    //  border: solid 1px #dfe3e6;
+    height: 32px;
+    border-radius: 4px;
+    outline: none;
+    font-family: $interRegular;
+    font-size: $fontSize14;
+    //  color: #1d252b;
+}
+
+//section heading scss //
+@mixin section-heading() {
+    font-size: $fontSize14;
+    font-weight: $fontWeight600;
+    font-family: $interSemiBold;
+}
+@mixin button-primary() {
+    background-color: $primaryColor;
+    color: $primaryFontColor;
+    border-radius: 4px;
+    font-size: $fontSize12;
+    border-color: $primaryColor;
+    border: 1px solid $primaryColor;
+    cursor: pointer;
+}
+@mixin pagetitle() {
+    font-size: 18px;
+    line-height: #1200;
+    font-weight: $fontWeight600;
+    font-family: $interSemiBold;
+}
+// @mixin margin-classes
+// {
+//     @for $i from 1 through $sizes
+//     {
+//        $margin: $i * 0.25rem;
+//       /* margin #{$margin} */
+//       .m-#{$i}  {margin: $margin;}
+//       .ml-#{$i} {margin-left: $margin;}
+//       .mr-#{$i} {margin-right: $margin;}
+//       .mt-#{$i} {margin-top: $margin;}
+//       .mb-#{$i} {margin-bottom: $margin;}
+//       .mx-#{$i} {margin-left: $margin; margin-right: $margin;}
+//       .my-#{$i} {margin-top: $margin; margin-bottom: $margin;}
+//     }
+// }
+// @include margin-classes;
+
+// @mixin padding-classes
+// {
+//     @for $i from 1 through $sizes {
+//       $padding: $i * 0.25rem;
+//       /* padding #{$padding} */
+//       .p-#{$i} {padding: $padding;}
+//       .pl-#{$i} {padding-left: $padding;}
+//       .pr-#{$i} {padding-right: $padding;}
+//       .pt-#{$i} {padding-top: $padding;}
+//       .pb-#{$i} {padding-bottom: $padding;}
+//       .px-#{$i} {padding-left: $padding; padding-right: $padding;}
+//       .py-#{$i} {padding-top: $padding; padding-bottom: $padding;}
+//     }
+// }
+// @include padding-classes;
+
+@mixin base-input() {
+    font-family: $helveticaRegular;
+    border-radius: $input-border-radius;
+    height: $input-height;
+    padding: $input-padding;
+    font-size: 14px;
+
+    @include theme() {
+        border: 1px solid theme-get('input-border-color');
+        color: theme-get('input-text-color');
+    }
+}
+
+@mixin sm-button() {
+    font-family: $helveticaRegular;
+    height: $sm-btn-height;
+    padding: $sm-btn-padding;
+    font-size: $sm-btn-font-size;
+    border-radius: $sm-border-radius;
+    line-height: 12px;
+    width: auto;
+    color: #fff;
+    @include theme() {
+        background-color: theme-get('primary');
+    }
+}
+
+@mixin md-button() {
+    font-family: $helveticaRegular;
+    height: $md-btn-height;
+    padding: $md-btn-padding;
+    font-size: $md-btn-font-size;
+    border-radius: $md-border-radius;
+    line-height: 10px;
+    color: #fff;
+    @include theme() {
+        background-color: theme-get('primary');
+    }
+}

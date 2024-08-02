@@ -1,0 +1,152 @@
+@import '../../assets/itl-common-css/common-css.scss';
+
+.page-not-found{
+    margin: 0 auto;
+    // padding: 100px 120px 100px;
+    padding: 60px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include theme() {
+        background-color: theme-get('card-bg');
+    }
+
+    .itl-card-logo {
+        margin: 0 0 40px 0;
+
+        img {
+            height: 32px;
+        }
+    }
+
+    .itl-main {
+        display: flex;
+        // justify-content: space-between;
+        gap: 130px;
+        align-items: center;
+    }
+
+    .itl-main-card {
+        width: 50%;
+
+        .itl-heading {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.33;
+
+            @include theme() {
+                color: theme-get('label-clr');
+            }
+        }
+
+        .itl-main-heading {
+            font-size: 54px;
+            font-weight: bold;
+            line-height: 1.19;
+            margin: 16px 0 16px 0;
+
+            @include theme() {
+                color: theme-get('black-900');
+            }
+        }
+
+        .itl-main-para {
+            width: 456px;
+            font-size: 18px;
+            line-height: 1.33;
+            letter-spacing: normal;
+            font-weight: normal;
+            margin-bottom: 48px;
+
+            @include theme() {
+                color: theme-get('label-clr');
+            }
+        }
+    }
+
+    .itl-error-img {
+        // width: 100%;
+
+        img {
+            width:100%;
+            max-width:543px;
+            object-fit: cover;
+            height: auto;
+        }
+    }
+}
+
+// ========media screen====
+@media (min-width: 320px) and (max-width: 767px) {
+    .page-not-found{
+        padding: 60px 30px;
+
+        .itl-main {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap:20px;
+        }
+
+        .itl-main-card {
+            width: 100%;
+
+            .itl-main-heading {
+                font-size: 28px;
+            }
+
+            .itl-main-para {
+                width: 100%;
+            }
+
+            .card-btn {
+                align-items: center;
+                display: flex;
+            }
+        }
+
+        .itl-error-img {
+            // width: 100%;
+            margin-bottom: 24px;
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .page-not-found{
+        width: 100%;
+        padding: 50px 36px 54px;
+
+        .itl-main {
+            gap: 60px;
+        }
+
+        .itl-main-card {
+            width: 50%;
+
+            .itl-main-heading {
+                font-size: 28px;
+            }
+
+            .itl-main-para {
+                width: 100%;
+            }
+
+            .card-btn {
+                width: 100%;
+            }
+        }
+
+        .itl-error-img {
+            width: 50%;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .page-not-found{
+        padding: 60px 60px;
+    }
+}
+

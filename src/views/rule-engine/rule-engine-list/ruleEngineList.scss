@@ -1,0 +1,178 @@
+@import '../../../assets/itl-common-css/common-css.scss';
+@import '../../../assets/itl-common-css/mixins.scss';
+@import '../../../assets/itl-common-css/variables';
+
+.rule-engine {
+    // font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: $interRegular;
+
+    .font-inter {
+        font-family: $interMedium;
+    }
+
+    //  custom image hover
+    .image {
+        cursor: pointer;
+    }
+    .img-container {
+        display: block;
+        visibility: hidden;
+        z-index: 10;
+    }
+    .image:hover .img-container {
+        visibility: visible;
+    }
+
+    // toggle input switch
+    .p-inputswitch {
+        width: 2.8rem !important;
+        height: 1.35rem !important;
+        top: 2px;
+    }
+
+    // dropdown
+    .p-dropdown {
+        border-radius: 50px !important;
+        width: 8.5rem !important;
+        margin-right: 16px !important;
+
+        .p-inputtext {
+            // padding: 6px 2px 6px 7px !important;
+        }
+        .p-dropdown-trigger {
+            width: 37px;
+        }
+        .truncate {
+            text-overflow: clip;
+            font-size: 13px;
+        }
+        .p-dropdown-label.p-placeholder {
+            font-size: 13px;
+            // color: #374151;
+            font-family: $interMedium;
+        }
+    }
+    .p-dropdown-items-wrapper {
+        width: auto !important;
+    }
+
+    .flip-list-move {
+        transition: transform 0.5s;
+    }
+
+    .no-move {
+        transition: transform 0s;
+    }
+    .ghost {
+        opacity: 0.5;
+        // background: #c8ebfb;
+        @include theme() {
+            background-color: theme-get('background') !important;
+        }
+    }
+
+    .pincode_popover {
+        max-height: 141px;
+    }
+}
+@media (min-width: 767px) {
+    .rule-engine {
+        .img-container:before{
+            content: "";
+            border-left: 1px solid #e5e7eb;
+            position: absolute;
+            left: -8px;
+            bottom: 36px;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            transform: rotate(45deg);
+            border-bottom: 1px solid #e5e7eb;
+        }
+    }
+    .darkTheme .rule-engine .img-container:before{
+        content: "";
+        position: absolute;
+        background: #474747;
+        transform: rotate(45deg);
+        border-bottom: 1px solid #474747;
+        border-left: 1px solid #474747;
+    }
+}
+
+@media (max-width: 767px) {
+    .rule-engine {
+        .img-container:before{
+            content: "";
+            border-top: 1px solid #e5e7eb;
+            position: absolute;
+            top: -8px;
+            right: 29px;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            transform: rotate(45deg);
+            border-left: 1px solid #e5e7eb;
+        }
+    }
+    .darkTheme .rule-engine .img-container:before{
+        content: "";
+        position: absolute;
+        background: #474747;
+        transform: rotate(45deg);
+        border-top: 1px solid #474747;
+        border-left: 1px solid #474747;
+    }
+}
+
+@media (max-width: 770px) {
+    .rule-engine {
+        .p-inputswitch {
+            width: 2.47rem !important;
+            height: 1.18rem !important;
+            top: 2px;
+
+            .p-inputswitch-slider:before {
+                width: 0.8rem !important;
+                height: 0.8rem !important;
+                left: 0.2rem !important;
+                right: 0.2rem !important;
+                margin-top: -0.4rem !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    .pincode_popover {
+        max-height: 140px;
+        min-height: 50px;
+        left: -70%;
+        top: 8px;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 320px) {
+    .pincode_popover {
+        left: -62%;
+    }
+}
+@media (min-width: 321px) and (max-width: 375px) {
+    .pincode_popover {
+        left: -40%;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 425px) {
+    .pincode_popover {
+        left: -21%;
+    }
+}
+.disabled-data {
+    pointer-events: none;
+}
+
+.rule-engine-overflow-hidden{
+    overflow: hidden;
+}

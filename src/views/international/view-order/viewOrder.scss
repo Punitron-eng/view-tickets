@@ -1,0 +1,26 @@
+.view-order-international .p-datatable-wrapper {
+    min-height: 50vh;
+    max-height: 65vh;
+}
+.view-order-international .p-inputtext {
+    padding: 2px 5px !important;
+}
+.darkTheme .p-inputtext {
+    background-color: transparent !important;
+}
+
+.lightTheme .p-dropdown-label {
+    color: #1d252b !important;
+}
+
+.view-order .dp-custom-menu-show {
+    background-color: transparent;
+}
+
+.view-order-international {
+    .search-outer {
+        @media (max-width: 432px) {
+            max-width: 180px !important;
+        }
+    }
+}

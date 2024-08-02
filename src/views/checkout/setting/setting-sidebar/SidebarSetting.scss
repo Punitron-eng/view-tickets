@@ -1,0 +1,188 @@
+@import "../../../../assets/itl-common-css/common-css.scss";
+input:read-only {
+    @include theme() {
+        background-color: theme-get("border-black-400")!important;
+        border: solid 1px theme-get("cancel-button-border");
+    }
+    
+}
+
+.show-vendor {
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+    @media(max-width:767px){
+        position: absolute;
+        top: auto;
+        cursor: pointer;
+        bottom: -40px;
+        left: 0;
+    }
+}
+.setting-main-outer {
+    display: flex;
+}
+.setting-heading {
+    font-size: 14px;
+    line-height: 12px;
+    color: #1d252b;
+    font-weight: 600;
+}
+.setting-dropdown {
+    @include theme() {
+        border-color: 1px solid theme-get("black-900") !important;
+    }
+    box-shadow: none !important;
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    @include theme() {
+        color: theme-get("black-800") !important;
+        background-color: theme-get('border-black-600')!important;
+    
+    }
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+    // background-color: red !important;
+    @include theme() {
+        background: theme-get("border-black-600");
+    }
+}
+
+.p-dropdown-item.p-highlight{
+   
+    background-color: #212121;
+}
+
+.p-dropdown-panel {
+    @include theme() {
+        border-color: 1px solid theme-get("black-900") !important;
+    }
+    box-shadow: none !important;
+}
+.p-dropdown-panel {
+    box-shadow: none;
+    border-radius: 8px;
+    border: solid 1px #545b67;
+}
+
+.lightTheme .p-dropdown-panel {
+    border: 1px solid #dfe3e6;
+}
+ .dropdown-outer{
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    @include theme(){
+        color:theme-get("dropdown-color")!important;
+    }
+
+}
+}
+// .sidebar-wrapper{
+//     min-height: 100vh;
+//     width:215px;
+//     background-color:#fff;
+//     padding: 28px 24px;
+//     border-right: 1px solid #e9ebef;
+//     .dropdown-list {
+//         margin-top: 28px;
+//     }
+// }
+.select-option {
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid #e9ebef;
+}
+.p-dropdown {
+    min-width: 200px !important;
+    height: 32px;
+    border-radius: 4px;
+    align-items: center;
+}
+.select-options {
+    display: flex;
+    .option-name {
+        padding-left: 12px;
+    }
+}
+.current-page {
+    ul.page-list {
+        list-style: none;
+        display: inline;
+        li.page-info {
+            border-radius: 4px;
+            padding: 8px;
+            display: flex;
+            color: #575f6c;
+            &:hover {
+                background-color: #f1f3f5;
+                color: black;
+            }
+            li.active {
+                // color:blue;
+                font-weight: 700;
+            }
+            a.router-link-active.router-link-exact-active.routerlink-topage {
+                display: flex;
+                align-items: center;
+            }
+            a.routerlink-topage {
+                display: flex;
+                align-items: center;
+            }
+            li a {
+                @include theme() {
+                    border-color: 1px solid theme-get("black-900") !important;
+                }
+                color: #575f6c;
+            }
+            .current-page-info {
+                display: flex;
+                align-items: center;
+            }
+        }
+        .router-link-exact-active.routerlink-topage {
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            line-height: 16px !important;
+        }
+        li.page-info span {
+            margin-left: 12px;
+            font-size: 13px;
+            line-height: 16px;
+            color: #1d252b;
+        }
+    }
+}
+.error_msg {
+    @include theme() {
+        color: theme-get("red-clr");
+     }
+    color: red;
+    font-size: 10px;
+}
+.label-box {
+    span {
+        @include theme() {
+            color: theme-get("red-clr");
+         }
+        color: red;
+        padding-left: 3px;
+    }
+}
+@media(max-width:767px){
+    .main-section.subadmin-main-section {
+        margin-top: 20%!important;
+    }
+}
+.show-vendor-btn {
+    margin-left: 5px;
+}
+.vendorMargin {
+    margin-left: 10px;
+}
+.setting-dropdown .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    padding: 0;
+    text-transform: capitalize;
+}
+.setting-dropdown .option-item {
+    padding: 6px 12px;
+}

@@ -1,0 +1,350 @@
+@import "../../assets/itl-common-css/common-css.scss";
+
+.early-cod {
+    .p-checkbox {
+        height: 16px;
+        width: 16px;
+    }
+    .p-checkbox .p-checkbox-box {
+        border-radius: 3px;
+    }
+    .p-checkbox .p-checkbox-box {
+        width: 16px;
+        height: 16px;
+    }
+    .p-checkbox .p-checkbox-box.p-highlight {
+        border-color: #0168ed;
+        background: #1279ff;
+    }
+    .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+        box-shadow: none;
+        border-color: #1279ff;
+    }
+    .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+        border-color: #0168ed;
+        background: #1279ff;
+    }
+    .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+        border-color: lightgray;
+    }
+    .p-checkbox .p-checkbox-box .p-checkbox-icon {
+        color: white;
+    }
+
+    .page-header {
+        align-items: center;
+        gap: 16px;
+        @media screen and (max-width: 1024px) {
+            max-width: none;
+        }
+        @media screen and (max-width: 768px) {
+            padding-bottom: 16px;
+        }
+        @media screen and (max-width: 480px) {
+            align-items: flex-start;
+        }
+        .sub-heading {
+            width: 400px;
+            text-align: center;
+            @include theme() {
+                color: theme-get("black-900");
+            }
+            @media screen and (max-width: 768px) {
+                max-width: 385px;
+            }
+            @media screen and (max-width: 480px) {
+                width: 288px;
+                text-align: left;
+            }
+        }
+    }
+    
+    .our-plans,
+    .benefits {
+        margin: 0;
+        padding: 16px 0 0;
+        @include theme() {
+            background-color: theme-get("background");
+        }
+        border-radius: 8px;
+        box-shadow: 0 4px 10px 0 rgba(63, 71, 79, 0.15);
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            width: 100%;
+            margin: 0;
+            padding: 16px 0 0;
+        }
+        .our-plans-container,
+        .benefits-container {
+            h2 {
+                padding: 0 16px 16px;
+                margin: 0;
+                font-family: $interSemiBold;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 1.5;
+                @include theme() {
+                    color: theme-get("black-900");
+                    border-bottom: 1px solid theme-get("border-black-400");
+                }
+                width: 950.4px;
+                @media screen and (max-width: 767px) {
+                    width: auto !important;
+                }
+                @media screen and (min-width: 768px) and (max-width: 1023px) {
+                    width: auto !important;
+                }
+            }
+        }
+        .days-boxes,
+        ul {
+            padding: 48px 64px 36px;
+            @media screen and (min-width: 768px) and (max-width: 995px) {
+                padding: 48px 22px 36px 22px;
+            }
+            @media screen and (min-width: 769px) and (max-width: 768px) {
+                padding: 20px 64px 0 16px;
+            }
+            @media screen and (min-width: 480px) and (max-width: 768px) {
+                padding: 48px 17px 36px;
+            }
+            @media screen and (max-width: 480px) {
+                padding: 24px;
+            }
+            .box-container {
+                gap: 15px;
+                .day-box {
+                    padding: 24px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    @include theme() {
+                        border: 2px solid theme-get("border-black-400");
+                    }
+                    border-radius: 16px;
+                    @media screen and (min-width: 768px) and (max-width: 1024px) {
+                        width: 262px;
+                        padding: 10px;
+                    }
+                    @media screen and (min-width: 480px) and (max-width: 768px) {
+                        padding: 13px;
+                    }
+                    @media screen and (min-width: 540px) and (max-width: 541px) {
+                        padding: 24px;
+                    }
+                    .deliver {
+                        margin-top: 8px;
+                        font-family: $interMedium;
+                        font-size: 14px;
+                        font-weight: 500;
+                        line-height: 0.86;
+                        @include theme() {
+                            color: theme-get("black-700");
+                        }
+                    }
+                    h3 {
+                        margin: 12px 0 32px 0;
+                        font-family: $interMedium;
+                        font-size: 32px;
+                        font-weight: 500;
+                        line-height: 1;
+                        @include theme() {
+                            color: theme-get("black-900");
+                        }
+                    }
+                    .charges {
+                        font-family: $interMedium;
+                        font-size: 12px;
+                        font-weight: 500;
+                        line-height: 0.86;
+                        @include theme() {
+                            color: theme-get("black-800");
+                        }
+                    }
+                    h5 {
+                        margin: 4px 0;
+                        font-family: $interMedium;
+                        font-size: 14px;
+                        font-weight: 500;
+                        line-height: 1.14;
+                        @include theme() {
+                            color: theme-get("black-900");
+                        }
+                    }
+                    .gst {
+                        margin: 4px 0 28px 0;
+                        font-family: $interMedium;
+                        font-size: 10px;
+                        font-weight: 300;
+                        font-style: italic;
+                        line-height: 1.2;
+                        @include theme() {
+                            color: theme-get("black-500");
+                        }
+                    }
+                    button {
+                        width: 214px;
+                        padding: 10px 65px;
+                        border-radius: 6px;
+                        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+                        border: solid 1px #0168ed;
+                        background-color: #1279ff;
+                        color: #fff;
+                        font-family: $interSemiBold;
+                        font-size: 14px;
+                        font-weight: 600;
+                        font-stretch: normal;
+                        font-style: normal;
+                        line-height: 1.14;
+                        cursor: pointer;
+                        @media screen and (max-width: 768px) {
+                            width: 208px;
+                        }
+                        @media screen and (min-width: 768px) and (max-width: 769px) {
+                            width: 154px;
+                            padding: 10px 35px;
+                        }
+                    }
+                    .deactivate {
+                        // background-color: #fff;
+                        @include theme() {
+                            background: theme-get("early-cod-deactivate-btn");
+                        }
+                        @include theme() {
+                            color: theme-get("early-cod-deactivate-btn-color");
+                        }
+                        @include theme() {
+                            border-color: theme-get("early-cod-deactivate-btn-border-color");
+                        }
+                        // color: #fff;
+                        // border-color: #fff;
+                    }
+                }
+                .active {
+                    border: 2px solid;
+                    @include theme() {
+                        border-color: theme-get("early-cod-card-border");
+                    }
+                    // border: 2px solid #0168ed !important;
+                }
+            }
+            p {
+                margin: 36px 0 8px 0;
+                font-family: $interRegular;
+                font-size: 13px;
+                line-height: 1.23;
+            }
+            .termscondition {
+                gap: 2px;
+                font-family: $interMedium;
+                font-size: 13px;
+                font-weight: 500;
+                line-height: 1.33;
+                padding-top: 16px;
+                .emptyCheck {
+                    position: relative;
+                    width: 16px;
+                    height: 16px;
+                    bottom: 3px;
+                    right: 2px;
+                    @media screen and (max-width: 768px) {
+                        bottom: 3px;
+                    }
+                }
+                .tnc-text {
+                    margin-left: 8px;
+                    @media screen and (min-width: 768px) and (max-width: 1025px) {
+                        margin-left: 16px;
+                    }
+                }
+                span {
+                    @media screen and (max-width: 768px) {
+                        max-width: 300px;
+                    }
+                    .tandc {
+                        color: #1279ff;
+                        padding-bottom: 1px;
+                        border-bottom: 1px solid #1279ff;
+                    }
+                }
+                .conditions {
+                    @media screen and (max-width: 768px) {
+                        display: block;
+                        margin-left: 24px;
+                        width: 62px;
+                        border-bottom: 1px solid #1279ff;
+                    }
+                }
+            }
+        }
+        .days-boxes {
+            @media screen and (min-width: 540px) and (max-width: 541px) {
+                padding: 20px 64px 36px;
+            }
+        }
+    }
+
+    .benefits {
+        margin: 16px 0 40px;
+        padding: 16px 2px 16px;
+        .benefits-container {
+            ul {
+                padding: 20px 64px 0;
+                @media screen and (min-width: 768px) and (max-width: 912px) {
+                    padding: 20px 18px 0;
+                }
+                @media screen and (min-width: 540px) and (max-width: 541px) {
+                    padding: 20px 64px 0;
+                }
+                @media screen and (max-width: 480px) {
+                    padding: 24px 22px 0;
+                }
+                li {
+                    display: flex;
+                    gap: 16px;
+                    list-style: none;
+                    margin-bottom: 18px;
+                    img {
+                        position: relative;
+                        top: -4px;
+                    }
+                    .greencheck {
+                        top: -7px;
+                        @media screen and (max-width: 480px) {
+                            // top: -15px;
+                        }
+                        @media screen and (min-width: 768px) and (max-width: 1024px) {
+                            top: -4px;
+                        }
+                    }
+                    span {
+                        max-width: 572px;
+                        font-family: $interRegular;
+                        font-size: 14px;
+                        font-weight: normal;
+                        line-height: 1.14;
+                        @media screen and (min-width: 768px) and (max-width: 1024px) {
+                            max-width: none;
+                        }
+                        @media screen and (max-width: 540px) {
+                            max-width: none;
+                            font-size: 13px;
+                        }
+                        @media screen and (max-width: 480px) {
+                            max-width: none;
+                        }
+                        .break {
+                            display: inline;
+                            @media screen and (max-width: 767px) {
+                                display: block;
+                            }
+                            @media screen and (min-width: 540px) and (max-width: 769px) {
+                                display: inline;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

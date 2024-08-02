@@ -1,0 +1,286 @@
+@import '../../assets/itl-common-css/common-css.scss';
+
+.main-container {
+    @include theme() {
+        color: theme-get('black-900');
+    }
+    font-size: 13px;
+    min-height: 100vh;
+    @media screen and (min-width: 760px) {
+        margin: 0 80px 0 80px;
+    }
+    @media screen and (min-width: 1200px) {
+        max-width: 1200px;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    font-family: $interMedium;
+
+    .container-header {
+        @media screen and (max-width: 767px) {
+            padding-bottom: 16px;
+        }
+
+        .container-image {
+            width: 48px;
+            @media screen and (max-width: 767px) {
+                width: 24px;
+            }
+        }
+        .container-header-title {
+            font-family: $interRegular;
+            font-weight: bold;
+            font-size: 24px;
+            @include theme() {
+            color: theme-get('black-900');
+        }
+            @media screen and (max-width: 767px) {
+                margin-left: 8px;
+                font-size: 18px;
+            }
+            @media screen and (min-width: 768px) and (max-width: 990px) {
+                margin-left: 16px;
+            }
+            line-height: 1.17;
+            span {
+                font-family: $interMedium;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .section1-card1 {
+        @include theme() {
+            background-color: theme-get('background');
+        }
+        padding: 48px 64px 48px 64px;
+        max-width: 944px;
+
+        @media screen and (max-width: 1000px) and (min-width: 768px) {
+            gap: 47px;
+        }
+
+        @media screen and (min-width: 1200px) {
+            max-height: 292px;
+        }
+
+        gap: 120px;
+        border-radius: 8px;
+        @media screen and (max-width: 768px) {
+            padding: 24px;
+            gap: 46px;
+
+            .section1-left-title {
+                font-size: 20px !important;
+               
+            }
+            .section1-left-subtitle {
+                margin-top: 16px !important;
+                font-size: 13px !important;
+                line-height: 1.38 !important;
+            }
+            .section1-left-button {
+                min-width: 256px;
+            }
+            .section1-right-subtitle {
+                text-align: center;
+            }
+            .section-1-text {
+                text-align: center;
+            }
+        }
+        .section1-left-content {
+            @media screen and (min-width: 1200px) {
+                max-width: 400px;
+            }
+        }
+        .section1-left-title {
+            font-family: $interSemiBold;
+            font-size: 24px;
+            line-height: 1;
+            font-weight: 600;
+            @include theme() {
+            color: theme-get('black-800');
+        }
+        }
+        .section1-left-subtitle {
+            margin-top: 24px;
+            font-size: 14px;
+
+            @media screen and (min-width: 550px) and (max-width: 780px) {
+                margin-left: 33px;
+            }
+
+            @include theme() {
+            color: theme-get('black-700');
+        }
+            font-family: $interRegular;
+            line-height: 1.43;
+            span {
+                font-family: $interSemiBold;
+            }
+        }
+        .section1-button {
+            margin-top: 24px;
+        }
+        .section-1-image {
+            max-width: 144px;
+            max-height: 123px;
+        }
+        .section1-left-button {
+            width: 256px;
+            height: 40px;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+            border: solid 1px #0168ed;
+            background-color: #1279ff;
+            color: white;
+            font-size: 14px;
+            @media screen and (min-width: 750px) {
+                width: 400px;
+            }
+        }
+        .section-1-text {
+            color: #1279ff;
+            font-weight: 600;
+            font-size: 38px;
+            text-transform: uppercase;
+            font-size: 34px;
+            @media screen and (min-width: 1200px) {
+                font-size: 38px;
+            }
+        }
+        .section1-right-subtitle {
+            font-size: 12px;
+            margin-top: 8px;
+            margin-bottom: 4px;
+            @include theme() {
+                color: theme-get('black-700');
+            }
+            font-family: $interMedium;
+            line-height: 1.33;
+            font-weight: 500;
+        }
+    }
+
+    .section2-card {
+         @include theme() {
+            background-color: theme-get('background');
+        }
+        margin-top: 16px;
+        border-radius: 8px;
+        max-width: 944px;
+        .section2-card-title {
+            font-size: 16px;
+            font-family: $interSemiBold;
+            padding: 16px 24px 16px 24px;
+            font-weight: 600;
+            @include theme() {
+                border-bottom: 1px solid theme-get('border-black-400');
+            }
+        }
+        .section2-card-content {
+            padding: 35px 64px 35px 64px;
+            gap: 72px;
+
+            @media screen and (max-width: 768px) {
+                gap: 32px;
+                padding: 24px;
+                .section2-subcard-content {
+                    max-width: auto !important;
+                }
+            }
+
+            .section2-subcard {
+                display: flex;
+                gap: 8px;
+                flex-direction: column;
+                img {
+                    max-width: 24px;
+                    max-height: 24px;
+                }
+                .section2-subcard-title {
+                    font-family: $interSemiBold;
+                    font-size: 14px;
+                    line-height: 1.43;
+                    @include theme() {
+                        color: theme-get('black-800');
+                    }
+                }
+                .section2-subcard-content {
+                    font-family: $interRegular;
+                    font-size: 13px;
+                    line-height: 1.23;
+                    @include theme() {
+                        color: theme-get('black-700');
+                    }
+                    max-width: auto;
+                }
+            }
+        }
+    }
+
+    .section3-card {
+        @include theme() {
+            background-color: theme-get('background');
+        }
+        margin-top: 16px;
+        margin-bottom: 32px;
+
+        @media screen and (max-width: 768px) {
+            margin-bottom: 82px;
+        }
+        border-radius: 8px;
+        max-width: 944px;
+        .section3-card-title {
+            padding: 16px 24px 16px 24px;
+            font-size: 16px;
+            // @include theme() {
+            //     color: theme-get('black-800');
+            // }
+            line-height: 1.5;
+            font-family: $interSemiBold;
+            @include theme() {
+                border-bottom: 1px solid theme-get('border-black-400');
+            }
+        }
+        .section3-card-content {
+            padding: 32px 64px 32px 64px;
+            @media screen and (max-width: 768px) {
+                gap: 8px;
+                padding: 16px;
+            }
+            .section3-subcard {
+                @include theme() {
+                    color: theme-get('black-700');
+                    background-color: theme-get('rise-background');
+                }
+                
+                padding: 20px;
+                min-width: 262px;
+                border-radius: 6px;
+                .section3-subcard-title {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    span {
+                        font-size: 14px;
+                        font-family: $interSemiBold;
+                        line-height: 1.43;
+                    }
+                }
+                .section3-subcard-content {
+                    max-width: 192px;
+                    margin-top: 8px;
+                    @include theme() {
+                        color: theme-get('black-700');
+                    }
+                    font-size: 13px;
+                    line-height: 1.23;
+                    font-family: $interRegular;
+                }
+            }
+        }
+    }
+}

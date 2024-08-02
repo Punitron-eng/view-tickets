@@ -1,0 +1,602 @@
+@import '../../assets/itl-common-css/common-css.scss';
+
+.main-conatiner {
+    font-family: $interRegular;
+    font-size: 13px;
+}
+.wismo-overflow-hidden {
+    overflow: hidden;
+}
+
+.main-sections {
+    .modal-body {
+        border-bottom: 0px solid transparent;
+    }
+    .buyer-chat-sec {
+        font-size: 14px;
+        font-weight: 500;
+        font-family: $interMedium;
+        color: #1d252b;
+    }
+    .bcs-link {
+        color: #1279ff;
+        font-family: $interRegular;
+        font-size: 12px;
+        max-width: 154px;
+    }
+    .bcs-title{
+        @include theme() {
+            color: theme-get('label-clr');
+        }
+    }
+    //gap: 16px;
+    @media screen and (min-width: 767px) {
+        margin: 0 auto;
+        max-width: 944px;
+    }
+    @media screen and (max-width: 1000px) {
+        max-width: 100%;
+    }
+    @media screen and (max-width: 767px) {
+        width: 100%;
+    }
+    // width: 70%;
+}
+.section-1-card {
+    // background-color: #fff;
+    @include theme() {
+        background-color: theme-get('background');
+    }
+    padding: 0px 0 0 64px;
+    gap: 20px;
+    border-radius: 8px;
+    width: 100%;
+    @media screen and (min-width: 1440px) {
+        max-width: 944px;
+    }
+
+    @media screen and (max-width: 767px) {
+        margin-top: 16px;
+        padding: 24px 12px !important;
+        flex-direction: column-reverse;
+        align-items: center;
+        .section1-left-card {
+            width: auto !important;
+            // padding: 0 24px 24px 24px;
+            margin-top: 0px !important;
+        }
+        .section1-right-card {
+            max-width: 100% !important;
+        }
+    }
+    box-shadow: 0 4px 10px 0 rgba(63, 71, 79, 0.15);
+    .section1-left-card {
+        gap: 24px;
+        font-size: 14px;
+        margin-top: 48px;
+        // color: #3c4249;
+        @include theme() {
+            color: theme-get('black-700');
+        }
+        line-height: 1.43;
+        width: 50%;
+        max-width: 400px;
+        div:first-child {
+            font-size: 24px;
+            font-family: $interSemiBold;
+        }
+        button {
+            width: 100%;
+            background-color: #1279ff;
+            border: 1px solid #0168ed;
+            padding: 12px 0px;
+            font-size: 14px;
+            font-family: $interSemiBold;
+            color: #fff;
+            border-radius: 6px;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+    }
+    .section1-right-card {
+        max-width: 50%;
+        margin-top: 12px;
+    }
+}
+.section-2-card {
+    @include theme() {
+        background-color: theme-get('background');
+    }
+    border-radius: 8px;
+    box-shadow: 0 4px 10px 0 rgba(63, 71, 79, 0.15);
+    width: 100%;
+    .section-2-header {
+        width: 100%;
+        padding: 16px 24px;
+        @include theme() {
+            color: theme-get('black-800');
+        }
+        font-size: 16px;
+        font-family: $interSemiBold;
+        @include theme() {
+            border-bottom: 1px solid theme-get('border-black-400');
+        }
+    }
+    .section-2-content {
+        padding: 35px 64px 48px 64px;
+        gap: 72px;
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+            padding: 16px;
+            gap: 24px;
+            div {
+                min-width: 100%;
+            }
+        }
+        div {
+            max-width: 244px;
+        }
+        // For all heading
+        .content-1-heading,
+        .content-2-heading,
+        .content-3-heading {
+            margin-top: 16px;
+            @include theme() {
+                color: theme-get('black-800');
+            }
+            font-size: 14px;
+            font-family: $interSemiBold;
+            line-height: 1.43;
+        }
+        // for the SubHeading
+        .content-1-subheading,
+        .content-2-subheading,
+        .content-3-subheading {
+            @include theme() {
+                color: theme-get('black-700');
+            }
+            margin-top: 8px;
+        }
+        .content-1-subheading,
+        .content-2-subheading,
+        .content-3-subheading {
+            max-width: 244px;
+        }
+    }
+}
+.section-3-card {
+    @include theme() {
+        background-color: theme-get('background');
+    }
+    border-radius: 8px;
+    box-shadow: 0 4px 10px 0 rgba(63, 71, 79, 0.15);
+    width: 100%;
+    .section-3-header {
+        width: 100%;
+        padding: 16px 24px;
+        @include theme() {
+            color: theme-get('black-800');
+        }
+        font-size: 16px;
+        font-family: $interSemiBold;
+        @include theme() {
+            border-bottom: 1px solid theme-get('border-black-400');
+        }
+    }
+    .section-3-content {
+        padding: 32px 64px;
+        gap: 15px;
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+            padding: 24px;
+            gap: 24px;
+            .section3-content-1,
+            .section3-content-2,
+            .section3-content-3,
+            .section3-content-1-content,
+            .section3-content-2-content,
+            .section3-content-3-content {
+                min-width: 100%;
+            }
+        }
+        .section3-content-1,
+        .section3-content-2,
+        .section3-content-3 {
+            // background-color: #edf5ff;
+            @include theme() {
+                background-color: theme-get('rise-background');
+            }
+            padding: 16px 14px 20px 20px;
+            width: 262px;
+            @media screen and (min-width: 1440px) {
+                min-width: 262px;
+            }
+            border-radius: 6px;
+        }
+        .section3-content-1-header,
+        .section3-content-2-header,
+        .section3-content-3-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            div:first-child {
+                font-size: 14px;
+                font-family: $interSemiBold;
+                line-height: 1.43;
+            }
+        }
+        .section3-content-1-content,
+        .section3-content-2-content,
+        .section3-content-3-content {
+            max-width: 173px;
+            margin-top: 8px;
+        }
+    }
+}
+
+.section-4-card {
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type='number'] {
+        -moz-appearance: textfield;
+    }
+
+    // background-color: #fff;
+    @include theme() {
+        background-color: theme-get('background');
+    }
+    border-radius: 8px;
+    box-shadow: 0 4px 10px 0 rgba(63, 71, 79, 0.15);
+    width: 100%;
+    margin-bottom: 31px;
+    .section-4-header {
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+            gap: 6px;
+        }
+        .show-vendor-btn {
+            background-color: transparent;
+            border: none;
+        }
+        width: 100%;
+        padding: 16px 24px;
+        @include theme() {
+            color: theme-get('black-800');
+        }
+        font-size: 16px;
+        font-family: $interSemiBold;
+        @include theme() {
+            border-bottom: 1px solid theme-get('border-black-400');
+        }
+    }
+    .section-4-content {
+        padding: 32px 64px 23px 64px;
+    }
+
+    @media screen and (max-width: 767px) {
+        .section-4-content {
+            padding: 16px;
+        }
+
+        .section4-content-header {
+            flex-direction: column;
+            align-items: center;
+            .s4-header-1,
+            .s4-header-2 {
+                min-width: 100% !important;
+                padding: 16px 7px !important;
+                gap: 10px !important;
+            }
+            .s4-header-1-left,
+            .s4-header-2-left {
+                gap: 10px !important;
+            }
+        }
+        // for the table
+        .section4-content-table {
+            table {
+                border: none !important;
+                thead {
+                    display: none;
+                }
+                .data-td {
+                    position: relative;
+                    margin-top: 10px;
+                    @include theme() {
+                        border: 1px solid theme-get('wismo-border1');
+                    }
+                    border-radius: 8px;
+                }
+                .template-td {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    height: fit-content;
+                    width: fit-content;
+                }
+                td {
+                    border: none !important;
+                }
+                .selectAll-td {
+                    display: none;
+                }
+                .notifications-div {
+                    align-items: flex-start !important;
+                    div {
+                        min-width: 36% !important;
+                    }
+                }
+                .notification-data-td {
+                    div {
+                        flex-direction: column;
+                    }
+                }
+                .data-td {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        }
+        .section4-table-footer {
+            flex-direction: column;
+            gap: 16px !important;
+            padding: 12px !important;
+            align-items: flex-start !important;
+            .s4-footer-content-1 {
+                min-width: fit-content;
+            }
+            .s4-footer-content-2,
+            .footer-email-section {
+                width: 100% !important;
+            }
+            .footer-email-section {
+                // border-top: 1px solid #f1f3f5 !important;
+                @include theme() {
+                    border-top: 1px solid theme-get('wismo-border1');
+                }
+            }
+        }
+        .section-4-footer {
+            padding: 16px !important;
+        }
+    }
+
+    .footer-email-section {
+        @media screen and (max-width: 769px) {
+            gap: 20px !important;
+        }
+    }
+    .selectAll-td {
+        display: flex;
+        align-items: center;
+    }
+    .section4-content-header {
+        gap: 16px;
+        .whatsapp-header-content {
+            // width: max-content;
+        }
+        .s4-header-1,
+        .s4-header-2 {
+            width: 100%;
+            // min-width: 400px;
+            max-width: 400px !important;
+            padding: 16px 24px;
+            // background-color: #edfbf0;
+            @include theme() {
+                background-color: theme-get('rise-background');
+            }
+            border-radius: 8px;
+
+            .s4-header-1-left,
+            .s4-header-2-left {
+                gap: 24px;
+                font-size: 16px;
+                font-family: $interMedium;
+                @media (min-width: 768px) and (max-width: 800px) {
+                    gap: 10px;
+                }
+            }
+            .s4-header-1-right {
+                font-family: $interMedium;
+                span {
+                    font-family: $interBold;
+                }
+            }
+            .s4-header-2-right {
+                font-family: $interMedium;
+                span {
+                    font-family: $interBold;
+                }
+            }
+        }
+    }
+    .section4-content-table {
+        margin-top: 16px;
+        table {
+            border-spacing: 0px !important;
+            @include theme() {
+                border: 1px solid theme-get('wismo-border');
+            }
+            border-radius: 8px;
+            width: 100%;
+            .event-div {
+                font-family: $interMedium;
+                @include theme() {
+                    color: theme-get('topBar-menu-black');
+                }
+                font-weight: 500;
+            }
+            .notifications-div {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .free-tag {
+                position: absolute;
+                left: 50px;
+                background-color: #ccf3c6;
+                color: #18740a;
+                margin-left: 8px;
+                padding: 5px 6px;
+                width: 44px;
+                height: 20px;
+                text-transform: uppercase;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 100px;
+                font-size: 12px;
+                font-family: $interRegular;
+                @media screen and (max-width: 768px) {
+                    font-size: 10px;
+                    width: 35px;
+                }
+            }
+            .input-label {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            .input-labels {
+                text-transform: capitalize;
+            }
+            .notifications-div {
+                input {
+                    width: 16px;
+                    height: 16px;
+                }
+                input:hover {
+                    cursor: pointer;
+                }
+            }
+            thead {
+                @include theme() {
+                    background-color: theme-get('table-th');
+                }
+
+                th {
+                    border: none;
+                    padding: 8px 24.2px;
+                }
+                .th-notification {
+                    width: 400px;
+                }
+            }
+            td {
+                padding: 13px;
+                @include theme() {
+                    border-top: 1px solid theme-get('wismo-border');
+                }
+            }
+        }
+        .table-view-btn {
+            // color: #6554c0;
+            @include theme() {
+                color: theme-get('wismo-btn-color');
+            }
+            background-color: transparent;
+            border: none;
+            font-size: 14px;
+            width: 100%;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .section4-table-footer {
+        @include theme() {
+            background-color: theme-get('rise-background');
+        }
+        border-radius: 8px;
+        margin-top: 16px;
+        padding: 12px 24px;
+        gap: 66px;
+        .s4-footer-content-1 {
+            font-family: $interMedium;
+            font-size: 16px;
+            @include theme() {
+                color: theme-get('topBar-menu-black');
+            }
+            max-width: 150px;
+        }
+        .s4-footer-content-2 {
+            width: 216px;
+            img {
+                width: 24px;
+                height: 24px;
+            }
+            span,
+            .s4-footer-c2-price {
+                font-size: 16px;
+                @include theme() {
+                    color: theme-get('topBar-menu-black');
+                }
+                margin-left: 8px;
+            }
+        }
+        .footer-email-section {
+            width: 27%;
+        }
+        .s4-footer-content-3 {
+            @include theme() {
+                color: theme-get('topBar-menu-heading');
+            }
+            font-size: 12px;
+        }
+        .s4-footer-content-4 {
+            font-size: 20px;
+            @include theme() {
+                color: theme-get('topBar-menu-black');
+            }
+            font-family: $interBold;
+        }
+    }
+
+    .section-4-footer {
+        padding: 16px 64px;
+        gap: 34px;
+        flex-direction: row-reverse;
+        // border-top: 1px solid #e9ecef;
+        @include theme() {
+            border-top: 1px solid theme-get('border-black-400');
+        }
+        .s4-footer-save-btn {
+            background-color: #1279ff;
+            border-radius: 50px;
+            // padding: 12px 37px 12px 38px;
+            width: 112px;
+            height: 40px;
+            border: 1px solid #1279ff;
+            font-family: $interMedium;
+            color: #fff;
+        }
+        .s4-footer-reset-btn {
+            background-color: transparent;
+            border: none;
+            color: #1279ff;
+            font-family: $interMedium;
+            font-size: 16px;
+        }
+        .s4-footer-reset-btn:hover,
+        .s4-footer-save-btn:hover {
+            cursor: pointer;
+        }
+    }
+}
+@media screen and (max-width: 1000px) {
+    .section-2-content,
+    .section-3-content {
+        padding: 24px !important;
+    }
+    .section-4-content {
+        padding: 24px;
+    }
+}

@@ -1,0 +1,279 @@
+@import "../../../../assets/itl-common-css/common-css.scss";
+.main-page-first-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media (max-width:767px) {
+        justify-content: start;
+        width: 100%;
+    }
+}
+.tracking-Page-outer {
+}
+.trackinginfo {
+    // width: 1200px;
+    margin: 0 auto;
+    // padding: 0 150px;
+    .add-pixel {
+        padding-bottom: 24px;
+    }
+    .main-page-title {
+        margin-bottom: 24px;
+        margin-top: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .title-page {
+        @include pagetitle();
+    }
+    .main-section {
+        @include main-section();
+        .main-info {
+            @include theme() {
+                color: theme-get("check-value");
+                background-color: theme-get("check-input-background");
+            }
+        }
+    }
+    .header {
+        display: flex;
+        align-items: center;
+        padding: 16px 15px;
+        margin-left: 24px;
+        // color: #3c4249;
+        @include section-heading();
+    }
+    hr {
+        margin: 0px;
+    }
+    .conatiner {
+        padding: 0px 80px;
+        margin: 0 auto;
+        // background-color: #fff;
+        // border-radius: 4px;
+        // margin-top: 24px;
+        padding-top: 24px;
+        @include theme() {
+            // color: theme-get("check-value");
+            background-color: theme-get("check-input-background");
+        }
+    }
+    .info {
+        width: 100%;
+        .feedback-info {
+            .feedback-right {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+            }
+            .main-input.right {
+                width: 100%;
+                padding-left: 16px;
+            }
+            .feedback-left {
+                padding-left: 16px;
+            }
+            .main-input {
+                width: 100%;
+                .input-label {
+                    @include label();
+                    font-family: $interRegular;
+                    @include theme() {
+                        color: theme-get("check-value");
+                    }
+                }
+                .input-text {
+                    width: 100%;
+                    padding: 9px 12px;
+                    margin-bottom: 20px;
+                    @include text();
+                    font-family: $interRegular;
+                    @include theme() {
+                        border: 1px solid theme-get("payment-input-border");
+                        color: theme-get("check-value");
+                        // background-color:("payment-input-border") ;
+                    }
+                }
+            }
+        }
+    }
+    .add-pixeldata {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        .pixel-img {
+            img {
+                width: 16px;
+                height: 16px;
+                // margin-top: 5px;
+            }
+        }
+        .add-pixel-info {
+            margin-left: 12px;
+            color: #006af4;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: $interSemiBold;
+        }
+    }
+    .not-allowed {
+        cursor: not-allowed;
+    }
+    .tracking-options {
+        margin-top: 36px;
+        .selects-tracking {
+            font-size: 13px;
+            line-height: 16px;
+            font-weight: 600;
+            margin-bottom: 0px;
+            font-family: $interSemiBold;
+        }
+    }
+    .check-tracking {
+        padding-bottom: 48px;
+    }
+    .multiple-options {
+        display: flex;
+        margin-top: 24px;
+    }
+    .dayanmic-checkbox {
+        width: 16px;
+        height: 16px;
+    }
+    .multiple-options {
+        .trackingoptions {
+            margin-left: 30px;
+            .options-title {
+                font-size: 13px;
+                line-height: 16px;
+                margin-bottom: 4px;
+                font-family: $interRegular;
+                font-weight: normal;
+                // color: #0c0c0d;
+                @include theme() {
+                    color: theme-get("check-value");
+                }
+            }
+            .options-content {
+                font-size: 12px;
+                line-height: 16px;
+                margin: 0px;
+                // color: #575f6c;
+                font-family: $interRegular;
+                font-weight: normal;
+                @include theme() {
+                    color: theme-get("check-value");
+                }
+            }
+        }
+        &.chekbox-checked-active .trackingoptions .options-title {
+            font-family: "Inter-medium";
+        }
+    }
+    .main-section.googleanalystic {
+        margin-top: 16px;
+        .info {
+            .input-text {
+                margin-bottom: 0px;
+            }
+        }
+    }
+    .save-btn {
+        width: 80px;
+        height: 32px;
+        color: white !important;
+        margin: 16px 0 24px;
+        // padding: 8px 16px 10px;
+        font-family: $interSemiBold;
+        @include button-primary();
+    }
+    .styled-checkbox + label:before {
+        position: absolute;
+    }
+    .pixcel-error-msg {
+        color: red;
+        margin-bottom: 10px;
+        margin-top: -12px;
+    }
+    .remove-icon-tracking {
+        margin-left: 15px;
+        width: 30px;
+        cursor: pointer;
+        @media (min-width: 768px) and (max-width: 1024px) {
+            margin-left: 0;
+        }
+        @media (max-width: 767px) {
+            position: absolute;
+            top: -5px;
+            right: 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 767) {
+}
+@media only screen and (max-width: 786px) {
+    .main-payment {
+        width: 100%;
+    }
+    .trackinginfo {
+        width: 100% !important;
+        padding: 20px 15px !important;
+    }
+    .trackinginfo .title-page {
+        margin: unset;
+    }
+    .trackinginfo .main-page-title {
+        margin-top: 0px;
+        position:relative;
+    }
+    .main-page-title {
+        margin-bottom: 10px !important;
+    }
+    .trackinginfo .conatiner {
+        padding: 0 16px !important;
+        margin-top: 24px;
+    }
+    .trackinginfo .header {
+        margin-left: 16px;
+        padding-left: unset !important;
+    }
+    .info .feedback-info .feedback-right {
+        display: flex;
+        flex-direction: column;
+    }
+    .trackinginfo .info .feedback-info .main-input.right {
+        padding-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 1100px) and (min-width: 768px) {
+    .trackinginfo {
+        padding: 0 16px !important;
+    }
+    .trackinginfo .info .feedback-info .feedback-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .main-input.right {
+        padding-left: 0px !important;
+    }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+    .trackinginfo {
+        width: 100% !important;
+        padding: 20px 15px !important;
+    }
+    .trackinginfo .info .feedback-info .feedback-right {
+        flex-direction: row;
+        gap: 0 16px;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .info:first-child .remove-icon-tracking {
+        margin-left: 14px;
+    }
+}

@@ -1,0 +1,206 @@
+@import '../../assets/itl-common-css/common-css.scss';
+.bluk-print-manifest{
+    min-height:87vh;
+
+.form {
+    content {
+        padding: 0;
+    }
+}
+
+.panel-heading {
+    margin-bottom: 20px;
+    margin-top:20px;
+}
+
+.panel-heading_title {
+    @include theme() {
+        color: theme-get('$inputBackgroundColor');
+    }
+    width: 100%;
+    height: 24px;
+    font-size: $fontSize20;
+    font-weight: $fontWeight600;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 1;
+    // color:#252c32;
+    font-family: $interSemiBold;
+}
+
+.panel-default {
+    @include theme() {
+        background-color: theme-get('dt-pagination-bg');
+    }
+    // background: #fff;
+    padding: 30px 32px;
+    border-radius: $borderRadius8;
+}
+
+.custom-radio {
+    width: 20px;
+    height: 20px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+
+   .form-group-label {
+    @include theme() {
+        color: theme-get('$inputBackgroundColor');
+    }
+        width: 480px;
+        height: 16px;
+        font-size: $fontSize12;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.33;
+        letter-spacing: -0.4px;
+        // color: #6b7280;
+         font-family: $interMedium;
+    }
+
+    label {
+        @include theme(){
+            color:theme-get('inputPlaceholderColor');
+        }
+        display: inline-block;
+    }
+}
+
+.text-denger {
+    color:$danger-color;
+}
+
+.form-control-textarea {
+    @include theme(){
+        background-color: theme-get('bulk-background-color');
+        border:1px solid theme-get('bulk-border-color');
+    }
+    font-family: $interRegular;
+    width: 560px !important;
+    height: 200px !important;
+    border-radius:$borderRadius6 !important;
+    // border: solid 1px 'bulk-border-color' ;
+    outline: none;
+    margin-bottom: -10px;
+    padding: 16px !important;
+    font-size: $fontSize14;
+}
+.validation-error {
+    color:$danger-color;
+    margin-top: 10px;
+    font-size: $fontSize16;
+    font-family: $interRegular;
+}
+.Inter-medium {
+    font-family: $interMedium;
+    line-height: $lineHight16;
+    font-size: $fontSize13;
+    font-weight: $fontWeight500;
+}
+
+.flex-div {
+    display: flex !important;
+}
+
+.flex-outer-div {
+    max-width: 560px !important;
+    // width: 52%;
+}
+
+.count-div {
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0.625rem;
+}
+.total-count {
+    font-size: $fontSize14;
+    letter-spacing: 0.6px;
+    color: $inputPlaceholderColor;
+}
+
+.text-div {
+    @include theme(){
+        color: theme-get('inputPlaceholderColor');
+    }
+    // color: #6b7280;
+    font-size:$fontSize13;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.inter-medium {
+    font-family: $interMedium;
+    line-height: $lineHight16;
+    font-size:$fontSize13;
+    font-weight: $fontWeight500;
+}
+
+.btn-style {
+    position: relative;
+        width: 120px !important;
+        height: 40px !important;
+        border-radius: $borderRadius50!important;
+        background-color: $backgroundBlue;
+        font-size:$fontSize16;
+        font-weight: $fontWeight500;
+        font-family: $interMedium;
+        line-height: 1.5;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        cursor: pointer;
+        border: none;
+        margin-top: 8px;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    .bluk-print-manifest{
+        min-height:87vh;
+    .panel-heading_title {
+      width: 100%;
+      height: 20px;
+      font-size: $fontSize20;
+    }
+   .panel-default {
+        padding: 20px 16px;
+    }
+   .form-group {
+      margin-bottom: 16px;
+  
+      .form-group-label {
+        width: 100%;
+        height: 16px;
+        margin: 0px 0px 0px 0px;
+        font-size:$fontSize14;
+      }
+  
+      label {
+        display: inline-block;
+      }
+    }
+  .form-control-textarea {
+        width: 100% !important;
+        height: 190px !important;
+        font-size: $fontSize14;
+    }
+    .flex-div {
+      display: flex !important;
+    }
+    .flex-outer-div {
+        display: contents !important;
+    }
+  
+   
+  }
+}  
+

@@ -1,0 +1,17 @@
+.view-user-wrapper .p-datatable-wrapper {
+    min-height: 50vh;
+    max-height: 65vh;
+}
+
+.view-user-wrapper {
+    @media (max-width: 767px) {
+        .layout-topbar {
+            height: auto !important;
+        }
+        @media (max-width: 767px) {
+            .layout-container.layout-drawer.layout-drawer .layout-content-wrapper {
+                margin-top: 46px !important;
+            }
+        }
+    }
+}

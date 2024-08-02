@@ -1,0 +1,2412 @@
+[
+    {
+        "label": "Home",
+        "icon": "home-menu-icon",
+        "active_icon": "home-menu-icon-blue",
+        "to": null
+    },
+    {
+        "items": {
+            "label": "Orders",
+            "icon": "order-icon",
+            "active_icon": "order-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Foward Order",
+                    "icon": "fw-order-icon",
+                    "active_icon": "fw-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "Create Order",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "create-order-v3"
+                        },
+                        {
+                            "label": "Store Order",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/2/2/0"
+                        },
+                        {
+                            "label": "Ready to Dispatch",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/3"
+                        },
+                        {
+                            "label": "Manifest",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/4"
+                        },
+                        {
+                            "label": "Intransit",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/5"
+                        },
+                        {
+                            "label": "Delivered",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/6"
+                        },
+                        {
+                            "label": "RTO",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/7"
+                        },
+                        {
+                            "label": "All",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/1"
+                        }
+                    ]
+                },
+                {
+                    "label": "Reverse Order",
+                    "icon": "rw-order-icon",
+                    "active_icon": "rw-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "Manifest",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-reverse-order-v3/4"
+                        },
+                        {
+                            "label": "Intransit",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-reverse-order-v3/5"
+                        },
+                        {
+                            "label": "Delivered",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-reverse-order-v3/6"
+                        },
+                        {
+                            "label": "All",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-reverse-order-v3/1"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Admin",
+            "icon": "admin-menu-icon",
+            "active_icon": "admin-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Finance",
+                    "icon": "fin-order-icon",
+                    "active_icon": "fin-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "Invoice working sheet",
+                            "icon": "admin-icon",
+                            "active_icon": "admin-icon-blue",
+                            "url": "view-bill-summary-v3/0"
+                        },
+                        {
+                            "label": "Remittance working sheet",
+                            "icon": "order-icon-icon",
+                            "active_icon": "order-icon-icon-blue",
+                            "url": "view-remittance-v3"
+                        },
+                        {
+                            "label": "View User",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-user-v3"
+                        },
+                        {
+                            "label": "User Other Details",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "account-setting/15"
+                        }
+                    ]
+                },
+                {
+                    "label": "ops",
+                    "icon": "ops-order-icon",
+                    "active_icon": "ops-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "Cancel & Refund (Domestic)",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-cancel-rto-pod-request-v3/1"
+                        },
+                        {
+                            "label": "Cancel & Refund (International)",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-cancel-rto-pod-request-v3/2"
+                        },
+                        {
+                            "label": "View POD",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-cancel-rto-pod-request-v3/2"
+                        },
+                        {
+                            "label": "View RTO Accept/Reject",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-cancel-rto-pod-request-v3/3"
+                        },
+                        {
+                            "label": "NDR Mails",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "send-ndr-mails-v3"
+                        },
+                        {
+                            "label": "Address Update",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-management-change-request-v3"
+                        },
+                        {
+                            "label": "Dynamic Email",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "dynamic-email-v3"
+                        },
+                        {
+                            "label": "COD Amount",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "update-cod-amount-v3"
+                        },
+                        {
+                            "label": "NDR Calls",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-ndr-call-details-v3"
+                        },
+                        {
+                            "label": "Non NDR Calls",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-non-ndr-call-details-v3"
+                        },
+                        {
+                            "label": "Not serviceable Pincode / ODA ",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "add-serviceable-pincode-v3/0"
+                        },
+                        {
+                            "label": "Pincode List",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-pincode-v3"
+                        },
+                        {
+                            "label": "Status Mapping",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "push-pull-scan-list-v3"
+                        },
+                        {
+                            "label": "View Tickets",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-tickets-v3"
+                        },
+                        {
+                            "label": "View Pickup Report",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-pick-up-v3/0"
+                        }
+                    ]
+                },
+                {
+                    "label": "user",
+                    "icon": "user-order-icon",
+                    "active_icon": "user-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "View User",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-user-v3"
+                        },
+                        {
+                            "label": "View Onboard User",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-onboard-user-v3"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "NDR",
+            "icon": "ndr-icon",
+            "active_icon": "ndr-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "NDR Requests",
+                    "icon": "ndr-order-icon",
+                    "active_icon": "ndr-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "Action Required",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "url": "view-ndr-v3/2"
+                        },
+                        {
+                            "label": "Action Requested",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "url": "view-ndr-v3/3"
+                        },
+                        {
+                            "label": "RTO",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "to": "view-ndr-v3/4"
+                        },
+                        {
+                            "label": "Delivered",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "to": "view-ndr-v3/5"
+                        },
+                        {
+                            "label": "ITL Attempted",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "to": "view-ndr-v3/6"
+                        },
+                        {
+                            "label": "Other Status",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "to": "view-ndr-v3/7"
+                        },
+                        {
+                            "label": "All",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "to": "view-ndr-v3/1"
+                        }
+                    ]
+                },
+                {
+                    "label": "NDR Dashboard",
+                    "icon": "ndr-icon",
+                    "active_icon": "ndr-icon-blue",
+                    "to": "ndr-dashboard-v3"
+                },
+                {
+                    "label": "NDR Dashboard",
+                    "icon": "ndr-icon",
+                    "active_icon": "ndr-icon-blue",
+                    "to": "ndr-dashboard-v3"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Billing",
+            "icon": "admin-menu-icon",
+            "active_icon": "admin-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Remittance",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-remittance-v3"
+                },
+                {
+                    "label": "Remittance",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-remittance-v3"
+                },
+                {
+                    "label": "Shipping Charges",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-shipping-charges-v3/1/1"
+                },
+                {
+                    "label": "Shipping Charges",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-shipping-charges-v3/1/1"
+                },
+                {
+                    "label": "Credit Receipt",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-credit-receipt-v3/0"
+                },
+                {
+                    "label": "Credit Receipt",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-credit-receipt-v3/0"
+                },
+                {
+                    "label": "Wallet Transactions",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-wallet-transactions-v3"
+                },
+                {
+                    "label": "Wallet Transactions",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-wallet-transactions-v3"
+                },
+                {
+                    "label": "Bill Summary",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-bill-summary-v3/0"
+                },
+                {
+                    "label": "Bill Summary",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-bill-summary-v3/0"
+                },
+                {
+                    "label": "Lost",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-lost-v3"
+                },
+                {
+                    "label": "Lost",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-lost-v3"
+                },
+                {
+                    "label": "Cancel",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-cancel-v3"
+                },
+                {
+                    "label": "Cancel",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-cancel-v3"
+                },
+                {
+                    "label": "Bad debt",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "/"
+                },
+                {
+                    "label": "Bad debt",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "/"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Post Shipping",
+            "icon": "post-shipping-icon",
+            "active_icon": "post-shipping-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Dashboard",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "post-ship-v3"
+                },
+                {
+                    "label": "Dashboard",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "post-ship-v3"
+                },
+                {
+                    "label": "Configured Menu",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-menu-v3"
+                },
+                {
+                    "label": "Configured Menu",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-menu-v3"
+                },
+                {
+                    "label": "Net Promoter Score",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "nps-v3"
+                },
+                {
+                    "label": "Net Promoter Score",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "nps-v3"
+                },
+                {
+                    "label": "Configured Domain",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-domain-v3"
+                },
+                {
+                    "label": "Configured Domain",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-domain-v3"
+                },
+                {
+                    "label": "Configure Track Page",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-track-page-v3"
+                },
+                {
+                    "label": "Configure Track Page",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-track-page-v3"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Insights",
+            "icon": "insights-icon",
+            "active_icon": "insights-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Pincode Performance",
+                    "icon": "insights-icon",
+                    "active_icon": "insights-icon-blue",
+                    "url": "pincode-performance-v3"
+                },
+                {
+                    "label": "Pincode Performance",
+                    "icon": "insights-icon",
+                    "active_icon": "insights-icon-blue",
+                    "url": "pincode-performance-v3"
+                },
+                {
+                    "label": "Reports Download",
+                    "icon": "insights-icon",
+                    "active_icon": "insights-icon-blue",
+                    "url": "view-bg-process-v3"
+                },
+                {
+                    "label": "Reports Download",
+                    "icon": "insights-icon",
+                    "active_icon": "insights-icon-blue",
+                    "url": "view-bg-process-v3"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Integration",
+            "icon": "admin-menu-icon",
+            "active_icon": "admin-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "store integration",
+                    "icon": "admin-menu-icon",
+                    "active_icon": "admin-menu-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "View Store",
+                            "icon": "billing-menu-icon",
+                            "active_icon": "billing-menu-icon-blue",
+                            "url": "/"
+                        },
+                        {
+                            "label": "Add Store",
+                            "icon": "billing-menu-icon",
+                            "active_icon": "billing-menu-icon-blue",
+                            "url": "/"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Tools",
+            "icon": "tool-menu-icon",
+            "active_icon": "tool-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Rate Calculator",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "rate-calculators-v3"
+                },
+                {
+                    "label": "Rate Calculator",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "rate-calculators-v3"
+                },
+                {
+                    "label": "Bulk Print Manifest",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "bulk-print-shipment-v3/1"
+                },
+                {
+                    "label": "Bulk Print Manifest",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "bulk-print-shipment-v3/1"
+                },
+                {
+                    "label": "Bulk Print Label",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "bulk-print-shipment-v3/2"
+                },
+                {
+                    "label": "Bulk Print Label",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "bulk-print-shipment-v3/2"
+                },
+                {
+                    "label": "Pincode Serviceability",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "pincode-services-v3"
+                },
+                {
+                    "label": "Pincode Serviceability",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "pincode-services-v3"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Setting",
+            "icon": "setting-menu-icon",
+            "active_icon": "setting-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Label Setting",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/8"
+                },
+                {
+                    "label": "Label Setting",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/8"
+                },
+                {
+                    "label": "Contract Acceptance",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/9"
+                },
+                {
+                    "label": "Contract Acceptance",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/9"
+                },
+                {
+                    "label": "Invoice Settings",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/10"
+                },
+                {
+                    "label": "Invoice Settings",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/10"
+                },
+                {
+                    "label": "Rate Chart",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/12/0/0"
+                },
+                {
+                    "label": "Rate Chart",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/12/0/0"
+                },
+                {
+                    "label": "API Key",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/13"
+                },
+                {
+                    "label": "API Key",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/13"
+                },
+                {
+                    "label": "Recommendation Engine",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "recommendation-engine-v3/0"
+                },
+                {
+                    "label": "Recommendation Engine",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "recommendation-engine-v3/0"
+                },
+                {
+                    "label": "View Staff",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "view-staff-account-v3"
+                },
+                {
+                    "label": "View Staff",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "view-staff-account-v3"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Account",
+            "icon": "account-menu-icon",
+            "active_icon": "account-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Account Details",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/1"
+                },
+                {
+                    "label": "Account Details",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/1"
+                },
+                {
+                    "label": "KYC",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/2"
+                },
+                {
+                    "label": "KYC",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/2"
+                },
+                {
+                    "label": " Billing Address",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/7"
+                },
+                {
+                    "label": " Billing Address",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/7"
+                },
+                {
+                    "label": "Warehouse Address",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/6"
+                },
+                {
+                    "label": "Warehouse Address",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/6"
+                },
+                {
+                    "label": "Bank Details",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/5"
+                },
+                {
+                    "label": "Bank Details",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/5"
+                },
+                {
+                    "label": "POC",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/3"
+                },
+                {
+                    "label": "POC",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/3"
+                },
+                {
+                    "label": "Change Password",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/4"
+                },
+                {
+                    "label": "Change Password",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/4"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Other",
+            "icon": "others-menu-icon",
+            "active_icon": "others-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "support",
+                    "icon": "others-menu-icon",
+                    "active_icon": "others-menu-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "View all Tickets",
+                            "icon": "others-menu-icon",
+                            "active_icon": "others-menu-icon-blue",
+                            "url": "/"
+                        },
+                        {
+                            "label": "Create new Tickets",
+                            "icon": "others-menu-icon",
+                            "active_icon": "others-menu-icon-blue",
+                            "url": "/"
+                        }
+                    ]
+                },
+                {
+                    "label": "Training Session",
+                    "icon": "others-menu-icon",
+                    "active_icon": "others-menu-icon-blue",
+                    "url": "account-setting/11"
+                },
+                {
+                    "label": "Training Session",
+                    "icon": "others-menu-icon",
+                    "active_icon": "others-menu-icon-blue",
+                    "url": "account-setting/11"
+                }
+            ]
+        }
+    }
+]
+
+[
+    {
+        "label": "Home",
+        "icon": "home-menu-icon",
+        "active_icon": "home-menu-icon-blue",
+        "to": null
+    },
+    {
+        "items": {
+            "label": "Orders",
+            "icon": "order-icon",
+            "active_icon": "order-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Foward Order",
+                    "icon": "fw-order-icon",
+                    "active_icon": "fw-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "Create Order",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "create-order-v3"
+                        },
+                        {
+                            "label": "Store Order",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/2/2/0"
+                        },
+                        {
+                            "label": "Ready to Dispatch",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/3"
+                        },
+                        {
+                            "label": "Manifest",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/4"
+                        },
+                        {
+                            "label": "Intransit",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/5"
+                        },
+                        {
+                            "label": "Delivered",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/6"
+                        },
+                        {
+                            "label": "RTO",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/7"
+                        },
+                        {
+                            "label": "All",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-v3/1"
+                        }
+                    ]
+                },
+                {
+                    "label": "Reverse Order",
+                    "icon": "rw-order-icon",
+                    "active_icon": "rw-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "Manifest",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-reverse-order-v3/4"
+                        },
+                        {
+                            "label": "Intransit",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-reverse-order-v3/5"
+                        },
+                        {
+                            "label": "Delivered",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-reverse-order-v3/6"
+                        },
+                        {
+                            "label": "All",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-reverse-order-v3/1"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Admin",
+            "icon": "admin-menu-icon",
+            "active_icon": "admin-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Finance",
+                    "icon": "fin-order-icon",
+                    "active_icon": "fin-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "Invoice working sheet",
+                            "icon": "admin-icon",
+                            "active_icon": "admin-icon-blue",
+                            "url": "view-bill-summary-v3/0"
+                        },
+                        {
+                            "label": "Remittance working sheet",
+                            "icon": "order-icon-icon",
+                            "active_icon": "order-icon-icon-blue",
+                            "url": "view-remittance-v3"
+                        },
+                        {
+                            "label": "View User",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-user-v3"
+                        },
+                        {
+                            "label": "User Other Details",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "account-setting/15"
+                        }
+                    ]
+                },
+                {
+                    "label": "ops",
+                    "icon": "ops-order-icon",
+                    "active_icon": "ops-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "Cancel & Refund (Domestic)",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-cancel-rto-pod-request-v3/1"
+                        },
+                        {
+                            "label": "Cancel & Refund (International)",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-cancel-rto-pod-request-v3/2"
+                        },
+                        {
+                            "label": "View POD",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-cancel-rto-pod-request-v3/2"
+                        },
+                        {
+                            "label": "View RTO Accept/Reject",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-cancel-rto-pod-request-v3/3"
+                        },
+                        {
+                            "label": "NDR Mails",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "send-ndr-mails-v3"
+                        },
+                        {
+                            "label": "Address Update",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-order-management-change-request-v3"
+                        },
+                        {
+                            "label": "Dynamic Email",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "dynamic-email-v3"
+                        },
+                        {
+                            "label": "COD Amount",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "update-cod-amount-v3"
+                        },
+                        {
+                            "label": "NDR Calls",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-ndr-call-details-v3"
+                        },
+                        {
+                            "label": "Non NDR Calls",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-non-ndr-call-details-v3"
+                        },
+                        {
+                            "label": "Not serviceable Pincode / ODA ",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "add-serviceable-pincode-v3/0"
+                        },
+                        {
+                            "label": "Pincode List",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-pincode-v3"
+                        },
+                        {
+                            "label": "Status Mapping",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "push-pull-scan-list-v3"
+                        },
+                        {
+                            "label": "View Tickets",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-tickets-v3"
+                        },
+                        {
+                            "label": "View Pickup Report",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-pick-up-v3/0"
+                        }
+                    ]
+                },
+                {
+                    "label": "user",
+                    "icon": "user-order-icon",
+                    "active_icon": "user-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "View User",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-user-v3"
+                        },
+                        {
+                            "label": "View Onboard User",
+                            "icon": "order-icon",
+                            "active_icon": "order-icon-blue",
+                            "url": "view-onboard-user-v3"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "NDR",
+            "icon": "ndr-icon",
+            "active_icon": "ndr-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "NDR Requests",
+                    "icon": "ndr-order-icon",
+                    "active_icon": "ndr-order-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "Action Required",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "url": "view-ndr-v3/2"
+                        },
+                        {
+                            "label": "Action Requested",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "url": "view-ndr-v3/3"
+                        },
+                        {
+                            "label": "RTO",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "to": "view-ndr-v3/4"
+                        },
+                        {
+                            "label": "Delivered",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "to": "view-ndr-v3/5"
+                        },
+                        {
+                            "label": "ITL Attempted",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "to": "view-ndr-v3/6"
+                        },
+                        {
+                            "label": "Other Status",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "to": "view-ndr-v3/7"
+                        },
+                        {
+                            "label": "All",
+                            "icon": "ndr-icon",
+                            "active_icon": "ndr-icon-blue",
+                            "to": "view-ndr-v3/1"
+                        }
+                    ]
+                },
+                {
+                    "label": "NDR Dashboard",
+                    "icon": "ndr-icon",
+                    "active_icon": "ndr-icon-blue",
+                    "to": "ndr-dashboard-v3"
+                },
+                {
+                    "label": "NDR Dashboard",
+                    "icon": "ndr-icon",
+                    "active_icon": "ndr-icon-blue",
+                    "to": "ndr-dashboard-v3"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Billing",
+            "icon": "admin-menu-icon",
+            "active_icon": "admin-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Remittance",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-remittance-v3"
+                },
+                {
+                    "label": "Remittance",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-remittance-v3"
+                },
+                {
+                    "label": "Shipping Charges",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-shipping-charges-v3/1/1"
+                },
+                {
+                    "label": "Shipping Charges",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-shipping-charges-v3/1/1"
+                },
+                {
+                    "label": "Credit Receipt",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-credit-receipt-v3/0"
+                },
+                {
+                    "label": "Credit Receipt",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-credit-receipt-v3/0"
+                },
+                {
+                    "label": "Wallet Transactions",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-wallet-transactions-v3"
+                },
+                {
+                    "label": "Wallet Transactions",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-wallet-transactions-v3"
+                },
+                {
+                    "label": "Bill Summary",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-bill-summary-v3/0"
+                },
+                {
+                    "label": "Bill Summary",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-bill-summary-v3/0"
+                },
+                {
+                    "label": "Lost",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-lost-v3"
+                },
+                {
+                    "label": "Lost",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-lost-v3"
+                },
+                {
+                    "label": "Cancel",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-cancel-v3"
+                },
+                {
+                    "label": "Cancel",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "view-cancel-v3"
+                },
+                {
+                    "label": "Bad debt",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "/"
+                },
+                {
+                    "label": "Bad debt",
+                    "icon": "billing-menu-icon",
+                    "active_icon": "billing-menu-icon-blue",
+                    "to": "/"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Post Shipping",
+            "icon": "post-shipping-icon",
+            "active_icon": "post-shipping-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Dashboard",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "post-ship-v3"
+                },
+                {
+                    "label": "Dashboard",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "post-ship-v3"
+                },
+                {
+                    "label": "Configured Menu",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-menu-v3"
+                },
+                {
+                    "label": "Configured Menu",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-menu-v3"
+                },
+                {
+                    "label": "Net Promoter Score",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "nps-v3"
+                },
+                {
+                    "label": "Net Promoter Score",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "nps-v3"
+                },
+                {
+                    "label": "Configured Domain",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-domain-v3"
+                },
+                {
+                    "label": "Configured Domain",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-domain-v3"
+                },
+                {
+                    "label": "Configure Track Page",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-track-page-v3"
+                },
+                {
+                    "label": "Configure Track Page",
+                    "icon": "post-shipping-icon",
+                    "active_icon": "post-shipping-icon-blue",
+                    "to": "configure-track-page-v3"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Insights",
+            "icon": "insights-icon",
+            "active_icon": "insights-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Pincode Performance",
+                    "icon": "insights-icon",
+                    "active_icon": "insights-icon-blue",
+                    "url": "pincode-performance-v3"
+                },
+                {
+                    "label": "Pincode Performance",
+                    "icon": "insights-icon",
+                    "active_icon": "insights-icon-blue",
+                    "url": "pincode-performance-v3"
+                },
+                {
+                    "label": "Reports Download",
+                    "icon": "insights-icon",
+                    "active_icon": "insights-icon-blue",
+                    "url": "view-bg-process-v3"
+                },
+                {
+                    "label": "Reports Download",
+                    "icon": "insights-icon",
+                    "active_icon": "insights-icon-blue",
+                    "url": "view-bg-process-v3"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Integration",
+            "icon": "admin-menu-icon",
+            "active_icon": "admin-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "store integration",
+                    "icon": "admin-menu-icon",
+                    "active_icon": "admin-menu-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "View Store",
+                            "icon": "billing-menu-icon",
+                            "active_icon": "billing-menu-icon-blue",
+                            "url": "/"
+                        },
+                        {
+                            "label": "Add Store",
+                            "icon": "billing-menu-icon",
+                            "active_icon": "billing-menu-icon-blue",
+                            "url": "/"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Tools",
+            "icon": "tool-menu-icon",
+            "active_icon": "tool-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Rate Calculator",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "rate-calculators-v3"
+                },
+                {
+                    "label": "Rate Calculator",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "rate-calculators-v3"
+                },
+                {
+                    "label": "Bulk Print Manifest",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "bulk-print-shipment-v3/1"
+                },
+                {
+                    "label": "Bulk Print Manifest",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "bulk-print-shipment-v3/1"
+                },
+                {
+                    "label": "Bulk Print Label",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "bulk-print-shipment-v3/2"
+                },
+                {
+                    "label": "Bulk Print Label",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "bulk-print-shipment-v3/2"
+                },
+                {
+                    "label": "Pincode Serviceability",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "pincode-services-v3"
+                },
+                {
+                    "label": "Pincode Serviceability",
+                    "icon": "tool-menu-icon",
+                    "active_icon": "tool-menu-icon-blue",
+                    "url": "pincode-services-v3"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Setting",
+            "icon": "setting-menu-icon",
+            "active_icon": "setting-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Label Setting",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/8"
+                },
+                {
+                    "label": "Label Setting",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/8"
+                },
+                {
+                    "label": "Contract Acceptance",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/9"
+                },
+                {
+                    "label": "Contract Acceptance",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/9"
+                },
+                {
+                    "label": "Invoice Settings",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/10"
+                },
+                {
+                    "label": "Invoice Settings",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/10"
+                },
+                {
+                    "label": "Rate Chart",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/12/0/0"
+                },
+                {
+                    "label": "Rate Chart",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/12/0/0"
+                },
+                {
+                    "label": "API Key",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/13"
+                },
+                {
+                    "label": "API Key",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "account-setting/13"
+                },
+                {
+                    "label": "Recommendation Engine",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "recommendation-engine-v3/0"
+                },
+                {
+                    "label": "Recommendation Engine",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "recommendation-engine-v3/0"
+                },
+                {
+                    "label": "View Staff",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "view-staff-account-v3"
+                },
+                {
+                    "label": "View Staff",
+                    "icon": "setting-menu-icon",
+                    "active_icon": "setting-menu-icon-blue",
+                    "url": "view-staff-account-v3"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Account",
+            "icon": "account-menu-icon",
+            "active_icon": "account-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "Account Details",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/1"
+                },
+                {
+                    "label": "Account Details",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/1"
+                },
+                {
+                    "label": "KYC",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/2"
+                },
+                {
+                    "label": "KYC",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/2"
+                },
+                {
+                    "label": " Billing Address",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/7"
+                },
+                {
+                    "label": " Billing Address",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/7"
+                },
+                {
+                    "label": "Warehouse Address",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/6"
+                },
+                {
+                    "label": "Warehouse Address",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/6"
+                },
+                {
+                    "label": "Bank Details",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/5"
+                },
+                {
+                    "label": "Bank Details",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/5"
+                },
+                {
+                    "label": "POC",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/3"
+                },
+                {
+                    "label": "POC",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/3"
+                },
+                {
+                    "label": "Change Password",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/4"
+                },
+                {
+                    "label": "Change Password",
+                    "icon": "account-menu-icon",
+                    "active_icon": "account-menu-icon-blue",
+                    "url": "account-setting/4"
+                }
+            ]
+        }
+    },
+    {
+        "items": {
+            "label": "Other",
+            "icon": "others-menu-icon",
+            "active_icon": "others-menu-icon-blue",
+            "to": null,
+            "items": [
+                {
+                    "label": "support",
+                    "icon": "others-menu-icon",
+                    "active_icon": "others-menu-icon-blue",
+                    "to": null,
+                    "items": [
+                        {
+                            "label": "View all Tickets",
+                            "icon": "others-menu-icon",
+                            "active_icon": "others-menu-icon-blue",
+                            "url": "/"
+                        },
+                        {
+                            "label": "Create new Tickets",
+                            "icon": "others-menu-icon",
+                            "active_icon": "others-menu-icon-blue",
+                            "url": "/"
+                        }
+                    ]
+                },
+                {
+                    "label": "Training Session",
+                    "icon": "others-menu-icon",
+                    "active_icon": "others-menu-icon-blue",
+                    "url": "account-setting/11"
+                },
+                {
+                    "label": "Training Session",
+                    "icon": "others-menu-icon",
+                    "active_icon": "others-menu-icon-blue",
+                    "url": "account-setting/11"
+                }
+            ]
+        }
+    }
+]
+
+[
+    {
+        "label": "Home",
+        "icon": "home-menu-icon",
+        "active_icon": "home-menu-icon-blue",
+        "to": null
+    },
+    {
+        "items": [
+            {
+                "label": "Orders",
+                "icon": "order-icon",
+                "active_icon": "order-icon-blue",
+                "to": null,
+                "items": [
+                    {
+                        "label": "Foward Order",
+                        "icon": "fw-order-icon",
+                        "active_icon": "fw-order-icon-blue",
+                        "to": null,
+                        "items": [
+                            {
+                                "label": "Create Order",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "create-order-v3"
+                            },
+                            {
+                                "label": "Store Order",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-order-v3/2/2/0"
+                            },
+                            {
+                                "label": "Ready to Dispatch",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-order-v3/3"
+                            },
+                            {
+                                "label": "Manifest",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-order-v3/4"
+                            },
+                            {
+                                "label": "Intransit",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-order-v3/5"
+                            },
+                            {
+                                "label": "Delivered",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-order-v3/6"
+                            },
+                            {
+                                "label": "RTO",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-order-v3/7"
+                            },
+                            {
+                                "label": "All",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-order-v3/1"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Reverse Order",
+                        "icon": "rw-order-icon",
+                        "active_icon": "rw-order-icon-blue",
+                        "to": null,
+                        "items": [
+                            {
+                                "label": "Manifest",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-reverse-order-v3/4"
+                            },
+                            {
+                                "label": "Intransit",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-reverse-order-v3/5"
+                            },
+                            {
+                                "label": "Delivered",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-reverse-order-v3/6"
+                            },
+                            {
+                                "label": "All",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-reverse-order-v3/1"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "items": [
+            {
+                "label": "Admin",
+                "icon": "admin-menu-icon",
+                "active_icon": "admin-menu-icon-blue",
+                "to": null,
+                "items": [
+                    {
+                        "label": "Finance",
+                        "icon": "fin-order-icon",
+                        "active_icon": "fin-order-icon-blue",
+                        "to": null,
+                        "items": [
+                            {
+                                "label": "Invoice working sheet",
+                                "icon": "admin-icon",
+                                "active_icon": "admin-icon-blue",
+                                "url": "view-bill-summary-v3/0"
+                            },
+                            {
+                                "label": "Remittance working sheet",
+                                "icon": "order-icon-icon",
+                                "active_icon": "order-icon-icon-blue",
+                                "url": "view-remittance-v3"
+                            },
+                            {
+                                "label": "View User",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-user-v3"
+                            },
+                            {
+                                "label": "User Other Details",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "account-setting/15"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "ops",
+                        "icon": "ops-order-icon",
+                        "active_icon": "ops-order-icon-blue",
+                        "to": null,
+                        "items": [
+                            {
+                                "label": "Cancel & Refund (Domestic)",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-cancel-rto-pod-request-v3/1"
+                            },
+                            {
+                                "label": "Cancel & Refund (International)",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-cancel-rto-pod-request-v3/2"
+                            },
+                            {
+                                "label": "View POD",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-cancel-rto-pod-request-v3/2"
+                            },
+                            {
+                                "label": "View RTO Accept/Reject",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-cancel-rto-pod-request-v3/3"
+                            },
+                            {
+                                "label": "NDR Mails",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "send-ndr-mails-v3"
+                            },
+                            {
+                                "label": "Address Update",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-order-management-change-request-v3"
+                            },
+                            {
+                                "label": "Dynamic Email",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "dynamic-email-v3"
+                            },
+                            {
+                                "label": "COD Amount",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "update-cod-amount-v3"
+                            },
+                            {
+                                "label": "NDR Calls",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-ndr-call-details-v3"
+                            },
+                            {
+                                "label": "Non NDR Calls",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-non-ndr-call-details-v3"
+                            },
+                            {
+                                "label": "Not serviceable Pincode / ODA ",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "add-serviceable-pincode-v3/0"
+                            },
+                            {
+                                "label": "Pincode List",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-pincode-v3"
+                            },
+                            {
+                                "label": "Status Mapping",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "push-pull-scan-list-v3"
+                            },
+                            {
+                                "label": "View Tickets",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-tickets-v3"
+                            },
+                            {
+                                "label": "View Pickup Report",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-pick-up-v3/0"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "user",
+                        "icon": "user-order-icon",
+                        "active_icon": "user-order-icon-blue",
+                        "to": null,
+                        "items": [
+                            {
+                                "label": "View User",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-user-v3"
+                            },
+                            {
+                                "label": "View Onboard User",
+                                "icon": "order-icon",
+                                "active_icon": "order-icon-blue",
+                                "url": "view-onboard-user-v3"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "items": [
+            {
+                "label": "NDR",
+                "icon": "ndr-icon",
+                "active_icon": "ndr-icon-blue",
+                "to": null,
+                "items": [
+                    {
+                        "label": "NDR Requests",
+                        "icon": "ndr-order-icon",
+                        "active_icon": "ndr-order-icon-blue",
+                        "to": null,
+                        "items": [
+                            {
+                                "label": "Action Required",
+                                "icon": "ndr-icon",
+                                "active_icon": "ndr-icon-blue",
+                                "url": "view-ndr-v3/2"
+                            },
+                            {
+                                "label": "Action Requested",
+                                "icon": "ndr-icon",
+                                "active_icon": "ndr-icon-blue",
+                                "url": "view-ndr-v3/3"
+                            },
+                            {
+                                "label": "RTO",
+                                "icon": "ndr-icon",
+                                "active_icon": "ndr-icon-blue",
+                                "to": "view-ndr-v3/4"
+                            },
+                            {
+                                "label": "Delivered",
+                                "icon": "ndr-icon",
+                                "active_icon": "ndr-icon-blue",
+                                "to": "view-ndr-v3/5"
+                            },
+                            {
+                                "label": "ITL Attempted",
+                                "icon": "ndr-icon",
+                                "active_icon": "ndr-icon-blue",
+                                "to": "view-ndr-v3/6"
+                            },
+                            {
+                                "label": "Other Status",
+                                "icon": "ndr-icon",
+                                "active_icon": "ndr-icon-blue",
+                                "to": "view-ndr-v3/7"
+                            },
+                            {
+                                "label": "All",
+                                "icon": "ndr-icon",
+                                "active_icon": "ndr-icon-blue",
+                                "to": "view-ndr-v3/1"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "NDR Dashboard",
+                        "icon": "ndr-icon",
+                        "active_icon": "ndr-icon-blue",
+                        "to": "ndr-dashboard-v3"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "items": [
+            {
+                "label": "Billing",
+                "icon": "admin-menu-icon",
+                "active_icon": "admin-menu-icon-blue",
+                "to": null,
+                "items": [
+                    {
+                        "label": "Remittance",
+                        "icon": "billing-menu-icon",
+                        "active_icon": "billing-menu-icon-blue",
+                        "to": "view-remittance-v3"
+                    },
+                    {
+                        "label": "Shipping Charges",
+                        "icon": "billing-menu-icon",
+                        "active_icon": "billing-menu-icon-blue",
+                        "to": "view-shipping-charges-v3/1/1"
+                    },
+                    {
+                        "label": "Credit Receipt",
+                        "icon": "billing-menu-icon",
+                        "active_icon": "billing-menu-icon-blue",
+                        "to": "view-credit-receipt-v3/0"
+                    },
+                    {
+                        "label": "Wallet Transactions",
+                        "icon": "billing-menu-icon",
+                        "active_icon": "billing-menu-icon-blue",
+                        "to": "view-wallet-transactions-v3"
+                    },
+                    {
+                        "label": "Bill Summary",
+                        "icon": "billing-menu-icon",
+                        "active_icon": "billing-menu-icon-blue",
+                        "to": "view-bill-summary-v3/0"
+                    },
+                    {
+                        "label": "Lost",
+                        "icon": "billing-menu-icon",
+                        "active_icon": "billing-menu-icon-blue",
+                        "to": "view-lost-v3"
+                    },
+                    {
+                        "label": "Cancel",
+                        "icon": "billing-menu-icon",
+                        "active_icon": "billing-menu-icon-blue",
+                        "to": "view-cancel-v3"
+                    },
+                    {
+                        "label": "Bad debt",
+                        "icon": "billing-menu-icon",
+                        "active_icon": "billing-menu-icon-blue",
+                        "to": "/"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "items": [
+            {
+                "label": "Post Shipping",
+                "icon": "post-shipping-icon",
+                "active_icon": "post-shipping-icon-blue",
+                "to": null,
+                "items": [
+                    {
+                        "label": "Dashboard",
+                        "icon": "post-shipping-icon",
+                        "active_icon": "post-shipping-icon-blue",
+                        "to": "post-ship-v3"
+                    },
+                    {
+                        "label": "Configured Menu",
+                        "icon": "post-shipping-icon",
+                        "active_icon": "post-shipping-icon-blue",
+                        "to": "configure-menu-v3"
+                    },
+                    {
+                        "label": "Net Promoter Score",
+                        "icon": "post-shipping-icon",
+                        "active_icon": "post-shipping-icon-blue",
+                        "to": "nps-v3"
+                    },
+                    {
+                        "label": "Configured Domain",
+                        "icon": "post-shipping-icon",
+                        "active_icon": "post-shipping-icon-blue",
+                        "to": "configure-domain-v3"
+                    },
+                    {
+                        "label": "Configure Track Page",
+                        "icon": "post-shipping-icon",
+                        "active_icon": "post-shipping-icon-blue",
+                        "to": "configure-track-page-v3"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "items": [
+            {
+                "label": "Insights",
+                "icon": "insights-icon",
+                "active_icon": "insights-icon-blue",
+                "to": null,
+                "items": [
+                    {
+                        "label": "Pincode Performance",
+                        "icon": "insights-icon",
+                        "active_icon": "insights-icon-blue",
+                        "url": "pincode-performance-v3"
+                    },
+                    {
+                        "label": "Reports Download",
+                        "icon": "insights-icon",
+                        "active_icon": "insights-icon-blue",
+                        "url": "view-bg-process-v3"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "items": [
+            {
+                "label": "Integration",
+                "icon": "admin-menu-icon",
+                "active_icon": "admin-menu-icon-blue",
+                "to": null,
+                "items": [
+                    {
+                        "label": "store integration",
+                        "icon": "admin-menu-icon",
+                        "active_icon": "admin-menu-icon-blue",
+                        "to": null,
+                        "items": [
+                            {
+                                "label": "View Store",
+                                "icon": "billing-menu-icon",
+                                "active_icon": "billing-menu-icon-blue",
+                                "url": "/"
+                            },
+                            {
+                                "label": "Add Store",
+                                "icon": "billing-menu-icon",
+                                "active_icon": "billing-menu-icon-blue",
+                                "url": "/"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "items": [
+            {
+                "label": "Tools",
+                "icon": "tool-menu-icon",
+                "active_icon": "tool-menu-icon-blue",
+                "to": null,
+                "items": [
+                    {
+                        "label": "Rate Calculator",
+                        "icon": "tool-menu-icon",
+                        "active_icon": "tool-menu-icon-blue",
+                        "url": "rate-calculators-v3"
+                    },
+                    {
+                        "label": "Bulk Print Manifest",
+                        "icon": "tool-menu-icon",
+                        "active_icon": "tool-menu-icon-blue",
+                        "url": "bulk-print-shipment-v3/1"
+                    },
+                    {
+                        "label": "Bulk Print Label",
+                        "icon": "tool-menu-icon",
+                        "active_icon": "tool-menu-icon-blue",
+                        "url": "bulk-print-shipment-v3/2"
+                    },
+                    {
+                        "label": "Pincode Serviceability",
+                        "icon": "tool-menu-icon",
+                        "active_icon": "tool-menu-icon-blue",
+                        "url": "pincode-services-v3"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "items": [
+            {
+                "label": "Setting",
+                "icon": "setting-menu-icon",
+                "active_icon": "setting-menu-icon-blue",
+                "to": null,
+                "items": [
+                    {
+                        "label": "Label Setting",
+                        "icon": "setting-menu-icon",
+                        "active_icon": "setting-menu-icon-blue",
+                        "url": "account-setting/8"
+                    },
+                    {
+                        "label": "Contract Acceptance",
+                        "icon": "setting-menu-icon",
+                        "active_icon": "setting-menu-icon-blue",
+                        "url": "account-setting/9"
+                    },
+                    {
+                        "label": "Invoice Settings",
+                        "icon": "setting-menu-icon",
+                        "active_icon": "setting-menu-icon-blue",
+                        "url": "account-setting/10"
+                    },
+                    {
+                        "label": "Rate Chart",
+                        "icon": "setting-menu-icon",
+                        "active_icon": "setting-menu-icon-blue",
+                        "url": "account-setting/12/0/0"
+                    },
+                    {
+                        "label": "API Key",
+                        "icon": "setting-menu-icon",
+                        "active_icon": "setting-menu-icon-blue",
+                        "url": "account-setting/13"
+                    },
+                    {
+                        "label": "Recommendation Engine",
+                        "icon": "setting-menu-icon",
+                        "active_icon": "setting-menu-icon-blue",
+                        "url": "recommendation-engine-v3/0"
+                    },
+                    {
+                        "label": "View Staff",
+                        "icon": "setting-menu-icon",
+                        "active_icon": "setting-menu-icon-blue",
+                        "url": "view-staff-account-v3"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "items": [
+            {
+                "label": "Account",
+                "icon": "account-menu-icon",
+                "active_icon": "account-menu-icon-blue",
+                "to": null,
+                "items": [
+                    {
+                        "label": "Account Details",
+                        "icon": "account-menu-icon",
+                        "active_icon": "account-menu-icon-blue",
+                        "url": "account-setting/1"
+                    },
+                    {
+                        "label": "KYC",
+                        "icon": "account-menu-icon",
+                        "active_icon": "account-menu-icon-blue",
+                        "url": "account-setting/2"
+                    },
+                    {
+                        "label": " Billing Address",
+                        "icon": "account-menu-icon",
+                        "active_icon": "account-menu-icon-blue",
+                        "url": "account-setting/7"
+                    },
+                    {
+                        "label": "Warehouse Address",
+                        "icon": "account-menu-icon",
+                        "active_icon": "account-menu-icon-blue",
+                        "url": "account-setting/6"
+                    },
+                    {
+                        "label": "Bank Details",
+                        "icon": "account-menu-icon",
+                        "active_icon": "account-menu-icon-blue",
+                        "url": "account-setting/5"
+                    },
+                    {
+                        "label": "POC",
+                        "icon": "account-menu-icon",
+                        "active_icon": "account-menu-icon-blue",
+                        "url": "account-setting/3"
+                    },
+                    {
+                        "label": "Change Password",
+                        "icon": "account-menu-icon",
+                        "active_icon": "account-menu-icon-blue",
+                        "url": "account-setting/4"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "items": [
+            {
+                "label": "Other",
+                "icon": "others-menu-icon",
+                "active_icon": "others-menu-icon-blue",
+                "to": null,
+                "items": [
+                    {
+                        "label": "support",
+                        "icon": "others-menu-icon",
+                        "active_icon": "others-menu-icon-blue",
+                        "to": null,
+                        "items": [
+                            {
+                                "label": "View all Tickets",
+                                "icon": "others-menu-icon",
+                                "active_icon": "others-menu-icon-blue",
+                                "url": "/"
+                            },
+                            {
+                                "label": "Create new Tickets",
+                                "icon": "others-menu-icon",
+                                "active_icon": "others-menu-icon-blue",
+                                "url": "/"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Training Session",
+                        "icon": "others-menu-icon",
+                        "active_icon": "others-menu-icon-blue",
+                        "url": "account-setting/11"
+                    }
+                ]
+            }
+        ]
+    }
+]

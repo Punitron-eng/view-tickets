@@ -1,0 +1,63 @@
+@import "../../../assets/itl-common-css/common-css.scss";
+@mixin customFont($size, $family) {
+    font-size: $size;
+    font-family: $family;
+}
+.postship-container{
+    padding: 15px;
+    .section{
+        &--one,&--two__card{
+           background-color: #fff;
+           border-radius: 16px;
+           box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1); 
+        }
+        &--one{
+            @include theme() {
+                background-color: theme-get('dt-pagination-bg');
+            }
+            padding: 33px 0 60px 0;
+            margin-bottom: 16px;
+            img{
+                width: 50%;
+            }
+            h2{
+                @include customFont(24px, $interSemiBold);
+            }
+            p{
+                @include theme() {
+                    color: theme-get('black-900');
+                }
+                @include customFont(16px, $interRegular);
+                line-height: 1.5;
+                color: #6b7280;
+                @media screen and (max-width:767px){
+                    text-align: center;
+                    width: 247px;
+                }
+            }
+        }
+        &--two{
+            gap: 15px;
+            &__card{
+                @include theme() {
+                    background-color: theme-get('dt-pagination-bg');
+                }
+                padding: 34px 0 50px;
+                width: 100%;                
+                &__content{
+                    margin-top: 15px;
+                    span{
+                        @include theme() {
+                            color: theme-get('black-900');
+                        }
+                        @include customFont(14px, $interRegular);
+                        color: #374151;
+                        @media screen and (min-width:768px) and (max-width:820px){
+                           font-size: 11px;;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

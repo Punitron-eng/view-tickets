@@ -1,0 +1,49 @@
+@import "../../assets/itl-common-css/common-css.scss";
+
+.rate-chart-overflow-hidden {
+    overflow: hidden;
+}
+
+.rate-chart-parent-class {
+    .p-tabview .p-tabview-nav-content {
+        margin: 0px;
+        border: none;
+    }
+    .filter-button-apply {
+        padding: 3px 8px 6px 8px !important;
+    }
+    .modal-body {
+        border-bottom: none !important;
+    }
+    .rate-chart {
+        .custom-modal {
+            margin: 7rem auto !important;
+            @media (max-width: 767px) {
+                margin: 17rem auto !important;
+            }
+        }
+        .content-wrapper {
+            overflow: hidden;
+            .content {
+                padding: 0px;
+
+                .right-actions {
+                    .p-dropdown .p-dropdown-label .p-placeholder {
+                        font-family: $helveticaRegular;
+                    }
+                    .cp-rate {
+                        font-family: $helveticaRegular;
+                    }
+                    .add-rate-btn {
+                        width: 96px;
+                        height: 32px;
+                        border-radius: 50px;
+                        border: 1px solid $applyBtnBorderClr;
+                        background-color: #0052cc;
+                        color: $whiteColor;
+                    }
+                }
+            }
+        }
+    }
+}

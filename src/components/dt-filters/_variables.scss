@@ -1,0 +1,392 @@
+$backgroundGreen: #36b27e;
+$backgroundBlue: #0052cc;
+$textBlue: #0052cc;
+$blueColor: #0065ff;
+$disabledColor: #9ca3af;
+$whiteColor: #fff;
+$blackColor: #000;
+$lightGrayColor: #d1d5db;
+$inputPlaceholderColor: #6b7280;
+$primaryFontColor: #1f2937;
+$inputBackgroundColor: #f3f4f6;
+$labelColor: #374151;
+$sizes: 12;
+$featureBackgroundHover: #e9ecef;
+$primaryColor: #3c4249;
+$inputBorderColor: #dfe3e6;
+$inputLabelColor: #575f6c;
+$applyBtnClr: #1279ff;
+$applyBtnBorderClr: #0168ed;
+$cancelBtnBorderClr: #dfe3e6;
+$disableBtnClr: #9ca3af;
+$disableBtnBorderClr: #d1d5db;
+$disableBtnBackgroundClr: #e5e7eb;
+$deleteTextColor: #c01111;
+$customizeColumnBorder: #d0d6dc;
+$customizedColumnHeadingBorder: #e9ebef;
+$headingColor: #1d252b;
+$switchBackgroundClr: #464df2;
+$notificationBarBorderClr: #0c0c0d;
+$notificationBarTextClr: #fbfcfd;
+$notificationBarErrorBackground: #e60017;
+$filterLiTextClr: #4c545d;
+$moreFilterBackgroundActive: #f1f3f5;
+/** fontweight**/
+$fontWeight100: 100;
+$fontWeight200: 200;
+$fontWeight300: 300;
+$fontWeight400: 400;
+$fontWeight500: 500;
+$fontWeight600: 600;
+$fontWeight700: 700;
+$fontWeight800: 800;
+$fontWeight900: 800;
+
+/** font size **/
+$fontSize12: 12px;
+$fontSize13: 13px;
+$fontSize14: 14px;
+$fontSize20: 20px;
+$fontSize16: 16px;
+
+/** font family **/
+$helveticaRegular: "HelveticaNowText-regular";
+$helveticaMedium: "HelveticaNowText-medium";
+$helveticaBold: "HelveticaNowText-Bold";
+$poppinsMediumFont: "Poppins-Medium";
+$poppinsSemiBoldFont: "Poppins-SemiBold";
+$segoeUIRegularFont: "SegoeUI-Regular";
+$segoeUISemiBoldFont: "SegoeUI-Semibold";
+$interMedium: "Inter-Medium";
+$interRegular: "Inter-Regular";
+$interSemiBold: "Inter-SemiBold";
+$interBold: "Inter-Bold";
+/** border radius **/
+$borderRadius50: 50px;
+$borderRadius6: 6px;
+$borderRadius12: 12px;
+$borderRadius8: 8px;
+
+/** lineheight css **/
+$lineHight16: 16px;
+$lineHight24: 24px;
+$lineHight14: 14px;
+
+/** scroll bar color **/
+$thumbBackgroundColor: #9ca3af;
+
+$heading: #1d252b;
+$pageHeading: #0c0c0d;
+$subHeading: #3c4249;
+$backgroundlightBlue: #edf5ff;
+
+$secondarycolor: #575f6c;
+$primarycolor: #1279ff;
+$secondarylight: #dfe3e6;
+
+/**color css **/
+$primaryColor: #1279ff;
+$primarywhite: #fff;
+$secondaryColor: #3c4249;
+$secondaryLight: #dfe3e6;
+
+$themes: (
+  darkTheme: (
+    "background-image": linear-gradient(to right, #212121 12%, #212121 32%, #212121 55%, #212121 75%, #212121 90%),
+    "black-900": #e5e7eb,
+    "black-800": #dfdfdf,
+    "black-700": #dfdfdf,
+    "black-500": #dfdfdf,
+    "rise-background": #4d4d4d,
+    "static-black-700": #3c4249,
+    // border color start here
+    "border-black-400": #4d4d4d,
+    "border-black-500": #5d5d5d,
+    "checkbox-border-clr": #dfdfdf,
+    "border-black-300": #3d3d3d,
+    "product-qty-border": #4d4d4d,
+    "modal-product-border": #4d4d4d,
+    "modal-product-qty": #dfdfdf,
+    "checkbox-color": #1c9dfa,
+    "cancel-button-border": #2b2b2b,
+    // border color ends here
+    "background": #3d3d3d,
+    // sidebar and Top Menu start here
+    "background-sideBar": #3d3d3d,
+    "background-sideBar-img": #212121,
+    "background-top-active": #212121,
+    "background-topBar-svg": #fff,
+    "topBar-menu-black": #dfdfdf,
+    "topBar-menu-heading": #fff,
+    "topBar-menu-border": #fff,
+    "topBar-menu-dropdown-item": #fff,
+    "topBar-menu-help-dropDown": #dfdfdf,
+    "topBar-menu-border-tick": #dfdfdf,
+    "topbar-menu-straightLine": #fff,
+    // sidebar and Top Menu ends here
+    // notifications and DataTabel start here
+    "notification-heading": #f3f4f6,
+    "notification-whatsapp-dropdown": "../../../assets/images/dark-mode/dark-drodown-arrow.svg",
+    "dt-black-500": #dfdfdf,
+    "dt-search-black-400": #424242,
+    "dt-input-search-bg": #4d4d4d,
+    "dt-sidebar-active-tick": #78c7ff,
+    "dt-filter-active-tab": #545454,
+    "dt-filter-header": #3d3d3d,
+    "dt-filter-header-right": #545454,
+    "dt-filter-header-right-text": #d1dfdb,
+
+    "dt-pagination-bg": #313131,
+    "dt-pagination-bg-dropdown": #252525,
+    "dt-pagination-active-bg": #212121,
+    "dt-pagination-active-text": #fff,
+
+    "dt-loader-bg": #2a3732,
+    "dt-loader-text": #57d9a3,
+    "dt-filter-cancle-btn-bg": #3d3d3d,
+    "dt-filter-cancle-btn-text": #dfdfdf,
+    "dt-filter-custom-range-text": #78c7ff,
+
+    "dt-save-filter-bg": #212121,
+    "dt-save-filter-text": #fff,
+    "dt-fiter-checbox-bg": transparent,
+    "dt-remove-filter": #1279ff,
+    "dt-filter-select-text": #fff,
+    "dt-bg-hover-400": #3d3d3d,
+    "dt-filter-li-clr": #424242,
+    "dt-filter-li-text-clr": #e3eeff,
+    "dt-empty-text-heading": #e5e7eb,
+    "dt-empty-text-sub-heading": #e5e7eb,
+    "dt-table-head": #3d3d3d,
+    "dt-table-td-border": #4d4d4d,
+    "dateRangePicker-color": #e5e7eb,
+    "filter-background": #4d4d4d,
+    "filter-btn-background": #4d4d4d,
+    "filter-btn-text": #dfdfdf,
+    "dt-box-shadow": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+    // notifications and DataTabel ends here
+    // body background start here
+    "body-background": #212121,
+    // body background ends here
+    //inputs clrs
+    "input-background": #4d4d4d,
+    //inputs clrs
+    // word magic start here
+    "card-bg": #313131,
+    "body-bg": #212121,
+    "input-border-clr": #4d4d4d,
+    "dropdown-hover": #3c4249,
+    "dropdown-hover-active": #3c4249,
+
+    "input-bg-clr": #4d4d4d,
+    "input-text-clr": #dfdfdf,
+    "input-placeholder": #9ca3af,
+    "label-clr": #dfdfdf,
+    "dropdown-text-hover": #dfdfdf,
+    "slider-bg": #4d4d4d,
+
+    // word magic ends here
+    "red-clr": #fc7f67,
+    "modal-border-bottom": #4d4d4d,
+    "modal-header-border-bottom": #4d4d4d,
+    // notifications Charges start
+    "per-order-rupee-bg": #4d4d4d,
+    "per-order-rupee-text": #dfdfdf,
+    // notifications Charges ends
+    // date range start
+    "daterange-header-item": #dfdfdf,
+    "daterange-disable-cell": #313131,
+    "daterange-year-picker": #4d4d4d,
+    "daterange-date-disable": #7a7a7a,
+    // date range end
+    // scroll bar
+    "scroll-bar-track": #4d4d4d,
+    // scroll bar end
+    // wismo start here
+    "table-th": #4d4d4d,
+    "wismo-border": #4d4d4d,
+    "wismo-border1": #4d4d4d,
+    "wismo-btn-color": #78c7ff,
+    "wismo-modal-bg": #212121,
+    "wismo-modal-color": #dfdfdf,
+    "wismo-modal-border": #4d4d4d,
+    "wismo-vendor-btn": #1279ff,
+
+    // wismo end here
+    // checkout Dashboard
+    "checkout-card-bg": #3d3d3d,
+    "checkout-card-span-text": #dfdfdf,
+
+    // checkout Dashboard end
+    // Early COD page start here
+    "early-cod-deactivate-btn": transparent,
+    "early-cod-deactivate-btn-color": #fff,
+    "early-cod-deactivate-btn-border-color": #fff,
+    "early-cod-card-border": #0168ed,
+
+    // Table Component starts Here
+    "dtb-tab-background": transparent,
+    "dtb-tabs-whole-background": #313131,
+    "dtb-tab-text-color-active": #dfdfdf,
+    "dtb-tab-text-color-text": #babbbc,
+
+    // Filter Modal
+    "filter-header-background": #3d3d3d,
+    "filter-content-background": #3d3d3d,
+    "filter-footer-background": #3d3d3d,
+    "filter-modal-close-btn": #fff,
+  ),
+  lightTheme: (
+    "background-image": linear-gradient(to right, #e2f2f5 12%, #e4edf7 32%, #f3ebfe 55%, #e8e7f8 75%, #eae2f9 90%),
+    "black-900": #0c0c0d,
+    "black-800": #1d252b,
+    "black-700": #3c4249,
+    "black-500": #808b98,
+    "checkbox-color": #0065ff,
+    // rise start here
+    "rise-background": #edf5ff,
+    // rise ends here
+    "static-black-700": #3c4249,
+    "background": #fff,
+    // border start here
+    "border-black-400": #e9ecef,
+    "border-black-500": #dfe3e6,
+    "checkbox-border-clr": #9ca3af,
+    "border-black-300": #d0d6dc,
+    "product-qty-border": #d0d6dc,
+    "modal-product-border": #d0d6dc,
+    "modal-product-qty": #4c545d,
+    "cancel-button-border": #d1d5db,
+    // border ends here
+    // sidebar and Top Menu start here
+    "background-top-active": #f1f3f5,
+    "background-sideBar": var(--menu-bg),
+    "background-sideBar-img": #f3f4f6,
+    "background-topBar-svg": #3c4249,
+    "topBar-menu-black": #374151,
+    "topBar-menu-heading": #4b5563,
+    "topBar-menu-border": #374151,
+    "topBar-menu-dropdown-item": #333,
+    "topBar-menu-help-dropDown": #1d252b,
+    "topBar-menu-border-tick": #575f6c,
+    "topbar-menu-straightLine": #d1d5db,
+    // sidebar and Top Menu ends here
+    // notifications and DataTabel start here
+    "notification-heading": #082355,
+    "notification-whatsapp-dropdown": "../../../assets/images/drodown-arrow-down.svg",
+
+    "dt-black-500": #eaebec,
+    "dt-input-search-bg": #f3f4f6,
+    "dt-filter-active-tab": #f3f4f6,
+    "dt-sidebar-active-tick": #0065ff,
+    "dt-filter-header": #fff,
+    "dt-filter-header-right": #f3f4f6,
+
+    "dt-save-filter-bg": #f1f3f5,
+
+    "dt-save-filter-text": #1d252b,
+
+    "dt-pagination-bg": #fbfcfd,
+    "dt-pagination-bg-dropdown": #f1f3f5,
+    "dt-pagination-active-bg": transparent,
+    "dt-pagination-active-text": #1d252b,
+
+    "dt-filter-select-text": #1d252b,
+    "dt-filter-header-right-text": #656f7d,
+    "dt-filter-cancle-btn-bg": #fff,
+    "dt-filter-cancle-btn-text": #575f6c,
+
+    "dt-fiter-checbox-bg": #fff,
+
+    "dt-remove-filter": #0052cc,
+    "dt-filter-custom-range-text": #006af4,
+
+    "dt-loader-bg": #eff4ee,
+    "dt-loader-text": #208b02,
+
+    "dt-search-black-400": #f1f3f5,
+    "dt-bg-hover-400": #e9ecef,
+    "dt-filter-li-clr": #e9ecef,
+    "dt-filter-li-text-clr": #4b5563,
+    "dt-empty-text-heading": #374151,
+    "dt-empty-text-sub-heading": #6b7280,
+    "dt-table-head": #edf5ff,
+    "dt-table-td-border": #e5e7eb,
+    "dateRangePicker-color": #374151,
+    "filter-background": #fff,
+    "filter-btn-background": #e9ecef,
+    "filter-btn-text": #a3aebb,
+    "dt-box-shadow": "0 2px 4px 0 rgba(192, 205, 210, 0.6), 0 1px 18px 0 rgba(187, 224, 238, 0.1)",
+    "input-background": #f1f3f5,
+
+    // notifications and DataTabel ends here
+    // body background start here
+    "body-background": var(--surface-ground),
+    "modal-border-bottom": #f1f3f5,
+    "modal-header-border-bottom": #e9ebef,
+
+    // body background ends here
+    // word magic
+    "card-bg": #fff,
+    "body-bg": #f2f4f6,
+    "input-border-clr": #dfe3e6,
+    "input-bg-clr": #fff,
+    "input-text-clr": #374151,
+    "input-placeholder": #7a869a,
+    "label-clr": #575f6c,
+    "dropdown-text-hover": #69707a,
+    "dropdown-hover": #dfdfdf,
+    "dropdown-hover-active": #dfdfdf,
+    "slider-bg": #ccc,
+    // word magic ends here
+    "red-clr": #de350b,
+
+    // notifications Charges start
+    "per-order-rupee-bg": #fff7f0,
+    "per-order-rupee-text": #374151,
+
+    // notifications Charges ends
+    // date range start
+    "daterange-header-item": #656f7d,
+    "daterange-disable-cell": #dfdfdf,
+    "daterange-year-picker": #fff,
+    "daterange-date-disable": #c0c4cc,
+
+    // date range end
+    // scroll bar
+    "scroll-bar-track": #dfdfdf,
+    // scroll bar end
+    // wismo start
+    "table-th": #f3f4f6,
+    "wismo-border": #e5e7eb,
+    "wismo-border1": #f1f3f5,
+    "wismo-btn-color": #6554c0,
+    "wismo-modal-bg": #f2f4f7,
+    "wismo-modal-color": #1f2937,
+    "wismo-modal-border": rgba(9, 30, 66, 0.13),
+    "wismo-vendor-btn": #0052cc,
+    // wismo ends
+    // checkout Dashboard
+    "checkout-card-bg": #fff,
+    "checkout-card-span-text": #575f6c,
+
+    // checkout Dashboard end
+    // Early COD page start here
+    "early-cod-deactivate-btn": #fff,
+    "early-cod-deactivate-btn-color": #0168ed,
+    "early-cod-deactivate-btn-border-color": #0168ed,
+    "early-cod-card-border": #9b4ff8,
+
+    // Table Component starts Here
+    "dtb-tab-background": transparent,
+    "dtb-tabs-whole-background": #fff,
+    "dtb-tab-text-color-active": #1d252b,
+    "dtb-tab-text-color-text": #3c4249,
+
+    // Filter Modal
+    "filter-header-background": #fff,
+    "filter-content-background": #fff,
+    "filter-footer-background": #fff,
+    "filter-modal-close-btn": #fff
+  )
+);

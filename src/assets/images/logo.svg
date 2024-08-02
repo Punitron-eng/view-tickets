@@ -1,0 +1,22 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="48" height="48" rx="12" fill="#E0D7FF"/>
+    <mask id="33lo5yg1xa" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+        <rect width="48" height="48" rx="12" fill="#E0D7FF"/>
+    </mask>
+    <g filter="url(#6drx5j58cb)" mask="url(#33lo5yg1xa)">
+        <rect x="34" y="-23" width="48" height="48" rx="12" fill="#D2B7FF"/>
+    </g>
+    <path d="M23.333 13h1.334v5h-1.334v-5zM36 22c0-.733.6-1.333 1.333-1.333.734 0 1.334.6 1.334 1.333v9.333c0 .734-.6 1.334-1.334 1.334-.733 0-1.333-.6-1.333-1.334V22zM9.333 22c0-.733.6-1.333 1.334-1.333.733 0 1.333.6 1.333 1.333v9.333c0 .734-.6 1.334-1.333 1.334-.734 0-1.334-.6-1.334-1.334V22z" fill="#512DA8"/>
+    <path d="M36.667 28.067v6.2c0 2.266-9.8 3.066-12.267 3.066h-.8c-2.467 0-12.267-.8-12.267-3.066v-6.2c0-6.267 5.6-11.4 12.267-11.4h.8c6.667 0 12.267 5.133 12.267 11.4z" fill="#7E57C2"/>
+    <path d="M29.667 24a4.333 4.333 0 1 0 0 8.667 4.333 4.333 0 0 0 0-8.667zm-11.334 0a4.333 4.333 0 1 0 0 8.667 4.333 4.333 0 0 0 0-8.667z" fill="#5E35B1"/>
+    <path d="M18.335 25.333a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm11.333 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" fill="#FFF9C4"/>
+    <path d="M18.332 26.667a1.667 1.667 0 1 0 0 3.333 1.667 1.667 0 0 0 0-3.333zm11.333 0a1.667 1.667 0 1 0 0 3.333 1.667 1.667 0 0 0 0-3.333z" fill="#5C6BC0"/>
+    <circle cx="24" cy="12" r="2" fill="#7E57C2"/>
+    <defs>
+        <filter id="6drx5j58cb" x="14" y="-43" width="88" height="88" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+            <feGaussianBlur stdDeviation="10" result="effect1_foregroundBlur_4087_94707"/>
+        </filter>
+    </defs>
+</svg>

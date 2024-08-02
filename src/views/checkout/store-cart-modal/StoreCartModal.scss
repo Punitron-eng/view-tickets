@@ -1,0 +1,365 @@
+@import '../../../assets/itl-common-css/common-css.scss';
+
+.main-container {
+    font-size: 13px;
+    font-family: $interRegular;
+    background-color: #f4f7f9;
+    height: auto;
+    @include theme() {
+        color: theme-get('black-700');
+        background-color: theme-get('background-sideBar-img');
+    }
+
+    @media screen and (min-width: 1500px) {
+        min-width: 1440px;
+    }
+
+    .main-container-header {
+        @include theme() {
+            background-color: theme-get('check-input-background');
+            color: theme-get('check-value');
+        }
+        min-height: 63px;
+        // background-color: #ffffff;
+        padding: 16px 32px 16px 32px;
+        top: 0;
+        z-index: 9;
+        position: sticky;
+        font-family: $interSemiBold;
+        @media screen and (max-width: 1000px) {
+            padding: 16px 0px 16px 32px;
+            // padding-right: 32px;
+        }
+        @media screen and (max-width: 380px) {
+            flex-direction: column;
+            padding: 16px 0px;
+        }
+        @media screen and (max-width: 380px) {
+            gap: 13px;
+        }
+
+        .header-title {
+            font-size: 18px;
+            // color: #1d252b;
+            margin-left: 45px;
+            @media screen and (max-width: 415px) {
+                margin-left: 40px;
+            }
+            @media screen and (max-width: 380px) {
+                margin-left: 70px !important;
+                margin-top: 5px;
+            }
+            font-weight: 600;
+        }
+        .header-title-noStore {
+            margin-left: 45px;
+            @media screen and (max-width: 415px) {
+                margin-left: 0px;
+            }
+        }
+        .header-close-button {
+            background-color: transparent;
+            cursor: pointer;
+            border: none;
+
+            max-width: 20px;
+            max-height: 20px;
+            img {
+                max-width: 20px;
+                max-height: 20px;
+            }
+        }
+        .header-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: flex-end;
+            @media screen and (max-width: 415px) {
+                justify-content: flex-start;
+            }
+            @media screen and (max-width: 1000px) {
+                gap: 5px;
+            }
+            :hover {
+                cursor: pointer;
+            }
+            .header-button-1,
+            .header-button-2 {
+                font-family: $interSemiBold;
+
+                width: 108px;
+                height: 32px;
+                flex-grow: 0;
+                // padding: 8px 12px 8px 12px;
+                border-radius: 4px;
+                font-size: 12px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                border: solid 1px #0168ed;
+                background-color: #1279ff;
+                color: #ffffff;
+                @media screen and (max-width: 1000px) {
+                    font-size: 10px;
+                    width: 98px;
+                }
+            }
+        }
+    }
+
+    .container-sections {
+        margin: 16px 72px 0px 72px;
+        @media screen and (min-width: 1500px) {
+            justify-content: center;
+        }
+        @media screen and (max-width: 1270px) {
+            flex-direction: column;
+            margin: 16px;
+        }
+        .container-left-card {
+            // min-width: 752px;
+            @media screen and (min-width: 1500px) {
+                max-width: 752px;
+            }
+        }
+        .container-section-card1,
+        .container-section-card2,
+        .contaienr-section-card3 {
+            background-color: #ffffff;
+            border-radius: 4px;
+
+            .card1-title,
+            .card2-title,
+            .card3-title,
+            .card4-title {
+                padding: 16px 0 16px 24px;
+                font-size: 16px;
+                font-family: $interSemiBold;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                // border-bottom: 1px solid #f1f3f5;
+                @include theme() {
+                    background-color: theme-get('check-input-background');
+                    color: theme-get('check-value');
+                    border-bottom: 1px solid theme-get('modal-border-bottom');
+                }
+            }
+            .card1-content {
+                padding: 20px 0px 24px 32px;
+                @include theme() {
+                    background-color: theme-get('check-input-background');
+                    color: theme-get('check-value');
+                }
+                .card1-left-content,
+                .card1-right-content,
+                .card2-left-content {
+                    max-width: 50%;
+                    gap: 64px;
+                    @media screen and (max-width: 1000px) {
+                        justify-content: space-between;
+                        max-width: 100%;
+                        gap: 0px;
+                        .card1-right-data {
+                            text-align: end;
+                        }
+                        padding-right: 24px;
+                    }
+                    .card1-left-content-data,
+                    .card1-right-data,
+                    .card2-left-content-data {
+                        @include theme() {
+                            color: theme-get('check-value');
+                        }
+                        .prepaid-tag {
+                            padding: 2px 5px;
+                            @media screen and (max-width: 1000px) {
+                                margin-left: 8px;
+                            }
+                            background-color: #d9e9ff;
+                            color: #366cb8;
+                            text-align: center;
+                            font-size: 10px;
+                            text-transform: uppercase;
+                            height: 16px;
+                            width: 50px;
+                            border-radius: 2px;
+                        }
+                    }
+                    @media screen and (max-width: 1000px) {
+                        .card1-left-content-data {
+                            text-align: end;
+                            align-items: flex-end;
+                        }
+                    }
+                }
+                .card1-right-content {
+                    margin-right: 15px;
+                    @media screen and (max-width: 1000px) {
+                        margin-right: 0px;
+                    }
+                }
+            }
+            .card2-content {
+                padding: 16px 32px 24px 32px;
+                gap: 78px;
+                @include theme() {
+                    background-color: theme-get('check-input-background');
+                    color: theme-get('check-value');
+                }
+                @media screen and (max-width: 1000px) {
+                    gap: 16px;
+                    flex-direction: column;
+                }
+
+                .card2-left-content {
+                    gap: 91px;
+                    @media screen and (max-width: 1000px) {
+                        justify-content: space-between;
+                        gap: 0px;
+                        .card2-left-content-data,
+                        .card1-left-content-data {
+                            text-align: end;
+                        }
+                    }
+                }
+                .card2-right-content {
+                    gap: 12px;
+                    .card2-right-title {
+                        font-size: 10px;
+                        @include theme() {
+                            color: theme-get('daterange-header-item');
+                        }
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        line-height: 1.2;
+                    }
+                    .card2-right-subcontent {
+                        gap: 16px;
+                        div > span {
+                            font-size: 13px;
+                            line-height: 1.54;
+                        }
+                    }
+                    .copy-button {
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .card1-content {
+                gap: 172px;
+
+                @media screen and (max-width: 1000px) {
+                    gap: 8px;
+                }
+            }
+            @media screen and (min-width: 1500px) {
+                max-width: 752px;
+            }
+        }
+        .card3-title {
+            border: none !important;
+        }
+        .card3-data-table {
+            padding: 0 24px 0 24px;
+            @include theme() {
+                background-color: theme-get('check-input-background');
+            }
+        }
+        .section-card4 {
+            @include theme() {
+                background-color: theme-get('background');
+            }
+            border-radius: 4px;
+            min-width: 368px;
+            // min-width: 368px;
+            height: fit-content;
+            padding-bottom: 28px;
+            @media screen and (min-width: 1500px) {
+                max-width: 368px;
+            }
+            @media screen and (max-width: 1000px) {
+                max-width: 100%;
+                min-width: auto;
+            }
+            .card4-title {
+                font-size: 16px;
+                font-family: $interSemiBold;
+                font-weight: 600;
+                padding: 16px 0 16px 24px;
+                @include theme() {
+                    color: theme-get('check-value');
+                    border-bottom: 1px solid theme-get('modal-border-bottom');
+                }
+            }
+            .card4-content {
+                padding: 20px 39px 0 32px;
+                gap: 39px;
+                justify-content: space-between;
+
+                .card4-data {
+                    color: #0c0c0d;
+                    .fulfilment-tag {
+                        width: 72px;
+                        height: 16px;
+                        font-family: $interSemiBold;
+                        text-transform: uppercase;
+                        font-size: 10px;
+                        color: #b6684b;
+                        background-color: #ffedb1;
+                        padding: 1px 5px 1px 3px;
+                        text-align: center;
+                        border-radius: 2px;
+                    }
+                }
+            }
+        }
+    }
+}
+.tags-modal {
+    text-transform: uppercase;
+    font-size: 10px;
+    @media screen and (max-width: 340px) {
+        font-size: 8px;
+    }
+    font-family: $interSemiBold;
+
+    padding: 2px 5px 2px 5px;
+    @include theme() {
+        color: theme-get('dt-filter-header-right-text');
+        background-color: theme-get('background-top-active');
+    }
+
+    text-align: center;
+    border-radius: 2px;
+}
+
+.cod-tag {
+    width: 31px;
+    height: 16px;
+    padding: 0 5px;
+    border-radius: 2px;
+    background-color: #ffedb1;
+    flex-grow: 0;
+    font-family: SegoeUI-Semibold;
+    font-size: 10px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.6;
+    letter-spacing: normal;
+    text-align: center;
+    color: #b6684b;
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon:focus {
+    box-shadow: none;
+    background: transparent;
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
+    background: transparent;
+}

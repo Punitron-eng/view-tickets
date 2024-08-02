@@ -1,0 +1,172 @@
+/*Product Description css start*/
+/*mixin*/
+@mixin flexbox($flex-direction: row, $justify-content: flex-start, $align-items: stretch, $flex-wrap: no-wrap) {
+    display: flex;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+    flex-wrap: $flex-wrap;
+}
+
+@mixin padding($top: null, $right: null, $bottom: null, $left: null) {
+    padding-top: $top;
+    padding-right: $right;
+    padding-bottom: $bottom;
+    padding-left: $left;
+}
+
+@mixin margin($top: null, $right: null, $bottom: null, $left: null) {
+    margin-top: $top;
+    margin-right: $right;
+    margin-bottom: $bottom;
+    margin-left: $left;
+}
+
+@mixin border($width, $style, $color, $radius) {
+    border: #{$width} #{$style} #{$color};
+    border-radius: $radius;
+}
+
+@mixin dimensions($width, $height: auto) {
+    width: $width;
+    height: $height;
+}
+
+@mixin wrapper($max-width, $width, $margin) {
+    max-width: $max-width;
+    width: $width;
+    margin: $margin;
+}
+
+@mixin text($color: null, $size: 14px, $family: none, $style: normal, $weight: normal, $line-height: normal, $text-indent: null, $text-align: left, $text-decoration: none) {
+    color: $color;
+    font-size: $size;
+    font-weight: $weight;
+    font-family: $family;
+    font-style: $style;
+    line-height: $line-height;
+    text-indent: $text-indent;
+    text-align: $text-align;
+    text-decoration: $text-decoration;
+}
+
+@mixin position($position: static, $top: auto, $right: auto, $bottom: auto, $left: auto) {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin dimensions($width, $height: auto) {
+    width: $width;
+    height: $height;
+}
+
+@mixin bg-color-and-text-color($bg-color, $text-color) {
+    background-color: $bg-color;
+    color: $text-color;
+}
+
+@mixin font-size-and-color($font-size, $color) {
+    font-size: $font-size;
+    color: $color;
+}
+
+@mixin text-styles($font-size, $font-weight, $line-height) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+}
+
+$mobile-screen: 480px;
+$tablet-screen: 768px;
+$laptop-screen: 1024px;
+$medium-screen: 1200px;
+$extra-large: 2500px;
+
+@mixin media-query($breakpoint) {
+    @media only screen and (max-width: $breakpoint) {
+        @content;
+    }
+}
+
+/*common-styles*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    @media screen and (min-width:768px) {
+        padding: 0 25px;
+    }
+    padding: 0 16px;
+    display: flex;
+    @include media-query($extra-large) {
+        width: 1136px;
+        margin: 0 auto;
+    }
+    @include media-query($tablet-screen) {
+        @include flexbox($flex-direction: column, $justify-content: center, $align-items: center);
+    }
+}
+
+
+label {
+    
+    position: relative;
+    @include theme() {
+        @include font-size-and-color($font-size: 12px, $color:theme-get('label-clr'));
+    }
+}
+
+// span {
+//   @include font-size-and-color($font-size:12px,$color:#808b98);
+// }
+
+input,
+textarea,
+select {
+    @include padding($top: 9px, $right: 12px, $bottom: 9px, $left: 12px);
+    @include theme() {
+        background: theme-get('input-bg-clr');
+        border:1px solid theme-get('input-border-clr');
+        color:theme-get('input-text-clr');
+    }
+    border-radius: 4px;
+    outline: none;
+    font-size: 14.5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p,
+h3,
+li {
+    // color: #1d252b;
+    @include theme (){
+        color: theme-get('black-800')
+    }
+}
+
+// .pdf-display form{
+//     background-color: #fff;
+//     @include border(1px,solid,#fff,12px);
+//     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+// }
+
+.wrapper .form-box,
+.form-box form,
+.input-container {
+    @include flexbox($flex-direction: column);
+}
+.helvetica-regular {
+    font-family: 'HelveticaNowText-Regular';
+    font-weight: 400;
+}
+.helvetica-medium {
+    font-family: 'HelveticaNowText-Medium';
+    font-weight: 400;
+}
+/*Product Description css end*/

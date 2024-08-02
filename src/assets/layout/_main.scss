@@ -1,0 +1,31 @@
+@import '../itl-common-css/common-css.scss';
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    font-size: $scale;
+}
+
+body {
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    min-height: 100%;
+    // background: #212121 !important;
+   
+    color: var(--text-color);
+    font-family: var(--font-family);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+}
+
+.layout-container {
+    min-height: 100vh;
+    overflow-x: hidden;
+}

@@ -1,0 +1,250 @@
+@import "../../../assets/itl-common-css/common-css.scss";
+
+.p-dropdown:not(.p-disabled):hover {
+    @include theme() {
+        border-color: theme-get('black-500');
+    }
+}
+
+#rc-dropdown-1_list, #rc-dropdown-2_list, #rc-dropdown-3_list {
+    @include theme() {
+        background-color: theme-get("background") !important;
+    }
+}
+
+#rc-dropdown-1, #rc-dropdown-2, #rc-dropdown-3 {
+    .p-inputtext {
+        @include theme() {
+            color: theme-get('black-500');
+        }
+    }
+}
+
+.rate-chart-parent-class {
+    font-family: $helveticaRegular !important;
+
+    .p-dropdown-item {
+        background: none !important;
+    }
+
+    .rc-page-header {
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            @media (max-width: 1135px) {
+                display: none;
+            }
+            @media (min-width: 1199px) and (max-width: 1420px) {
+                padding-bottom: 4px;
+            }
+
+            .heading-section {
+                display: flex;
+                align-items: center;
+                @media (min-width: 1025px) and (max-width: 1420px) {
+                    display: block;
+                }
+                .heading-title {
+                    font-family: "Poppins-SemiBold";
+                    font-weight: 600;
+                    font-size: 20px;
+                    line-height: 1.2;
+                    // color: #1f2937;
+                    @include theme() {
+                        color: theme-get('black-700');
+                    }
+                    padding: 10px 10px 10px 0px;
+                }
+                .select-vendor-text-icon {
+                    display: flex;
+                    // padding-top: 12px;
+                    line-height: 16px;
+                    font-size: 13px;
+                    font-weight: 400;
+                    // color: $inputLabelColor;
+                    @media screen and (max-width: 1420px) {
+                        display: none;
+                    }
+                    @include theme() {
+                        color: theme-get('black-500');
+                    }
+                    font-family: $helveticaRegular;
+                    .showModalIcon {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .actions-section {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .p-dropdown {
+                    // border: solid 1px #d1d5db;
+                    @include theme() {
+                        border: solid 1px theme-get('black-500');
+                    }
+                    border-radius: 50px;
+                    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+                    font-family: $helveticaMedium;
+                    width: 160px;
+                    .p-inputtext {
+                        padding: 10px 16px !important;
+                        font-size: 0.9rem;
+                        color: $inputPlaceholderColor;
+                        padding: 0.4rem 0px 0.4rem 1rem !important;
+                    }
+                }
+                .p-dropdown:not(.p-disabled).p-focus {
+                    box-shadow: none;
+                }
+                .p-dropdown-label {
+                    font-family: $helveticaMedium;
+                }
+                .p-dropdown .p-dropdown-label .p-placeholder {
+                    font-family: $helveticaRegular;
+                }
+                .cp-rate {
+                    font-family: $helveticaRegular;
+                }
+                .cp-sp-rate-btn {
+                    display: flex;
+                    align-items: end;
+                    justify-content: center;
+                    color: #374151;
+                    font-size: 13px;
+                }
+                .add-rate-btn {
+                    width: 96px;
+                    height: 32px;
+                    border-radius: 50px;
+                    border: 1px solid $applyBtnBorderClr;
+                    background-color: #0052cc;
+                    color: $whiteColor;
+                    font-family: $helveticaRegular;
+                    cursor: pointer;
+                }
+                .send-mail-btn {
+                    width: 108px;
+                    height: 32px;
+                    border-radius: 50px;
+                    // border: 1px solid #DDDEE1;
+                    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                    font-family: $helveticaRegular;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .page-header-responsive {
+            @media (min-width: 1136px) {
+                display: none;
+            }
+            .heading-section {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: 4px;
+                @media (min-width: 768px) {
+                    padding-bottom: 0px;
+                }
+                .heading-title {
+                    font-family: "Poppins-SemiBold";
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 24px;
+                    // color: #1f2937;
+                    @include theme() {
+                        color: theme-get('black-700');
+                    }
+                    padding: 10px 8px 10px 0px;
+                }
+                .select-vendor-text-icon-responsive {
+                    // display: none;
+                }
+            }
+
+            .actions-section {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                align-self: center;
+
+                .add-rate-btn {
+                    font-family: $helveticaRegular;
+                    width: 96px;
+                    height: 32px;
+                    padding: 5px 10px;
+                    border-radius: 50px;
+                    border: solid 1px #0049b0;
+                    background-color: #0052cc;
+                    color: #fff;
+                    position: relative;
+                    cursor: pointer;
+                }
+                .send-mail-btn {
+                    font-family: $helveticaRegular;
+                    width: 104px;
+                    height: 32px;
+                    padding: 5px 10px;
+                    border-radius: 50px;
+                    position: relative;
+                    cursor: pointer;
+                }
+
+                .p-dropdown:not(.p-disabled):hover {
+                    border-color: none;
+                }
+                .p-dropdown:not(.p-disabled).p-focus {
+                    border-color: none;
+                    box-shadow: none;
+                }
+                .p-dropdown {
+                    font-family: $helveticaRegular;
+                    background: transparent;
+                    border: none;
+                }
+                .p-dropdown .p-dropdown-trigger {
+                    width: 1rem;
+                    padding-top: 1.5px;
+                }
+                .p-dropdown .p-dropdown-label.p-placeholder {
+                    font-family: $helveticaRegular;
+                    color: $inputPlaceholderColor;
+                    font-size: 13px;
+                }
+            }
+
+            // .select-vendor-text-icon {
+            // @media (min-width: 767px) {
+            //     display: none;
+            // }
+            // }
+        }
+        .select-vendor-text-icon {
+            display: flex;
+            align-items: center;
+            font-family: $helveticaRegular;
+            // color: $inputLabelColor;
+            @include theme() {
+                color: theme-get('black-500');
+            }
+        }
+        .select-vendor-text-icon-responsive {
+            padding-bottom: 12px;
+            line-height: 16px;
+            font-size: 13px;
+            @media (min-width: 1420px) {
+                display: none;
+            }
+        }
+
+        .select-vendor-text-icon-responsive-tablet {
+            @media (max-width: 1420px) {
+                display: none;
+            }
+        }
+    }
+}
