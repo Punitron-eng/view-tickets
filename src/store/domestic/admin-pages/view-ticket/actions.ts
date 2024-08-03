@@ -2,7 +2,6 @@ import { NEWVIEWTICKET } from './constants';
 import { getDefaultColumnData, getSaveFilterData, saveFilterData, getPageCount, getDeleteUpdateFilterData, dataCount } from '@/api/datatable/dataTableApi';
 import { dataTableData, exportBgProcess, productData, viewDetailsData, imageUpload, getChatTicketModalData, getChatTicketModalChatData, sendNewTicketData } from '../../../../api/domestic/view-ticket/viewTicketApi';
 import { getVendorDataApi } from '@/api/VendorModalData';
-import { dataTableVariables } from '../../../../components/itl-dataTable-files/itl-dataTable/commonVariable';
 const createActions = () => ({
     // For Export selected rows data
     [NEWVIEWTICKET.ACTIONS.GETSELECTEDROW](context: any, payload: any) {
