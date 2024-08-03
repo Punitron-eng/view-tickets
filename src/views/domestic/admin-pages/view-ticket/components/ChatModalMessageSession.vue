@@ -180,7 +180,7 @@ defineExpose({
                         </a>
                         <div v-else-if="message.chat_attachment.type === 'mp3' || message.chat_attachment.type === 'mp4' || message.chat_attachment.type === 'mpeg' || message.chat_attachment.type === 'wav'" class="">
                             <img
-                                :src="getImg('audio-icon')"
+                                :src="getImg('music-icon')"
                                 class=""
                                 v-if="message.chat_attachment.type === 'mp3' || message.chat_attachment.type === 'mpeg' || message.chat_attachment.type === 'wav'"
                                 @click="openModal(message.chat_attachment.file_path_large, 'audio')"
@@ -188,7 +188,7 @@ defineExpose({
                             <!-- this is for the video message -->
                             <img :src="getImg('audio-icon')" class="" @click="openModal(message.chat_attachment.file_path_large, 'video')" v-else />
                         </div>
-                        <img :src="message.chat_attachment.file_path_large" v-else @click="openModal(message.chat_attachment.file_path_large, 'image')" class="hover:cursor-pointer max-w-[40px]" />
+                        <img :src="getImg('image-preview')" v-else @click="openModal(message.chat_attachment.file_path_large, 'image')" class="hover:cursor-pointer max-w-[40px]" />
                     </div>
                     {{ message.chat_message }}
                 </div>
@@ -208,12 +208,12 @@ defineExpose({
         </div>
     </div>
     <DialogView v-model:visible="imgPreview" :modal="true" :draggable="false" dismissableMask id="imgpreview-message-session">
-        <div class="max-w-[50vw] object-contain px-[16px]">
+        <div class="max-w-[50vw] object-contain px-[16px] min-w-[40vw] flex items-center justify-center min-h-[40vh]">
             <audio controls v-if="selectedImage.type === 'audio'">
                 <source :src="selectedImage.src" type="audio/mpeg" />
             </audio>
             <video :src="selectedImage.src" controls v-else-if="selectedImage.type === 'video'"></video>
-            <img :src="selectedImage.src" class="w-full h-full object-contain" v-else />
+            <img :src="selectedImage.src" class="h-full object-contain" v-else />
         </div>
     </DialogView>
 </template>

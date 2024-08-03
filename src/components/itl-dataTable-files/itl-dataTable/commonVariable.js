@@ -415,6 +415,8 @@ export const commonFilterModal = {
     ticket_description: { value: null },
     ticket_category: { value: null },
     ticket_status: { value: null },
+    created_by: { value: null },
+    unactionable_by_itl: { value: null },
     //View Tickets- admin //
 
     wallet_deduction_amt: { value: null },

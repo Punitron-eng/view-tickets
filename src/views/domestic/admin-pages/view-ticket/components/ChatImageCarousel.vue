@@ -21,10 +21,11 @@ const showImage = (image) => {
         case 'mp3':
         case 'mpeg':
         case 'wav':
+            return getImg('music-icon');
         case 'mp4':
             return getImg('audio-icon');
         default:
-            return image.file_path_large;
+            return getImg('image-preview');
     }
 };
 
@@ -44,9 +45,8 @@ const handleClick = (data, index) => {
 <template>
     <Carousel :value="imageCarousel" :numVisible="isOpenModal ? 1 : imageCarousel.length > 3 ? 3 : 2" numScroll="1" circular>
         <template #item="slotProps">
-            <div class="flex justify-center items-center ">
-                <img v-if="isPreviewable(slotProps.data.type)" :src="showImage(slotProps.data)" class="hover:cursor-pointer pr-2" :class="isOpenModal ? 'h-[70vh]' : 'h-[50px]'" @click="handleClick(slotProps.data, slotProps.index)" />
-
+            <div class="flex justify-center items-center">
+                <img v-if="isPreviewable(slotProps.data.type)" :src="showImage(slotProps.data)" class="hover:cursor-pointer" :class="isOpenModal ? 'h-[70vh] ' : 'h-[50px] '" @click="handleClick(slotProps.data, slotProps.index)" />
                 <a v-else :href="slotProps.data.file_path_small" download target="_blank" class="hover:cursor-pointer pr-2">
                     <img :src="showImage(slotProps.data)" class="hover:cursor-pointer pr-2" :class="isOpenModal ? 'h-[70vh]' : 'h-[50px]'" alt="Downloadable File" />
                 </a>
@@ -56,13 +56,12 @@ const handleClick = (data, index) => {
 </template>
 <style lang="scss">
 .chat-ticket-modal {
+    .p-carousel-container {
+        max-width: 340px !important;
+    }
     .p-carousel-indicators {
         display: none !important;
     }
-
-    // .p-items-hidden .p-carousel-item {
-    //     visibility: visible !important;
-    // }
 
     .p-disabled {
         display: none !important;

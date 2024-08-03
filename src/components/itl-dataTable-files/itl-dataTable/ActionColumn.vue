@@ -113,6 +113,7 @@ const getReturnActions = (selectedAction) => {
     const data = {
         selectedAction: selectedAction,
         rowId: props.rowData.row_id ? props.rowData.row_id : props.rowData.row_id,
+        selectedRowData: props.rowData,
     };
     emit('showModal', data);
     // if (selectedAction.link) {

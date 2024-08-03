@@ -86,7 +86,7 @@ export function formatFilterData(data: any) {
                 });
             } else if (isObjectForRadio(data[key])) {
                 formattedData.push({
-                    type: 'multiSelect',
+                    type: 'dropdownRadio',
                     [key]: data[key],
                 });
             } else if (isObjectForGroupCheckbox(data[key])) {

@@ -351,11 +351,11 @@ const showImage = (image) => {
         case 'mp3':
         case 'mpeg':
         case 'wav':
-            return { type: 'audio', image: getImg('audio-icon'), file: image.file_path_large };
+            return { type: 'audio', image: getImg('music-icon'), file: image.file_path_large };
         case 'mp4':
             return { type: 'video', image: getImg('audio-icon'), file: image.file_path_large };
         default:
-            return { type: 'image', image: image.file_path_large };
+            return { type: 'image', image: getImg('image-preview'), file: image.file_path_large };
     }
 };
 const nextImage = () => {
@@ -438,7 +438,7 @@ const confirmUnactionbleItlFnc = async () => {
                         </div>
                     </div>
                     <!-- Attachments section -->
-                    <div class="py-[24px] lg:py-[32px] px-[24px]" v-if="attachmentData.length > 0">
+                    <div class="py-[24px] lg:py-[32px] px-[24px] max-w-[360px]" v-if="attachmentData.length > 0">
                         <div v-if="isLoading">
                             <SkeletonView width="320px" height="131px" />
                         </div>
@@ -562,11 +562,14 @@ const confirmUnactionbleItlFnc = async () => {
                             <template v-else-if="selectedFile.type.startsWith('image/')">
                                 <img :src="imagePreviewUrl" class="w-[38px] h-[38px] object-contain" />
                             </template>
-                            <template v-else-if="selectedFile.type.startsWith('audio/') || selectedFile.type.startsWith('video/')">
+                            <template v-else-if="selectedFile.type.startsWith('audio/')">
+                                <img :src="getImg('music-icon')" />
+                            </template>
+                            <template v-else-if="selectedFile.type.startsWith('video/')">
                                 <img :src="getImg('audio-icon')" />
                             </template>
                             <template v-else>
-                                <img :src="getImg('bulk-csv-icon')" />
+                                <img :src="getImg('default-file')" />
                             </template>
                             <div class="absolute top-[2px] right-[2px] hover:cursor-pointer">
                                 <img :src="getImg('close_icon_mobile', darkModeVal)" @click="selectedFile = null" class="w-[12px]" />
@@ -645,7 +648,7 @@ const confirmUnactionbleItlFnc = async () => {
                 </audio>
                 <video :src="modalImageSrc.imageSrc.file" controls v-else></video>
             </div>
-            <img v-else :src="modalImageSrc.imageSrc.image" class="w-[40vw] object-contain hover:cursor-pointer" alt="Image Preview" />
+            <img v-else :src="modalImageSrc.imageSrc.file" class="w-[40vw] object-contain hover:cursor-pointer" alt="Image Preview" />
             <button @click="prevImage" class="absolute top-[50%] left-0">
                 <img :src="getImg('filter-prev-icon')" />
             </button>

@@ -79,6 +79,11 @@ const submitTicketRating = async () => {
     const selectedStars = stars.value.filter(Boolean).length;
     const selectedTicketId = dataVariables.value.selectedTicketId;
     try {
+        if (selectedStars == 0) {
+            toast.add({ severity: 'error', summary: 'Error Message', detail: 'Please select atleast one star', life: 1000 });
+            isLoading.value = false;
+            return;
+        }
         const result = await reviewTicketApi(selectedTicketId, selectedStars);
         if (result.status != 'success') {
             throw new Error(result.message);

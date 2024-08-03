@@ -114,12 +114,15 @@ const ShowData = () => {
         top: -11px !important;
     }
 }
-
+.p-dialog .p-dialog-content {
+    padding: 0px !important;
+}
 .p-dialog-footer {
     @include theme() {
         background-color: theme-get('background') !important;
     }
     width: 100%;
+    padding-top: 16px !important;
     justify-content: flex-end;
 }
 

@@ -167,7 +167,8 @@ const selectedRowId = ref({
 const confirmPendingFnc = async () => {
     let result;
     try {
-        result = selectedRowId.value.actionType === 'Close' ? await closeTicketApi(selectedRowId.value.rowId) : await reopenTicketApi(selectedRowId.value.rowId);
+        const reOpenPayload = { ticket_id: selectedRowId.value.rowId, awb_no: selectedRowId.value.selectedRowData.awb_no_logistics };
+        result = selectedRowId.value.actionType === 'Close' ? await closeTicketApi(selectedRowId.value.rowId) : await reopenTicketApi(reOpenPayload);
         if (result.status === 'success') {
             toast.add({
                 severity: 'success',
@@ -186,7 +187,8 @@ const confirmPendingFnc = async () => {
 };
 
 const handleTicketAction = async (data) => {
-    selectedRowId.value = { actionType: data.selectedAction.name, rowId: data.rowId };
+    console.log(data, 'this is the data ');
+    selectedRowId.value = { actionType: data.selectedAction.name, rowId: data.rowId, selectedRowData: data.selectedRowData };
     if (data.selectedAction.name === 'Close') {
         isOpenConfirmation.value = true;
         return;

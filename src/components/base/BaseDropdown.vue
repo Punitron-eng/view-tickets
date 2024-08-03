@@ -75,11 +75,22 @@ watch(
 </script>
 
 <template>
-    <Dropdown @change="listenDropdownChange()" id="baseDropdown" :auto-option-focus="false" @click="applyCss"
-        @hide="applyCss('onClose')" v-model="selectedValue" :options="props.options" :autoOptionFocus="false"
-        optionLabel="value" :appendTo="'self'" :placeholder="props.placeholder"
-        :class="props?.twClasses || defaultClasses" class="base-dropdown "
-        :virtualScrollerOptions="props?.virtualScrollerOptions">
+    <Dropdown
+        @change="listenDropdownChange()"
+        id="baseDropdown"
+        :auto-option-focus="false"
+        @click="applyCss"
+        @hide="applyCss('onClose')"
+        v-model="selectedValue"
+        :options="props.options"
+        :autoOptionFocus="false"
+        optionLabel="value"
+        :appendTo="'self'"
+        :placeholder="props.placeholder"
+        :class="props?.twClasses || defaultClasses"
+        class="base-dropdown"
+        :virtualScrollerOptions="props?.virtualScrollerOptions"
+    >
         <template #value="slotProps">
             <div v-if="slotProps.value">
                 <div class="truncate">{{ slotProps.value.value }}</div>
@@ -88,11 +99,8 @@ watch(
         <template #option="slotProps">
             <div class="flex items-center justify-between option-item">
                 <div class="truncate">{{ slotProps.option.value }}</div>
-                <img v-if="!darkModeVal" v-show="selectedValue?.id == slotProps.option.id" class="check-sign"
-                    src="../../assets/images/IcOutlineCheck.svg" width="14" height="14" alt="Check Sign" />
-                <img v-else v-show="selectedValue?.id == slotProps.option.id" class="check-sign"
-                    src="../../assets/images/dark-mode/dark-IcOutlineCheck.svg" width="14" height="14"
-                    alt="Check Sign" />
+                <img v-if="!darkModeVal" v-show="selectedValue?.id == slotProps.option.id" class="check-sign" src="../../assets/images/IcOutlineCheck.svg" width="14" height="14" alt="Check Sign" />
+                <img v-else v-show="selectedValue?.id == slotProps.option.id" class="check-sign" src="../../assets/images/dark-mode/dark-IcOutlineCheck.svg" width="14" height="14" alt="Check Sign" />
             </div>
         </template>
     </Dropdown>
@@ -113,7 +121,7 @@ watch(
     border-radius: 5px !important;
 }
 
-.p-inputtext:enabled:hover {
+.base-dropdown .p-inputtext:enabled:hover {
     @include theme() {
         border: 1px solid theme-get('border-black-500');
     }

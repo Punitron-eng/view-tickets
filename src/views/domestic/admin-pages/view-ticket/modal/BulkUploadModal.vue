@@ -11,7 +11,7 @@
         title="Bulk Upload Processing via CSV"
         :isloading="setBulkUploadIsLoading"
         maxFileSize="6"
-        :sampleDownloadLink="config.baseUrlUploads + (topHeader['user_type'] == '3' ? 'support_tickets/support_tickets_bulk_upload/excel/support_ticket_bulk_upload.csv' : 'uploads/tickets/bulk-upload-tickets-sample-file-v3.csv')"
+        :sampleDownloadLink="config.baseFileUrl + 'uploads/support_tickets/support_tickets_bulk_upload/excel/support_ticket_bulk_upload.csv'"
         @handleChangeVisible="handleChangeShowBulkUpload"
         @returnObjectProps="handleBulkUploadData"
     >
@@ -66,6 +66,7 @@ const handleBulkUploadData = async (bulkuploadData) => {
                 toast.add({ severity: 'error', detail: result.html_message, life: 3000 });
             }
         } catch (err) {
+            setBulkUploadIsLoading.value = false;
             console.log(err.message);
         }
     } else {
