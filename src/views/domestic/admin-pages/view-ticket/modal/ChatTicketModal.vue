@@ -342,12 +342,12 @@ const showImage = (image) => {
         // case 'csv':
         // case 'xlsx':
         // case 'xls':
-        //     return { type: 'file', image: getImg('bulk-csv-icon'), file: image.file_path_large };
+        //     return { type: 'file', image: getImg('preview-excel'), file: image.file_path_large };
         // case 'doc':
         // case 'docx':
-        //     return { type: 'file', image: getImg('doc-icon'), file: image.file_path_large };
+        //     return { type: 'file', image: getImg('preview-doc'), file: image.file_path_large };
         // case 'pdf':
-        //     return { type: 'file', image: getImg('pdf-icon'), file: image.file_path_large };
+        //     return { type: 'file', image: getImg('preview-pdf'), file: image.file_path_large };
         case 'mp3':
         case 'mpeg':
         case 'wav':
@@ -551,13 +551,13 @@ const confirmUnactionbleItlFnc = async () => {
                     <div class="flex items-center gap-2 py-2 md:py-3 w-full border-t border-[#f1f3f5] dark:border-[#383b40] relative">
                         <div class="absolute left-5 -top-[80px] border p-3 bg-[#f1f3f5] dark:bg-[#383b40] dark:border-[#383b40]" v-if="selectedFile">
                             <template v-if="selectedFile.type === 'application/vnd.ms-excel' || selectedFile.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || selectedFile.type === 'text/csv'">
-                                <img :src="getImg('bulk-csv-icon')" />
+                                <img :src="getImg('preview-excel')" />
                             </template>
                             <template v-else-if="selectedFile.type === 'application/pdf'">
-                                <img :src="getImg('pdf-icon')" />
+                                <img :src="getImg('preview-pdf')" />
                             </template>
                             <template v-else-if="selectedFile.type === 'application/msword' || selectedFile.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'">
-                                <img :src="getImg('doc-icon')" />
+                                <img :src="getImg('preview-doc')" />
                             </template>
                             <template v-else-if="selectedFile.type.startsWith('image/')">
                                 <img :src="imagePreviewUrl" class="w-[38px] h-[38px] object-contain" />
