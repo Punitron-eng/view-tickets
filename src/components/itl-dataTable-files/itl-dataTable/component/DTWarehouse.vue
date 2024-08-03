@@ -49,7 +49,7 @@
             <div ref="dtTextContent">{{ data.ticket_description || 'N/A' }}</div>
         </div>
         <OverlayPanel ref="overlay" class="dropdown-box" :appendTo="'body'" :showCloseIcon="true" :breakpoints="{ '960px': '75vw', '640px': '100vw' }">
-            <div class="whatsapp-count-outer">
+            <div class="whatsapp-count-outer break-all">
                 <p>{{ data.ticket_description || 'N/A' }}</p>
             </div>
         </OverlayPanel>

@@ -185,7 +185,7 @@ const fetchTicketData = async () => {
             { label: 'Last Attempt Date', value: ticketModalData.value?.last_attempt_date || '-' },
             { label: 'Assign By', value: ticketModalData.value?.ticket_assign_by || '-' },
             { label: 'CS Remark', value: ticketModalData.value?.ticket_cs_remark || '-' },
-            { label: 'LSP Remark', value: ticketModalData.value?.ticket_lsp_remark || '-' },
+            // { label: 'LSP Remark', value: ticketModalData.value?.ticket_lsp_remark || '-' },
             { label: 'Pending CS Remark', value: ticketModalData.value?.pending_cs_remark || '-' },
         ];
         singleSelectedDate.value = ticketModalData.value.extended_due_date.length > 0 ? new Date(ticketModalData.value.extended_due_date.pop()) : new Date(ticketModalData.value.ticket_created_date);
@@ -429,10 +429,10 @@ const confirmUnactionbleItlFnc = async () => {
                             <SkeletonView width="340px" height="16px" />
                         </div>
                         <div v-else>
-                            <div class="font-interSemiBold text-[16px] mb-[8px]">
+                            <div class="font-interSemiBold text-[16px] mb-[8px] break-all">
                                 {{ ticketModalData?.ticket_subject }}
                             </div>
-                            <div>
+                            <div class="break-all">
                                 {{ ticketModalData?.ticket_description }}
                             </div>
                         </div>
@@ -797,6 +797,7 @@ const confirmUnactionbleItlFnc = async () => {
         background: transparent;
         border: 1px solid #e9ecef;
         border-radius: 5px;
+        @apply dark:border-[#383b40];
     }
 
     .p-multiselect:not(.p-disabled).p-focus {
