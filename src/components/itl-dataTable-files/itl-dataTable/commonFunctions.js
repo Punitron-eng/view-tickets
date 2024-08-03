@@ -240,31 +240,26 @@ export const activeSabTab = () => {
     }
 };
 
-export const getDataTableData = async (extraPayload) => {
+export const getDataTableData = async () => {
     dataVariables.value.isSkeletonShow = true;
     const headerElement = document.querySelector('.p-datatable-thead');
     dataVariables.value.isHeaderLoad = true;
+    if (dataVariables.value.isShowCheckbox) {
+        store.dispatch(`${storeName}/getSelectedRow`, []);
+    }
     try {
+        await getDataTableDataCount();
         await store.dispatch(`${storeName}/getDatatableApiData`, {
             moduleName: dataVariables.value.moduleName,
             length: dataVariables.value.pageSize,
             selectedTab: dataVariables.value.selectedTabName,
             subTabName: dataVariables.value.subTabName,
             is_active_sub_tab_filter: selectedSubTab.find((tab) => tab == dataVariables.value.selectedTabName) ? 1 : 0,
-            ...extraPayload,
         });
         adjustTableHeight();
         dataVariables.value.isHeaderLoad = false;
-        if (
-            dataVariables.value.router.currentRoute.path.includes('tickets') ||
-            dataVariables.value.router.currentRoute.path.includes('view-order') ||
-            dataVariables.value.router.currentRoute.path.includes('view-user') ||
-            dataVariables.value.router.currentRoute.path.includes('store-order') ||
-            dataVariables.value.router.currentRoute.path.includes('abandoned-cart') ||
-            dataVariables.value.router.currentRoute.path.includes('product-catalogue') ||
-            dataVariables.value.router.currentRoute.path.includes('weight-discrepancy') ||
-            dataVariables.value.router.currentRoute.path.includes('notification-billing')
-        ) {
+
+        if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
             const dataCount = store.getters[`${storeName}/getDataCount`];
             dataVariables.value.totalRecords = dataCount.count;
         } else {
@@ -335,9 +330,7 @@ const adjustTableHeight = () => {
 export const setFilterValue = async (data) => {
     store.commit(`${storeName}/setFilterValueData`, data);
     store.dispatch(`${storeName}/getPaginatorStart`, 0);
-    // await getDataTableData();
-    // await getDataTableDataCount();
-    await Promise.all([getDataTableData(), getDataTableDataCount()]);
+    await getDataTableData();
 };
 export const clearFilter = async (data) => {
     if (data == dataVariables.value.dtGlobalSearchId) {
@@ -346,13 +339,13 @@ export const clearFilter = async (data) => {
         store.commit(`${storeName}/clearfilterbyfield`, data);
         store.dispatch(`${storeName}/getPaginatorStart`, 0);
         dataVariables.value.removeCheck = true;
-        await Promise.all([getDataTableData(), getDataTableDataCount()]);
+        await getDataTableData;
         dataVariables.value.removeCheck = false;
     }
     store.commit(`${storeName}/clearfilterbyfield`, data);
     store.dispatch(`${storeName}/getPaginatorStart`, 0);
     dataVariables.value.removeCheck = true;
-    await Promise.all([getDataTableData(), getDataTableDataCount()]);
+    await getDataTableData;
     dataVariables.value.removeCheck = false;
     if (data === 'vendor_name') {
         await store.dispatch(`${storeName}/resetVendorData`);
@@ -363,7 +356,8 @@ export const clearFilter = async (data) => {
         store.dispatch(`${storeName}/getPaginatorStart`, 0);
         store.commit(`${storeName}/clearTicketDepartmentId`, '');
         dataVariables.value.removeCheck = true;
-        await Promise.all([getDataTableData(), getDataTableDataCount(), getColumnData(dataVariables.value.saveFilterID)]);
+        await getDataTableData();
+        await getColumnData(dataVariables.value.saveFilterID);
         dataVariables.value.removeCheck = false;
     }
 };
@@ -371,7 +365,7 @@ export const clearGroupFilter = async (data) => {
     store.commit(`${storeName}/clearGroupFilter`, data);
     store.dispatch(`${storeName}/getPaginatorStart`, 0);
     dataVariables.value.removeCheck = true;
-    await Promise.all([getDataTableData(), getDataTableDataCount()]);
+    await getDataTableData();
     dataVariables.value.removeCheck = false;
 };
 export const resetAllFilters = async () => {
@@ -382,7 +376,7 @@ export const resetAllFilters = async () => {
     } else {
         store.commit(`${storeName}/clearAllFilter`);
         dataVariables.value.showSelectedFilter = '';
-        await Promise.all([getDataTableData(), getDataTableDataCount()]);
+        await getDataTableData();
     }
     dataVariables.value.removeCheck = false;
 };
@@ -438,7 +432,7 @@ export const handlePageChange = async (event) => {
     const combinePayload = { url, payload };
     await store.dispatch(`${storeName}/getPaginatorStart`, first);
     await store.dispatch(`${storeName}/getPaginatorLast`, combinePayload);
-    await Promise.all([getDataTableData(), getDataTableDataCount()]);
+    await getDataTableData();
 };
 export const updateDate = async (date) => {
     const data = [
@@ -448,7 +442,7 @@ export const updateDate = async (date) => {
         },
     ];
     store.commit(`${storeName}/setFilterValueData`, data);
-    await Promise.all([getDataTableData(), getDataTableDataCount()]);
+    await getDataTableData();
 };
 
 export const exportData = async (type) => {
@@ -549,7 +543,7 @@ export const editColumns = async (data) => {
                 store.commit(`${storeName}/clearfilterbyfield`, column.field);
                 store.dispatch(`${storeName}/getPaginatorStart`, 0);
                 // await getColumnData(dataVariables.value.router.currentRoute.params.id);
-                await Promise.all([getDataTableData(), getDataTableDataCount()]);
+                await getDataTableData();
             }
         }
     } else {
@@ -562,7 +556,8 @@ export const resetvendor = async (val) => {
     dataVariables.value.isVendorModalVisible = val;
     if (!dataVariables.value.isVendorModalVisible) {
         store.commit(`${storeName}/clearfilterbyfield`, 'vendor_name');
-        await Promise.all([getDataTableData(), getDataTableDataCount(), getColumnData(dataVariables.value.saveFilterID)]);
+        await getColumnData(dataVariables.value.saveFilterID);
+        await getDataTableData();
     }
     await vendorDataValue(50, 0, '', 'checkbox');
 };
@@ -574,7 +569,8 @@ export const setFilter = async (value) => {
     };
     store.commit(`${storeName}/setAppliedVendorData`, data);
     store.dispatch(`${storeName}/getPaginatorStart`, 0);
-    await Promise.all([getDataTableData(), getDataTableDataCount(), getColumnData(dataVariables.value.saveFilterID)]);
+    await getColumnData(dataVariables.value.saveFilterID);
+    await getDataTableData();
     await warehouseApi();
     // await getAllWidgetValueData();
 };
@@ -626,7 +622,7 @@ export const setColumnPosition = async (data) => {
         }
         await getColumnDataFix(dataVariables.value.saveFilterID);
     }
-    await Promise.all([getDataTableData(), getDataTableDataCount()]);
+    await getDataTableData();
     dataVariables.value.isHeaderLoad = false;
 };
 export const tableRowId = async (tempRowId) => {
@@ -671,7 +667,7 @@ export const pickNowSubmitData = async () => {
         if (result.status === 'success') {
             window.open(dataVariables.value.config.baseUrlPanel + 'view-bg-process-v3', '_blank');
             setTimeout(async () => {
-                await Promise.all([getDataTableData(), getDataTableDataCount()]);
+                await getDataTableData();
             }, 2000);
         } else {
             dataVariables.value.toast.add({ severity: 'error', detail: result.html_message, life: 3000 });
@@ -687,7 +683,7 @@ export const weightUpdateApi = async (payload) => {
         const result = store.getters[`${storeName}/getWeightApiData`];
         if (result.status === 'success') {
             dataVariables.value.toast.add({ severity: 'success', detail: result.html_message, life: 3000 });
-            await Promise.all([getDataTableData(), getDataTableDataCount()]);
+            await getDataTableData();
             emitter.emit('isloading', false);
         } else {
             dataVariables.value.toast.add({ severity: 'error', detail: result.html_message, life: 3000 });
@@ -713,7 +709,7 @@ export const rejectModalData = async () => {
         rejectCloseModal();
         dataVariables.value.showActionModal = false;
         dataVariables.value.rejectInput = '';
-        await Promise.all([getDataTableData(), getDataTableDataCount()]);
+        await getDataTableData();
     } else {
         dataVariables.value.isLoadingSubmit = false;
         dataVariables.value.rejectInput = '';
@@ -874,7 +870,7 @@ export const getActiveTab = async (activeTab) => {
     }
     // await Promise.all([getColumnData(dataVariables.value.saveFilterID), getSaveFilterData(), getDataTableData(), getDataTableDataCount()]);  //trying this new thing to fix the issue but it is workign same as below
     getColumnData(dataVariables.value.saveFilterID);
-    await Promise.all([getDataTableData(), getDataTableDataCount()]);
+    await getDataTableData();
     await getSaveFilterData();
     await vendorDataValue(50, 0, '', 'checkbox');
     // await warehouseApi();
@@ -892,7 +888,8 @@ export const removeSaveFilter = async () => {
     await dataVariables.value.router.push({ name: dataVariables.value.router.currentRoute.name, params: { tabs: dataVariables.value.selectedTabName.replace(/_/g, '-'), id: '' } });
     store.commit(`${storeName}/setOpenModalFalse`, 'viewSaveFilterModal');
     dataVariables.value.toast.add({ severity: 'success', summary: 'Success', detail: 'Removed Filter Successfully', life: 3000 });
-    await Promise.all([getDataTableData(), getDataTableDataCount(), getColumnData(dataVariables.value.saveFilterID)]);
+    await getColumnData(dataVariables.value.saveFilterID);
+    await getDataTableData();
 };
 
 // export const editSaveFilterData = async (data) => {
@@ -925,7 +922,8 @@ export const deleteSaveFilter = async () => {
             await store.commit(`${storeName}/clearTicketDepartmentId`, '');
         }
         store.commit(`${storeName}/clearAllFilter`);
-        await Promise.all([getDataTableData(), getDataTableDataCount(), getColumnData(dataVariables.value.saveFilterID)]);
+        await getColumnData(dataVariables.value.saveFilterID);
+        await getDataTableData();
         // await getAllWidgetValueData();
         dataVariables.value.saveFilterID = '';
     } else {
@@ -980,11 +978,11 @@ export const getAllWidgetValueData = async () => {
 
 export const orderSearchData = async (searchData) => {
     store.dispatch(`${storeName}/getOrderInput`, searchData);
-    await Promise.all([getDataTableData(), getDataTableDataCount()]);
+    await getDataTableData();
 };
 
 //  new functions
-export const getColumnData = async (saveFilterId) => {
+export const getColumnData = async (saveFilterId, filterArr) => {
     dataVariables.value.showSkeletonInCustomizeColumn = true;
     dataVariables.value.isFilterSkeletonShow = true; // added for if any api change data in filter modal
     const url = saveFilterId != '' && saveFilterId !== undefined ? apiRoutes.getById + saveFilterId : apiRoutes.get;
@@ -995,6 +993,13 @@ export const getColumnData = async (saveFilterId) => {
         is_active_sub_tab_filter: selectedSubTab.find((tab) => tab == dataVariables.value.selectedTabName) ? 1 : 0,
     };
     const combinePayload = { url, payload };
+    if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
+        filterArr?.forEach(async (filter) => {
+            if (filter.ticket_department) {
+                await store.commit(`${storeName}/setTicketDepartmentId`, filter.ticket_department.id);
+            }
+        });
+    }
     await store.dispatch(`${storeName}/getDefaultColumn`, combinePayload);
     // await store.dispatch('fetchDtColumn', combinePayload);
     await store.dispatch(`${storeName}/getPaginatorLast`, combinePayload);
@@ -1026,7 +1031,8 @@ export const applySaveFilterData = async (data) => {
     await store.commit(`${storeName}/clearAllFilter`);
     await dataVariables.value.router.push({ name: dataVariables.value.router.currentRoute.name, params: { tabs: dataVariables.value.selectedTabName.replace(/_/g, '-'), id: data.id } });
     await store.commit(`${storeName}/setApplySavedFilteredData`, data);
-    await Promise.all([getDataTableData(), getDataTableDataCount(), await getColumnData(data.id)]);
+    await getColumnData(data.id, data.filterArr);
+    await getDataTableData();
     dataVariables.value.showSelectedFilter = data.name;
     if (data.filterArr.some((filter) => Object.keys(filter).includes(dataVariables.value.dtGlobalSearchId))) {
         dataVariables.value.orderSearch = data.filterArr.find((filter) => Object.keys(filter).includes(dataVariables.value.dtGlobalSearchId))[dataVariables.value.dtGlobalSearchId];

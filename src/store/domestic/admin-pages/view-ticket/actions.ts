@@ -2,6 +2,7 @@ import { NEWVIEWTICKET } from './constants';
 import { getDefaultColumnData, getSaveFilterData, saveFilterData, getPageCount, getDeleteUpdateFilterData, dataCount } from '@/api/datatable/dataTableApi';
 import { dataTableData, exportBgProcess, productData, viewDetailsData, imageUpload, getChatTicketModalData, getChatTicketModalChatData, sendNewTicketData } from '../../../../api/domestic/view-ticket/viewTicketApi';
 import { getVendorDataApi } from '@/api/VendorModalData';
+import { dataTableVariables } from '../../../../components/itl-dataTable-files/itl-dataTable/commonVariable';
 const createActions = () => ({
     // For Export selected rows data
     [NEWVIEWTICKET.ACTIONS.GETSELECTEDROW](context: any, payload: any) {
@@ -95,7 +96,9 @@ const createActions = () => ({
 
     // For datatable columns
     async [NEWVIEWTICKET.ACTIONS.GETDEFAULTCOLUMN](context: any, payload: any) {
-        payload.payload.ticket_department = context.getters.getTicketDepartmentId.id;
+        console.log('ticketDepartmentId =>', context.getters.getTicketDepartmentId);
+
+        payload.payload.ticket_department = context.getters.getTicketDepartmentId;
         const defaultColumn = await getDefaultColumnData(payload);
         context.commit(NEWVIEWTICKET.MUTATIONS.SETDEFAULTCOLUMN, defaultColumn);
     },
