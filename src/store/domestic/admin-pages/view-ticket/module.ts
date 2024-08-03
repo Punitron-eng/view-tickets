@@ -51,8 +51,8 @@ const state: any = {
             value: [],
         },
         ticket_department: {
-            id: [],
-            value: [],
+            id: '',
+            value: '',
         },
         carrier_name: {
             id: [],
@@ -83,8 +83,8 @@ const state: any = {
             value: [],
         },
         ticket_customer_type: {
-            id: [],
-            value: [],
+            id: '',
+            value: '',
         },
         clone_date: {
             id: '',

@@ -103,8 +103,8 @@ const createMutations = () => ({
             },
             ticket_ageing: '',
             ticket_department: {
-                id: [],
-                value: [],
+                id: '',
+                value: '',
             },
             carrier_name: {
                 id: [],
@@ -123,8 +123,8 @@ const createMutations = () => ({
                 value: [],
             },
             ticket_customer_type: {
-                id: [],
-                value: [],
+                id: '',
+                value: '',
             },
             closed_by: {
                 id: [],
@@ -257,7 +257,7 @@ const createMutations = () => ({
     [NEWVIEWTICKET.MUTATIONS.SETAPPLYSAVEDFILTEREDDATA](state, selectedData) {
         const response = selectedData.filterArr;
         response.forEach((payload) => {
-            const dataKey = Object.keys(payload)[0];
+            const dataKey = Object.keys(payload)[findTypeIndex(payload)];
             const temp = { id: [], value: [] };
             switch (payload.type) {
                 case 'dateRange':
@@ -362,8 +362,8 @@ const createMutations = () => ({
                 },
                 ticket_ageing: '',
                 ticket_department: {
-                    id: [],
-                    value: [],
+                    id: '',
+                    value: '',
                 },
                 carrier_name: {
                     id: [],
@@ -382,8 +382,8 @@ const createMutations = () => ({
                     value: [],
                 },
                 ticket_customer_type: {
-                    id: [],
-                    value: [],
+                    id: '',
+                    value: '',
                 },
                 closed_by: {
                     id: [],

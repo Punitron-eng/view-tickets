@@ -472,7 +472,11 @@ const changeDate = (id, field, selectedId) => {
         background-color: theme-get('background') !important;
     }
 }
-
+#ticket_department {
+    #filter-modal {
+        background-color: transparent !important;
+    }
+}
 #filter-modal {
     .p-dialog-header {
         display: none;

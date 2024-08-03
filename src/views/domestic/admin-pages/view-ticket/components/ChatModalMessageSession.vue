@@ -162,7 +162,7 @@ defineExpose({
                     v-else-if="message.chat_position === 'right' || message.chat_position === 'left'"
                     :class="message.is_show_pending_from === 1 ? 'border-b-2 border-[red]' : message.chat_position === 'right' ? 'px-[18px] py-[10px] user-message' : 'px-[18px] py-[10px] message'"
                 >
-                    <div v-if="message.chat_attachment != []" class="hover:cursor-pointer">
+                    <div v-if="message.chat_attachment.length != 0" class="hover:cursor-pointer">
                         <a
                             :href="message.chat_attachment.file_path_large"
                             download

@@ -137,6 +137,11 @@ const formatFilterData = (data: any): FormattedDataItem[] => {
                     [key]: data[key],
                     type: 'mutipleArraySelectCheckbox',
                 });
+            } else if (isObjectForRadio(data[key])) {
+                formattedData.push({
+                    type: 'dropdownRadio',
+                    [key]: data[key],
+                });
             }
         }
     }
@@ -173,8 +178,10 @@ const formatSelectedData = (value: any) => {
         if (typeof value == 'object') {
             if (value.label && value.label.length > 0) {
                 value = value.label;
-            } else {
+            } else if (Array.isArray(value.value)) {
                 value = value.value.join(',');
+            } else {
+                value = value.value;
             }
         }
         const selectedData = value.split(',');
@@ -186,6 +193,15 @@ const formatSelectedData = (value: any) => {
         }
     }
 };
+
+function isObjectForRadio(value) {
+    if (typeof value === 'object' && value !== null) {
+        if ('id' in value && !Array.isArray(value.id)) {
+            return true;
+        }
+    }
+    return false;
+}
 const checkpin = (filterData: any) => {
     const newPinValue = filterData.is_pinned == '0' ? '1' : '0';
     let data = {

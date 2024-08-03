@@ -16,7 +16,6 @@
             </div>
             <BaseFileUpload
                 ref="fileUpload"
-                :maxFileSize="props.maxFileSize"
                 fileID="file-upload"
                 fileType="CSV"
                 @listenFileUploadChange="(e) => handleUploadFile(e)"
@@ -108,7 +107,9 @@ const ShowData = () => {
     padding-right: 0px !important;
     padding-bottom: 16px !important;
 }
-
+.p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
+    color: #83888f !important;
+}
 .p-dialog-header-icon {
     @media screen and (max-width: 380px) {
         top: -11px !important;
