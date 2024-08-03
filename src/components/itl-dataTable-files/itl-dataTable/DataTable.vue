@@ -903,7 +903,8 @@ const openTicketModal = (ticketId) => {
 }
 
 .card {
-    border-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
     box-shadow: none !important;
 }
 </style>
