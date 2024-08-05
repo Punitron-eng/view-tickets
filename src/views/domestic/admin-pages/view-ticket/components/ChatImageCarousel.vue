@@ -11,13 +11,13 @@ const showImage = (image) => {
         case 'csv':
         case 'xlsx':
         case 'xls':
-            return getImg('bulk-csv-icon');
+            return getImg('preview-excel');
         case 'doc':
-            return getImg('doc-icon');
+            return getImg('preview-doc');
         case 'docx':
-            return getImg('doc-icon');
+            return getImg('preview-doc');
         case 'pdf':
-            return getImg('pdf-icon');
+            return getImg('preview-pdf');
         case 'mp3':
         case 'mpeg':
         case 'wav':

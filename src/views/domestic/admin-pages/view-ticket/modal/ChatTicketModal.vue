@@ -185,7 +185,7 @@ const fetchTicketData = async () => {
             { label: 'Last Attempt Date', value: ticketModalData.value?.last_attempt_date || '-' },
             { label: 'Assign By', value: ticketModalData.value?.ticket_assign_by || '-' },
             { label: 'CS Remark', value: ticketModalData.value?.ticket_cs_remark || '-' },
-            { label: 'LSP Remark', value: ticketModalData.value?.ticket_lsp_remark || '-' },
+            // { label: 'LSP Remark', value: ticketModalData.value?.ticket_lsp_remark || '-' },
             { label: 'Pending CS Remark', value: ticketModalData.value?.pending_cs_remark || '-' },
         ];
         singleSelectedDate.value = ticketModalData.value.extended_due_date.length > 0 ? new Date(ticketModalData.value.extended_due_date.pop()) : new Date(ticketModalData.value.ticket_created_date);
@@ -342,12 +342,12 @@ const showImage = (image) => {
         // case 'csv':
         // case 'xlsx':
         // case 'xls':
-        //     return { type: 'file', image: getImg('bulk-csv-icon'), file: image.file_path_large };
+        //     return { type: 'file', image: getImg('preview-excel'), file: image.file_path_large };
         // case 'doc':
         // case 'docx':
-        //     return { type: 'file', image: getImg('doc-icon'), file: image.file_path_large };
+        //     return { type: 'file', image: getImg('preview-doc'), file: image.file_path_large };
         // case 'pdf':
-        //     return { type: 'file', image: getImg('pdf-icon'), file: image.file_path_large };
+        //     return { type: 'file', image: getImg('preview-pdf'), file: image.file_path_large };
         case 'mp3':
         case 'mpeg':
         case 'wav':
@@ -429,10 +429,10 @@ const confirmUnactionbleItlFnc = async () => {
                             <SkeletonView width="340px" height="16px" />
                         </div>
                         <div v-else>
-                            <div class="font-interSemiBold text-[16px] mb-[8px]">
+                            <div class="font-interSemiBold text-[16px] mb-[8px] break-all">
                                 {{ ticketModalData?.ticket_subject }}
                             </div>
-                            <div>
+                            <div class="break-all">
                                 {{ ticketModalData?.ticket_description }}
                             </div>
                         </div>
@@ -551,13 +551,13 @@ const confirmUnactionbleItlFnc = async () => {
                     <div class="flex items-center gap-2 py-2 md:py-3 w-full border-t border-[#f1f3f5] dark:border-[#383b40] relative">
                         <div class="absolute left-5 -top-[80px] border p-3 bg-[#f1f3f5] dark:bg-[#383b40] dark:border-[#383b40]" v-if="selectedFile">
                             <template v-if="selectedFile.type === 'application/vnd.ms-excel' || selectedFile.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || selectedFile.type === 'text/csv'">
-                                <img :src="getImg('bulk-csv-icon')" />
+                                <img :src="getImg('preview-excel')" />
                             </template>
                             <template v-else-if="selectedFile.type === 'application/pdf'">
-                                <img :src="getImg('pdf-icon')" />
+                                <img :src="getImg('preview-pdf')" />
                             </template>
                             <template v-else-if="selectedFile.type === 'application/msword' || selectedFile.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'">
-                                <img :src="getImg('doc-icon')" />
+                                <img :src="getImg('preview-doc')" />
                             </template>
                             <template v-else-if="selectedFile.type.startsWith('image/')">
                                 <img :src="imagePreviewUrl" class="w-[38px] h-[38px] object-contain" />
@@ -797,6 +797,7 @@ const confirmUnactionbleItlFnc = async () => {
         background: transparent;
         border: 1px solid #e9ecef;
         border-radius: 5px;
+        @apply dark:border-[#383b40];
     }
 
     .p-multiselect:not(.p-disabled).p-focus {

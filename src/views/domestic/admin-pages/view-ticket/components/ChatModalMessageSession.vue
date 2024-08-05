@@ -170,13 +170,13 @@ defineExpose({
                             class="hover:cursor-pointer max-w-[40px]"
                             v-if="message.chat_attachment.type === 'xls' || message.chat_attachment.type === 'xlsx' || message.chat_attachment.type === 'csv'"
                         >
-                            <img :src="getImg('bulk-csv-icon')" class="" />
+                            <img :src="getImg('preview-excel')" class="" />
                         </a>
                         <a :href="message.chat_attachment.file_path_large" download target="_blank" class="hover:cursor-pointer max-w-[40px]" v-else-if="message.chat_attachment.type === 'pdf'">
-                            <img :src="getImg('pdf-icon')" class="" />
+                            <img :src="getImg('preview-pdf')" class="" />
                         </a>
                         <a :href="message.chat_attachment.file_path_large" download target="_blank" class="hover:cursor-pointer max-w-[40px]" v-else-if="message.chat_attachment.type === 'doc' || message.chat_attachment.type === 'docx'">
-                            <img :src="getImg('doc-icon')" class="" />
+                            <img :src="getImg('preview-doc')" class="" />
                         </a>
                         <div v-else-if="message.chat_attachment.type === 'mp3' || message.chat_attachment.type === 'mp4' || message.chat_attachment.type === 'mpeg' || message.chat_attachment.type === 'wav'" class="">
                             <img
