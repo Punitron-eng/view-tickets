@@ -35,6 +35,7 @@ export const RETURN = {
         GETCITYSTATE: 'getCityState', // get city state
         GETWEIGHTDATA: 'getWeightData', // Weight Api
         GETEXPORTCOUNT: 'getExportCount', // Export Count Api
+        GETDATATABLEAPIDATACOUNT: 'getDatatableApiDataCount',
     },
     MUTATIONS: {
         SETDTMODAL: 'setDtModal',
@@ -80,6 +81,7 @@ export const RETURN = {
         SETWEIGHTDATA: 'setWeightData', // Weight Api
         SETEXPORTCOUNTDATA: 'setExportCountData', // Export Count Api
         SETSUBTABNAME: 'setSubTabName',
+        SETDATATABLEAPIDATACOUNT: 'setDataTableApiDataCount',
         // SETUPDATESAVEFILTERFROMDATATABLE: 'setUpdateSaveFilterFromDatatable'
         // SETSTOREVARIABLES: 'setStoreVariables'  // for store column field
     },
@@ -123,5 +125,6 @@ export const RETURN = {
         GETEXPORTCOUNTDATA: 'getExportCountData', // Export Count Api
         GETRESPONSEMESSAGE: 'getResponseMessage',
         GETEDITEDCOLUMNSTATUS: 'getEditedColumnStatus',
+        GETDATACOUNT: 'getDataCount',
     },
 };

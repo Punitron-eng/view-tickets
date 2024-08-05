@@ -327,5 +327,9 @@ const createGetters = () => ({
     [RETURN.GETTERS.GETEDITEDCOLUMNSTATUS](state: any) {
         return state.editedColumnStatus;
     },
+    // For datatable data count
+    [RETURN.GETTERS.GETDATACOUNT](state: any) {
+        return state.count;
+    },
 });
 export default createGetters;

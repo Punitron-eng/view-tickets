@@ -95,7 +95,7 @@ const createActions = () => ({
 
     // For datatable columns
     async [NEWVIEWTICKET.ACTIONS.GETDEFAULTCOLUMN](context: any, payload: any) {
-        payload.payload.ticket_department = context.getters.getTicketDepartmentId.id;
+        payload.payload.ticket_department = context.getters.getTicketDepartmentId;
         const defaultColumn = await getDefaultColumnData(payload);
         context.commit(NEWVIEWTICKET.MUTATIONS.SETDEFAULTCOLUMN, defaultColumn);
     },
