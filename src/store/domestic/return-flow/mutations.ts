@@ -21,6 +21,11 @@ const createMutations = () => ({
         state.reverseData = '';
     },
 
+    // For datatable data count
+    [RETURN.MUTATIONS.SETDATATABLEAPIDATACOUNT](state: any, payload: any) {
+        state.count = payload;
+    },
+
     // For datatable filter apply
 
     [RETURN.MUTATIONS.SETFILTERVALUDATA](state, payloads) {

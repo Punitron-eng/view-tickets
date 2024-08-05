@@ -240,7 +240,7 @@ export const activeSabTab = () => {
     }
 };
 
-export const getDataTableData = async () => {
+export const getDataTableData = async (extraPayload) => {
     dataVariables.value.isSkeletonShow = true;
     const headerElement = document.querySelector('.p-datatable-thead');
     dataVariables.value.isHeaderLoad = true;
@@ -255,11 +255,22 @@ export const getDataTableData = async () => {
             selectedTab: dataVariables.value.selectedTabName,
             subTabName: dataVariables.value.subTabName,
             is_active_sub_tab_filter: selectedSubTab.find((tab) => tab == dataVariables.value.selectedTabName) ? 1 : 0,
+            ...extraPayload,
         });
         adjustTableHeight();
         dataVariables.value.isHeaderLoad = false;
 
-        if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
+        if (
+            dataVariables.value.router.currentRoute.path.includes('tickets') ||
+            dataVariables.value.router.currentRoute.path.includes('view-order') ||
+            dataVariables.value.router.currentRoute.path.includes('view-user') ||
+            dataVariables.value.router.currentRoute.path.includes('store-order') ||
+            dataVariables.value.router.currentRoute.path.includes('abandoned-cart') ||
+            dataVariables.value.router.currentRoute.path.includes('product-catalogue') ||
+            dataVariables.value.router.currentRoute.path.includes('weight-discrepancy') ||
+            dataVariables.value.router.currentRoute.path.includes('notification-billing') ||
+            dataVariables.value.router.currentRoute.path.includes('return-flow')
+        ) {
             const dataCount = store.getters[`${storeName}/getDataCount`];
             dataVariables.value.totalRecords = dataCount.count;
         } else {
@@ -283,7 +294,8 @@ export const getDataTableDataCount = async () => {
         dataVariables.value.router.currentRoute.path.includes('abandoned-cart') ||
         dataVariables.value.router.currentRoute.path.includes('product-catalogue') ||
         dataVariables.value.router.currentRoute.path.includes('weight-discrepancy') ||
-        dataVariables.value.router.currentRoute.path.includes('notification-billing')
+        dataVariables.value.router.currentRoute.path.includes('notification-billing') ||
+        dataVariables.value.router.currentRoute.path.includes('return-flow')
     ) {
         await store.dispatch(`${storeName}/getDatatableApiDataCount`, {
             moduleName: dataVariables.value.moduleName,
