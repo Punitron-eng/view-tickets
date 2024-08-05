@@ -16,7 +16,7 @@ import HeaderLeftSide from './components/HeaderLeftSide.vue';
 import { dataTableVariables } from '@/components/itl-dataTable-files/itl-dataTable/commonVariable';
 import ChatTicketModal from './modal/ChatTicketModal.vue';
 import TicketRateModal from './modal/TicketRateModal.vue';
-import { closeTicketApi, reopenTicketApi, confirmPendingApi, confirmPendingApiForCs } from '@/api/domestic/view-ticket/viewTicketApi';
+import { closeTicketApi, reopenTicketApi, confirmPendingApi, confirmPendingApiForCs, confirmCloseReopenApi } from '@/api/domestic/view-ticket/viewTicketApi';
 import ConfirmationModal from '@/components/itl-common-features/ConfirmationModal.vue';
 import BaseButton from '@/components/base/BaseButton.vue';
 import BaseTextarea from '@/components/base/BaseTextarea.vue';
@@ -235,7 +235,29 @@ const confirmPendingFncForCs = async (ticketId) => {
         toast.add({ severity: 'error', summary: 'Error Message', detail: error, life: 3000 });
     }
 };
-
+const closeReopenRemark = ref('');
+const closeReopenRemarkSelectedData = ref(null);
+const handleCloseReopenConfirmation = async (data) => {
+    closeReopenRemarkSelectedData.value = data.selectedRowData;
+    dataVariables.value.isVisibleCloseReopenConfirmation = true;
+};
+const comfirmCloseReopenFnc = async () => {
+    try {
+        const payload = {
+            ticket_id: closeReopenRemarkSelectedData.value.ticket_id,
+            awb_no: closeReopenRemarkSelectedData.value.awb_no_logistics,
+            remark: closeReopenRemark.value,
+        };
+        const result = await confirmCloseReopenApi(payload);
+        if (result.status !== 'success') {
+            throw new Error(result.message);
+        }
+        dataVariables.value.isVisibleCloseReopenConfirmation = false;
+        await dataTableFncs.getDataTableData();
+    } catch (error) {
+        toast.add({ severity: 'error', summary: 'Error Message', detail: error, life: 3000 });
+    }
+};
 const actionModal = async (data) => {
     if (data.selectedAction.name === 'Close' || data.selectedAction.name === 'Reopen') {
         await handleTicketAction(data);
@@ -248,6 +270,8 @@ const actionModal = async (data) => {
     } else if (data.selectedAction.name === 'Rate Us') {
         dataVariables.value.isTicketRateModalVisible = true;
         dataVariables.value.selectedTicketId = data.rowId;
+    } else if (data.selectedAction.name === 'Close & Reopen') {
+        handleCloseReopenConfirmation(data);
     }
 };
 
@@ -393,6 +417,22 @@ onMounted(() => {
             <div class="flex justify-end">
                 <BaseButton type="secondary" size="small" name="No" :isLoading="false" @click="() => (isOpenConfirmation = false)" />
                 <BaseButton type="primary" size="medium" name="Yes" :isLoading="false" @click="confirmPendingFnc" />
+            </div>
+        </template>
+    </ConfirmationModal>
+
+    <ConfirmationModal :isVisible="dataVariables.isVisibleCloseReopenConfirmation" @close-confirmation-modal="(() => (dataVariables.isVisibleCloseReopenConfirmation = false), (closeReopenRemark = ''))">
+        <template #header> Close & Reopen Ticket </template>
+        <template #body>
+            <div class="flex flex-col">
+                <div class="mb-3">Are you sure you want to close & reopen this ticket?</div>
+                <BaseTextarea rows="4" cols="50" v-model="closeReopenRemark" placeholder="Remark" class="rounded-[4px]" />
+            </div>
+        </template>
+        <template #footer>
+            <div class="flex justify-end">
+                <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="(() => (dataVariables.isVisibleCloseReopenConfirmation = false), (closeReopenRemark = ''))" />
+                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" @click="comfirmCloseReopenFnc" />
             </div>
         </template>
     </ConfirmationModal>

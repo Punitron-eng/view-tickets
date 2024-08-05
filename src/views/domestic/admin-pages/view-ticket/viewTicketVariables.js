@@ -7,6 +7,7 @@ viewTicketVariables.value.selectedTicketId = ref('');
 viewTicketVariables.value.isTicketRateModalVisible = ref(false);
 viewTicketVariables.value.isVisibleConfirmationforVendor = ref(false);
 viewTicketVariables.value.isVisibleConfirmationForCs = ref(false);
+viewTicketVariables.value.isVisibleCloseReopenConfirmation = ref(false);
 viewTicketVariables.value.selectedRowId = ref('');
 export const filterModal = commonFilterModal;
 export const staticTabs = [

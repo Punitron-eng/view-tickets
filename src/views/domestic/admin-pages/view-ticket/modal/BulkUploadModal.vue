@@ -11,7 +11,7 @@
         title="Bulk Upload Processing via CSV"
         :isloading="setBulkUploadIsLoading"
         maxFileSize="6"
-        :sampleDownloadLink="config.baseFileUrl + 'uploads/support_tickets/support_tickets_bulk_upload/excel/support_ticket_bulk_upload.csv'"
+        :sampleDownloadLink="config.baseUrlUploads + (topHeader['user_type'] == '3' ? 'support_tickets/support_tickets_bulk_upload/excel/support_ticket_bulk_upload.csv' : 'tickets/bulk-upload-tickets-sample-file-v3.csv')"
         @handleChangeVisible="handleChangeShowBulkUpload"
         @returnObjectProps="handleBulkUploadData"
     >
