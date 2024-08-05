@@ -6,7 +6,7 @@ import DeleteConfirmationModal from './modal/DeleteConfirmationModal.vue';
 import { NEWVIEWTICKET } from '@/store/domestic/admin-pages/view-ticket/constants';
 import DataTable from '@/components/itl-dataTable-files/itl-dataTable/DataTable.vue';
 import { viewTicketVariables, filterModal, staticTabs } from './viewTicketVariables';
-import { checkUserType } from '@/util/commonHandlers';
+import { checkUserType, checkAccessRight, deepCheckAccessRight } from '@/util/commonHandlers';
 import { ref, computed, watch, onMounted, onBeforeUnmount, provide, onBeforeMount } from 'vue';
 import * as dataTableFncs from '@/components/itl-dataTable-files/itl-dataTable/commonFunctions';
 import DTPageHeader from '@/components/itl-dataTable-files/itl-dataTable/component/DTPageHeader.vue';
@@ -113,6 +113,9 @@ const getTempColumn = (columns) => {
 provide('dataTabelColumnData', newref);
 provide('placeholder', 'Search By AWB No.');
 onMounted(async () => {
+    if (!checkAccessRight()) {
+        deepCheckAccessRight('domestic', 'support_ticket', 'view');
+    }
     dataVariables.value.scrollableTabs = staticTabs;
     dataTableFncs.getSelectedTabOnLoad();
     document.body.classList.add('view-ticket');

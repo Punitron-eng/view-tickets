@@ -18,6 +18,7 @@ import SingleDatePicker from '@/components/itl-common-features/itl-date-range-pi
 import { getChatTicketModalChatData } from '@/api/domestic/view-ticket/viewTicketApi';
 import { addCommentApi, confirmPendingApi, updateAssignMemberApi, uploadAttachmentApi, confirmUnactionbleItlApi } from '@/api/domestic/view-ticket/viewTicketApi';
 import BaseTextarea from '@/components/base/BaseTextarea.vue';
+import { checkAccessRight, deepCheckAccessRight } from '@/util/commonHandlers';
 import BaseDropdown from '@/components/base/BaseDropdown.vue';
 const darkModeVal = computed(() => store.getters[`${DARKMODE.NAME}/sendDarkModeVal`]);
 const ticketModalComputed = computed(() => store.getters[`${NEWVIEWTICKET.NAME}/sendChatTicketModalData`] || []);
@@ -477,7 +478,7 @@ const confirmUnactionbleItlFnc = async () => {
                         <div v-if="isLoading">
                             <SkeletonView width="340px" height="50px" />
                         </div>
-                        <div v-else>
+                        <div v-else-if="checkAccessRight() ? true : deepCheckAccessRight('domestic', 'support_ticket', 'edit')">
                             <div class="font-interSemiBold text-light-1000 dark:text-[#ffffff]">ASSIGN MEMBER</div>
                             <div class="flex flex-col md:flex-row gap-2 pt-[8px]">
                                 <MultiSelect
@@ -547,7 +548,7 @@ const confirmUnactionbleItlFnc = async () => {
                 <!-- Messages section -->
                 <ChatModalMessageSession :darmModeVal="darkModeVal" ref="chatMessageSession" :chatData="chatData" :isLoading="isLoading" :changeLoadingStatus="changeLoadingStatus" :selectedId="ticketModalData.ticket_id" />
                 <!-- message Footer section -->
-                <div v-if="ticketModalData.ticket_status == 'Open'" class="sticky bottom-0 bg-[#ffffff] dark:bg-[#313131]">
+                <div v-if="ticketModalData.ticket_status == 'Open' && checkAccessRight() ? true : deepCheckAccessRight('domestic', 'support_ticket', 'edit')" class="sticky bottom-0 bg-[#ffffff] dark:bg-[#313131]">
                     <div class="flex items-center gap-2 py-2 md:py-3 w-full border-t border-[#f1f3f5] dark:border-[#383b40] relative">
                         <div class="absolute left-5 -top-[80px] border p-3 bg-[#f1f3f5] dark:bg-[#383b40] dark:border-[#383b40]" v-if="selectedFile">
                             <template v-if="selectedFile.type === 'application/vnd.ms-excel' || selectedFile.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || selectedFile.type === 'text/csv'">

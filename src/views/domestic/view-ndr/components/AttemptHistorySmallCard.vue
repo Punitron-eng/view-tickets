@@ -4,7 +4,7 @@
             <div v-for="(item, index) in props.processData" :key="index" class="small-card">
                 <div class="mb-[8px]">
                     <div
-                        class="border border-[#f1f3f5] w-[full] rounded-4px relative bg-[#fbfcfd] rounded-[4px]"
+                        class="border border-[#f1f3f5] w-[full] rounded-4px relative bg-[#fbfcfd] rounded-[4px] dark:bg-dark-0 dark:border-dark-200"
                         :class="[
                             getBorderClass(item.chipType),
                             {
@@ -21,12 +21,12 @@
                             <div class="badge-corner"><div class="badge-corner-triangle" :class="item.chipType == 'auto' ? 'notification-green' : 'notification-blue'"></div></div>
                             {{ item.chipText }}
                         </div>
-                        <div class="relative flex flex-wrap justify-between items-center border-b border-[#f1f3f5] px-[12px] py-[10px] md:px-[16px]" :class="{ 'pt-[18px]': item.chipText }">
+                        <div class="relative flex flex-wrap justify-between items-center border-b border-[#f1f3f5] px-[12px] py-[10px] md:px-[16px] dark:border-dark-200" :class="{ 'pt-[18px]': item.chipText }">
                             <div class="flex items-center" :class="{ 'status-text-wrap': item.status.text?.length >= 12 }">
                                 <img :src="getImg(item.img1, false, 'modals')" class="w-[20px] mr-[8px] mt-1" />
                                 <img :src="getImg(item.img2, false, 'modals')" class="w-[12px] mr-[8px] mt-1" />
                                 <img :src="getImg(item.img3, false, 'modals')" class="w-[20px] mr-[8px] mt-1" />
-                                <span class="text-[#3c4249] text-[12px] md:text-[16px]">{{ item.vendorName }}</span>
+                                <span class="text-[#3c4249] text-[12px] md:text-[16px] dark:text-dark-1000">{{ item.vendorName }}</span>
                             </div>
                             <div class="rounded-[2px] text-[10px] text-center font-semibold px-[5px] leading-[16px] status-text" :class="[getTextColorClass(item.status.color), getBgColorClass(item.status.color)]">
                                 {{ item.status.text }}
@@ -35,7 +35,7 @@
                         </div>
                         <Panel v-if="item.isPanel" toggleable :collapsed="collapsedStates" @toggle="onToggle()" class="small-card-panel">
                             <template #header>
-                                <div class="text-[#1d252b] font-semibold">{{ item.panel.heading }}</div>
+                                <div class="text-[#1d252b] font-semibold dark:text-dark-1000">{{ item.panel.heading }}</div>
                             </template>
                             <template #togglericon>
                                 <div class="text-[#1279ff] flex items-center gap-2">
@@ -47,18 +47,18 @@
                             <template #default>
                                 <div class="flex items-start md:items-center">
                                     <img :src="getImg(item.panel.img1, false, 'modals')" class="w-[24px] ml-0 mr-[8px] md:ml-[16px]" />
-                                    <div class="w-[62vw] md:w-[42vw] py-[8px] px-[12px] md:pl-[16px] md:pr-[46px] bg-white rounded-[4px] shadow-md break-words text-[11px] md:text-[14px]">{{ item.panel.content }}</div>
+                                    <div class="w-[62vw] md:w-[42vw] py-[8px] px-[12px] md:pl-[16px] md:pr-[46px] bg-white rounded-[4px] shadow-md break-words text-[11px] md:text-[14px] dark:!bg-dark-300">{{ item.panel.content }}</div>
                                 </div>
                                 <div class="text-[#656f7d] text-[10px] pl-[48px] py-[8px]">{{ item.date }} - {{ item.time }}</div>
                             </template>
                         </Panel>
                         <div v-else class="p-[16px] flex items-center gap-4">
                             <img v-if="item.descriptionImg" :src="getImg(item.descriptionImg, false, 'modals')" class="w-[24px]" />
-                            <div class="text-[#3c4249] text-[13px]">{{ item.description }}</div>
+                            <div class="text-[#3c4249] text-[13px] dark:text-dark-1000">{{ item.description }}</div>
                         </div>
                     </div>
                 </div>
-                <div v-if="!item.isPanel" class="text-[#656f7d] text-[10px] pl-[8px] mb-[16px]">{{ item.date }} - {{ item.time }}</div>
+                <div v-if="!item.isPanel" class="text-[#656f7d] text-[10px] pl-[8px] mb-[16px] dark:text-dark-800">{{ item.date }} - {{ item.time }}</div>
             </div>
         </div>
     </div>
@@ -109,9 +109,13 @@ const getTextColorClass = (color) => {
 </script>
 
 <style lang="scss">
+@import '@/assets/itl-common-css/common-css.scss';
 .small-card {
     .p-panel {
         background-color: #fbfcfd !important;
+        @include theme() {
+            background-color: theme-get('dark-100') !important;
+        }
     }
     .p-panel .p-panel-header {
         border: transparent !important;
@@ -139,6 +143,15 @@ const getTextColorClass = (color) => {
     }
 }
 
+.darkTheme {
+    .small-card .p-panel .p-panel-content {
+        background-color: #212121 !important;
+    }
+    .small-card-panel .p-panel-header {
+        background-color: #212121 !important;
+    }
+}
+
 .ndr-history-wrapper {
     &:after {
         left: 10px;
@@ -150,6 +163,9 @@ const getTextColorClass = (color) => {
         width: 1px;
         z-index: 0;
         top: 0;
+        @include theme() {
+            background-color: theme-get('dark-200');
+        }
     }
     .ndr-history-outer {
         padding-left: 32px;
@@ -169,6 +185,9 @@ const getTextColorClass = (color) => {
         left: -30px;
         /* transform: translate(0%, -50%); */
         z-index: 1;
+        @include theme() {
+            border: 4px solid theme-get('dark-300');
+        }
         &:after {
             left: 12px;
             content: '';
@@ -179,6 +198,9 @@ const getTextColorClass = (color) => {
             width: 14px;
             background-color: #e9ecef;
             z-index: 1;
+            @include theme() {
+                background-color: theme-get('dark-200');
+            }
         }
     }
     .badge-corner {
@@ -188,6 +210,9 @@ const getTextColorClass = (color) => {
         width: 6px;
         height: 6px;
         background-color: #fff;
+        @include theme() {
+            background-color: theme-get('dark-100');
+        }
     }
     .badge-corner-triangle {
         position: absolute;
