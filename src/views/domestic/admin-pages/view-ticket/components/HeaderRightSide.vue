@@ -1,5 +1,5 @@
 <template>
-    <BaseButton name="New Ticket" @click="addNewTicket" :isLoading="isLoading" />
+    <BaseButton name="New Ticket" @click="addNewTicket" :isLoading="isLoading" v-if="checkAccessRight() ? true : deepCheckAccessRight('domestic', 'support_ticket', 'add')" />
     <CreateNewTicket />
     <BulkUploadModal v-if="topHeader['user_type'] != 3 || topHeader['user_id'] == 3000 || topHeader['user_id'] == 7214 || topHeader['user_id'] == 903" />
 </template>
@@ -10,6 +10,7 @@ import BulkUploadModal from '../modal/BulkUploadModal.vue';
 import BaseButton from '@/components/base/BaseButton.vue';
 import { viewTicketVariables } from '../viewTicketVariables';
 import CreateNewTicket from '../modal/CreateNewTicket.vue';
+import { checkAccessRight, deepCheckAccessRight } from '@/util/commonHandlers';
 import { viewTicketVariables as dataVariables } from '../viewTicketVariables';
 const topHeader = JSON.parse(localStorage.getItem('top_header'));
 
