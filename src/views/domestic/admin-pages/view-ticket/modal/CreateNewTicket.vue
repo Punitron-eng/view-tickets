@@ -97,7 +97,7 @@ const validateDetails = () => {
 
     // { key: 'subject', check: (topHeader.user_id != 3000 || topHeader.user_id != 903) && subject.value, message: 'This field is required' },
     const validationOrder = [
-        { key: 'vendor', check: vendorData.value.length === 0, message: 'This field is required' },
+        { key: 'vendor', check: checkUserType('vendor') ? false : vendorData.value.length === 0, message: 'This field is required' },
         { key: 'airwayBillNo', check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && !airwayBillNo.value, message: 'This field is required' },
         { key: 'department', check: !selectedDepartment.value, message: 'This field is required' },
         { key: 'category', check: categoryData.value.length ? !selectedCategory.value : selectedCategory.value, message: 'This field is required' },
@@ -278,7 +278,7 @@ const ticketSubmit = async () => {
     }
     data.value = {
         awb_no: airwayBillNo.value,
-        ticket_date: checkUserType('admin') || checkUserType('subadmin') ? '0' : trayaTicketCreatedDate.value,
+        ticket_date: topHeader.user_id != 3000 || topHeader.user_id != 903 ? '0' : trayaTicketCreatedDate.value,
         department_id: selectedDepartment.value?.id,
         category_id: selectedCategory.value?.id,
         address: inputAddress.value.address,
@@ -288,8 +288,8 @@ const ticketSubmit = async () => {
         subject: subject.value,
         description: description.value,
         attachment: file.value,
-        ticket_type: checkUserType('admin') || checkUserType('subadmin') ? 0 : selectedTicketType.value?.id,
-        customer_type: checkUserType('admin') || checkUserType('subadmin') ? 0 : selectedCustomerType.value?.id,
+        ticket_type: topHeader.user_id != 3000 || topHeader.user_id != 903 ? 0 : selectedTicketType.value?.id,
+        customer_type: topHeader.user_id != 3000 || topHeader.user_id != 903 ? 0 : selectedCustomerType.value?.id,
     };
     if (checkUserType('admin') || checkUserType('subadmin')) {
         data.value.selectedVendor = vendorData.value[0];
