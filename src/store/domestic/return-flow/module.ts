@@ -14,6 +14,7 @@ const state: any = {
     dataTableSizePayload: '',
     vendorDataStatus: '',
     reverseData: '',
+    count: '',
     allFilterData: {
         order_product_quantity: '',
         order_id: '',

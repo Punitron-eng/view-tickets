@@ -36,9 +36,26 @@ import { checkTokenValidation, apiHandler } from '../../common/api';
 // };
 
 // For datatable api data
+// export const dataTableData = async (data, filterPayload) => {
+// const apiPath = data.selectedTab == 'rev_return_request' ? 'reverse-order-v3/all-view-request-reverse-order-v4-table-data.json' : `${config.baseUrlApiNew}api/v1/order/reverse/get/data`;
+//     // const apiPath = `${config.baseUrlApiNew}api/v1/product-catalogue/get/data`;
+//     const filteredPayload = Object.fromEntries(Object.entries(filterPayload).filter(([key, value]) => value !== '' && value !== null && value !== undefined && String(value).length > 0 && JSON.stringify(value) !== JSON.stringify({})));
+//     const payload = {
+//         module_name: data.moduleName,
+//         tab_name: data.selectedTab,
+//         sub_tab_name: data.subTabName,
+//         is_active_sub_tab_filter: data.is_active_sub_tab_filter,
+//         page_start: filterPayload.paginatorStart,
+//         page_count: data.length,
+//         filter_payload: filteredPayload,
+//     };
+
+//     const result = await apiHandler(apiPath, payload);
+//     return result;
+// };
+
 export const dataTableData = async (data, filterPayload) => {
-const apiPath = data.selectedTab == 'rev_return_request' ? 'reverse-order-v3/all-view-request-reverse-order-v4-table-data.json' : `${config.baseUrlApiNew}api/v1/order/reverse/get/data`;
-    // const apiPath = `${config.baseUrlApiNew}api/v1/product-catalogue/get/data`;
+    const apiPath = data.selectedTab == 'rev_return_request' ? 'reverse-order-v3/all-view-request-reverse-order-v4-table-data.json' : `${config.baseUrlApiNew}api/v1/order/reverse/get/data`;
     const filteredPayload = Object.fromEntries(Object.entries(filterPayload).filter(([key, value]) => value !== '' && value !== null && value !== undefined && String(value).length > 0 && JSON.stringify(value) !== JSON.stringify({})));
     const payload = {
         module_name: data.moduleName,

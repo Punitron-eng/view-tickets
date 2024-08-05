@@ -60,6 +60,14 @@ function isObjectForMinMax(value) {
     }
     return false;
 }
+function isObjectForRadio(value) {
+    if (typeof value === 'object' && value !== null) {
+        if ('id' in value && !Array.isArray(value.id)) {
+            return true;
+        }
+    }
+    return false;
+}
 interface FormattedDataItem {
     [key: string]: any; // This allows for any string key with any value
     type: string; // This is a fixed property with a string value
@@ -89,11 +97,46 @@ const formatFilterData = (data: any): FormattedDataItem[] => {
                     [key]: data[key],
                     type: 'multiSelect',
                 });
+            } else if (isObjectForRadio(data[key])) {
+                formattedData.push({
+                    type: 'dropdownRadio',
+                    [key]: data[key],
+                });
             }
         }
     }
     return formattedData;
 };
+
+// const formatFilterData = (data: any): FormattedDataItem[] => {
+//     const formattedData: FormattedDataItem[] = [];
+//     for (const key in data) {
+//         if (key != 'id' && key != 'name' && key != 'is_pinned') {
+//             if (key.length > 0 && typeof data[key] === 'string') {
+//                 formattedData.push({
+//                     [key]: data[key],
+//                     type: 'search',
+//                 });
+//             } else if (isobjectLabel(data[key])) {
+//                 formattedData.push({
+//                     [key]: data[key],
+//                     type: 'dateRange',
+//                 });
+//             } else if (isObjectForMinMax(data[key])) {
+//                 formattedData.push({
+//                     [key]: data[key],
+//                     type: 'minMax',
+//                 });
+//             } else if (isObjectForCheckbox(data[key])) {
+//                 formattedData.push({
+//                     [key]: data[key],
+//                     type: 'multiSelect',
+//                 });
+//             }
+//         }
+//     }
+//     return formattedData;
+// };
 
 watch(
     () => getViewFiltered.value,

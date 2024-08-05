@@ -1,5 +1,5 @@
 import { RETURN } from './constants';
-import { getDefaultColumnData, getSaveFilterData, saveFilterData, getPageCount, getDeleteUpdateFilterData } from '../../../api/datatable/dataTableApi';
+import { getDefaultColumnData, getSaveFilterData, saveFilterData, getPageCount, getDeleteUpdateFilterData, dataCount } from '../../../api/datatable/dataTableApi';
 import {
     dataTableData,
     exportBgProcess,
@@ -108,6 +108,13 @@ const createActions = () => ({
         context.commit(RETURN.MUTATIONS.SETSELECTEDTABNAME, payload.selectedTab);
         const currentDatatableData = await dataTableData(payload, context.getters.getMappedFilterPayload, context.getters.getDtToggleData);
         context.commit(RETURN.MUTATIONS.SETDATATABLEAPIDATA, currentDatatableData);
+    },
+
+    // For datatable data count
+    async [RETURN.ACTIONS.GETDATATABLEAPIDATACOUNT](context: any, payload: any) {
+        const updatedPayload = { ...payload, moduleUrl: 'support-ticket' };
+        const currentDatatableData = await dataCount(updatedPayload, context.getters.getMappedFilterPayload);
+        context.commit(RETURN.MUTATIONS.SETDATATABLEAPIDATACOUNT, currentDatatableData);
     },
 
     // For datatable tabs

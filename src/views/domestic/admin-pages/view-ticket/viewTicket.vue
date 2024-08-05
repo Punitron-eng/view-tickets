@@ -132,7 +132,7 @@ onMounted(async () => {
     await formatDate();
 
     if (!dataVariables.value.router.currentRoute.params.id) {
-        await Promise.all([dataTableFncs.getDataTableData(), dataTableFncs.getDataTableDataCount()]); // using promise all to wait for both promises to resolve
+        await dataTableFncs.getDataTableData();
     }
 
     if (checkUserType('admin') || checkUserType('subadmin')) {
