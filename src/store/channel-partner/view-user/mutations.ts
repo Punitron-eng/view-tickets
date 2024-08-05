@@ -1,6 +1,6 @@
 // 730
 import { subDays, format, startOfMonth, subMonths } from 'date-fns';
-import { setFilterValue, formatFilterData, updateFilterData, setApplySaveFilterData, setViewSaveFilterData } from '../../commonStoreFuncs.ts';
+import { setFilterValue, formatFilterData, setApplySaveFilterData, setViewSaveFilterData } from '../../commonStoreFuncs.ts';
 import { CPVIEWUSER } from './constants';
 
 const createMutations = () => ({

@@ -1,5 +1,5 @@
 // 730
-import { subDays, format, startOfMonth, subMonths } from 'date-fns';
+import { subDays, format } from 'date-fns';
 import { setApplySaveFilterData, setViewSaveFilterData, setFilterValue, formatFilterData } from '../../commonStoreFuncs.ts';
 import { VIEWORDER } from './constants';
 import { dataTableVariables as dataVariables } from '../../../components/itl-dataTable-files/itl-dataTable/commonVariable.js';

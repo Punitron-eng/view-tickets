@@ -62,21 +62,8 @@ const createGetters = () => ({
     // },
     // For datatable export data
     [ABANDONEDCART.GETTERS.GETEXPORTVALUEPAYLOAD](state: any) {
-        const allFilterData = {};
-
-        for (const key in state.allFilterData) {
-            if (state.allFilterData.hasOwnProperty(key)) {
-                const value = state.allFilterData[key];
-                if (value && typeof value === 'object' && value.hasOwnProperty('label')) {
-                    allFilterData[key] = value.value;
-                    allFilterData[`${key}Label`] = value.id;
-                } else if (value && typeof value === 'object' && value.hasOwnProperty('id')) {
-                    allFilterData[key] = value.id;
-                } else {
-                    allFilterData[key] = value;
-                }
-            }
-        }
+        const allFilterData = getFilterMappedPayload(state);
+        
         allFilterData['store'] = state.storeId;
         allFilterData['processType'] = state.exportPayload;
         allFilterData['selectedCheckbox'] = state.selectedCheckbox;

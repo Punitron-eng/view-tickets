@@ -1,7 +1,7 @@
 // 730
 import { subDays, format } from 'date-fns';
 import { RETURN } from './constants';
-import { isobjectLabel, isObject, updateFilterData, isObjectForMinMax, formatFilterData, setFilterValue, setApplySaveFilterData, setViewSaveFilterData } from '../../commonStoreFuncs.ts';
+import { formatFilterData, setFilterValue, setApplySaveFilterData, setViewSaveFilterData } from '../../commonStoreFuncs.ts';
 const createMutations = () => ({
     // For datatable action modals
     [RETURN.MUTATIONS.SETDTMODAL](state: any, { modalName, visibility }) {
