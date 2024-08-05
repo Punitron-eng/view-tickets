@@ -201,6 +201,7 @@ const getReturnActions = (selectedAction) => {
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05), 0 10px 15px 0 rgba(0, 0, 0, 0.1);
     border: 1px solid #d0d6dc;
     overflow: hidden;
+    @apply dark:border-[#4a4a4a];
 }
 
 .lightTheme .p-overlaypanel.return-action-column {
