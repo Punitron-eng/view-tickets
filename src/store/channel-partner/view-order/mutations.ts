@@ -1,7 +1,7 @@
 // 730
 import { subDays, format, startOfMonth, subMonths } from 'date-fns';
 import { CPVIEWORDER } from './constants';
-import { setFilterValue, formatFilterData, updateFilterData, setApplySaveFilterData, setViewSaveFilterData } from '../../commonStoreFuncs.ts';
+import { setFilterValue, formatFilterData, setApplySaveFilterData, setViewSaveFilterData } from '../../commonStoreFuncs.ts';
 
 const createMutations = () => ({
     // For datatable action modals
