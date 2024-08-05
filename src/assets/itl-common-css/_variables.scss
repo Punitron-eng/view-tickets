@@ -356,6 +356,38 @@ $themes: (
 
         'normal-table-th': #545b67,
         'error-message': #ff5630,
+        /////////////////////////🟢🟢////////////////////////
+        // COLORS
+        'primary': var(--primary-color),
+        'primary-dark': var(--primary-color-dark),
+        'error': var(--error-color),
+        'error-dark': var(--error-color-dark),
+        'success': var(--success-color),
+        'success-dark': var(--success-color-dark),
+        'dark-0': var(--light-0),
+        'dark-100': var(--dark-100),
+        'dark-200': var(--dark-200),
+        'dark-300': var(--dark-300),
+        'dark-400': var(--dark-400),
+        'dark-500': var(--dark-500),
+        'dark-600': var(--dark-600),
+        'dark-700': var(--dark-700),
+        'dark-740': var(--dark-740),
+        'dark-800': var(--dark-800),
+        'dark-900': var(--dark-900),
+        'dark-1000': var(--dark-1000),
+        'line-dark-color': var(--line-dark-color),
+        'blue-light-color': var(--blue-light-color),
+        'table-border-color': var(--table-border-color),
+        'nav-icon-hover-color': var(--nav-icon-hover-color),
+        // buyer intent circle colours
+        'bi-green': var(--bi-green),
+        'bi-yellow': var(--bi-yellow),
+        'bi-gray': var(--bi-gray),
+        // Input Colors
+        'input-border-color': var(--input-border-color),
+        'input-text-color': var(--input-text-color),
+        'input-focused-border': var(--input-focused-border),
     ),
     lightTheme: (
         'normal-table-th': #f1f3f5,
@@ -593,6 +625,7 @@ $themes: (
         'light-1300': var(--light-1300),
         'light-1400': var(--light-1400),
         'border-color': var(--border-color),
+        'line-color': var(--line-color),
         // buyer intent circle colours
         'bi-green': var(--bi-green),
         'bi-yellow': var(--bi-yellow),

@@ -1,8 +1,8 @@
 <template>
     <div class="main-card w-[52vw] px-[8px] my-[8px] md:px-0 md:mt-[32px] md:mb-[16px]">
-        <Panel toggleable v-for="(item, index) in data" :key="index" class="mb-[16px]" :collapsed="collapsedStates[index]" @toggle="onToggle(index)">
+        <Panel toggleable v-for="(item, index) in data" :key="index" class="mb-[16px] main-card-panel" :collapsed="collapsedStates[index]" @toggle="onToggle(index)">
             <template #header>
-                <div class="text-[#1d252b] font-semibold">{{ item.title }}</div>
+                <div class="text-[#1d252b] font-semibold dark:text-dark-1000">{{ item.title }}</div>
             </template>
             <template #togglericon>
                 <div class="text-[#1279ff] flex items-center gap-2">
@@ -35,7 +35,8 @@ const onToggle = (index) => {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '@/assets/itl-common-css/common-css.scss';
 .p-panel-icons {
     width: fit-content;
 }
@@ -55,7 +56,7 @@ const onToggle = (index) => {
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid #f1f3f5;
+    border-bottom: 1px solid #f1f3f5 !important;
 }
 .p-panel .p-panel-content:last-child {
     border-radius: 4px;
@@ -64,6 +65,20 @@ const onToggle = (index) => {
 .main-card {
     @media (min-width: 320px) and (max-width: 1024px) {
         width: 100%;
+    }
+}
+.main-card-panel .p-panel-content {
+    @include theme() {
+        background-color: theme-get('dark-100');
+    }
+}
+
+.main-card-panel .p-panel-header {
+    @include theme() {
+        background-color: theme-get('dark-100') !important;
+    }
+    @include theme() {
+        border-bottom: 1px solid theme-get('dark-200') !important;
     }
 }
 </style>
