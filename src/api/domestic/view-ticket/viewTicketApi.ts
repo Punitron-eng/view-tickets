@@ -279,8 +279,14 @@ export const sendNewTicketData = async (payload: any) => {
     return await apiHandler(apiPath, payload);
 };
 
-//
+// unactionable by itl
 export const confirmUnactionbleItlApi = async (payload: any) => {
     const apiPath = `${config.baseUrlApiNew}api/v1/support-ticket/edit/unactionable-by-itl`;
+    return await apiHandler(apiPath, payload);
+};
+
+// close & reopen ticket
+export const confirmCloseReopenApi = async (payload: any) => {
+    const apiPath = `${config.baseUrlApiNew}api/v1/support-ticket/edit/clone`;
     return await apiHandler(apiPath, payload);
 };

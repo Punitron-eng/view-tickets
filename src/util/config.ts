@@ -7,7 +7,7 @@ export default {
     // baseUrlApi: 'http://localhost/itl-dashboard/itl-dashboard-app/',
     baseUrlPanel: 'https://my.ithinklogistics.net/',
     baseUrlApiNew: 'https://my-app-v4.ithinklogistics.net/',
-    baseUrlUploads: '',
+    baseUrlUploads: 'https://itl-uploads.s3.ap-south-1.amazonaws.com/uploads/',
     appliedFilter: [],
     selectedCurrencyIcon: '₹',
     maxValue: null,
