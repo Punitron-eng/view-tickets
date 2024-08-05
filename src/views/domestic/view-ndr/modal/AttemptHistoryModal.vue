@@ -46,7 +46,7 @@ onBeforeUnmount(() => {
             <div v-if="modalData.isRtoOrder" class="flex items-center justify-center w-full h-[20px] absolute left-0 top-0 text-[12px] py-[2px] font-bold text-white bg-[#eb5532]">RTO ORDER</div>
             <div class="flex flex-col md:flex-row justify-between w-full">
                 <div class="text-light-1200 font-[600] flex md:items-center flex-col md:flex-row">
-                    <span class="text-h5 md:text-h4 mr-4 py-[6px] md:py-0">{{ modalData.modalTitle }}</span>
+                    <span class="text-h5 md:text-h4 mr-4 py-[6px] md:py-0 dark:text-dark-1000">{{ modalData.modalTitle }}</span>
                     <AwbNumber :logisticNumber="modalData.awbNo" logisticLogo="awb" />
                 </div>
             </div>
@@ -58,6 +58,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss">
+@import '../../../../assets/itl-common-css/common-css.scss';
 .attempt-history-modal {
     .p-dialog .p-dialog-header {
         border-top-right-radius: 0px;
@@ -132,6 +133,11 @@ onBeforeUnmount(() => {
 .attempt-history-modal .p-dialog {
     max-height: 100%;
 }
+.attempt-history-modal .p-dialog .p-dialog-header {
+    @include theme() {
+        background-color: theme-get('dark-100');
+    }
+}
 #attempt_history_modal {
     .p-panel .p-panel-header {
         background-color: #fff;
@@ -144,5 +150,13 @@ onBeforeUnmount(() => {
 }
 .rto-order {
     margin-top: 20px;
+}
+.darkTheme {
+    .p-dialog .p-dialog-header {
+        background-color: #313131 !important;
+    }
+    .p-dialog .p-dialog-content {
+        background-color: #212121 !important;
+    }
 }
 </style>

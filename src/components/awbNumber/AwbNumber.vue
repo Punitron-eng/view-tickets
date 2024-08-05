@@ -1,5 +1,5 @@
 <script setup>
-const { logisticLogo, logisticNumber } = defineProps(['logisticLogo', 'logisticNumber'])
+const { logisticLogo, logisticNumber } = defineProps(['logisticLogo', 'logisticNumber']);
 const getLogisticIcon = (logisticLogo) => {
     const imagePath = new URL(`@/assets/images/logistics/${logisticLogo}.svg`, import.meta.url).href;
     const logisticLogoPath = imagePath.split('/');
@@ -13,11 +13,10 @@ const getLogisticIcon = (logisticLogo) => {
 };
 </script>
 <template>
-    <div class="flex font-interRegular text-light-800 items-center mr-[8px] text-[12px] leading-[16px] font-normal"
-        v-if="logisticNumber !== ''">
+    <div class="flex font-interRegular text-light-800 items-center mr-[8px] text-[12px] leading-[16px] font-normal" v-if="logisticNumber !== ''">
         <img :src="getLogisticIcon(logisticLogo || 'undefined')" class="mr-[8px] w-[24px]" />
-        AWB:
-        <p class="font-interSemiBold text-[12px] leading-[16px] mx-[4px]">
+        <span class="dark:text-dark-500">AWB:</span>
+        <p class="font-interSemiBold text-[12px] leading-[16px] mx-[4px] dark:text-dark-800">
             {{ logisticNumber }}
         </p>
     </div>
