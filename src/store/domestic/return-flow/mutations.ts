@@ -1,7 +1,7 @@
 // 730
 import { subDays, format } from 'date-fns';
 import { RETURN } from './constants';
-import { isobjectLabel, isObject, updateFilterData, isObjectForMinMax, formatFilterData, setFilterValue } from '../../commonStoreFuncs.ts';
+import { isobjectLabel, isObject, updateFilterData, isObjectForMinMax, formatFilterData, setFilterValue, setApplySaveFilterData, setViewSaveFilterData } from '../../commonStoreFuncs.ts';
 const createMutations = () => ({
     // For datatable action modals
     [RETURN.MUTATIONS.SETDTMODAL](state: any, { modalName, visibility }) {
@@ -152,30 +152,7 @@ const createMutations = () => ({
 
     // For datatable apply selected save filter
     [RETURN.MUTATIONS.SETAPPLYSAVEDFILTEREDDATA](state, selectedData) {
-        const response = selectedData.filterArr;
-        response.forEach((payload) => {
-            const dataKey = Object.keys(payload)[0];
-            const temp = { id: [], value: [] };
-            switch (payload.type) {
-                case 'dateRange':
-                    const dateRangeData = payload[dataKey];
-                    updateFilterData(state, dataKey, { id: dateRangeData.id, value: dateRangeData.value, label: dateRangeData.label });
-                    break;
-                case 'multiSelect':
-                case 'vendorModal':
-                    temp.id = payload[dataKey].id;
-                    temp.value = payload[dataKey].value;
-                    updateFilterData(state, dataKey, { ...temp });
-                    break;
-                case 'radio':
-                case 'search':
-                case 'sort':
-                case 'minMax':
-                case 'dropdownRadio':
-                    updateFilterData(state, dataKey, payload[dataKey]);
-                    break;
-            }
-        });
+        setApplySaveFilterData(state, selectedData.filterArr);
     },
 
     // For Update datatable saveFilter data
@@ -278,50 +255,7 @@ const createMutations = () => ({
                     value: [],
                 },
             };
-            item.forEach((payload) => {
-                const dataKey = Object.keys(payload)[1];
-                const datetemp = { id: [], value: [], label: '' };
-                const temp = { id: [], value: [] };
-                switch (payload.type) {
-                    case 'dateRange':
-                        datetemp.id = payload[dataKey].id;
-                        datetemp.value = payload[dataKey].value;
-                        datetemp.label = payload[dataKey].id;
-                        tempFilterObject = { ...tempFilterObject, [dataKey]: { ...datetemp } };
-                        break;
-                    case 'multiSelect':
-                    case 'vendorModal':
-                        temp.id = payload[dataKey].id;
-                        temp.value = payload[dataKey].value;
-                        tempFilterObject = { ...tempFilterObject, [dataKey]: { ...temp } };
-                        break;
-                    case 'search':
-                    case 'radio':
-                    case 'minMax':
-                    case 'dropdownRadio':
-                        tempFilterObject[dataKey] = payload[dataKey];
-                        tempFilterObject = { ...tempFilterObject };
-                        break;
-                }
-            });
-            tempFilterObject['name'] = payload.data[index].filter_name;
-            tempFilterObject['id'] = payload.data[index].id;
-            tempFilterObject['is_pinned'] = payload.data[index].is_pinned;
-            state.viewSaveFilteredData.push(tempFilterObject);
-
-            state.viewSaveFilteredData = state.viewSaveFilteredData.map((item) => {
-                const filteredItem = {};
-                if (item) {
-                    for (const key in item) {
-                        const value = item[key];
-                        if ((value.length >= 0 && typeof value === 'string') || isObject(value) || isobjectLabel(value) || isObjectForMinMax(value) || key === 'id' || key === 'is_pinned') {
-                            filteredItem[key] = value;
-                        }
-                    }
-                }
-
-                return filteredItem;
-            });
+            setViewSaveFilterData(state, item, tempFilterObject, index, payload);
         });
     },
     // For reset save filter data
