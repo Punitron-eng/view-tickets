@@ -1,7 +1,7 @@
 <script setup>
 import { useStore } from 'vuex';
 import getImg from '@/util/getImg';
-import { ref, nextTick, watch, computed } from 'vue';
+import { ref, nextTick, watch, computed, onMounted } from 'vue';
 import { NEWVIEWTICKET } from '@/store/domestic/admin-pages/view-ticket/constants';
 import { viewTicketVariables } from '../viewTicketVariables';
 const messages = ref([]);

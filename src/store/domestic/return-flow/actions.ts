@@ -112,7 +112,7 @@ const createActions = () => ({
 
     // For datatable data count
     async [RETURN.ACTIONS.GETDATATABLEAPIDATACOUNT](context: any, payload: any) {
-        const updatedPayload = { ...payload, moduleUrl: 'support-ticket' };
+        const updatedPayload = { ...payload, moduleUrl: 'reverse' };
         const currentDatatableData = await dataCount(updatedPayload, context.getters.getMappedFilterPayload);
         context.commit(RETURN.MUTATIONS.SETDATATABLEAPIDATACOUNT, currentDatatableData);
     },

@@ -54,7 +54,8 @@ export const saveFilterData = async (payload: any, filterPayload: any) => {
 // For Data Table count
 export const dataCount = async (data: any, filterPayload: any) => {
     const apiPath = `${config.baseUrlApiNew}api/v1/${data.moduleUrl}/get/count`;
-    const filteredPayload = Object.fromEntries(Object.entries(filterPayload).filter(([key, value]) => value !== '' && value !== null && value !== undefined && value.length > 0 && JSON.stringify(value) !== JSON.stringify({})));
+    const filteredPayload = Object.fromEntries(Object.entries(filterPayload).filter(([key, value]) => value !== '' && value !== null && value !== undefined && String(value).length > 0 && JSON.stringify(value) !== JSON.stringify({})));
+
     const payload = {
         module_name: data.moduleName,
         tab_name: data.selectedTab,
