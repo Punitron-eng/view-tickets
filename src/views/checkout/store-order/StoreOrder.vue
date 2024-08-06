@@ -99,7 +99,7 @@ onMounted(async () => {
 
     await formatDate();
     if (!dataVariables.value.router.currentRoute.params.id) {
-        await Promise.all([dataTableFncs.getDataTableData(), dataTableFncs.getDataTableDataCount()]); // using promise all to wait for both promises to resolve
+        dataTableFncs.getDataTableData(); // using promise all to wait for both promises to resolve
     }
     if (checkUserType('subadmin') || checkUserType('admin')) {
         await dataTableFncs.vendorDataValue(50, 0, '', 'checkbox');
