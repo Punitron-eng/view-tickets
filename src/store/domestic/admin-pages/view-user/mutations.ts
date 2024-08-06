@@ -2,7 +2,7 @@
 import { subDays, format } from 'date-fns';
 import { ADMINVIEWUSER } from './constants';
 import { dataTableVariables as dataVariables } from '../../../../components/itl-dataTable-files/itl-dataTable/commonVariable.js';
-import { setApplySaveFilterData, setFilterValue } from '../../../commonStoreFuncs.js';
+import { formatFilterData, setApplySaveFilterData, setFilterValue, setViewSaveFilterData } from '../../../commonStoreFuncs.js';
 
 const createMutations = () => ({
     // For datatable action modals
@@ -191,98 +191,55 @@ const createMutations = () => ({
     // For get Save filter Data
     [ADMINVIEWUSER.MUTATIONS.SETVIEWSAVEDFILTEREDDATA](state: any, payload: any) {
         state.viewSaveFilteredData = [];
-        let tempFilterObject = {
-            vendor_code: '',
-            user_company_name: '',
-            user_email: '',
-            user_mobile: '',
-            total_user_credit_amount: '',
-            total_user_wallet_amount: '',
-            user_created_date: {
-                id: '',
-                value: '',
-                label: '',
-            },
-            user_last_login_date: {
-                id: '',
-                value: '',
-                label: '',
-            },
-            user_type: {
-                id: [],
-                value: [],
-            },
-            user_enabled: {
-                id: [],
-                value: [],
-            },
-            delivery_type: {
-                id: [],
-                value: [],
-            },
-            user_status: {
-                id: [],
-                value: [],
-            },
-            paginatorStart: 0,
-            paginatorLast: 10,
-            vendor_name: {
-                id: [],
-                value: [],
-            },
-        };
         let newDataTableFilterPayload: any = [];
 
         if (payload.data && payload.data.length > 0) {
             newDataTableFilterPayload = payload.data.map((res) => (res.filter_payload ? res.filter_payload : null)).filter((res) => res !== null);
         }
+
         newDataTableFilterPayload.forEach((item, index) => {
-            item.forEach((payload) => {
-                const dataKey = Object.keys(payload)[1];
-                const datetemp = { id: [], value: [], label: '' };
-                const temp = { id: [], value: [] };
-                switch (payload.type) {
-                    case 'dateRange':
-                        datetemp.id = payload[dataKey].id;
-                        datetemp.value = payload[dataKey].value;
-                        datetemp.label = payload[dataKey].id;
-                        tempFilterObject = { ...tempFilterObject, [dataKey]: { ...datetemp } };
-                        break;
-                    case 'multiSelect':
-                    case 'vendorModal':
-                        temp.id = payload[dataKey].id;
-                        temp.value = payload[dataKey].value;
-                        tempFilterObject = { ...tempFilterObject, [dataKey]: { ...temp } };
-                        break;
-                    case 'radio':
-                    case 'minMax':
-                    case 'dropdownRadio':
-                        tempFilterObject[dataKey] = payload[dataKey];
-                        tempFilterObject = { ...tempFilterObject };
-                        break;
-                }
-            });
-            tempFilterObject.name = payload.data[index].filter_name;
-            tempFilterObject.id = payload.data[index].id;
-            tempFilterObject.is_pinned = payload.data[index].is_pinned;
-            state.viewSaveFilteredData.push(tempFilterObject);
-
-            tempFilterObject = { ...state.allFilterData };
-            state.viewSaveFilteredData = state.viewSaveFilteredData.map((item) => {
-                const filteredItem = {};
-                if (item) {
-                    for (const key in item) {
-                        const value = item[key];
-                        if ((value.length >= 0 && typeof value === 'string') || isObject(value) || isobjectLabel(value) || isObjectForMinMax(value) || key === 'id' || key === 'is_pinned') {
-                            filteredItem[key] = value;
-                        }
-                    }
-                }
-
-                return filteredItem;
-            });
+            let tempFilterObject = {
+                vendor_code: '',
+                user_company_name: '',
+                user_email: '',
+                user_mobile: '',
+                total_user_credit_amount: '',
+                total_user_wallet_amount: '',
+                user_created_date: {
+                    id: '',
+                    value: '',
+                    label: '',
+                },
+                user_last_login_date: {
+                    id: '',
+                    value: '',
+                    label: '',
+                },
+                user_type: {
+                    id: [],
+                    value: [],
+                },
+                user_enabled: {
+                    id: [],
+                    value: [],
+                },
+                delivery_type: {
+                    id: [],
+                    value: [],
+                },
+                user_status: {
+                    id: [],
+                    value: [],
+                },
+                paginatorStart: 0,
+                paginatorLast: 10,
+                vendor_name: {
+                    id: [],
+                    value: [],
+                },
+            };
+            setViewSaveFilterData(state, item, tempFilterObject, index, payload);
         });
-        console.log(state.viewSaveFilteredData, 'viewSaveFilteredData');
     },
 
     // For reset save filter data
@@ -411,42 +368,4 @@ function isObjectForMinMax(value) {
         }
     }
     return false;
-}
-interface FormattedDataItem {
-    [key: string]: any; // This allows for any string key with any value
-    type: string; // This is a fixed property with a string value
-}
-function formatFilterData(data: any) {
-    const formattedData: FormattedDataItem[] = [];
-    for (const key in data) {
-        if (key != 'id' && key != 'name' && key != 'is_pinned') {
-            if (key.length > 0 && typeof data[key] === 'string' && data[key]) {
-                formattedData.push({
-                    [key]: data[key],
-                    type: 'search',
-                });
-            } else if (isobjectLabel(data[key])) {
-                formattedData.push({
-                    [key]: data[key],
-                    type: 'dateRange',
-                });
-            } else if (isObjectForMinMax(data[key])) {
-                formattedData.push({
-                    [key]: data[key],
-                    type: 'minMax',
-                });
-            } else if (isObjectForCheckbox(data[key])) {
-                formattedData.push({
-                    [key]: data[key],
-                    type: 'multiSelect',
-                });
-            } else if (isObjectForRadio(data[key])) {
-                formattedData.push({
-                    [key]: data[key],
-                    type: 'multiSelect',
-                });
-            }
-        }
-    }
-    return formattedData;
 }

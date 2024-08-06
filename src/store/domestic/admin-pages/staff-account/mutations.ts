@@ -2,7 +2,7 @@
 import { subDays, format, startOfMonth, subMonths } from 'date-fns';
 import { STAFFACCOUNT } from './constants';
 import { dataTableVariables as dataVariables } from '../../../../components/itl-dataTable-files/itl-dataTable/commonVariable.js';
-import { setApplySaveFilterData, setFilterValue } from '../../../commonStoreFuncs.js';
+import { formatFilterData, setApplySaveFilterData, setFilterValue, setViewSaveFilterData } from '../../../commonStoreFuncs.js';
 
 const createMutations = () => ({
     ///////// datatable common mutation start //////////////////////
@@ -122,73 +122,30 @@ const createMutations = () => ({
     // For get Save filter Data
     [STAFFACCOUNT.MUTATIONS.SETVIEWSAVEDFILTEREDDATA](state: any, payload: any) {
         state.viewSaveFilteredData = [];
-        let tempFilterObject = {
-            paginatorStart: 0,
-            paginatorLast: 10,
-            vendor_name: {
-                id: [],
-                value: [],
-            },
-            user_name: '',
-            user_email: '',
-            user_mobile: '',
-            user_status: {
-                id: [],
-                value: [],
-            },
-        };
 
         let newDataTableFilterPayload: any = [];
 
         if (payload.data && payload.data.length > 0) {
             newDataTableFilterPayload = payload.data.map((res) => (res.filter_payload ? res.filter_payload : null)).filter((res) => res !== null);
         }
+
         newDataTableFilterPayload.forEach((item, index) => {
-            item.forEach((payload) => {
-                const dataKey = Object.keys(payload)[1];
-                const datetemp = { id: [], value: [], label: '' };
-                const temp = { id: [], value: [] };
-                switch (payload.type) {
-                    case 'dateRange':
-                        datetemp.id = payload[dataKey].id;
-                        datetemp.value = payload[dataKey].value;
-                        datetemp.label = payload[dataKey].id;
-                        tempFilterObject = { ...tempFilterObject, [dataKey]: { ...datetemp } };
-                        break;
-                    case 'multiSelect':
-                    case 'vendorModal':
-                        temp.id = payload[dataKey].id;
-                        temp.value = payload[dataKey].value;
-                        tempFilterObject = { ...tempFilterObject, [dataKey]: { ...temp } };
-                        break;
-                    case 'search':
-                    case 'radio':
-                    case 'minMax':
-                    case 'dropdownRadio':
-                        tempFilterObject[dataKey] = payload[dataKey];
-                        tempFilterObject = { ...tempFilterObject };
-                        break;
-                }
-            });
-            tempFilterObject.name = payload.data[index].filter_name;
-            tempFilterObject.id = payload.data[index].id;
-            tempFilterObject.is_pinned = payload.data[index].is_pinned;
-            state.viewSaveFilteredData.push(tempFilterObject);
-
-            tempFilterObject = { ...state.allFilterData };
-            state.viewSaveFilteredData = state.viewSaveFilteredData.map((item) => {
-                const filteredItem = {};
-                if (item) {
-                    for (const key in item) {
-                        const value = item[key];
-                        if ((value.length >= 0 && typeof value === 'string') || isObject(value) || isobjectLabel(value) || key === 'id' || key === 'is_pinned') {
-                            filteredItem[key] = value;
-                        }
-                    }
-                }
-
-                return filteredItem;
-            });
+            let tempFilterObject = {
+                paginatorStart: 0,
+                paginatorLast: 10,
+                vendor_name: {
+                    id: [],
+                    value: [],
+                },
+                user_name: '',
+                user_email: '',
+                user_mobile: '',
+                user_status: {
+                    id: [],
+                    value: [],
+                },
+            };
+            setViewSaveFilterData(state, item, tempFilterObject, index, payload);
         });
     },
 
@@ -221,137 +178,3 @@ const createMutations = () => ({
     ///////// datatable common mutation end //////////////////////
 });
 export default createMutations;
-
-// Helper method to check if a value is an object
-
-const isobjectLabel = (value) => {
-    if (typeof value === 'object' && value !== null) {
-        if ('label' in value && value.label.length > 0 && value != undefined) {
-            return true;
-        }
-    }
-};
-function isObject(value) {
-    if (typeof value === 'object' && value !== null) {
-        if ('id' in value && Array.isArray(value.id) && value.id.length > 0) {
-            return true;
-        } else if ('min' in value && typeof value.min === 'string' && value.min.length > 0) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-function getSelectedTabData(state, dataItem, field, tab = '') {
-    if (tab && state.selectedTab === tab) {
-        return {
-            id: dataItem[`${field}_label`] || '',
-            value: dataItem[field] || '',
-            label: dataItem[`${field}_label`] || '',
-        };
-    }
-    return {};
-}
-
-function getAmountData(state, dataItem, minField, maxField, tab = '') {
-    if (!tab || state.selectedTab === tab) {
-        return {
-            min: dataItem[`filter_${minField}_amount`] || '',
-            max: dataItem[`filter_${maxField}_amount`] || '',
-        };
-    }
-    return {};
-}
-
-function getCheckboxData(state, dataItem, field, tab = '') {
-    if (!tab || state.selectedTab === tab) {
-        return {
-            id: dataItem[field]?.[0]?.id !== undefined ? tempCheckboxData(field, dataItem) : [],
-            value: dataItem[field]?.[0]?.id !== undefined ? tempCheckboxData(field, dataItem, 'value') : [],
-        };
-    }
-    return {};
-}
-
-// function tempCheckboxData(field, dataItem, valueType = 'id') {
-//     const tempData = dataItem[field];
-//     const status = [];
-//     for (const key in tempData) {
-//         if (tempData[key].id !== '') {
-//             status.push(tempData[key][valueType]);
-//         }
-//     }
-//     return status;
-// }
-
-function updateFilterData(state, dataKey, newData) {
-    state.allFilterData[dataKey] = newData;
-}
-
-// function setFilterData(state, key, value) {
-//     state.allFilterData[key] = value;
-// }
-
-function isObjectForCheckbox(value) {
-    if (typeof value === 'object' && value !== null) {
-        if ('id' in value && Array.isArray(value.id) && value.id.length > 0) {
-            return true;
-        }
-    }
-    return false;
-}
-function isObjectForRadio(value) {
-    if (typeof value === 'object' && value !== null) {
-        if ('id' in value && !Array.isArray(value.id) && value.id) {
-            return true;
-        }
-    }
-    return false;
-}
-function isObjectForMinMax(value) {
-    if (typeof value === 'object' && value !== null) {
-        if ('min' in value && value.min != '') {
-            return true;
-        }
-    }
-    return false;
-}
-interface FormattedDataItem {
-    [key: string]: any; // This allows for any string key with any value
-    type: string; // This is a fixed property with a string value
-}
-function formatFilterData(data: any) {
-    const formattedData: FormattedDataItem[] = [];
-    for (const key in data) {
-        if (key != 'id' && key != 'name' && key != 'is_pinned') {
-            if (key.length > 0 && typeof data[key] === 'string' && data[key]) {
-                formattedData.push({
-                    type: 'search',
-                    [key]: data[key],
-                });
-            } else if (isobjectLabel(data[key])) {
-                formattedData.push({
-                    type: 'dateRange',
-                    [key]: data[key],
-                });
-            } else if (isObjectForMinMax(data[key])) {
-                formattedData.push({
-                    type: 'minMax',
-                    [key]: data[key],
-                });
-            } else if (isObjectForCheckbox(data[key])) {
-                formattedData.push({
-                    type: 'multiSelect',
-                    [key]: data[key],
-                });
-            } else if (isObjectForRadio(data[key])) {
-                formattedData.push({
-                    type: 'multiSelect',
-                    [key]: data[key],
-                });
-            }
-        }
-    }
-    return formattedData;
-}
