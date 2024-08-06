@@ -1,7 +1,8 @@
 // 730
-import { subDays, format, startOfMonth, subMonths } from 'date-fns';
+import { subDays, format } from 'date-fns';
 import { ADMINVIEWUSER } from './constants';
 import { dataTableVariables as dataVariables } from '../../../../components/itl-dataTable-files/itl-dataTable/commonVariable.js';
+import { setApplySaveFilterData, setFilterValue } from '../../../commonStoreFuncs.js';
 
 const createMutations = () => ({
     // For datatable action modals
@@ -21,31 +22,7 @@ const createMutations = () => ({
 
     // For datatable filter apply
     [ADMINVIEWUSER.MUTATIONS.SETFILTERVALUDATA](state, payloads) {
-        payloads.forEach((payload) => {
-            const dataKey = Object.keys(payload)[1];
-            const temp = { id: [], value: [] };
-            switch (payload.type) {
-                case 'dateRange':
-                    const dateRangeData = payload[dataKey];
-                    updateFilterData(state, dataKey, { id: dateRangeData.selectedLabel, value: dateRangeData.selectedDate, label: dateRangeData.label });
-                    break;
-                case 'multiSelect':
-                case 'vendorModal':
-                    payload[dataKey].forEach((values) => {
-                        const [id, value] = values.split(',');
-                        temp.id.push(id);
-                        temp.value.push(value);
-                    });
-                    updateFilterData(state, dataKey, { ...temp });
-                    break;
-                case 'radio':
-                case 'sort':
-                case 'minMax':
-                case 'dropdownRadio':
-                    updateFilterData(state, dataKey, payload[dataKey]);
-                    break;
-            }
-        });
+        setFilterValue(state, payloads);
     },
 
     // For datatable filter clear by field
@@ -184,29 +161,7 @@ const createMutations = () => ({
 
     // For datatable apply selected save filter
     [ADMINVIEWUSER.MUTATIONS.SETAPPLYSAVEDFILTEREDDATA](state, selectedData) {
-        const response = selectedData.filterArr;
-        response.forEach((payload) => {
-            const dataKey = Object.keys(payload)[0];
-            const temp = { id: [], value: [] };
-            switch (payload.type) {
-                case 'dateRange':
-                    const dateRangeData = payload[dataKey];
-                    updateFilterData(state, dataKey, { id: dateRangeData.id, value: dateRangeData.value, label: dateRangeData.label });
-                    break;
-                case 'multiSelect':
-                case 'vendorModal':
-                    temp.id = payload[dataKey].id;
-                    temp.value = payload[dataKey].value;
-                    updateFilterData(state, dataKey, { ...temp });
-                    break;
-                case 'radio':
-                case 'sort':
-                case 'minMax':
-                case 'dropdownRadio':
-                    updateFilterData(state, dataKey, payload[dataKey]);
-                    break;
-            }
-        });
+        setApplySaveFilterData(state, selectedData.filterArr);
     },
 
     // For Update datatable saveFilter data

@@ -1,5 +1,5 @@
 import { NEWVIEWTICKET } from './constants';
-import { getFilterMappedValues } from '../../../commonStoreFuncs';
+import { getFilterMappedPayload, getFilterMappedValues } from '../../../commonStoreFuncs';
 const createGetters = () => ({
     // For datatable action modals
     [NEWVIEWTICKET.GETTERS.GETDTMODAL](state: any) {
@@ -17,21 +17,7 @@ const createGetters = () => ({
 
     // For datatable data payload
     [NEWVIEWTICKET.GETTERS.GETMAPPEDFILTERPAYLOAD](state: any) {
-        const allFilterData = {};
-
-        for (const key in state.allFilterData) {
-            if (state.allFilterData.hasOwnProperty(key)) {
-                const value = state.allFilterData[key];
-                if (value && typeof value === 'object' && value.hasOwnProperty('label')) {
-                    allFilterData[key] = value.value;
-                    allFilterData[`${key}_label`] = value.id;
-                } else if (value && typeof value === 'object' && value.hasOwnProperty('id')) {
-                    allFilterData[key] = value.id;
-                } else {
-                    allFilterData[key] = value;
-                }
-            }
-        }
+        const allFilterData = getFilterMappedPayload(state);
 
         // Add additional properties not present in state.allFilterData
         allFilterData['page_count'] = state.page_count;
@@ -116,7 +102,8 @@ const createGetters = () => ({
     //     return allFilterData;
     // },
     [NEWVIEWTICKET.GETTERS.GETEXPORTVALUEPAYLOAD](state: any) {
-        const allFilterData = {};
+        const allFilterData = getFilterMappedPayload(state);
+
         allFilterData['selectedCheckbox'] = state.selectedCheckbox;
         return allFilterData;
     },
