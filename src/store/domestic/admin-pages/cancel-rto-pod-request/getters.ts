@@ -1,5 +1,5 @@
 import { CANCELRTOPODREQ } from './constants';
-import { getFilterMappedValues } from '../../../commonStoreFuncs';
+import { getFilterMappedPayload, getFilterMappedValues } from '../../../commonStoreFuncs';
 const createGetters = () => ({
     // For datatable action modals
     [CANCELRTOPODREQ.GETTERS.GETDTMODAL](state: any) {
@@ -13,21 +13,7 @@ const createGetters = () => ({
     },
     // For datatable data payload
     [CANCELRTOPODREQ.GETTERS.GETMAPPEDFILTERPAYLOAD](state: any) {
-        const allFilterData = {};
-
-        for (const key in state.allFilterData) {
-            if (state.allFilterData.hasOwnProperty(key)) {
-                const value = state.allFilterData[key];
-                if (value && typeof value === 'object' && value.hasOwnProperty('label')) {
-                    allFilterData[key] = value.value;
-                    allFilterData[`${key}Label`] = value.id;
-                } else if (value && typeof value === 'object' && value.hasOwnProperty('id')) {
-                    allFilterData[key] = value.id;
-                } else {
-                    allFilterData[key] = value;
-                }
-            }
-        }
+        const allFilterData = getFilterMappedPayload(state);
 
         // Add additional properties not present in state.allFilterData
         allFilterData['items'] = state.allFilterData.items == '>5' ? '6' : state.allFilterData.items;
@@ -80,21 +66,8 @@ const createGetters = () => ({
     // },
     // For datatable export data
     [CANCELRTOPODREQ.GETTERS.GETEXPORTVALUEPAYLOAD](state: any) {
-        const allFilterData = {};
+        const allFilterData = getFilterMappedPayload(state);
 
-        for (const key in state.allFilterData) {
-            if (state.allFilterData.hasOwnProperty(key)) {
-                const value = state.allFilterData[key];
-                if (value && typeof value === 'object' && value.hasOwnProperty('label')) {
-                    allFilterData[key] = value.value;
-                    allFilterData[`${key}Label`] = value.id;
-                } else if (value && typeof value === 'object' && value.hasOwnProperty('id')) {
-                    allFilterData[key] = value.id;
-                } else {
-                    allFilterData[key] = value;
-                }
-            }
-        }
         allFilterData['processType'] = state.exportPayload;
         allFilterData['selectedCheckbox'] = state.selectedCheckbox;
 

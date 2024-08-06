@@ -1,31 +1,16 @@
 import { CANCELRTOPODREQINTL } from './constants';
-import { getFilterMappedValues } from '../../../commonStoreFuncs';
+import { getFilterMappedPayload, getFilterMappedValues } from '../../../commonStoreFuncs';
 const createGetters = () => ({
     // For datatable data payload
     [CANCELRTOPODREQINTL.GETTERS.GETMAPPEDFILTERPAYLOAD](state: any) {
-        const allFilterData = {};
-
-        for (const key in state.allFilterData) {
-            if (state.allFilterData.hasOwnProperty(key)) {
-                const value = state.allFilterData[key];
-                if (value && typeof value === 'object' && value.hasOwnProperty('label')) {
-                    allFilterData[key] = value.value;
-                    allFilterData[`${key}Label`] = value.id;
-                } else if (value && typeof value === 'object' && value.hasOwnProperty('id')) {
-                    allFilterData[key] = value.id;
-                } else {
-                    allFilterData[key] = value;
-                }
-            }
-        }
-
+        const allFilterData = getFilterMappedPayload(state);
         // Add additional properties not present in state.allFilterData
         allFilterData['page_count'] = state.page_count;
         return allFilterData;
     },
     // For datatable filter li
     [CANCELRTOPODREQINTL.GETTERS.GETMAPPEDFILTERVALUE](state: any) {
-        return getFilterMappedValues(state)
+        return getFilterMappedValues(state);
     },
     // [CANCELRTOPODREQINTL.GETTERS.GETMAPPEDFILTERVALUE](state: any) {
     //     const allFilterData = {};
@@ -65,21 +50,7 @@ const createGetters = () => ({
     // },
     // For datatable export data
     [CANCELRTOPODREQINTL.GETTERS.GETEXPORTVALUEPAYLOAD](state: any) {
-        const allFilterData = {};
-
-        for (const key in state.allFilterData) {
-            if (state.allFilterData.hasOwnProperty(key)) {
-                const value = state.allFilterData[key];
-                if (value && typeof value === 'object' && value.hasOwnProperty('label')) {
-                    allFilterData[key] = value.id;
-                    allFilterData[`${key}Label`] = value.value;
-                } else if (value && typeof value === 'object' && value.hasOwnProperty('id')) {
-                    allFilterData[key] = value.id;
-                } else {
-                    allFilterData[key] = value;
-                }
-            }
-        }
+        const allFilterData = getFilterMappedPayload(state);
         allFilterData['processType'] = state.exportPayload;
 
         return allFilterData;

@@ -1,3 +1,4 @@
+import { getFilterMappedPayload, getFilterMappedValues } from '../../commonStoreFuncs';
 import { NPS } from './constants';
 const createGetters = () => ({
     // For datatable action modals
@@ -13,21 +14,7 @@ const createGetters = () => ({
 
     // For datatable data payload
     [NPS.GETTERS.GETMAPPEDFILTERPAYLOAD](state: any) {
-        const allFilterData = {};
-
-        for (const key in state.allFilterData) {
-            if (state.allFilterData.hasOwnProperty(key)) {
-                const value = state.allFilterData[key];
-                if (value && typeof value === 'object' && value.hasOwnProperty('label')) {
-                    allFilterData[key] = value.value;
-                    allFilterData[`${key}Label`] = value.id;
-                } else if (value && typeof value === 'object' && value.hasOwnProperty('id')) {
-                    allFilterData[key] = value.id;
-                } else {
-                    allFilterData[key] = value;
-                }
-            }
-        }
+        const allFilterData = getFilterMappedPayload(state);
 
         // Add additional properties not present in state.allFilterData
         allFilterData['page_count'] = state.page_count;
@@ -38,56 +25,11 @@ const createGetters = () => ({
 
     // For datatable filter li
     [NPS.GETTERS.GETMAPPEDFILTERVALUE](state: any) {
-        const allFilterData = {};
-        for (const key in state.allFilterData) {
-            if (key != 'paginatorStart' && key != 'paginatorLast') {
-                const value = state.allFilterData[key];
-                let filteredValue = '';
-                switch (key) {
-                    case 'order_date':
-                    case 'order_delivered_date':
-                        filteredValue = value.label === undefined ? '' : value.label;
-                        break;
-                    case 'vendor_name':
-                    case 'awb_no_logistics':
-                    case 'nps_score':
-                        if (value.value !== undefined && value.value.length > 0) {
-                            filteredValue = value.value.join(',');
-                        }
-                        break;
-                    // case 'order_amount':
-                    //     const min = value.min;
-                    //     const max = value.max;
-                    //     if (min !== '' && (min !== 0 || max !== 0)) {
-                    //         filteredValue = value;
-                    //     }
-                    //     break;
-                    default:
-                        filteredValue = value;
-                        break;
-                }
-                allFilterData[key] = filteredValue;
-            }
-        }
-        return allFilterData;
+        return getFilterMappedValues(state);
     },
     // For datatable export data
     [NPS.GETTERS.GETEXPORTVALUEPAYLOAD](state: any) {
-        const allFilterData = {};
-
-        for (const key in state.allFilterData) {
-            if (state.allFilterData.hasOwnProperty(key)) {
-                const value = state.allFilterData[key];
-                if (value && typeof value === 'object' && value.hasOwnProperty('label')) {
-                    allFilterData[key] = value.value;
-                    allFilterData[`${key}Label`] = value.id;
-                } else if (value && typeof value === 'object' && value.hasOwnProperty('id')) {
-                    allFilterData[key] = value.id;
-                } else {
-                    allFilterData[key] = value;
-                }
-            }
-        }
+        const allFilterData = getFilterMappedPayload(state);
 
         allFilterData['processType'] = state.exportPayload;
         allFilterData['selectedCheckbox'] = state.selectedCheckbox;
