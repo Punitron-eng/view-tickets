@@ -78,7 +78,6 @@ onBeforeUnmount(() => {
     }
 
     .p-dialog-content {
-        background-color: #f2f3f5 !important;
         padding: 0px !important;
         height: 100vh !important;
     }
@@ -153,10 +152,15 @@ onBeforeUnmount(() => {
 }
 .darkTheme {
     .p-dialog .p-dialog-header {
-        background-color: #313131 !important;
+        background-color: var(--dark-100) !important;
     }
     .p-dialog .p-dialog-content {
-        background-color: #212121 !important;
+        background-color: var(--dark-0) !important;
+    }
+}
+.lightTheme {
+    .p-dialog .p-dialog-content {
+        background-color: var(--light-200) !important;
     }
 }
 </style>

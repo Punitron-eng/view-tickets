@@ -50,7 +50,7 @@ export const ticketDepartmentApiCall = async (id, modal) => {
 
 export const exportBgProcess = async (data, filterPayload, selectedCheckboxData) => {
     const apiPath = `${config.baseUrlApiNew}api/v1/datatable/export`;
-    const filteredPayload = Object.fromEntries(Object.entries(filterPayload).filter(([key, value]) => value !== '' && value !== null && value !== undefined && value.length > 0 && JSON.stringify(value) !== JSON.stringify({})));
+    const filteredPayload = Object.fromEntries(Object.entries(filterPayload).filter(([key, value]) => value !== '' && value !== null && value !== undefined && String(value).length > 0 && JSON.stringify(value) !== JSON.stringify({})));
     const payload = {
         module_name: data.moduleName,
         tab_name: data.selectedTab,
