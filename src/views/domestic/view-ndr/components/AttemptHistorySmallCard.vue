@@ -148,7 +148,7 @@ const getTextColorClass = (color) => {
     .small-card .p-panel .p-panel-content {
         background-color: #212121 !important;
     }
-    .small-card-panel .p-panel-header {
+    .main-card-panel .small-card-panel .p-panel-header {
         background-color: #212121 !important;
     }
 }
