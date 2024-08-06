@@ -118,15 +118,17 @@ const dateValue = (date) => {
     const tempDate = [format(new Date(date), 'yyyy-MM-dd')];
     chatTicketAssignMemberDate.value = tempDate[0];
     singleSelectedDate.value = tempDate[0];
+    console.log(singleSelectedDate.value, 'singleSelectedDate1');
 };
 const assignMemberUpdateIsLoading = ref(false);
 const updateAssignMember = async () => {
     try {
         assignMemberUpdateIsLoading.value = true;
+        const formattedDate = new Date(singleSelectedDate.value).toISOString().split('T')[0];
         const payload = {
             ticket_id: ticketModalData.value?.ticket_id,
             assign_member: selectedOptionsText.value.map((item) => item.id),
-            due_date: chatTicketAssignMemberDate.value,
+            due_date: formattedDate,
         };
         const result = await updateAssignMemberApi(payload);
         if (result.status === 'success') {
@@ -176,17 +178,17 @@ const fetchTicketData = async () => {
             { label: 'Closed Date', value: ticketModalData.value?.ticket_closed_date || '-' },
         ];
         SubAdminticketItems.value = [
-            { label: 'Close by', value: ticketModalData.value?.ticket_close_by || '-' },
-            { label: 'Clone Ticket', value: ticketModalData.value?.cloned_from_ticket || '-' },
-            { label: 'Clone Date', value: ticketModalData.value?.clone_date || '-' },
-            { label: 'Tracking Status', value: ticketModalData.value?.tracking_status || '-' },
-            { label: 'No of Attempt', value: ticketModalData.value?.no_of_attempts || '-' },
-            { label: 'EDD', value: ticketModalData.value?.order_edd || '-' },
-            { label: 'Last Attempt Date', value: ticketModalData.value?.last_attempt_date || '-' },
-            { label: 'Assign By', value: ticketModalData.value?.ticket_assign_by || '-' },
-            { label: 'CS Remark', value: ticketModalData.value?.ticket_cs_remark || '-' },
-            // { label: 'LSP Remark', value: ticketModalData.value?.ticket_lsp_remark || '-' },
-            { label: 'Pending CS Remark', value: ticketModalData.value?.pending_cs_remark || '-' },
+            { label: 'Close by', value: ticketModalData.value?.ticket_close_by },
+            { label: 'Clone Ticket', value: ticketModalData.value?.cloned_from_ticket },
+            { label: 'Clone Date', value: ticketModalData.value?.clone_date },
+            { label: 'Tracking Status', value: ticketModalData.value?.tracking_status },
+            { label: 'No of Attempt', value: ticketModalData.value?.no_of_attempts },
+            { label: 'EDD', value: ticketModalData.value?.order_edd },
+            { label: 'Last Attempt Date', value: ticketModalData.value?.last_attempt_date },
+            { label: 'Assign By', value: ticketModalData.value?.ticket_assign_by },
+            { label: 'CS Remark', value: ticketModalData.value?.ticket_cs_remark },
+            // { label: 'LSP Remark', value: ticketModalData.value?.ticket_lsp_remark  },
+            { label: 'Pending CS Remark', value: ticketModalData.value?.pending_cs_remark },
         ];
         singleSelectedDate.value = ticketModalData.value.extended_due_date.length > 0 ? new Date(ticketModalData.value.extended_due_date.pop()) : new Date(ticketModalData.value.ticket_created_date);
         assignOptions.value = ticketModalData.value.ticket_assign_member;
@@ -516,7 +518,7 @@ const confirmUnactionbleItlFnc = async () => {
                                 <SkeletonView width="320px" height="256px" />
                             </div>
                             <div v-else>
-                                <div v-for="(item, index) in SubAdminticketItems" :key="index" class="details-div-outer flex justify-between items-start leading-[16px] text-[13px] gap-[8px]">
+                                <div v-for="(item, index) in SubAdminticketItems.filter((item) => item.value != '')" :key="index" class="details-div-outer flex justify-between items-start leading-[16px] text-[13px] gap-[8px]">
                                     <div class="details-heading text-light-1000 dark:text-[#9ca3af]">{{ item.label }}</div>
                                     <div class="text-right details-content text-light-1400 dark:text-[#dfdfdf]">{{ item.value }}</div>
                                 </div>
@@ -586,7 +588,7 @@ const confirmUnactionbleItlFnc = async () => {
                             ref="messageInput"
                             class="w-full h-[40px] bg-[#F1F3F5] dark:bg-[#4d4d4d] px-4 rounded-[50px]"
                         />
-                        <button class="pl-1 pr-4 py-2" @click="sendMessage">
+                        <button class="pl-1 pr-4 py-2" @click="sendMessage" :disabled="disableInput">
                             <img :src="getImg('modal-send-message', darkModeVal)" class="mx-3" />
                         </button>
                     </div>
