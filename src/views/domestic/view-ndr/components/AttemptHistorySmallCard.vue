@@ -24,7 +24,8 @@
                         <div class="relative flex flex-wrap justify-between items-center border-b border-[#f1f3f5] px-[12px] py-[10px] md:px-[16px] dark:border-dark-200" :class="{ 'pt-[18px]': item.chipText }">
                             <div class="flex items-center" :class="{ 'status-text-wrap': item.status.text?.length >= 12 }">
                                 <img :src="getImg(item.img1, false, 'modals')" class="w-[20px] mr-[8px] mt-1" />
-                                <img :src="getImg(item.img2, false, 'modals')" class="w-[12px] mr-[8px] mt-1" />
+                                <!-- <img :src="getImg(item.img2, false, 'modals')" class="w-[12px] mr-[8px] mt-1" /> -->
+                                <img :src="getImg(item.img2, true, 'modals')" class="w-[12px] mr-[8px] mt-1" />
                                 <img :src="getImg(item.img3, false, 'modals')" class="w-[20px] mr-[8px] mt-1" />
                                 <span class="text-[#3c4249] text-[12px] md:text-[16px] dark:text-dark-1000">{{ item.vendorName }}</span>
                             </div>
