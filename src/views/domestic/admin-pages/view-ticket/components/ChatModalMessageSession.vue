@@ -4,6 +4,7 @@ import getImg from '@/util/getImg';
 import { ref, nextTick, watch, computed, onMounted } from 'vue';
 import { NEWVIEWTICKET } from '@/store/domestic/admin-pages/view-ticket/constants';
 import { viewTicketVariables } from '../viewTicketVariables';
+import { checkUserType } from '../../../../../util/commonHandlers';
 const messages = ref([]);
 const dataVariables = viewTicketVariables;
 
@@ -158,9 +159,10 @@ defineExpose({
                     <div class="h-[1px] bg-[#f1f3f5] dark:bg-[#383B40] w-1/3"></div>
                 </div>
                 <!-- this is for the document attachment -->
+
                 <div
                     v-else-if="message.chat_position === 'right' || message.chat_position === 'left'"
-                    :class="message.is_show_pending_from === 1 ? 'border-b-2 border-[red]' : message.chat_position === 'right' ? 'px-[18px] py-[10px] user-message' : 'px-[18px] py-[10px] message'"
+                    :class="message.is_show_pending_from === 2 ? 'border-b-2 border-[red] px-[18px] py-[10px] user-message' : message.chat_position === 'right' ? 'px-[18px] py-[10px] user-message' : 'px-[18px] py-[10px] message'"
                 >
                     <div v-if="message.chat_attachment.length != 0" class="hover:cursor-pointer">
                         <a
@@ -199,10 +201,12 @@ defineExpose({
                     </div>
                     {{ message.chat_message }}
                 </div>
+
                 <!-- this is for the double tick and time  -->
                 <div v-if="message.notification_type !== 'notification'" class="flex items-center gap-1 text-light-700 dark:text-dark-700 text-itl-note" :class="message.chat_position === 'right' ? 'flex-row-reverse' : ''">
                     <img v-if="message.chat_position === 'right'" :src="getImg('manifest-blue-tick', darkModeVal)" class="" />
                     {{ message.chat_created_at }}
+                    <span class="mr-2" v-if="checkUserType('admin') || checkUserType('subadmin')">{{ message.chat_created_by }}</span>
                 </div>
             </div>
         </div>
