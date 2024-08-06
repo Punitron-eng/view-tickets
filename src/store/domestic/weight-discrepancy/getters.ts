@@ -1,5 +1,5 @@
 import { WEIGHTDISCREPANCY } from './constants';
-import { getFilterMappedValues } from '../../commonStoreFuncs';
+import { getFilterMappedPayload, getFilterMappedValues } from '../../commonStoreFuncs';
 const createGetters = () => ({
     // For datatable action modals
     [WEIGHTDISCREPANCY.GETTERS.GETDTMODAL](state: any) {
@@ -14,22 +14,7 @@ const createGetters = () => ({
 
     // For datatable data payload
     [WEIGHTDISCREPANCY.GETTERS.GETMAPPEDFILTERPAYLOAD](state: any) {
-        const allFilterData = {};
-
-        for (const key in state.allFilterData) {
-            if (state.allFilterData.hasOwnProperty(key)) {
-                const value = state.allFilterData[key];
-                if (value && typeof value === 'object' && value.hasOwnProperty('label')) {
-                    allFilterData[key] = value.value;
-                    allFilterData[`${key}_label`] = value.id;
-                } else if (value && typeof value === 'object' && value.hasOwnProperty('id')) {
-                    allFilterData[key] = value.id;
-                } else {
-                    allFilterData[key] = value;
-                }
-            }
-        }
-
+        const allFilterData = getFilterMappedPayload(state);
         // Add additional properties not present in state.allFilterData
         allFilterData['page_count'] = state.page_count;
         // allFilterData['order_product_quantity'] = state.allFilterData.order_product_quantity == '>5' ? '6' : state.allFilterData.order_product_quantity;
@@ -79,21 +64,8 @@ const createGetters = () => ({
     [WEIGHTDISCREPANCY.GETTERS.GETEXPORTVALUEPAYLOAD](state: any) {
         const getMountInfo = state.allFilterData.weight_discrepancy_date.label;
         const isMountedLoad = getMountInfo != '' ? 0 : 1;
-        const allFilterData = {};
 
-        for (const key in state.allFilterData) {
-            if (state.allFilterData.hasOwnProperty(key)) {
-                const value = state.allFilterData[key];
-                if (value && typeof value === 'object' && value.hasOwnProperty('label')) {
-                    allFilterData[key] = value.value;
-                    allFilterData[`${key}_label`] = value.id;
-                } else if (value && typeof value === 'object' && value.hasOwnProperty('id')) {
-                    allFilterData[key] = value.id;
-                } else {
-                    allFilterData[key] = value;
-                }
-            }
-        }
+        const allFilterData = getFilterMappedPayload(state);
 
         allFilterData['processType'] = state.exportPayload;
         allFilterData['selectedCheckbox'] = state.selectedCheckbox;
