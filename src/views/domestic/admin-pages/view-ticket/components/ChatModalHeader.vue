@@ -3,7 +3,7 @@ import { useStore } from 'vuex';
 import getImg from '@/util/getImg';
 import { ref, watch, computed } from 'vue';
 import { useToast } from 'primevue/usetoast';
-import { checkUserType } from '@/util/commonHandlers';
+import { checkUserType, checkAccessRight, deepCheckAccessRight } from '@/util/commonHandlers';
 import BaseButton from '@/components/base/BaseButton.vue';
 import TicketRateModal from '../modal/TicketRateModal.vue';
 import { viewTicketVariables as dataVariables } from '../viewTicketVariables';
@@ -181,15 +181,7 @@ const confirmPendingFnc = async () => {
                     :isIcon="getImg('modal-rate-us', darkModeVal, 'modals')"
                 />
                 <TicketRateModal :dataVariables="dataVariables" />
-                <div>
-                    <!-- <button v-if="changesBtnState.close" @click="closeTicket(ticketModalData.ticket_id)"
-                        class="danger px-[12px] py-[7px] rounded-md font-interSemiBold text-[12px]"
-                        :disabled="isDisable">Close Ticket</button>
-                    <button v-if="changesBtnState.reopen" @click="reopenTicket(ticketModalData.ticket_id)"
-                        class="success px-[12px] py-[7px] rounded-md font-interSemiBold text-[12px]"
-                        :class="isDisable ? 'hover:cursor-not-allowed' : ''" :disabled="isDisable">
-                        Reopen Ticket
-                    </button> -->
+                <div v-if="checkAccessRight() ? true : deepCheckAccessRight('domestic', 'support_ticket', 'edit')">
                     <button v-if="changesBtnState.close" @click="openConfirmationModal" class="danger px-[12px] py-[7px] rounded-md font-interSemiBold text-[12px]" :disabled="isDisable">Close Ticket</button>
                     <button v-if="changesBtnState.reopen" @click="openConfirmationModal" class="success px-[12px] py-[7px] rounded-md font-interSemiBold text-[12px]" :class="isDisable ? 'hover:cursor-not-allowed' : ''" :disabled="isDisable">
                         Reopen Ticket
