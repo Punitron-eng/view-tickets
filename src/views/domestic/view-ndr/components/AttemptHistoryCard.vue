@@ -81,4 +81,10 @@ const onToggle = (index) => {
         border-bottom: 1px solid theme-get('dark-200') !important;
     }
 }
+
+.lightTheme {
+    .main-card-panel .p-panel-header {
+        border-bottom: 1px solid var(--light-200) !important;
+    }
+}
 </style>
