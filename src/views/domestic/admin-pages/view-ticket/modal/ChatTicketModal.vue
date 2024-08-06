@@ -8,7 +8,7 @@ import { DARKMODE } from '@/store/dark-mode/constants';
 import BaseButton from '@/components/base/BaseButton.vue';
 import { viewTicketVariables } from '../viewTicketVariables';
 import ChatModalHeader from '../components/ChatModalHeader.vue';
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import ChatImageCarousel from '../components/ChatImageCarousel.vue';
 import ChatModalMessageSession from '../components/ChatModalMessageSession.vue';
 import { NEWVIEWTICKET } from '@/store/domestic/admin-pages/view-ticket/constants';
@@ -193,7 +193,6 @@ const fetchTicketData = async () => {
         singleSelectedDate.value = ticketModalData.value.extended_due_date.length > 0 ? new Date(ticketModalData.value.extended_due_date.pop()) : new Date(ticketModalData.value.ticket_created_date);
         assignOptions.value = ticketModalData.value.ticket_assign_member;
         const ticketAssignToIds = ticketModalData.value?.ticket_assign_to?.id || [];
-        isCheck.value.pending_from = ticketModalData.value.is_show_pending_from == 1;
         isCheck.value.unactionble_itl = ticketModalData.value.is_show_unactionable_by_itl == 1;
         // Filter assignOptions based on the ticketAssignToIds
         selectedOptionsText.value = assignOptions.value.filter((option) => ticketAssignToIds.includes(option.id));
@@ -407,6 +406,7 @@ const confirmUnactionbleItlFnc = async () => {
         const newTicketStore = { ...ticketModalComputed.value, chat: chatResult };
         store.commit(`${NEWVIEWTICKET.NAME}/setChatTicketModalData`, newTicketStore);
         chatMessageSession.value.messageLoading(false);
+        fetchTicketData();
         isCheck.value.unactionble_itl = true;
         unactionbleItlConfirmation.value = false;
     } catch (error) {
@@ -507,8 +507,17 @@ const confirmUnactionbleItlFnc = async () => {
                                 <label class="text-[12px] hover:cursor-pointer" for="pending_from">Mark as pending from Vendor</label>
                             </div>
                             <div class="pt-[16px] flex items-center">
-                                <input type="checkbox" class="mr-2 w-[16px] h-[16px]" id="unactionble_itl" v-model="isCheck.unactionble_itl" name="unactionble_itl" @click="showConfirmationModal('unactionble_itl')" />
-                                <label class="text-[12px] hover:cursor-pointer" for="unactionble_itl">Mark as Unactionable from ITL</label>
+                                <input
+                                    type="checkbox"
+                                    class="mr-2 w-[16px] h-[16px]"
+                                    :class="{ 'cursor-not-allowed': isCheck.unactionble_itl }"
+                                    id="unactionble_itl"
+                                    v-model="isCheck.unactionble_itl"
+                                    name="unactionble_itl"
+                                    @click="showConfirmationModal('unactionble_itl')"
+                                    :disabled="isCheck.unactionble_itl"
+                                />
+                                <label class="text-[12px] hover:cursor-pointer" :class="{ 'text-gray-400': isCheck.unactionble_itl }" for="unactionble_itl">Mark as Unactionable from ITL</label>
                             </div>
                         </div>
 
