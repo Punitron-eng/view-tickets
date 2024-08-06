@@ -39,7 +39,7 @@
                                 <div class="text-[#1d252b] font-semibold dark:text-dark-1000">{{ item.panel.heading }}</div>
                             </template>
                             <template #togglericon>
-                                <div class="text-[#1279ff] flex items-center gap-2">
+                                <div class="flex items-center gap-2">
                                     <div>{{ collapsedStates ? 'Show Details' : 'Hide Details' }}</div>
                                     <span :class="collapsedStates ? 'pi pi-angle-down' : 'pi pi-angle-up'" />
                                 </div>
