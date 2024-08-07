@@ -277,7 +277,7 @@ const ticketSubmit = async () => {
     }
     data.value = {
         awb_no: airwayBillNo.value,
-        ticket_date: topHeader.user_id != 3000 || topHeader.user_id != 903 ? `0000-00-00` : trayaTicketCreatedDate.value,
+        ticket_date: topHeader.user_id != 3000 || topHeader.user_id != 903 ? '' : trayaTicketCreatedDate.value,
         department_id: selectedDepartment.value?.id,
         category_id: selectedCategory.value?.id,
         address: inputAddress.value.address,
