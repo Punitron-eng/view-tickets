@@ -119,7 +119,6 @@ const dateValue = (date) => {
     const tempDate = [format(new Date(date), 'yyyy-MM-dd')];
     chatTicketAssignMemberDate.value = tempDate[0];
     singleSelectedDate.value = tempDate[0];
-    console.log(singleSelectedDate.value, 'singleSelectedDate1');
 };
 const assignMemberUpdateIsLoading = ref(false);
 const updateAssignMember = async () => {
@@ -192,7 +191,7 @@ const fetchTicketData = async () => {
             // { label: 'LSP Remark', value: ticketModalData.value?.ticket_lsp_remark  },
             { label: 'Pending CS Remark', value: ticketModalData.value?.pending_cs_remark },
         ];
-        singleSelectedDate.value = ticketModalData.value.extended_due_date.length > 0 ? new Date(ticketModalData.value.extended_due_date.pop()) : new Date(ticketModalData.value.ticket_created_date);
+        singleSelectedDate.value = ticketModalData.value?.ticket_due_details?.date ? new Date(ticketModalData.value.ticket_due_details.date) : new Date(ticketModalData.value.ticket_created_date);
         assignOptions.value = ticketModalData.value.ticket_assign_member;
         const ticketAssignToIds = ticketModalData.value?.ticket_assign_to?.id || [];
         isCheck.value.unactionble_itl = ticketModalData.value.is_show_unactionable_by_itl == 1;
