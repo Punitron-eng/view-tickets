@@ -146,7 +146,8 @@ defineExpose({
     </div>
     <div v-else ref="chatContainer" class="p-3 gap-3 flex flex-col chat-session-container overflow-y-auto h-full mb-[15px]" @scroll="fetchMessagesonScroll">
         <div v-for="(message, index) in messages" :key="index" :class="[message.chat_position === 'right' ? 'flex flex-row-reverse gap-2' : 'flex gap-2', message.notification_type === 'notification' ? 'justify-center' : '']">
-            <img v-if="(message.chat_position !== 'right' || message.chat_position == '') && message.notification_type != 'notification'" :src="getImg('ticket-message-user', darkModeVal)" class="w-[33px]" />
+            <img v-if="(message.chat_position !== 'right' || message.chat_position == '') && message.notification_type != 'notification' && checkUserType('vendor')" :src="getImg('itl-chat-logo', darkModeVal)" class="w-[33px]" />
+            <img v-else-if="(message.chat_position !== 'right' || message.chat_position == '') && message.notification_type != 'notification'" :src="getImg('ticket-message-user', darkModeVal)" class="w-[33px]" />
             <div class="flex flex-col gap-1 text-[14px]" :class="message.notification_type === 'notification' ? 'w-full text-center' : message.chat_position === 'right' ? 'items-end' : 'items-start'">
                 <div v-if="message.notification_type === 'notification'" class="flex justify-center items-center gap-2 min-w-full">
                     <!-- this is for the notification  -->
