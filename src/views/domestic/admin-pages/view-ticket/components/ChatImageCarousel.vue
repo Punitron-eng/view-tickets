@@ -25,7 +25,7 @@ const showImage = (image) => {
         case 'mp4':
             return getImg('audio-icon');
         default:
-            return getImg('image-preview');
+            return image.file_path_small;
     }
 };
 
