@@ -177,6 +177,7 @@ const fetchTicketData = async () => {
             { label: 'Ageing', value: ticketModalData.value?.ticket_ageing || '-' },
             { label: 'Last Updated', value: ticketModalData.value?.ticket_last_updated_date || '-' },
             { label: 'Closed Date', value: ticketModalData.value?.ticket_closed_date || '-' },
+            { label: 'Extended Due Date', value: ticketModalData.value?.extended_due_date.join(', ') },
         ];
         SubAdminticketItems.value = [
             { label: 'Close by', value: ticketModalData.value?.ticket_close_by },
@@ -528,7 +529,11 @@ const confirmUnactionbleItlFnc = async () => {
                                 <SkeletonView width="320px" height="256px" />
                             </div>
                             <div v-else>
-                                <div v-for="(item, index) in SubAdminticketItems.filter((item) => item.value != '')" :key="index" class="details-div-outer flex justify-between items-start leading-[16px] text-[13px] gap-[8px]">
+                                <div
+                                    v-for="(item, index) in SubAdminticketItems.filter((item) => item.value != '' && item.value != 'N/A' && item.value != 'NA' && item.value != null)"
+                                    :key="index"
+                                    class="details-div-outer flex justify-between items-start leading-[16px] text-[13px] gap-[8px]"
+                                >
                                     <div class="details-heading text-light-1000 dark:text-[#9ca3af]">{{ item.label }}</div>
                                     <div class="text-right details-content text-light-1400 dark:text-[#dfdfdf]">{{ item.value }}</div>
                                 </div>
