@@ -1,4 +1,3 @@
-import { error } from 'echarts/types/src/util/log.js';
 import { authHeader } from '../../util/AuthHeader';
 import config from '../../util/config';
 
