@@ -20,7 +20,8 @@ export const apiHandler = async (url: string, payload?: object, isFilePresent?: 
         } else {
             try {
                 const errorData = await result.json();
-                throw new Error(errorData.message || 'Failed to fetch data');
+                // throw new Error(errorData.message || 'Failed to fetch data'); // it was not working when we are getting the error 422 and it was not sending the message weher we are calling the api.
+                return errorData || 'Failed to fetch data';
             } catch (error) {
                 throw error;
             }

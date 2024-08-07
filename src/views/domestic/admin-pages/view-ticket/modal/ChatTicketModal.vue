@@ -119,7 +119,6 @@ const dateValue = (date) => {
     const tempDate = [format(new Date(date), 'yyyy-MM-dd')];
     chatTicketAssignMemberDate.value = tempDate[0];
     singleSelectedDate.value = tempDate[0];
-    console.log(singleSelectedDate.value, 'singleSelectedDate1');
 };
 const assignMemberUpdateIsLoading = ref(false);
 const updateAssignMember = async () => {
@@ -177,6 +176,7 @@ const fetchTicketData = async () => {
             { label: 'Ageing', value: ticketModalData.value?.ticket_ageing || '-' },
             { label: 'Last Updated', value: ticketModalData.value?.ticket_last_updated_date || '-' },
             { label: 'Closed Date', value: ticketModalData.value?.ticket_closed_date || '-' },
+            { label: 'Extended Due Date', value: ticketModalData.value?.extended_due_date.join(', ') },
         ];
         SubAdminticketItems.value = [
             { label: 'Close by', value: ticketModalData.value?.ticket_close_by },
@@ -191,7 +191,7 @@ const fetchTicketData = async () => {
             // { label: 'LSP Remark', value: ticketModalData.value?.ticket_lsp_remark  },
             { label: 'Pending CS Remark', value: ticketModalData.value?.pending_cs_remark },
         ];
-        singleSelectedDate.value = ticketModalData.value.extended_due_date.length > 0 ? new Date(ticketModalData.value.extended_due_date.pop()) : new Date(ticketModalData.value.ticket_created_date);
+        singleSelectedDate.value = ticketModalData.value?.ticket_due_details?.date ? new Date(ticketModalData.value.ticket_due_details.date) : new Date(ticketModalData.value.ticket_created_date);
         assignOptions.value = ticketModalData.value.ticket_assign_member;
         const ticketAssignToIds = ticketModalData.value?.ticket_assign_to?.id || [];
         isCheck.value.unactionble_itl = ticketModalData.value.is_show_unactionable_by_itl == 1;
@@ -528,7 +528,11 @@ const confirmUnactionbleItlFnc = async () => {
                                 <SkeletonView width="320px" height="256px" />
                             </div>
                             <div v-else>
-                                <div v-for="(item, index) in SubAdminticketItems.filter((item) => item.value != '')" :key="index" class="details-div-outer flex justify-between items-start leading-[16px] text-[13px] gap-[8px]">
+                                <div
+                                    v-for="(item, index) in SubAdminticketItems.filter((item) => item.value != '' && item.value != 'N/A' && item.value != 'NA' && item.value != null)"
+                                    :key="index"
+                                    class="details-div-outer flex justify-between items-start leading-[16px] text-[13px] gap-[8px]"
+                                >
                                     <div class="details-heading text-light-1000 dark:text-[#9ca3af]">{{ item.label }}</div>
                                     <div class="text-right details-content text-light-1400 dark:text-[#dfdfdf]">{{ item.value }}</div>
                                 </div>
