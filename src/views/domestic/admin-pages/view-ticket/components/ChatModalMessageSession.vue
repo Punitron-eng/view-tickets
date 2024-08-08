@@ -37,6 +37,11 @@ const scrollToBottom = () => {
 const selectedFile = ref(null); // for the image preview
 const imagePreviewUrl = ref(null); // for the image preview
 
+const updateLastMessage = (isError, isMessageSent) => {
+    const lastMessage = messages.value[messages.value.length - 1];
+    lastMessage.isError = isError;
+    lastMessage.isMessageSent = isMessageSent;
+};
 // Adding the message to the messages array
 const addMessage = (message, file, imageUrl) => {
     const lastChatId = messages.value.length > 0 ? messages.value[messages.value.length - 1].chat_id : 0;
@@ -49,6 +54,8 @@ const addMessage = (message, file, imageUrl) => {
         chat_position: 'right',
         notification_type: '',
         chat_created_at: chatCreatedAt,
+        isError: false,
+        isMessageSent: true,
     });
     selectedFile.value = file;
     imagePreviewUrl.value = imageUrl;
@@ -106,6 +113,7 @@ const openModal = (imageSrc, type) => {
 defineExpose({
     addMessage,
     messageLoading,
+    updateLastMessage,
 });
 </script>
 
@@ -163,7 +171,10 @@ defineExpose({
 
                 <div
                     v-else-if="message.chat_position === 'right' || message.chat_position === 'left'"
-                    :class="message.is_show_pending_from === 2 ? 'border-b-2 border-[red] px-[18px] py-[10px] user-message' : message.chat_position === 'right' ? 'px-[18px] py-[10px] user-message' : 'px-[18px] py-[10px] message'"
+                    :class="[
+                        message.is_show_pending_from === 2 ? 'border-b-2 border-[red] px-[18px] py-[10px] user-message' : message.chat_position === 'right' ? 'px-[18px] py-[10px] user-message' : 'px-[18px] py-[10px] message',
+                        message.isError ? 'opacity-[0.5]' : '',
+                    ]"
                 >
                     <div v-if="message.chat_attachment.length != 0" class="hover:cursor-pointer">
                         <a
@@ -205,7 +216,9 @@ defineExpose({
 
                 <!-- this is for the double tick and time  -->
                 <div v-if="message.notification_type !== 'notification'" class="flex items-center gap-1 text-light-700 dark:text-dark-700 text-itl-note" :class="message.chat_position === 'right' ? 'flex-row-reverse' : ''">
-                    <img v-if="message.chat_position === 'right'" :src="getImg('manifest-blue-tick', darkModeVal)" class="" />
+                    <img v-if="message.isMessageSent" :src="getImg('ticket-chat-ongoing-message')" alt="watch" class="w-[12px]" />
+                    <img v-if="message.isError" :src="getImg('ticket-chat-error-message')" alt="error" class="w-[12px]" />
+                    <img v-else-if="message.chat_position === 'right' && !message.isMessageSent" :src="getImg('manifest-blue-tick', darkModeVal)" class="" />
                     {{ message.chat_created_at }}
                     <span class="mr-2 capitalize" v-if="checkUserType('admin') || checkUserType('subadmin')">{{ message.chat_created_by }}</span>
                 </div>
