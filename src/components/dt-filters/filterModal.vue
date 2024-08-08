@@ -563,6 +563,10 @@ input[type='number'] {
     }
 }
 
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled).p-focus {
+    background: transparent !important;
+}
+
 #filter-modal {
     .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight {
         @include theme() {
