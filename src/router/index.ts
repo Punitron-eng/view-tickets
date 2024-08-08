@@ -355,7 +355,7 @@ const routes = [
                     title: 'View Ticket',
                 },
                 component: () => import('../views/domestic/admin-pages/view-ticket/viewTicket.vue'),
-                // beforeEnter: [checkLogin],
+                beforeEnter: [checkLogin],
             },
             {
                 path: '/connect-plus',
