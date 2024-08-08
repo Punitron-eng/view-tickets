@@ -83,7 +83,7 @@ const createActions = () => ({
 
     // For datatable data count
     async [CPVIEWORDER.ACTIONS.GETDATATABLEAPIDATACOUNT](context: any, payload: any) {
-        const updatedPayload = { ...payload, moduleUrl: 'channel-partner/user' };
+        const updatedPayload = { ...payload, moduleUrl: 'channel-partner/order' };
         const currentDatatableData = await dataCount(updatedPayload, context.getters.getMappedFilterPayload);
         context.commit(CPVIEWORDER.MUTATIONS.SETDATATABLEAPIDATACOUNT, currentDatatableData);
     },

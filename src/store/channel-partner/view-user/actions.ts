@@ -1,5 +1,5 @@
 import { CPVIEWUSER } from './constants';
-import { getDefaultColumnData, getSaveFilterData, dataCount,saveFilterData, getPageCount, getDeleteUpdateFilterData } from '@/api/datatable/dataTableApi';
+import { getDefaultColumnData, getSaveFilterData, dataCount, saveFilterData, getPageCount, getDeleteUpdateFilterData } from '@/api/datatable/dataTableApi';
 import { getVendorDataApi } from '@/api/VendorModalData';
 import { dataTableData } from '@/api/channel-partner/view-user/ViewUserApi';
 
@@ -81,7 +81,7 @@ const createActions = () => ({
 
     // For datatable data count
     async [CPVIEWUSER.ACTIONS.GETDATATABLEAPIDATACOUNT](context: any, payload: any) {
-        const updatedPayload = {...payload,moduleUrl:'channel-partner/order'};
+        const updatedPayload = { ...payload, moduleUrl: 'channel-partner/user' };
         const currentDatatableData = await dataCount(updatedPayload, context.getters.getMappedFilterPayload);
         context.commit(CPVIEWUSER.MUTATIONS.SETDATATABLEAPIDATACOUNT, currentDatatableData);
     },
