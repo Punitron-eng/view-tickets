@@ -257,6 +257,7 @@ const postComment = async (selectedFileValue, successFileUpload) => {
         }
         const result = await addCommentApi(ticketModalData.value?.ticket_id, payload);
         if (result.status !== 'success') {
+            chatMessageSession.value.updateLastMessage(true, false);
             throw new Error(result.message);
         }
         currentMessage.value = '';
@@ -290,6 +291,7 @@ const confirmPendingFnc = async () => {
         if (chatResult.status !== 'success') {
             throw new Error(chatResult.message);
         }
+
         const newTicketStore = { ...ticketModalComputed.value, chat: chatResult };
         store.commit(`${NEWVIEWTICKET.NAME}/setChatTicketModalData`, newTicketStore);
         // chatData.value = chatResult.data;
@@ -324,6 +326,7 @@ const sendMessage = async () => {
         if (selectedFileValue) {
             const result = await uploadAttachment(selectedFileValue);
             if (result.status !== 'success') {
+                chatMessageSession.value.updateLastMessage(true, false);
                 throw new Error(result.message);
             }
             await postComment(selectedFileValue, result);
