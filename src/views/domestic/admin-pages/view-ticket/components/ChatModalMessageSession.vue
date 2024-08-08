@@ -207,7 +207,7 @@ defineExpose({
                 <div v-if="message.notification_type !== 'notification'" class="flex items-center gap-1 text-light-700 dark:text-dark-700 text-itl-note" :class="message.chat_position === 'right' ? 'flex-row-reverse' : ''">
                     <img v-if="message.chat_position === 'right'" :src="getImg('manifest-blue-tick', darkModeVal)" class="" />
                     {{ message.chat_created_at }}
-                    <span class="mr-2" v-if="checkUserType('admin') || checkUserType('subadmin')">{{ message.chat_created_by }}</span>
+                    <span class="mr-2 capitalize" v-if="checkUserType('admin') || checkUserType('subadmin')">{{ message.chat_created_by }}</span>
                 </div>
             </div>
         </div>

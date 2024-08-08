@@ -52,12 +52,6 @@ export const apiHandlerWithJson = async (url: string, payload?: object) => {
 export const apiHandlerWithFile = async (url: string, payload?: object) => {
     const params_temp = new FormData();
 
-    // params_temp.append('process_type', payload.process_type);
-    // params_temp.append('vendor_id', payload.vendor_id);
-    // params_temp.append('vendor_pickup_address_id', payload.vendor_pickup_address_id);
-    // params_temp.append('is_reverse', payload.is_reverse);
-    // params_temp.append('file', payload.file);
-
     for (const key in payload) {
         params_temp.append(key, payload[key]);
     }
