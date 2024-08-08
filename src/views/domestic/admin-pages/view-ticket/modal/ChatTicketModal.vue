@@ -176,7 +176,6 @@ const fetchTicketData = async () => {
             { label: 'Ageing', value: ticketModalData.value?.ticket_ageing || '-' },
             { label: 'Last Updated', value: ticketModalData.value?.ticket_last_updated_date || '-' },
             { label: 'Closed Date', value: ticketModalData.value?.ticket_closed_date || '-' },
-            { label: 'Extended Due Date', value: ticketModalData.value?.extended_due_date.join(', ') },
         ];
         SubAdminticketItems.value = [
             { label: 'Close by', value: ticketModalData.value?.ticket_close_by },
