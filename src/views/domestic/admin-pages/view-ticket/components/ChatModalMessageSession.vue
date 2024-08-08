@@ -202,17 +202,17 @@ defineExpose({
                             <!-- this is for the video message -->
                             <img :src="getImg('audio-icon')" class="" @click="openModal(message.chat_attachment.file_path_large, 'video')" v-else />
                         </div>
-                        <img :src="getImg('image-preview')" v-else @click="openModal(message.chat_attachment.file_path_large, 'image')" class="hover:cursor-pointer max-w-[40px]" />
+                        <img :src="message.chat_attachment.file_path_large" v-else @click="openModal(message.chat_attachment.file_path_large, 'image')" class="hover:cursor-pointer max-w-[100px] rounded-md" />
                     </div>
                     {{ message.chat_message }}
                 </div>
                 <!-- this is for the Image message -->
-                <div v-else class="message" :class="message?.chat_message?.length > 0 ? 'px-[18px] py-[10px]' : ''">
+                <!-- <div v-else class="message" :class="message?.chat_message?.length > 0 ? 'px-[18px] py-[10px]' : ''">
                     <div v-if="message.chat_attachment != []">
                         <img :src="message.chat_attachment.file_path_large" class="object-contain max-w-[40px]" />
                     </div>
                     {{ message.chat_message }}
-                </div>
+                </div> // punit told me to remove this -->
 
                 <!-- this is for the double tick and time  -->
                 <div v-if="message.notification_type !== 'notification'" class="flex items-center gap-1 text-light-700 dark:text-dark-700 text-itl-note" :class="message.chat_position === 'right' ? 'flex-row-reverse' : ''">
