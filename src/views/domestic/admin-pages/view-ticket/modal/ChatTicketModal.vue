@@ -136,7 +136,6 @@ const updateAssignMember = async () => {
             assignMemberUpdateIsLoading.value = false;
         } else {
             toast.add({ severity: 'error', summary: 'Error Message', detail: result.message, life: 3000 });
-            throw new Error(result.message);
         }
     } catch (error) {
         assignMemberUpdateIsLoading.value = false;
