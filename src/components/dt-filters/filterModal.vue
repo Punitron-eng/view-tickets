@@ -791,14 +791,12 @@ input[type='number'] {
     }
 
     .p-multiselect-items-wrapper {
-        height: 200px;
+        height: auto;
     }
 
     .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
         // background-color: #dfdfdf;
-        @include theme() {
-            background-color: theme-get('background') !important;
-        }
+        background-color: var(--light-400) !important;
     }
 
     .p-checkbox .p-checkbox-box.p-highlight {
@@ -813,6 +811,12 @@ input[type='number'] {
     .p-multiselect:not(.p-disabled).p-focus {
         box-shadow: none;
         border-color: #dfdfdf;
+    }
+}
+
+.darkTheme #filter-modal {
+    .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
+        background-color: var(--dark-400) !important;
     }
 }
 
