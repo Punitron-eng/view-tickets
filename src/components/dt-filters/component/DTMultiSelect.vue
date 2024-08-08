@@ -42,6 +42,6 @@ const getLogisticIcon = (logisticLogo) => {
 <style lang="scss">
 #status_filter,
 .p-multiselect {
-    @apply font-interRegular !text-[13px];
+    @apply font-interRegular;
 }
 </style>
