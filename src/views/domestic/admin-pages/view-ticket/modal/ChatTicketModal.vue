@@ -232,8 +232,8 @@ const uploadAttachment = async (selectedFileValue) => {
             upload_file: selectedFileValue,
         };
         const result = await uploadAttachmentApi(payload);
-        if (result.status !== 'success') {
-            throw new Error(result.message);
+        if (result.status == 'success') {
+            toast.add({ severity: 'success', summary: 'Success Message', detail: result.message, life: 3000 });
         }
         return result;
     } catch (error) {

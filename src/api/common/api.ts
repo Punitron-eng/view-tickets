@@ -93,7 +93,8 @@ export const apiHandlerWithFileNew = async (url: string, payload?: object) => {
             } catch (error) {
                 try {
                     const errorData = await result.json();
-                    throw new Error(errorData.message || 'Failed to fetch data');
+                    // throw new Error(errorData.message || 'Failed to fetch data');
+                    return errorData || 'Failed to fetch data';
                 } catch (error) {
                     throw error;
                 }

@@ -21,24 +21,6 @@ export const dataTableData = async (data, filterPayload) => {
     return result;
 };
 
-// for datatable api data count
-export const dataCount = async (data, filterPayload) => {
-    const apiPath = `${config.baseUrlApiNew}api/v1/channel-partner/order/get/count`;
-    const filteredPayload = Object.fromEntries(Object.entries(filterPayload).filter(([key, value]) => value !== '' && value !== null && value !== undefined && value.length > 0 && JSON.stringify(value) !== JSON.stringify({})));
-    const payload = {
-        module_name: data.moduleName,
-        tab_name: data.selectedTab,
-        sub_tab_name: data.subTabName,
-        is_active_sub_tab_filter: data.is_active_sub_tab_filter,
-        page_start: filterPayload.paginatorStart,
-        page_count: data.length,
-        filter_payload: filteredPayload,
-    };
-
-    const result = await apiHandler(apiPath, payload);
-    return result;
-};
-
 export const exportBgProcess = async (exportPayload: any) => {
     const apiPath = 'common-module-v3/bg-process-export-submit-v3.json';
     const params_temp = new URLSearchParams();

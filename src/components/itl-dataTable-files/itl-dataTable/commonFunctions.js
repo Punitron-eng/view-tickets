@@ -466,15 +466,14 @@ export const exportData = async (type) => {
             return;
         } else {
             await store.dispatch(`${storeName}/getBillingExport`, { processType: dataVariables.value.processType, selectedTab: dataVariables.value.selectedTabName, subTabName: dataVariables.value.subTabName });
-            if (dataVariables.value.exportStatus.status == 'error') {
-                dataVariables.value.isExportLoading = false;
-                dataVariables.value.toast.add({ severity: 'error', summary: 'Error Message', detail: dataVariables.value.exportStatus.html_message, life: 3000 });
-                return;
-            } else {
+            if (dataVariables.value.exportStatus.status == 'success') {
                 setTimeout(() => {
                     dataVariables.value.isExportLoading = false;
                     window.open(dataVariables.value.config.baseUrlPanel + 'view-bg-process-v3', '_blank');
                 }, 2000);
+            } else {
+                dataVariables.value.isExportLoading = false;
+                dataVariables.value.toast.add({ severity: 'error', summary: 'Error Message', detail: dataVariables.value.exportStatus.html_message, life: 3000 });
             }
         }
     } else {
@@ -486,11 +485,10 @@ export const exportData = async (type) => {
                 process_type: 148,
             };
             await store.dispatch(`${storeName}/getExportCount`, payload);
-            if (dataVariables.value.exportStatus.status == 'error') {
-                dataVariables.value.toast.add({ severity: 'error', summary: 'Error Message', detail: dataVariables.value.exportStatus.html_message, life: 3000 });
-                return;
-            } else {
+            if (dataVariables.value.exportStatus.status == 'success') {
                 window.open(dataVariables.value.config.baseUrlPanel + 'view-bg-process-v3', '_blank');
+            } else {
+                dataVariables.value.toast.add({ severity: 'error', summary: 'Error Message', detail: dataVariables.value.exportStatus.html_message, life: 3000 });
             }
         }
         dataVariables.value.isExportLoading = false;
@@ -505,16 +503,15 @@ export const newExportData = async (type) => {
             dataVariables.value.isExportLoading = false;
             return;
         } else {
-            store.dispatch(`${storeName}/getBillingExport`, { moduleName: dataVariables.value.moduleName, selectedTab: dataVariables.value.selectedTabName, subTabName: dataVariables.value.subTabName });
-            if (dataVariables.value.exportStatus.status == 'error') {
-                dataVariables.value.isExportLoading = false;
-                dataVariables.value.toast.add({ severity: 'error', summary: 'Error Message', detail: dataVariables.value.exportStatus.html_message, life: 3000 });
-                return;
-            } else {
+            await store.dispatch(`${storeName}/getBillingExport`, { moduleName: dataVariables.value.moduleName, selectedTab: dataVariables.value.selectedTabName, subTabName: dataVariables.value.subTabName });
+            if (dataVariables.value.exportStatus.status == 'success') {
                 setTimeout(() => {
                     dataVariables.value.isExportLoading = false;
                     window.open(dataVariables.value.config.baseUrlPanel + 'view-bg-process-v3', '_blank');
                 }, 2000);
+            } else {
+                dataVariables.value.isExportLoading = false;
+                dataVariables.value.toast.add({ severity: 'error', summary: 'Error Message', detail: dataVariables.value.exportStatus.message, life: 3000 });
             }
         }
     } else {
@@ -525,12 +522,11 @@ export const newExportData = async (type) => {
             const payload = {
                 process_type: 148,
             };
-            store.dispatch(`${storeName}/getExportCount`, payload);
-            if (dataVariables.value.exportStatus.status == 'error') {
-                dataVariables.value.toast.add({ severity: 'error', summary: 'Error Message', detail: dataVariables.value.exportStatus.html_message, life: 3000 });
-                return;
-            } else {
+            await store.dispatch(`${storeName}/getExportCount`, payload);
+            if (dataVariables.value.exportStatus.status == 'success') {
                 window.open(dataVariables.value.config.baseUrlPanel + 'view-bg-process-v3', '_blank');
+            } else {
+                dataVariables.value.toast.add({ severity: 'error', summary: 'Error Message', detail: dataVariables.value.exportStatus.message, life: 3000 });
             }
         }
         dataVariables.value.isExportLoading = false;
