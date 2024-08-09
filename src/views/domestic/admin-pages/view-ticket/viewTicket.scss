@@ -11,6 +11,11 @@
 //     background: rgba(0, 0, 0, 0.431372549);
 // }
 
+.datatable .p-inputtext {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
 .p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
     background: transparent !important;
 }
@@ -264,7 +269,6 @@
 .darkTheme .datatable-main-outer .datatable-custom-features .features-outer .features-left-side .search-outer .form-control {
     box-shadow: none;
 }
-
 
 #ticket_department {
     .p-dropdown-header {
