@@ -466,9 +466,6 @@ onUnmounted(() => {
     document.body.classList.remove('create-new-ticket-modal');
 });
 const isLoadingSubmit = ref(false);
-const test = () => {
-    airwayBillNoFunction();
-};
 </script>
 <template>
     <DialogView id="create-new-ticket-modal" v-model:visible="dataVariables.isCreateNewTicketModalVisible" :modal="true" :draggable="false" dismissableMask>
