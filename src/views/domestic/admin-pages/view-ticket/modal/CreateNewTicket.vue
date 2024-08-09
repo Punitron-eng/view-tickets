@@ -171,16 +171,18 @@ const airwayBillNoFunction = async (event) => {
             const result = [res.data.user_name, res.data.vendor_id].join(',');
             rescheduleDates.value = res.data.reschedule_dates;
             vendorData.value = [result];
-            const categoryPaylod = {
-                awb_no: airwayBillNo.value,
-                department_id: selectedDepartment.value.id,
-            };
-            const cataRes = await getCategoryOptionsApi(categoryPaylod);
-            if (cataRes.status == 'success') {
-                categoryData.value = cataRes.data;
-            } else {
-                toast.add({ severity: 'error', summary: 'Error', detail: cataRes.message, life: 3000 });
-                showTurnaroundTime.value = false;
+            if (topHeader.user_id == 3000 || topHeader.user_id == 903) {
+                const categoryPaylod = {
+                    awb_no: airwayBillNo.value,
+                    department_id: selectedDepartment.value.id,
+                };
+                const cataRes = await getCategoryOptionsApi(categoryPaylod);
+                if (cataRes.status == 'success') {
+                    categoryData.value = cataRes.data;
+                } else {
+                    toast.add({ severity: 'error', summary: 'Error', detail: cataRes.message, life: 3000 });
+                    showTurnaroundTime.value = false;
+                }
             }
         } else {
             toast.add({ severity: 'error', summary: 'Error', detail: res.message, life: 3000 });
@@ -660,7 +662,6 @@ const isLoadingSubmit = ref(false);
                             ref="fileUploadComponent"
                             fileID="file-upload"
                             file-type="*"
-                            :max-file-size="10"
                             @listenFileUploadChange="(val) => listenFileUploadChange(val)"
                             @clearFile="(val) => (file = val)"
                             twClasses="w-full h-44 rounded-xl h-44 rounded-xl dark:bg-[#4d4d4d] border-2 dark:border-[#5d5d5d] border-dashed"
