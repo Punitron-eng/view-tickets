@@ -357,7 +357,7 @@ export const clearFilter = async (data) => {
     store.commit(`${storeName}/clearfilterbyfield`, data);
     store.dispatch(`${storeName}/getPaginatorStart`, 0);
     dataVariables.value.removeCheck = true;
-    await getDataTableData;
+    await getDataTableData();
     dataVariables.value.removeCheck = false;
     if (data === 'vendor_name') {
         await store.dispatch(`${storeName}/resetVendorData`);
