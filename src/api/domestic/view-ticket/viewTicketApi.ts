@@ -39,8 +39,8 @@ export const dataTableData = async (data, filterPayload) => {
 //     return result;
 // };
 
-export const ticketDepartmentApiCall = async (id, modal) => {
-    if (modal.ticket_department) {
+export const ticketDepartmentApiCall = async (id, modal,field) => {
+    if (field == 'ticket_department') {
         const data = { id, modalValue: modal };
         await store.commit(`${NEWVIEWTICKET.NAME}/setTicketDepartmentId`, data.id);
         await dataTableFncs.getColumnData(dataVariables.value.saveFilterID);

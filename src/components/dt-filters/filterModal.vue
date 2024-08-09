@@ -612,7 +612,7 @@ input[type='number'] {
 }
 
 .left-filter-labels {
-    height: 88.9%;
+    height: calc(100% - 65px);
 }
 
 .header-div {

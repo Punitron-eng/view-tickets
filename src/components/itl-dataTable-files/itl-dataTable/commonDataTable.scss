@@ -428,6 +428,8 @@
 
     .whatsapp-count-outer {
         padding: 16px;
+        max-height: 100px;
+        overflow: auto;
         h6 {
             margin-bottom: 16px;
             line-height: 16px;

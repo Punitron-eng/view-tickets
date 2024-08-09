@@ -481,7 +481,7 @@ const confirmUnactionbleItlFnc = async () => {
                         <div v-if="isLoading">
                             <SkeletonView width="340px" height="50px" />
                         </div>
-                        <div v-else-if="checkAccessRight() ? true : deepCheckAccessRight('domestic', 'support_ticket', 'edit')">
+                        <div v-else-if="(checkAccessRight() ? true : deepCheckAccessRight('domestic', 'support_ticket', 'edit')) && ticketModalData.ticket_status === 'Open'">
                             <div class="font-interSemiBold text-light-1000 dark:text-[#ffffff]">ASSIGN MEMBER</div>
                             <div class="flex flex-col md:flex-row gap-2 pt-[8px]">
                                 <MultiSelect
@@ -653,8 +653,9 @@ const confirmUnactionbleItlFnc = async () => {
     </DialogView>
     <!-- image PreView -->
     <DialogView v-model:visible="imgPreview" :modal="true" :draggable="false" dismissableMask id="imgpreview">
+        <button @click="nextImage" class="absolute top-[50%] right-2 z-[9]"><img :src="getImg('filter-next-icon')" /></button>
         <div v-if="imgPreview" class="relative pb-6 px-6 max-h-[570px] h-full">
-            <button @click="nextImage" class="absolute top-[50%] right-0"><img :src="getImg('filter-next-icon')" /></button>
+            
             <div v-if="modalImageSrc.imageSrc.type == 'audio' || modalImageSrc.imageSrc.type == 'video'" class="w-[30vw] h-[20vh] flex justify-center items-center">
                 <audio controls v-if="modalImageSrc.imageSrc.type === 'audio'">
                     <source :src="modalImageSrc.imageSrc.file" type="audio/mpeg" />
@@ -662,10 +663,11 @@ const confirmUnactionbleItlFnc = async () => {
                 <video :src="modalImageSrc.imageSrc.file" controls v-else></video>
             </div>
             <img v-else :src="modalImageSrc.imageSrc.file" class="w-[40vw] object-contain hover:cursor-pointer" alt="Image Preview" />
-            <button @click="prevImage" class="absolute top-[50%] left-0">
-                <img :src="getImg('filter-prev-icon')" />
-            </button>
+            
         </div>
+        <button @click="prevImage" class="absolute top-[50%] left-2 z-[9]">
+            <img :src="getImg('filter-prev-icon')" />
+        </button>
     </DialogView>
 </template>
 
