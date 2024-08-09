@@ -69,7 +69,13 @@ watch([() => dataVariables.value.modalShow, () => dataVariables.value.showDelete
 });
 watch(
     () => dataVariables.value.dataTableData,
-    () => {
+    (newValue) => {
+        newValue?.data?.forEach((item) => {
+            if (item.action.actionsAvail.length == 0) {
+                dataVariables.value.isActionColumn = false;
+            }
+        });
+
         dataTableFncs.getCurrentRoutes();
     }
 );

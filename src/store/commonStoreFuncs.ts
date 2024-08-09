@@ -243,7 +243,7 @@ export const getFilterMappedPayload = (state: any) => {
 
 export const setApplySaveFilterData = (state: any, selectedFilter: any) => {
     selectedFilter.forEach((payload) => {
-        const dataKey = Object.keys(payload)[0];
+        const dataKey = Object.keys(payload)[findTypeIndex(payload)];
         const temp = { id: [], value: [] };
 
         switch (payload.type) {
@@ -317,7 +317,7 @@ export const setViewSaveFilterData = (state: any, item: any, tempFilterObject: a
         if (item) {
             for (const key in item) {
                 const value = item[key];
-                if ((value.length >= 0 && typeof value === 'string') || isObject(value) || isobjectLabel(value) || isObjectForMinMax(value) || isObjectForGroupCheckbox(value) || key === 'id' || key === 'is_pinned') {
+                if ((value.length >= 0 && typeof value === 'string') || isObject(value) || isobjectLabel(value) || isObjectForMinMax(value) || isObjectForGroupCheckbox(value) || isObjectForRadio(value) || key === 'id' || key === 'is_pinned') {
                     filteredItem[key] = value;
                 }
             }
