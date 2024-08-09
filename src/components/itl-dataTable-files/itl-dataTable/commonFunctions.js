@@ -877,7 +877,7 @@ export const getActiveTab = async (activeTab) => {
         dataVariables.value.isShowCheckbox = true;
     }
     // await Promise.all([getColumnData(dataVariables.value.saveFilterID), getSaveFilterData(), getDataTableData(), getDataTableDataCount()]);  //trying this new thing to fix the issue but it is workign same as below
-    getColumnData(dataVariables.value.saveFilterID);
+    await getColumnData(dataVariables.value.saveFilterID);
     await getDataTableData();
     await getSaveFilterData();
     await vendorDataValue(50, 0, '', 'checkbox');
