@@ -22,11 +22,11 @@ watch(isSidebarActive, (newVal) => {
 onBeforeUnmount(() => {
     unbindOutsideClickListener();
 });
-// onBeforeMount(() => {
-//     if (router.currentRoute.value.path == '/') {
-//         window.location.href = config.baseUrlPanel;
-//     }
-// });
+onBeforeMount(() => {
+    if (router.currentRoute.value.path == '/') {
+        window.location.href = config.baseUrlPanel;
+    }
+});
 
 // const getMenuDataRespo = async () => {
 //     const menuDetails = await getMenuResponse();
