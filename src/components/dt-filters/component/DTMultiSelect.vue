@@ -8,6 +8,7 @@
         </div>
         <MultiSelect v-else appendTo="self" id="status_filter" v-model="modal[id.field]" filter :options="id.values" optionLabel="value" :placeholder="id.header" :maxSelectedLabels="4" class="w-full dark:bg-transparent" />
         <p v-if="id.field == 'ticket_category'" class="text-xs">Note: Please select a department*</p>
+        <p v-if="id.field == 'created_by' && (checkUserType('admin') || checkUserType('subadmin'))" class="text-xs">Note: Please select atleast one vendor*</p>
     </div>
     <div v-else id="shipping_awb" class="w-[216px] md:w-[226px] relative">
         <MultiSelect appendTo="self" v-model="modal[id.field]" filter :options="id.values" optionLabel="value" :placeholder="id.header" :maxSelectedLabels="4" class="w-full dark:bg-transparent">
@@ -25,6 +26,7 @@
 import { defineModel } from 'vue';
 import Skeleton from 'primevue/skeleton';
 import { dataTableVariables as dataVariables } from '../../itl-dataTable-files/itl-dataTable/commonVariable';
+import { checkUserType } from '../../../util/commonHandlers';
 const modal = defineModel();
 const { id } = defineProps(['id']);
 const getLogisticIcon = (logisticLogo) => {

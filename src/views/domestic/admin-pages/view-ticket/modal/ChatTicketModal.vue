@@ -260,6 +260,7 @@ const postComment = async (selectedFileValue, successFileUpload) => {
             chatMessageSession.value.updateLastMessage(true, false);
             throw new Error(result.message);
         }
+        chatMessageSession.value.updateLastMessage(false, false);
         currentMessage.value = '';
         selectedFile.value = null;
         imagePreviewUrl.value = '';
@@ -329,6 +330,7 @@ const sendMessage = async () => {
                 chatMessageSession.value.updateLastMessage(true, false);
                 throw new Error(result.message);
             }
+            chatMessageSession.value.updateLastMessage(false, false);
             await postComment(selectedFileValue, result);
         } else {
             await postComment(currentMessageValue);

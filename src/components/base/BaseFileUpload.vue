@@ -151,8 +151,8 @@ const validateExtension = (value) => {
                     Drag and drop the file, or
                     <span @click="browseImage" class="cursor-pointer text-[#1279ff]">Browse</span>
                 </div>
-                <div v-if="props.maxFileSize" class="text-[12px] text-[#344563] dark:text-[#dfdfdf] mt-2 text-center">
-                    Max {{ props.maxFileSize }} MB ({{
+                <div class="text-[12px] text-[#344563] dark:text-[#dfdfdf] mt-2 text-center">
+                    <span v-if="props.maxFileSize"> Max {{ props.maxFileSize }} MB </span> ({{
                         props.fileType == 'CSV' ? 'CSV' : props.fileType == 'Image' ? 'PNG / JPG' : props.allowedExtensions ? props.allowedExtensions.map((ele) => ele).join(', ') : 'Only PDF, DOC, DOCX, XLS, XLSX, WAV, MP3, MP4.JPG, JPEG or PNG'
                     }}
                     format only)

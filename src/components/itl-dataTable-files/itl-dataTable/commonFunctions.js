@@ -4,6 +4,7 @@ import router from '@/router/index';
 import { dataTableVariables as dataTableConsts } from './dataTable';
 import { dataTableVariables as dataVariables } from './commonVariable';
 import { apiRoutes } from './commonVariable.js';
+import { checkUserType } from '@/util/commonHandlers';
 let storeName = '';
 const selectedSubTab = ['rev_return_request', 'credit', 'wallet'];
 const rejectCloseModal = () => (dataVariables.value.showRejectModal = false);
@@ -570,17 +571,32 @@ export const resetvendor = async (val) => {
     await vendorDataValue(50, 0, '', 'checkbox');
 };
 export const setFilter = async (value) => {
-    dataVariables.value.isVendorModalVisible = value.isShow;
-    const data = {
-        type: 'vendorModal',
-        vendor_name: value.vendorData,
-    };
-    store.commit(`${storeName}/setAppliedVendorData`, data);
-    store.dispatch(`${storeName}/getPaginatorStart`, 0);
-    await getColumnData(dataVariables.value.saveFilterID);
-    await getDataTableData();
-    await warehouseApi();
-    // await getAllWidgetValueData();
+    if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
+        if (checkUserType('admin') || checkUserType('subadmin')) {
+            dataVariables.value.isVendorModalVisible = value.isShow;
+            const data = {
+                type: 'vendorModal',
+                vendor_name: value.vendorData,
+            };
+            store.commit(`${storeName}/setAppliedVendorData`, data);
+            store.dispatch(`${storeName}/getPaginatorStart`, 0);
+            const vendorData = { id: 'vendorData', data: dataVariables.value.getVendorValues };
+            await getColumnData(dataVariables.value.saveFilterID, vendorData);
+            await getDataTableData();
+        }
+    } else {
+        dataVariables.value.isVendorModalVisible = value.isShow;
+        const data = {
+            type: 'vendorModal',
+            vendor_name: value.vendorData,
+        };
+        store.commit(`${storeName}/setAppliedVendorData`, data);
+        store.dispatch(`${storeName}/getPaginatorStart`, 0);
+        await getColumnData(dataVariables.value.saveFilterID);
+        await getDataTableData();
+        await warehouseApi();
+        // await getAllWidgetValueData();
+    }
 };
 
 export const closePickModal = async (isCloseModal) => {
@@ -990,7 +1006,7 @@ export const orderSearchData = async (searchData) => {
 };
 
 //  new functions
-export const getColumnData = async (saveFilterId, filterArr) => {
+export const getColumnData = async (saveFilterId, data) => {
     dataVariables.value.showSkeletonInCustomizeColumn = true;
     dataVariables.value.isFilterSkeletonShow = true; // added for if any api change data in filter modal
     const url = saveFilterId != '' && saveFilterId !== undefined ? apiRoutes.getById + saveFilterId : apiRoutes.get;
@@ -1000,14 +1016,23 @@ export const getColumnData = async (saveFilterId, filterArr) => {
         sub_tab_name: dataVariables.value.subTabName,
         is_active_sub_tab_filter: selectedSubTab.find((tab) => tab == dataVariables.value.selectedTabName) ? 1 : 0,
     };
+    if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
+        if (data?.id == 'vendorData') {
+            payload.vendor_name = data.data.id;
+        }
+    }
+
     const combinePayload = { url, payload };
     if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
-        filterArr?.forEach(async (filter) => {
-            if (filter.ticket_department) {
-                await store.commit(`${storeName}/setTicketDepartmentId`, filter.ticket_department.id);
-            }
-        });
+        if (data?.id == 'ticketDepartment') {
+            data.data?.forEach(async (filter) => {
+                if (filter.ticket_department) {
+                    await store.commit(`${storeName}/setTicketDepartmentId`, filter.ticket_department.id);
+                }
+            });
+        }
     }
+
     await store.dispatch(`${storeName}/getDefaultColumn`, combinePayload);
     // await store.dispatch('fetchDtColumn', combinePayload);
     await store.dispatch(`${storeName}/getPaginatorLast`, combinePayload);
@@ -1039,7 +1064,8 @@ export const applySaveFilterData = async (data) => {
     await store.commit(`${storeName}/clearAllFilter`);
     await dataVariables.value.router.push({ name: dataVariables.value.router.currentRoute.name, params: { tabs: dataVariables.value.selectedTabName.replace(/_/g, '-'), id: data.id } });
     await store.commit(`${storeName}/setApplySavedFilteredData`, data);
-    await getColumnData(data.id, data.filterArr);
+    const departmentData = { id: 'ticketDepartment', data: data.filterArr };
+    await getColumnData(data.id, departmentData);
     await getDataTableData();
     dataVariables.value.showSelectedFilter = data.name;
     if (data.filterArr.some((filter) => Object.keys(filter).includes(dataVariables.value.dtGlobalSearchId))) {
