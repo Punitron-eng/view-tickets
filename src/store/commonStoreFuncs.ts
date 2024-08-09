@@ -311,7 +311,6 @@ export const setViewSaveFilterData = (state: any, item: any, tempFilterObject: a
     tempFilterObject['id'] = filterData.data[index].id;
     tempFilterObject['is_pinned'] = filterData.data[index].is_pinned;
     state.viewSaveFilteredData.push(tempFilterObject);
-    console.log(state.viewSaveFilteredData, 'state.viewSaveFilteredData');
 
     state.viewSaveFilteredData = state.viewSaveFilteredData.map((item) => {
         const filteredItem = {};
