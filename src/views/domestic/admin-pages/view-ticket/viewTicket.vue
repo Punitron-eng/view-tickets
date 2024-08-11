@@ -389,7 +389,7 @@ onMounted(() => {
         <template #header> Show Confirmation </template>
         <template #body>
             <p>Changing the status to 'Pending from Vendor' will mark this as 'Pending from Vendor.'</p>
-            <BaseTextarea rows="4" cols="50" v-model="pendingForVendor" placeholder="Remark" class="rounded-[4px] w-full py-4" />
+            <BaseTextarea rows="4" cols="50" v-model="pendingForVendor" placeholder="Remark" class="rounded-[4px] w-full" />
         </template>
         <template #footer>
             <div class="flex justify-end">
