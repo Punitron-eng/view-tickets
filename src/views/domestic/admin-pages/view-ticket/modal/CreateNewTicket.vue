@@ -499,11 +499,11 @@ const isLoadingSubmit = ref(false);
                                 placeholder="Enter Airway Bill No"
                                 name="airwayBillNo"
                                 @input="validateValue"
-                                @blur="airwayBillNoFunction"
                                 autoComplete="off"
                                 @paste="handlePaste"
                                 @focusout="airwayBillNoFunction"
                             />
+                            <!-- @blur="airwayBillNoFunction"  // remove this because 2 times api is called if user have any acyion in awb and 2 error message occurs -->
                             <div class="text-[10px] text-[red] absolute left-1 bottom-2" v-if="errorMessage.airwayBillNo">{{ errorMessage.airwayBillNo }}</div>
                             <!-- details -->
                             <div v-if="showAirwayBillNoDetails && !isLoading" class="bg-[#f4f7f9] dark:bg-[#363636] p-2 rounded-lg">
