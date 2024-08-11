@@ -394,7 +394,7 @@ onMounted(() => {
         <template #footer>
             <div class="flex justify-end">
                 <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => ((dataVariables.isVisibleConfirmationforVendor = false), (isCheck = false))" />
-                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" @click="confirmPendingFncForVendor(dataVariables.selectedRowId)" />
+                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" :disabled="!pendingForVendor.trim()" @click="confirmPendingFncForVendor(dataVariables.selectedRowId)" />
             </div>
         </template>
     </ConfirmationModal>
@@ -409,7 +409,7 @@ onMounted(() => {
         <template #footer>
             <div class="flex justify-end">
                 <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => ((dataVariables.isVisibleConfirmationForCs = false), (isCheck = false))" />
-                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" @click="confirmPendingFncForCs(dataVariables.selectedRowId)" />
+                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" :disabled="!pendingForCsRemark.trim()" @click="confirmPendingFncForCs(dataVariables.selectedRowId)" />
             </div>
         </template>
     </ConfirmationModal>
