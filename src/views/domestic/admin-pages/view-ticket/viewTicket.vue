@@ -125,6 +125,7 @@ onMounted(async () => {
     dataVariables.value.scrollableTabs = staticTabs;
     dataTableFncs.getSelectedTabOnLoad();
     document.body.classList.add('view-ticket');
+    document.body.classList.add('ticket-page-count');
     store.commit(`${NEWVIEWTICKET.NAME}/clearAllFilter`);
     if (dataVariables.value.router.currentRoute.params.tabs == 'open') {
         dataVariables.value.subTabName = 'pending_from_itl';
