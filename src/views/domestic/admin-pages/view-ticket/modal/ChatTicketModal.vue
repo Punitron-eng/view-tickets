@@ -614,7 +614,7 @@ const confirmUnactionbleItlFnc = async () => {
             </template>
             <template #body>
                 <div class="mb-3">Are you sure you want to mark this ticket as 'Pending from Vendor'.</div>
-                <BaseTextarea rows="4" cols="50" v-model="pendingForVendor" placeholder="Remark" class="rounded-[4px] w-full py-4 px-2" />
+                <BaseTextarea rows="4" cols="50" v-model="pendingForVendor" placeholder="Remark" class="rounded-[4px] w-full py-4" />
             </template>
             <template #footer>
                 <div class="flex justify-end">
