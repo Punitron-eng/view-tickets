@@ -242,6 +242,9 @@ defineExpose({
         width: 16px !important;
         height: 16px !important;
     }
+    .p-dialog-header {
+        justify-content: end; // added this due to the bug number 29 in ticket https://snipboard.io/BOkxve.jpg
+    }
 }
 
 .chat-session-container {
