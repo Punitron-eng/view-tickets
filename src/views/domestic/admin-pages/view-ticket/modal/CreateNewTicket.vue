@@ -251,7 +251,7 @@ const checkDepartmentValue = async () => {
     const res = await getCategoryOptionsApi(categoryPaylod);
     if (res.status == 'success') {
         categoryData.value = res.data;
-        subject.value = '';
+        subject.value = ''; // added this due to the bug number 27 in tickets the screen shot is attached here https://paste.pics/RN6KM
     } else {
         toast.add({ severity: 'error', summary: 'Error', detail: res.message, life: 3000 });
         showTurnaroundTime.value = false;
