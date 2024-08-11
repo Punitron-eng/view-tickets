@@ -251,6 +251,7 @@ const checkDepartmentValue = async () => {
     const res = await getCategoryOptionsApi(categoryPaylod);
     if (res.status == 'success') {
         categoryData.value = res.data;
+        selectedCategory.value = ''; // added this because if any user select the departemnt and the select the ctegory then change the department the value of category shows empty but inside it value doesnt get empty so the error message is not display and ticket is formed
         subject.value = ''; // added this due to the bug number 27 in tickets the screen shot is attached here https://paste.pics/RN6KM
     } else {
         toast.add({ severity: 'error', summary: 'Error', detail: res.message, life: 3000 });
