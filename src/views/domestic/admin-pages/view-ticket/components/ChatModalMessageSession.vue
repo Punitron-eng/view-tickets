@@ -216,7 +216,7 @@ defineExpose({
 
                 <!-- this is for the double tick and time  -->
                 <div v-if="message.notification_type !== 'notification'" class="flex items-center gap-1 text-light-700 dark:text-dark-700 text-itl-note" :class="message.chat_position === 'right' ? 'flex-row-reverse' : ''">
-                    <img v-if="message.isMessageSent" :src="getImg('ticket-chat-ongoing-message')" alt="watch" class="w-[12px]" />
+                    <img v-if="message.isMessageSent" :src="getImg('chat-ticket-clock')" alt="watch" class="w-[12px]" />
                     <img v-if="message.isError" :src="getImg('ticket-chat-error-message')" alt="error" class="w-[12px]" />
                     <img v-else-if="message.chat_position === 'right' && !message.isMessageSent" :src="getImg('manifest-blue-tick', darkModeVal)" class="" />
                     {{ message.chat_created_at }}
