@@ -124,17 +124,22 @@ const assignMemberUpdateIsLoading = ref(false);
 const updateAssignMember = async () => {
     try {
         assignMemberUpdateIsLoading.value = true;
-        const formattedDate = new Date(singleSelectedDate.value).toISOString().split('T')[0];
+
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'Asia/Kolkata' };
+        const formattedDate = singleSelectedDate.value.toLocaleDateString('en-IN', options).split('/').reverse().join('-');
+
         const payload = {
             ticket_id: ticketModalData.value?.ticket_id,
             assign_member: selectedOptionsText.value.map((item) => item.id),
             due_date: formattedDate,
         };
+
         const result = await updateAssignMemberApi(payload);
         if (result.status === 'success') {
-            toast.add({ severity: 'success', summary: 'Successfull Updated', detail: result.message, life: 3000 });
             assignMemberUpdateIsLoading.value = false;
+            toast.add({ severity: 'success', summary: 'Successfull Updated', detail: result.message, life: 3000 });
         } else {
+            assignMemberUpdateIsLoading.value = false;
             toast.add({ severity: 'error', summary: 'Error Message', detail: result.message, life: 3000 });
         }
     } catch (error) {
