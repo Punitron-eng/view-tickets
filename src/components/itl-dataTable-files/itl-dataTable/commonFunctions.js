@@ -580,8 +580,7 @@ export const setFilter = async (value) => {
             };
             store.commit(`${storeName}/setAppliedVendorData`, data);
             store.dispatch(`${storeName}/getPaginatorStart`, 0);
-            const vendorData = { id: 'vendorData', data: dataVariables.value.getVendorValues };
-            await getColumnData(dataVariables.value.saveFilterID, vendorData);
+            await getColumnData(dataVariables.value.saveFilterID);
             await getDataTableData();
         }
     } else {
@@ -1016,11 +1015,6 @@ export const getColumnData = async (saveFilterId, data) => {
         sub_tab_name: dataVariables.value.subTabName,
         is_active_sub_tab_filter: selectedSubTab.find((tab) => tab == dataVariables.value.selectedTabName) ? 1 : 0,
     };
-    if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
-        if (data?.id == 'vendorData') {
-            payload.vendor_name = data.data.id;
-        }
-    }
 
     const combinePayload = { url, payload };
     if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
