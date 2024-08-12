@@ -373,7 +373,6 @@ const applyVendorFilter = async (vendorName) => {
 const resetVendorFilter = () => {
     vendorData.value = [];
     isAdmin.value = false;
-    errorMessage.value.vendor = 'Select Vendor';
     airwayBillNo.value = '';
     showAirwayBillNoDetails.value = false;
 };

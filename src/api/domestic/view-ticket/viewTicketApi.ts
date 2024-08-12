@@ -259,7 +259,7 @@ export const confirmPendingApi = async (payload: any) => {
     return await apiHandler(apiPath, payload);
 };
 export const confirmPendingApiForCs = async (payload: any) => {
-    const apiPath = `${config.baseUrlApiNew}api/v1/support-ticket/edit/pending`;
+    const apiPath = `${config.baseUrlApiNew}api/v1/support-ticket/edit/pending-from-cs`;
     return await apiHandler(apiPath, payload);
 };
 

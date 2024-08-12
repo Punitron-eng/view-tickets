@@ -172,6 +172,7 @@ const isOpenConfirmation = ref(false);
 const selectedRowId = ref({
     actionType: '',
     rowId: '',
+    awb_no: '',
 });
 
 const confirmPendingFnc = async () => {
@@ -221,6 +222,7 @@ const confirmPendingFncForVendor = async (ticketId) => {
         if (result.status !== 'success') {
             throw new Error(result.message);
         }
+        toast.add({ severity: 'success', summary: 'Success Message', detail: result.message, life: 3000 });
         dataVariables.value.isVisibleConfirmationforVendor = false;
         await dataTableFncs.getDataTableData();
     } catch (error) {
@@ -233,13 +235,15 @@ const confirmPendingFncForCs = async (ticketId) => {
     try {
         const payload = {
             ticket_id: ticketId,
-            remark: pendingForCsRemark.value,
+            awb_no: selectedRowId.value.awb_no,
+            ticket_remark: pendingForCsRemark.value,
         };
         const result = await confirmPendingApiForCs(payload);
         if (result.status !== 'success') {
             throw new Error(result.message);
         }
-        dataVariables.value.isVisibleConfirmationforVendor = false;
+        toast.add({ severity: 'success', summary: 'Success Message', detail: result.message, life: 3000 });
+        dataVariables.value.isVisibleConfirmationForCs = false;
         await dataTableFncs.getDataTableData();
     } catch (error) {
         toast.add({ severity: 'error', summary: 'Error Message', detail: error, life: 3000 });
@@ -256,17 +260,22 @@ const comfirmCloseReopenFnc = async () => {
         const payload = {
             ticket_id: closeReopenRemarkSelectedData.value.ticket_id,
             awb_no: closeReopenRemarkSelectedData.value.awb_no_logistics,
-            remark: closeReopenRemark.value,
+            ticket_remark: closeReopenRemark.value,
         };
         const result = await confirmCloseReopenApi(payload);
         if (result.status !== 'success') {
             throw new Error(result.message);
         }
+        toast.add({ severity: 'success', summary: 'Success Message', detail: result.message, life: 3000 });
         dataVariables.value.isVisibleCloseReopenConfirmation = false;
         await dataTableFncs.getDataTableData();
     } catch (error) {
         toast.add({ severity: 'error', summary: 'Error Message', detail: error, life: 3000 });
     }
+};
+const closecomfirmCloseReopenFnc = async () => {
+    dataVariables.value.isVisibleCloseReopenConfirmation = false;
+    closeReopenRemark.value = '';
 };
 const actionModal = async (data) => {
     if (data.selectedAction.name === 'Close' || data.selectedAction.name === 'Reopen') {
@@ -277,6 +286,7 @@ const actionModal = async (data) => {
     } else if (data.selectedAction.name === 'Pending From Cs') {
         dataVariables.value.isVisibleConfirmationForCs = true;
         dataVariables.value.selectedRowId = data.rowId;
+        selectedRowId.value.awb_no = data.selectedRowData.awb_no_logistics;
     } else if (data.selectedAction.name === 'Rate Us') {
         dataVariables.value.isTicketRateModalVisible = true;
         dataVariables.value.selectedTicketId = data.rowId;
@@ -385,7 +395,7 @@ onMounted(() => {
     />
     <ChatTicketModal />
     <TicketRateModal />
-    <ConfirmationModal :isVisible="dataVariables.isVisibleConfirmationforVendor" @close-confirmation-modal="() => ((dataVariables.isVisibleConfirmationforVendor = false), (isCheck = false))">
+    <ConfirmationModal :isVisible="dataVariables.isVisibleConfirmationforVendor" @close-confirmation-modal="() => (dataVariables.isVisibleConfirmationforVendor = false)">
         <template #header> Show Confirmation </template>
         <template #body>
             <p>Changing the status to 'Pending from Vendor' will mark this as 'Pending from Vendor.'</p>
@@ -393,12 +403,12 @@ onMounted(() => {
         </template>
         <template #footer>
             <div class="flex justify-end">
-                <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => ((dataVariables.isVisibleConfirmationforVendor = false), (isCheck = false))" />
+                <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => (dataVariables.isVisibleConfirmationforVendor = false)" />
                 <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" :disabled="!pendingForVendor.trim()" @click="confirmPendingFncForVendor(dataVariables.selectedRowId)" />
             </div>
         </template>
     </ConfirmationModal>
-    <ConfirmationModal :isVisible="dataVariables.isVisibleConfirmationForCs" @close-confirmation-modal="() => ((dataVariables.isVisibleConfirmationForCs = false), (isCheck = false))">
+    <ConfirmationModal :isVisible="dataVariables.isVisibleConfirmationForCs" @close-confirmation-modal="() => (dataVariables.isVisibleConfirmationForCs = false)">
         <template #header> Show Confirmation </template>
         <template #body>
             <div class="flex flex-col items-center justify-center">
@@ -408,7 +418,7 @@ onMounted(() => {
         </template>
         <template #footer>
             <div class="flex justify-end">
-                <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => ((dataVariables.isVisibleConfirmationForCs = false), (isCheck = false))" />
+                <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => (dataVariables.isVisibleConfirmationForCs = false)" />
                 <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" :disabled="!pendingForCsRemark.trim()" @click="confirmPendingFncForCs(dataVariables.selectedRowId)" />
             </div>
         </template>
@@ -431,17 +441,17 @@ onMounted(() => {
         </template>
     </ConfirmationModal>
 
-    <ConfirmationModal :isVisible="dataVariables.isVisibleCloseReopenConfirmation" @close-confirmation-modal="(() => (dataVariables.isVisibleCloseReopenConfirmation = false), (closeReopenRemark = ''))">
+    <ConfirmationModal :isVisible="dataVariables.isVisibleCloseReopenConfirmation" @close-confirmation-modal="() => closecomfirmCloseReopenFnc()">
         <template #header> Close & Reopen Ticket </template>
         <template #body>
             <div class="flex flex-col">
-                <div class="mb-3">Are you sure you want to close & reopen this ticket?</div>
+                <div class="mb-3">Are you sure you want to close & reopen this ticket? {{ dataVariables.isVisibleCloseReopenConfirmation }}</div>
                 <BaseTextarea rows="4" cols="50" v-model="closeReopenRemark" placeholder="Remark" class="rounded-[4px]" />
             </div>
         </template>
         <template #footer>
             <div class="flex justify-end">
-                <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="(() => (dataVariables.isVisibleCloseReopenConfirmation = false), (closeReopenRemark = ''))" />
+                <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="closecomfirmCloseReopenFnc" />
                 <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" @click="comfirmCloseReopenFnc" />
             </div>
         </template>
