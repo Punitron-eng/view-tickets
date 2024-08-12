@@ -49,7 +49,6 @@ const browseImage = () => {
 const onFileSelect = async (event: any) => {
     const reader = new FileReader();
     const file = event.target.files[0];
-    console.log(file);
     reader.readAsDataURL(file);
     if (!(file && validateFile(file))) {
         return;
@@ -61,8 +60,11 @@ const onFileSelect = async (event: any) => {
 // Handles the file drop event.
 const onDrop = (files: File[] | null) => {
     if (files && files[0] && validateFile(files[0])) {
+        selectedImage.value = files[0].type.startsWith('image/') ? URL.createObjectURL(files[0]) : null;
         fileInfo.value = files[0];
         emits('listenFileUploadChange', files[0]);
+        console.log(selectedImage.value,'selectedImage.value')
+        console.log(files,'files')
     }
 };
 

@@ -911,4 +911,7 @@ const confirmUnactionbleItlFnc = async () => {
     padding-left: 32px !important;
     padding-right: 20px !important;
 }
+#confirmation-modal textarea.p-inputtextarea.p-inputtext {
+    padding: 16px !important;
+}
 </style>
