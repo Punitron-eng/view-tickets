@@ -254,7 +254,7 @@
                 top: 48px;
                 padding: 0;
                 .help-dropdown-details-section {
-                    padding: 24px;
+                    padding: 16px 24px;
                     .help-head-txt {
                         font-family: 'SegoeUI-Semibold';
                         font-size: 14px;
@@ -269,12 +269,15 @@
                         }
                     }
                     .grid {
-                        padding-top: 16px;
+                        padding-top: 8px;
                         .help-menu-li-section {
                             display: flex;
                             align-items: center;
                             padding: 4px;
                             margin-bottom: 4px;
+                            &:last-child{
+                                margin-bottom: 0;
+                            }
                             &:hover {
                                 border-radius: 4px;
                                 @include theme() {

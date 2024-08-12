@@ -135,8 +135,7 @@ input[type='date']:invalid:focus {
     border: 1px solid #212121;
 }
 .darkTheme .p-dropdown {
-    // background: transparent;
-    background: #4d4d4d;
+    background: transparent;
 }
 .form-control {
     @include theme() {
@@ -331,4 +330,11 @@ input[type='date']:invalid:focus {
 }
 .modal-card-head {
     @apply border-b-[1px] border-[#f1f3f5] w-full text-light-1200 font-interSemiBold flex py-[12px] px-[24px];
+}
+.p-dialog .p-dialog-header-icons{
+    margin-left: auto;
+}
+.p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
+    color: inherit !important;
+    background: transparent !important;
 }
