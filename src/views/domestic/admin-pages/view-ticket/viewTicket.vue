@@ -172,6 +172,7 @@ const isOpenConfirmation = ref(false);
 const selectedRowId = ref({
     actionType: '',
     rowId: '',
+    awb_no: '',
 });
 
 const confirmPendingFnc = async () => {
@@ -234,7 +235,7 @@ const confirmPendingFncForCs = async (ticketId) => {
     try {
         const payload = {
             ticket_id: ticketId,
-            awb_no: selectedRowId.value.selectedRowData.awb_no_logistics,
+            awb_no: selectedRowId.value.awb_no,
             ticket_remark: pendingForCsRemark.value,
         };
         const result = await confirmPendingApiForCs(payload);
@@ -242,7 +243,7 @@ const confirmPendingFncForCs = async (ticketId) => {
             throw new Error(result.message);
         }
         toast.add({ severity: 'success', summary: 'Success Message', detail: result.message, life: 3000 });
-        dataVariables.value.isVisibleConfirmationforVendor = false;
+        dataVariables.value.isVisibleConfirmationForCs = false;
         await dataTableFncs.getDataTableData();
     } catch (error) {
         toast.add({ severity: 'error', summary: 'Error Message', detail: error, life: 3000 });
@@ -285,6 +286,7 @@ const actionModal = async (data) => {
     } else if (data.selectedAction.name === 'Pending From Cs') {
         dataVariables.value.isVisibleConfirmationForCs = true;
         dataVariables.value.selectedRowId = data.rowId;
+        selectedRowId.value.awb_no = data.selectedRowData.awb_no_logistics;
     } else if (data.selectedAction.name === 'Rate Us') {
         dataVariables.value.isTicketRateModalVisible = true;
         dataVariables.value.selectedTicketId = data.rowId;
