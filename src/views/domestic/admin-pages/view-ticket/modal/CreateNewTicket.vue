@@ -50,6 +50,10 @@ const errorMessage = ref({
     ticketType: '',
     customerType: '',
     trayaTicketCreatedDate: '',
+    inputAddress: '',
+    inputLandMark: '',
+    mobileNumber: '',
+    rescheduleDate: '',
 });
 const categoryData = ref([]);
 const departmentData = ref([]);
@@ -119,6 +123,26 @@ const validateDetails = () => {
         {
             key: 'trayaTicketCreatedDate',
             check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && !trayaTicketCreatedDate.value,
+            message: 'This field is required',
+        },
+        {
+            key: 'inputAddress',
+            check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !inputAddress.value.address,
+            message: 'This field is required',
+        },
+        {
+            key: 'inputLandMark',
+            check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !inputAddress.value.landmark,
+            message: 'This field is required',
+        },
+        {
+            key: 'mobileNumber',
+            check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !mobileNumber.value,
+            message: 'This field is required',
+        },
+        {
+            key: 'rescheduleDate',
+            check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && (selectedCategory.value?.id == 197 || selectedCategory.value?.id == 206) && !selectedRescheduleDate.value,
             message: 'This field is required',
         },
     ];
@@ -275,6 +299,7 @@ const getCategory = (categoryValue) => {
 const ticketSubmit = async () => {
     isLoadingSubmit.value = true;
     const validate = validateDetails();
+
     if (validate) {
         isLoadingSubmit.value = false;
         return;
@@ -591,25 +616,27 @@ const isLoadingSubmit = ref(false);
                             <!-- Address and LandMark -->
                             <div v-if="selectedCategory?.id == 197 && (topHeader.user_id == 3000 || topHeader.user_id == 903)" class="flex flex-col md:flex-row w-full gap-4 mt-2 mb-4">
                                 <div class="w-[100%] md:w-[50%]">
-                                    <BaseLabel :labelText="'Address'" :showAsterisk="false" />
+                                    <BaseLabel :labelText="'Address'" :showAsterisk="true" />
                                     <BaseInput
                                         v-model="inputAddress.address"
                                         twClasses="!h-[32px] !rounded-[4px] !text-[13px] !text-[#1d252b] border-[#dfe3e6] w-full dark:!bg-[#4d4d4d] dark:!text-[#fff] placeholder:font-interRegular"
                                         placeholder="Enter Address"
                                     />
+                                    <div class="text-[10px] text-[red]" v-if="errorMessage.inputAddress">{{ errorMessage.inputAddress }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%]">
-                                    <BaseLabel :labelText="'LandMark'" :showAsterisk="false" />
+                                    <BaseLabel :labelText="'LandMark'" :showAsterisk="true" />
                                     <BaseInput
                                         v-model="inputAddress.landmark"
                                         twClasses="!h-[32px] !rounded-[4px] !text-[13px] !text-[#1d252b] border-[#dfe3e6] w-full dark:!bg-[#4d4d4d] dark:!text-[#fff] placeholder:font-interRegular"
                                         placeholder="Enter LandMark"
                                     />
+                                    <div class="text-[10px] text-[red]" v-if="errorMessage.inputLandMark">{{ errorMessage.inputLandMark }}</div>
                                 </div>
                             </div>
                             <!-- mobile number -->
                             <div v-show="selectedCategory?.id == 197 && (topHeader.user_id == 3000 || topHeader.user_id == 903)" class="mb-4">
-                                <BaseLabel :labelText="'Mobile Number'" :showAsterisk="false" />
+                                <BaseLabel :labelText="'Mobile Number'" :showAsterisk="true" />
                                 <BaseInput
                                     v-model="mobileNumber"
                                     name="mobileNumber"
@@ -621,11 +648,13 @@ const isLoadingSubmit = ref(false);
                                     autocomplete="off"
                                     @paste="handlePaste"
                                 />
+                                <div class="text-[10px] text-[red]" v-if="errorMessage.mobileNumber">{{ errorMessage.mobileNumber }}</div>
                             </div>
                             <!-- reschedule date -->
                             <div v-show="(selectedCategory?.id == 197 || selectedCategory?.id == 206) && (topHeader.user_id == 3000 || topHeader.user_id == 903)" class="mb-4">
-                                <BaseLabel :labelText="'Reschedule Date'" :showAsterisk="false" />
+                                <BaseLabel :labelText="'Reschedule Date'" :showAsterisk="true" />
                                 <BaseDropdown @listenDropdownChange="(val) => (selectedRescheduleDate = val)" :options="rescheduleDates" twClasses="w-[100%]" :placeholder="'Select...'" />
+                                <div class="text-[10px] text-[red]" v-if="errorMessage.rescheduleDate">{{ errorMessage.rescheduleDate }}</div>
                             </div>
                             <!-- ticket type & customer type -->
                             <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903" class="flex flex-col md:flex-row justify-between items-center gap-4 mt-1">
