@@ -17,6 +17,7 @@ watch(
     () => ticketModalComputed.value,
     (newValue) => {
         messages.value = newValue.chat?.status === 'success' ? newValue.chat?.data : [] || [];
+        
     }
 );
 
@@ -26,6 +27,7 @@ const imgPreview = ref(false);
 const selectedImage = ref('');
 // For Scrolling to the bottom
 const chatContainer = ref(null);
+const isScrollUpdating = ref(true);
 const scrollToBottom = () => {
     nextTick(() => {
         if (chatContainer.value) {
@@ -33,7 +35,24 @@ const scrollToBottom = () => {
         }
     });
 };
-
+watch(
+      () => chatContainer.value, // or other reactive properties
+      (newValue,oldValue) => {
+        if (newValue && isScrollUpdating.value) { // Check if scroll update is not in progress
+            scrollToBottom();
+        }
+      }
+    );
+// watch(
+//     () => chatContainer.value,
+//     (newValue,oldValue) => {
+//         if(newValue){
+//             scrollToBottom();
+//             hasScrolled = true; 
+//         }
+//     },
+//     { immediate: true } 
+// );
 const selectedFile = ref(null); // for the image preview
 const imagePreviewUrl = ref(null); // for the image preview
 
@@ -59,7 +78,7 @@ const addMessage = (message, file, imageUrl) => {
     });
     selectedFile.value = file;
     imagePreviewUrl.value = imageUrl;
-    scrollToBottom();
+
 };
 // fetching the messages on scroll
 const fetchMessages = async () => {
@@ -77,6 +96,7 @@ const fetchMessages = async () => {
         messages.value.unshift(...newChatMessageData.value.data);
         // store.commit(`${NEWVIEWTICKET.NAME}/setCurrentChatCount`, currentChatCount.value + 1);
         isLoadingMessages.value = false;
+        
         return true;
     }
     isMoreMessagesAfterScroll.value = true;
@@ -88,7 +108,8 @@ const fetchMessages = async () => {
 const fetchMessagesonScroll = async () => {
     if (chatContainer.value) {
         const scrollTop = chatContainer.value.scrollTop;
-        if (scrollTop === 0) {
+        if (scrollTop === 0  && isScrollUpdating.value) {
+            isScrollUpdating.value = false;
             const result = await fetchMessages();
             if (result) {
                 // After fetching messages, adjust the scrollTop by adding 10 pixels
