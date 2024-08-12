@@ -125,6 +125,7 @@ onMounted(async () => {
     dataVariables.value.scrollableTabs = staticTabs;
     dataTableFncs.getSelectedTabOnLoad();
     document.body.classList.add('view-ticket');
+    document.body.classList.add('ticket-page-count');
     store.commit(`${NEWVIEWTICKET.NAME}/clearAllFilter`);
     if (dataVariables.value.router.currentRoute.params.tabs == 'open') {
         dataVariables.value.subTabName = 'pending_from_itl';
@@ -388,12 +389,12 @@ onMounted(() => {
         <template #header> Show Confirmation </template>
         <template #body>
             <p>Changing the status to 'Pending from Vendor' will mark this as 'Pending from Vendor.'</p>
-            <BaseTextarea rows="4" cols="50" v-model="pendingForVendor" placeholder="Remark" class="rounded-[4px] w-full py-4" />
+            <BaseTextarea rows="4" cols="50" v-model="pendingForVendor" placeholder="Remark" class="rounded-[4px] w-full" />
         </template>
         <template #footer>
             <div class="flex justify-end">
                 <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => ((dataVariables.isVisibleConfirmationforVendor = false), (isCheck = false))" />
-                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" @click="confirmPendingFncForVendor(dataVariables.selectedRowId)" />
+                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" :disabled="!pendingForVendor.trim()" @click="confirmPendingFncForVendor(dataVariables.selectedRowId)" />
             </div>
         </template>
     </ConfirmationModal>
@@ -408,7 +409,7 @@ onMounted(() => {
         <template #footer>
             <div class="flex justify-end">
                 <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => ((dataVariables.isVisibleConfirmationForCs = false), (isCheck = false))" />
-                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" @click="confirmPendingFncForCs(dataVariables.selectedRowId)" />
+                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" :disabled="!pendingForCsRemark.trim()" @click="confirmPendingFncForCs(dataVariables.selectedRowId)" />
             </div>
         </template>
     </ConfirmationModal>

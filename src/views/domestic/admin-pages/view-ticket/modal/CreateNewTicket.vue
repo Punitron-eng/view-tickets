@@ -251,6 +251,8 @@ const checkDepartmentValue = async () => {
     const res = await getCategoryOptionsApi(categoryPaylod);
     if (res.status == 'success') {
         categoryData.value = res.data;
+        selectedCategory.value = ''; // added this because if any user select the departemnt and the select the ctegory then change the department the value of category shows empty but inside it value doesnt get empty so the error message is not display and ticket is formed
+        subject.value = ''; // added this due to the bug number 27 in tickets the screen shot is attached here https://paste.pics/RN6KM
     } else {
         toast.add({ severity: 'error', summary: 'Error', detail: res.message, life: 3000 });
         showTurnaroundTime.value = false;
@@ -499,11 +501,11 @@ const isLoadingSubmit = ref(false);
                                 placeholder="Enter Airway Bill No"
                                 name="airwayBillNo"
                                 @input="validateValue"
-                                @blur="airwayBillNoFunction"
                                 autoComplete="off"
                                 @paste="handlePaste"
                                 @focusout="airwayBillNoFunction"
                             />
+                            <!-- @blur="airwayBillNoFunction"  // remove this because 2 times api is called if user have any acyion in awb and 2 error message occurs -->
                             <div class="text-[10px] text-[red] absolute left-1 bottom-2" v-if="errorMessage.airwayBillNo">{{ errorMessage.airwayBillNo }}</div>
                             <!-- details -->
                             <div v-if="showAirwayBillNoDetails && !isLoading" class="bg-[#f4f7f9] dark:bg-[#363636] p-2 rounded-lg">

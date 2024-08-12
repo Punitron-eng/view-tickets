@@ -63,7 +63,7 @@ const buttonClasses = computed(() => {
 
 .btn-secondary {
     @apply bg-[#ffffff] dark:bg-[#313131] dark:text-[#fff] border-[#dfe3e6] dark:border-[#383b40];
-    border: 1px solid #dfe3e6;
+    border: 1px solid #dfe3e6 !important;
     color: #575f6c;
 }
 
