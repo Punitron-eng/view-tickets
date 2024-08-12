@@ -1005,7 +1005,7 @@ export const orderSearchData = async (searchData) => {
 };
 
 //  new functions
-export const getColumnData = async (saveFilterId, data) => {
+export const getColumnData = async (saveFilterId) => {
     dataVariables.value.showSkeletonInCustomizeColumn = true;
     dataVariables.value.isFilterSkeletonShow = true; // added for if any api change data in filter modal
     const url = saveFilterId != '' && saveFilterId !== undefined ? apiRoutes.getById + saveFilterId : apiRoutes.get;
@@ -1015,17 +1015,7 @@ export const getColumnData = async (saveFilterId, data) => {
         sub_tab_name: dataVariables.value.subTabName,
         is_active_sub_tab_filter: selectedSubTab.find((tab) => tab == dataVariables.value.selectedTabName) ? 1 : 0,
     };
-
     const combinePayload = { url, payload };
-    if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
-        if (data?.id == 'ticketDepartment') {
-            data.data?.forEach(async (filter) => {
-                if (filter.ticket_department) {
-                    await store.commit(`${storeName}/setTicketDepartmentId`, filter.ticket_department.id);
-                }
-            });
-        }
-    }
 
     await store.dispatch(`${storeName}/getDefaultColumn`, combinePayload);
     // await store.dispatch('fetchDtColumn', combinePayload);
@@ -1058,8 +1048,7 @@ export const applySaveFilterData = async (data) => {
     await store.commit(`${storeName}/clearAllFilter`);
     await dataVariables.value.router.push({ name: dataVariables.value.router.currentRoute.name, params: { tabs: dataVariables.value.selectedTabName.replace(/_/g, '-'), id: data.id } });
     await store.commit(`${storeName}/setApplySavedFilteredData`, data);
-    const departmentData = { id: 'ticketDepartment', data: data.filterArr };
-    await getColumnData(data.id, departmentData);
+    await getColumnData(data.id);
     await getDataTableData();
     dataVariables.value.showSelectedFilter = data.name;
     if (data.filterArr.some((filter) => Object.keys(filter).includes(dataVariables.value.dtGlobalSearchId))) {
