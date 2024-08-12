@@ -1047,6 +1047,13 @@ export const getSaveFilterData = async () => {
 export const applySaveFilterData = async (data) => {
     await store.commit(`${storeName}/clearAllFilter`);
     await dataVariables.value.router.push({ name: dataVariables.value.router.currentRoute.name, params: { tabs: dataVariables.value.selectedTabName.replace(/_/g, '-'), id: data.id } });
+    if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
+        data.filterArr.forEach(async (filter) => {
+            if (filter.ticket_department) {
+                await store.commit(`${storeName}/setTicketDepartmentId`, filter.ticket_department.id);
+            }
+        });
+    }
     await store.commit(`${storeName}/setApplySavedFilteredData`, data);
     await getColumnData(data.id);
     await getDataTableData();

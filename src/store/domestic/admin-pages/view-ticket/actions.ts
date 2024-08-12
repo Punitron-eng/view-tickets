@@ -98,6 +98,7 @@ const createActions = () => ({
         if (context.getters.getTicketDepartmentId) {
             payload.payload.ticket_department = context.getters.getTicketDepartmentId;
         }
+
         if (context.getters.getVendorValues.id.length) {
             payload.payload.vendor_name = context.getters.getVendorValues.id;
         }
