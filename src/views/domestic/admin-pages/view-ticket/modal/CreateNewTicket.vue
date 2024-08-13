@@ -308,7 +308,7 @@ const ticketSubmit = async () => {
     }
     data.value = {
         awb_no: airwayBillNo.value,
-        ticket_date: topHeader.user_id != 3000 || topHeader.user_id != 903 ? '' : trayaTicketCreatedDate.value,
+        ticket_date: topHeader.user_id != 3000 && topHeader.user_id != 903 ? '' : trayaTicketCreatedDate.value,
         department_id: selectedDepartment.value?.id,
         category_id: selectedCategory.value?.id,
         address: inputAddress.value.address,
@@ -318,8 +318,8 @@ const ticketSubmit = async () => {
         subject: subject.value,
         description: description.value,
         attachment: file.value,
-        ticket_type: topHeader.user_id != 3000 || topHeader.user_id != 903 ? 0 : selectedTicketType.value?.id,
-        customer_type: topHeader.user_id != 3000 || topHeader.user_id != 903 ? 0 : selectedCustomerType.value?.id,
+        ticket_type: topHeader.user_id != 3000 && topHeader.user_id != 903 ? 0 : selectedTicketType.value?.id,
+        customer_type: topHeader.user_id != 3000 && topHeader.user_id != 903 ? 0 : selectedCustomerType.value?.id,
     };
     if (checkUserType('admin') || checkUserType('subadmin')) {
         data.value.selectedVendor = vendorData.value[0];
