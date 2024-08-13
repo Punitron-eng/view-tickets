@@ -54,6 +54,8 @@ onMounted(() => {
     dataVariables.value.processType = '152';
     dataVariables.value.dtGlobalSearch = 'search_awb_no';
     dataTableFncs.closeAllOverlay();
+    dataVariables.value.dependentFilters = ['ticket_department','ticket_category'];
+    console.log(dataVariables.value.dependentFilters,'dataVariables.value.dependentFilters')
 });
 
 watch(

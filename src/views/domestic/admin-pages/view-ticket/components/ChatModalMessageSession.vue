@@ -182,7 +182,7 @@ defineExpose({
                     <!-- this is for the notification  -->
                     <div class="h-[1px] bg-[#f1f3f5] dark:bg-[#383B40] w-1/3"></div>
                     <div class="flex flex-col gap-1 text-center w-1/3 md:text-[10px] lg:text-[12px] text-light-700">
-                        {{ message.chat_message }}
+                        {{ message.chat_message.replace(/<br\s*\/?>/gi, ' ') }}
                         <br />
                         {{ message.chat_created_at }}
                     </div>
@@ -225,7 +225,7 @@ defineExpose({
                         </div>
                         <img :src="message.chat_attachment.file_path_large" v-else @click="openModal(message.chat_attachment.file_path_large, 'image')" class="hover:cursor-pointer max-w-[100px] rounded-md" />
                     </div>
-                    {{ message.chat_message }}
+                    {{ message.chat_message.replace(/<br\s*\/?>/gi, ' ') }}
                 </div>
                 <!-- this is for the Image message -->
                 <!-- <div v-else class="message" :class="message?.chat_message?.length > 0 ? 'px-[18px] py-[10px]' : ''">

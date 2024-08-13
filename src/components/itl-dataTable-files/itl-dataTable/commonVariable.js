@@ -106,6 +106,7 @@ export const dataTableVariables = ref({
     searchFilterValidationResult: {},
     groupByColumn: [],
     isFilterSkeletonShow: false, // added for if any api change data in filter modal
+    dependentFilters:[]
 });
 export const apiRoutes = {
     get: '/get',
