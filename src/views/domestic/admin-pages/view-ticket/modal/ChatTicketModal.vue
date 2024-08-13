@@ -333,6 +333,7 @@ const sendMessage = async () => {
             const result = await uploadAttachment(selectedFileValue);
             if (result.status !== 'success') {
                 chatMessageSession.value.updateLastMessage(true, false);
+                selectedFile.value = null;
                 throw new Error(result.message);
             }
             chatMessageSession.value.updateLastMessage(false, false);
@@ -606,9 +607,7 @@ const confirmUnactionbleItlFnc = async () => {
                             ref="messageInput"
                             class="w-full h-[40px] bg-[#F1F3F5] dark:bg-[#4d4d4d] px-4 rounded-[50px]"
                         />
-                        <button class="pl-1 pr-4 py-2" @click="sendMessage" :disabled="disableInput">
-                            <img :src="getImg('modal-send-message', darkModeVal)" class="mx-3" />
-                        </button>
+                        <button class="pl-1 pr-4 py-2" @click="sendMessage" :disabled="disableInput"><img :src="getImg('modal-send-message', darkModeVal)" class="mx-3" /></button>
                     </div>
                 </div>
             </div>
