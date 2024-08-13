@@ -112,7 +112,7 @@ const getActionIcon = (actionIcon, darkModeVal) => {
 const getReturnActions = (selectedAction) => {
     const data = {
         selectedAction: selectedAction,
-        rowId: props.rowData.row_id ? props.rowData.row_id : props.rowData.row_id,
+        rowId: props.rowData.row_id ? props.rowData.row_id : props.rowData.loop_row_id,
         selectedRowData: props.rowData,
     };
     emit('showModal', data);
