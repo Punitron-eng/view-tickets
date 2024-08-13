@@ -16,6 +16,7 @@
                 <div class="flex items-center gap-2">
                     <img :src="getLogisticIcon(slotProps.option.logistics_logo)" class="w-[16px]" />
                     {{ slotProps.option.value }}
+                    {{ console.log(slotProps.option.logistics_logo, 'logistics_logo') }}
                 </div>
             </template>
         </MultiSelect>
