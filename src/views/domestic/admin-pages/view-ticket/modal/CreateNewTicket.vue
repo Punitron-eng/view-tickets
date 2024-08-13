@@ -3,6 +3,7 @@ import { useStore } from 'vuex';
 import { NEWVIEWTICKET } from '@/store/domestic/admin-pages/view-ticket/constants';
 import getImg from '@/util/getImg';
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import { DARKMODE } from '@/store/dark-mode/constants';
 import { viewTicketVariables } from '../viewTicketVariables';
 import BaseInput from '../../../../../components/base/BaseInput.vue';
 import BaseTextarea from '../../../../../components/base/BaseTextarea.vue';
@@ -18,6 +19,7 @@ import { useToast } from 'primevue/usetoast';
 import * as dataTableFncs from '@/components/itl-dataTable-files/itl-dataTable/commonFunctions';
 import { getairwayBillNoDetails, getDepartmentOptionsApi, getCategoryOptionsApi, getFileUploadApi } from '../../../../../api/domestic/view-ticket/viewTicketApi';
 import { isAlphanumeric } from '../../../../../util/commonValidations';
+const darkModeVal = computed(() => store.getters[`${DARKMODE.NAME}/sendDarkModeVal`]);
 import Skeleton from 'primevue/skeleton';
 const toast = useToast();
 const dataVariables = viewTicketVariables;
@@ -511,7 +513,7 @@ const isLoadingSubmit = ref(false);
                 <div class="ticket max-w-[304px] md:min-w-[752px] xl:min-w-[752px] items-center w-full">
                     <!-- basic details -->
                     <div class="flex items-center py-[12px] px-[24px]">
-                        <img :src="getImg('basic-details', darkModeVal)" class="pr-[16px]" />
+                        <img :src="getImg('basic-details')" class="pr-[16px]" />
                         <div class="text-[14px] text-[#1d252b] font-semibold dark:text-[#fff]">Basic Details</div>
                     </div>
                     <hr class="m-[0] bg-[#f1f3f5] dark:bg-[#313131]" />
@@ -568,7 +570,7 @@ const isLoadingSubmit = ref(false);
                                 <div class="w-[100%] md:w-[50%] border-[#dfe3e6] h-[32px] border px-3 py-[5px] rounded-[4px] dark:bg-[#4d4d4d] dark:border-[#383b40]">
                                     <div v-if="!checkUserType('vendor')" class="flex align-items-center gap-2">
                                         <button @click="showVendorModal()" class="show-vendor-btn w-full flex items-center gap-[6px]">
-                                            <img :src="getImg('st-vendor-icon')" class="" />
+                                            <img :src="getImg('ticket-pending-vendor', darkModeVal)" class="" />
                                             <span v-if="vendorData.length == 0" @click="showVendorModal()" class="pointer text-[13px] text-[#1d252b] dark:text-[#dfdfdf]"> Select Vendor </span>
                                             <span v-else class="text-[13px] text-[#1d252b] text-ellipsis whitespace-nowrap overflow-hidden dark:text-[#dfdfdf]">
                                                 {{ airwayBillNoDetails?.user_name ? airwayBillNoDetails.user_name : vendorData[0] }}
