@@ -29,10 +29,12 @@ const selectedCategory = ref();
 const airwayBillNo = ref();
 const trayaTicketCreatedDate = ref();
 const store = useStore();
+import { useRouter } from 'vue-router';
 const inputAddress = ref({
     address: '',
     landmark: '',
 });
+const router = useRouter();
 const mobileNumber = ref();
 const subject = ref('');
 const description = ref('');
@@ -301,7 +303,6 @@ const getCategory = (categoryValue) => {
 const ticketSubmit = async () => {
     isLoadingSubmit.value = true;
     const validate = validateDetails();
-
     if (validate) {
         isLoadingSubmit.value = false;
         return;
@@ -333,11 +334,11 @@ const ticketSubmit = async () => {
         }
     });
     await store.dispatch(`${NEWVIEWTICKET.NAME}/getNewTicketData`, filledValues.value);
-
     const newTicketStatus = store.getters[`${NEWVIEWTICKET.NAME}/sendNewTicketStatus`];
     if (newTicketStatus.status === 'success') {
         toast.add({ severity: 'success', summary: 'Success', detail: newTicketStatus.message, life: 3000 });
         dataVariables.value.isCreateNewTicketModalVisible = false;
+        router.push('/tickets/open');
         dataTableFncs.getDataTableData();
         clearData();
     } else {
