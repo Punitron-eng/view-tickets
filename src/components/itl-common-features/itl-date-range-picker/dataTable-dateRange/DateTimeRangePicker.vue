@@ -165,14 +165,7 @@ export default {
                 if (filterElement) {
                     this.customizeDatePosition();
                 } else if (outerLeftDate) {
-                    const divElement = document.querySelector('.datatable-card');
-                    const dataTableWidth = divElement.clientWidth;
-                    if (dataTableWidth < 1024) {
-                        this.calenderClass = 'dp-custom-menu-show-center';
-                    } else {
-                        this.calenderClass = 'dp-custom-menu-show';
-                    }
-
+                    this.calenderClass = window.innerWidth == 1280 ? 'dp-custom-menu-show-center' : 'dp-custom-menu-show';
                     return;
                 } else {
                     this.dashboardDatePosition();
@@ -529,10 +522,6 @@ export default {
 .dp__sidebar_left {
     border-right: none;
 }
-.dp--menu-wrapper {
-    z-index: 9 !important;
-}
-
 .dp--menu-wrapper {
     z-index: 9 !important;
 }
