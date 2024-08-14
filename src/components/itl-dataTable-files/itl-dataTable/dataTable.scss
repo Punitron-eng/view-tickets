@@ -153,7 +153,7 @@
                     }
                     height: 28px;
                     @include width($maxWidth: 186px);
-                    @include padding(2px, 6px, 0px, 6px);
+                    @include padding(4px, 6px, 4px, 6px);
                     @media (max-width: 991px) {
                         padding-left: 8px;
                         // position: absolute;
@@ -1946,8 +1946,8 @@
         margin-right: 8px;
     }
 }
-.dt-full-content.customer-outer{
-    cursor:default;
+.dt-full-content.customer-outer {
+    cursor: default;
 }
 .column-checkbox {
     // width: 58px;
@@ -2226,10 +2226,10 @@ td.action-column {
 .custom-action-col {
     color: #fff;
 }
-.dt-wrapper-outer .p-dropdown-panel, .dt-wrapper-outer .p-column-filter-overlay {
+.dt-wrapper-outer .p-dropdown-panel,
+.dt-wrapper-outer .p-column-filter-overlay {
     z-index: 9 !important;
 }
-
 
 // .newClass {
 //     position: relative;
