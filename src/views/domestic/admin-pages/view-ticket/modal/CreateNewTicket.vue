@@ -590,7 +590,7 @@ const isLoadingSubmit = ref(false);
                         </div>
                         <!-- select Department & Category -->
                         <div class="pb-[24px]">
-                            <div class="w-[100%] flex gap-4">
+                            <div class="w-[100%] md:flex gap-4">
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Department'" :showAsterisk="true" />
                                     <BaseDropdown
