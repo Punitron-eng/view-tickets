@@ -902,6 +902,12 @@ const confirmUnactionbleItlFnc = async () => {
     .p-inputtext:enabled:hover {
         border: 1px solid #d4d6d9;
     }
+
+    #confirmation-modal {
+        @media screen and (max-width: 767px) {
+            width: 95% !important;
+        }
+    }
 }
 
 // for the filter input height
