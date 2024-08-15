@@ -275,13 +275,13 @@ defineExpose({
     height: 100%;
     max-height: 70%;
 
-    @media screen and (device-width: 768px) {
-        max-height: calc(100vh - 60%);
-    }
+    // @media screen and (device-width: 768px) {
+    //     max-height: calc(100vh - 60%);
+    // }
 
     @media screen and (max-width: 767px) {
         height: 100%;
-        max-height: calc(100vh - 430px);
+        max-height: 44vh !important;
     }
 
     @media screen and (max-width: 380px) {
