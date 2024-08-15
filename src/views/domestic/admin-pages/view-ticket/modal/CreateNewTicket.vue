@@ -435,7 +435,7 @@ const ticketDepartmentApiCall = async () => {
             checkDepartmentValue(selectedDepartment);
         }
     } else {
-        toast.add({ severity: 'error', summary: 'Error', detail: res.html_message, life: 3000 });
+        toast.add({ severity: 'error', summary: 'Error', detail: res.message, life: 3000 });
     }
 };
 
