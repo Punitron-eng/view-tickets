@@ -331,7 +331,7 @@ onMounted(() => {
         <div class="page-header-section mb-3">
             <DTPageHeader :headerText="dataVariables.selectedTabHeading">
                 <template #right-side>
-                    <div class="hidden lg:flex lg:items-center tk-create-btn">
+                    <div class="flex items-center tk-create-btn">
                         <HeaderRightSide />
                     </div>
                 </template>
