@@ -598,8 +598,8 @@ const isLoadingSubmit = ref(false);
                             <div class="text-[10px] text-[red] absolute" v-if="errorMessage.trayaTicketCreatedDate">{{ errorMessage.trayaTicketCreatedDate }}</div>
                         </div>
                         <!-- select Department & Category -->
-                        <div class="pb-[24px]">
-                            <div class="w-[100%] flex gap-4">
+                        <div class="md:pb-[24px]">
+                            <div class="w-[100%] flex gap-4 flex-col md:flex-row">
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Department'" :showAsterisk="true" />
                                     <BaseDropdown
