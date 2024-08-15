@@ -251,6 +251,11 @@ const validateValue = (event) => {
                 mobileNumber.value = mobileNumber.value.slice(0, -1);
             }
             break;
+        case 'subject':
+            if (!/^[a-zA-Z\s]*$/.test(value)) {
+                event.target.value = value.slice(0, -1);
+            }
+            break;
         // case 'subject':
         //     errorMessage.value.subject = value ? '' : 'This field is required';
         //     break;
@@ -265,6 +270,9 @@ const handlePaste = (event) => {
         event.preventDefault();
     }
     if (!isAlphanumeric(pastedText)) {
+        event.preventDefault();
+    }
+    if (!/^[a-zA-Z\s]*$/.test(pastedText)) {
         event.preventDefault();
     }
 };
@@ -682,13 +690,14 @@ const isLoadingSubmit = ref(false);
                                 placeholder="Enter Your Subject"
                                 name="subject"
                                 @input="validateValue"
+                                @paste.prevent="handlePaste"
                             />
                             <div class="text-[10px] text-[red] absolute bottom-2">{{ errorMessage.subject }}</div>
                         </div>
                         <!-- description -->
                         <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 || topHeader.user_id == 903 }">
                             <BaseLabel :labelText="'Description'" :showAsterisk="false" />
-                            <BaseTextarea v-model="description" twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]" placeholder="Enter Description" name="description" @input="validateValue" />
+                            <BaseTextarea v-model="description" twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]" placeholder="Enter Description" name="description" @input="validateValue" @paste.prevent="handlePaste" />
                         </div>
                         <!-- upload -->
                         <BaseFileUpload
