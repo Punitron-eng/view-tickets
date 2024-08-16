@@ -81,6 +81,7 @@
                                 </div>
                             </div>
                             <div v-if="id.isFilterType == 6" :id="id.field" v-show="fieldIdRefs[id.field]?.value">
+                               
                                 <DTMultiSelect v-model="modalRefs" :id="id" />
                             </div>
                             <div v-if="id.isFilterType == 7" :id="id.field" v-show="fieldIdRefs[id.field]?.value">
@@ -129,6 +130,7 @@ const storeName = inject('storeName');
 const props = defineProps(['visible', 'tempData']);
 const DataTableColumns = inject('dataTabelColumnData');
 import { useEmitter } from '@nguyenshort/vue3-mitt';
+import * as dataTableFncs from '@/components/itl-dataTable-files/itl-dataTable/commonFunctions';
 const emitter = useEmitter();
 const emit = defineEmits(['filterModalValue', 'singlefilterDelete']);
 const darkModeVal = computed(() => store.getters[`${DARKMODE.NAME}/sendDarkModeVal`]);
@@ -143,6 +145,7 @@ const isObjectEmpty = computed(() => {
 onBeforeMount(async () => {
     newTempData.value = DataTableColumns.value.filter((res) => res.isFilterType !== 8 && res.isFilterType != null);
     makeShowHideRefs(newTempData.value);
+    dependentFilter(); //added by bhavna
 });
 onMounted(() => {
     document.body.classList.add('filter-modal-open');
@@ -150,6 +153,20 @@ onMounted(() => {
 onUnmounted(() => {
     document.body.classList.remove('filter-modal-open');
 });
+//added by bhavna
+const dependentFilter = async () => {
+    if(modalRefs.value[dataVariables.value.dependentFilters[0]].value == ''){
+        const targetValue = dataVariables.value.dependentFilters[1];
+        const matchIndex = newTempData.value.findIndex(item => item['field'] === targetValue);
+        newTempData.value[matchIndex]['values'] = ref([]);
+    } else if(modalRefs.value[dataVariables.value.dependentFilters[0]].value != '') {
+        if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
+            await store.commit(`${storeName.NAME}/setTicketDepartmentId`, modalRefs.value[dataVariables.value.dependentFilters[0]].id);
+        }
+        await dataTableFncs.getColumnData(dataVariables.value.saveFilterID);
+    }
+}
+//added by bhavna
 const triggerWatch = ref(false);
 watch(
     () => DataTableColumns.value,

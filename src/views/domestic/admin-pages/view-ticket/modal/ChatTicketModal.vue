@@ -444,8 +444,8 @@ const confirmUnactionbleItlFnc = async () => {
                             <div class="font-interSemiBold text-[16px] mb-[8px] break-all">
                                 {{ ticketModalData?.ticket_subject }}
                             </div>
-                            <div class="break-all">
-                                {{ ticketModalData?.ticket_description }}
+                            <div class="whitespace-pre-line">
+                                {{ ticketModalData?.ticket_description.replace(/<br\s*\/?>/gi, '\n')  }}
                             </div>
                         </div>
                     </div>
@@ -514,7 +514,7 @@ const confirmUnactionbleItlFnc = async () => {
                             </div>
                             <div class="pt-[16px] flex items-center">
                                 <input type="checkbox" class="mr-2 w-[16px] h-[16px]" id="pending_from" v-model="isCheck.pending_from" name="pending_from" @click="showConfirmationModal('pending_from')" />
-                                <label class="text-[12px] hover:cursor-pointer" for="pending_from">Mark as pending from Vendor</label>
+                                <label class="text-[12px] hover:cursor-pointer" for="pending_from">Mark as Pending from Vendor</label>
                             </div>
                             <div class="pt-[16px] flex items-center">
                                 <input
@@ -556,13 +556,13 @@ const confirmUnactionbleItlFnc = async () => {
                         <SkeletonView width="30px" height="30px" shape="circle" />
                         <SkeletonView width="340px" height="30px" />
                     </div>
-                    <div v-else class="flex gap-2 items-center">
+                    <div v-else class="flex gap-2 w-full items-center">
                         <div class="flex gap-2 w-[20%] lg:w-fit">
                             <img v-if="ticketModalData?.ticket_assign_to?.id.length > 1 && (checkUserType('subadmin') || checkUserType('admin'))" :src="getImg('modal-muti-profile', darkModeVal)" />
                             <img v-else :src="getImg('modal-profile', darkModeVal)" />
                         </div>
-                        <p v-if="checkUserType('subadmin') || checkUserType('admin')" class="font-interSemiBold text-[16px]">{{ ticketModalData?.ticket_assign_to?.text }}</p>
-                        <p v-else class="font-interSemiBold text-[16px]">Ticket History</p>
+                        <p v-if="checkUserType('subadmin') || checkUserType('admin')" class="font-interSemiBold text-[16px] w-[80%]">{{ ticketModalData?.ticket_assign_to?.text }}</p>
+                        <p v-else class="font-interSemiBold text-[16px] w-[80%]">Ticket History</p>
                     </div>
                 </div>
                 <!-- Messages section -->
