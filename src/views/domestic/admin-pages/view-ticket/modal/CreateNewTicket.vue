@@ -641,7 +641,7 @@ const isLoadingSubmit = ref(false);
                                 </div>
                             </div>
 
-                            <div v-if="showTurnaroundTime" class="text-[#366cb8] md:w-[30%] ml-auto mt-2 text-[13px] bg-[#d9e9ff] right-0 bottom-0 px-[8px] py-[6px] rounded-[4px]">Turnaround Time: {{ turnaroundTime }}</div>
+                            <div v-if="showTurnaroundTime" class="text-[#366cb8] md:w-[30%] w-[80%] ml-auto mt-2 text-[13px] bg-[#d9e9ff] right-0 bottom-0 px-[8px] py-[6px] rounded-[4px]">Turnaround Time: {{ turnaroundTime }}</div>
                         </div>
                         <div>
                             <!-- Address and LandMark -->
