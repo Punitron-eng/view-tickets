@@ -99,6 +99,17 @@ const closeModal = () => {
     clearData();
 };
 
+const getTomorrowDate = () => {
+    let today = new Date();
+    today.setDate(today.getDate() + 1);
+
+    let day = String(today.getDate()).padStart(2, '0');
+    let month = String(today.getMonth() + 1).padStart(2, '0');
+    let year = today.getFullYear();
+
+    return `${day}-${month}-${year}`;
+};
+
 //validate on submit
 const validateDetails = () => {
     // Define the order of validation and error messages
@@ -598,7 +609,7 @@ const isLoadingSubmit = ref(false);
                         <!-- traya ticket created Data -->
                         <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903" class="pb-[24px] relative">
                             <BaseLabel :labelText="'Traya Ticket Created Date'" :showAsterisk="true" />
-                            <SingleDatePicker @date-value="dateValue" placeholder="Select Date" />
+                            <SingleDatePicker @date-value="dateValue" :max-date="getTomorrowDate()" placeholder="Select Date" />
                             <div class="text-[10px] text-[red] absolute" v-if="errorMessage.trayaTicketCreatedDate">{{ errorMessage.trayaTicketCreatedDate }}</div>
                         </div>
                         <!-- select Department & Category -->
