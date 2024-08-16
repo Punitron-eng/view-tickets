@@ -212,6 +212,7 @@ const airwayBillNoFunction = async (event) => {
             airwayBillNoDetails.value = res.data;
             isLoading.value = false;
             showTurnaroundTime.value = false;
+            subject.value = '';
             // vendorData.value = [res.data.user_name, res.data.vendor_id];
             const result = [res.data.user_name, res.data.vendor_id].join(',');
             rescheduleDates.value = res.data.reschedule_dates;
