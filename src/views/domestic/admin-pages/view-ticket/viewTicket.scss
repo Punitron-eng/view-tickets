@@ -20,6 +20,10 @@
 
 .ticket-page-count .datatable-card .p-inputtext {
     padding: 0px !important;
+    height: auto!important;
+}
+.p-paginator-rpp-options.p-dropdown {
+    height: auto;
 }
 .dt-toggle-btns-outer {
     display: flex;
