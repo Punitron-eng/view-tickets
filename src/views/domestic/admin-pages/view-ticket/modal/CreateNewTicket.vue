@@ -211,6 +211,7 @@ const airwayBillNoFunction = async (event) => {
             showAirwayBillNoDetails.value = true;
             airwayBillNoDetails.value = res.data;
             isLoading.value = false;
+            showTurnaroundTime.value = false;
             // vendorData.value = [res.data.user_name, res.data.vendor_id];
             const result = [res.data.user_name, res.data.vendor_id].join(',');
             rescheduleDates.value = res.data.reschedule_dates;
@@ -306,8 +307,8 @@ const checkDepartmentValue = async () => {
         subject.value = ''; // added this due to the bug number 27 in tickets the screen shot is attached here https://paste.pics/RN6KM
     } else {
         toast.add({ severity: 'error', summary: 'Error', detail: res.message, life: 3000 });
-        showTurnaroundTime.value = false;
     }
+    showTurnaroundTime.value = false;
 };
 
 // get category data
@@ -680,7 +681,7 @@ const isLoadingSubmit = ref(false);
                                 <div class="text-[10px] text-[red]" v-if="errorMessage.mobileNumber">{{ errorMessage.mobileNumber }}</div>
                             </div>
                             <!-- reschedule date -->
-                            <div v-show="(selectedCategory?.id == 197 || selectedCategory?.id == 206) && (topHeader.user_id == 3000 || topHeader.user_id == 903)" class="mb-4">
+                            <div v-if="(selectedCategory?.id == 197 || selectedCategory?.id == 206) && (topHeader.user_id == 3000 || topHeader.user_id == 903)" class="mb-4">
                                 <BaseLabel :labelText="'Reschedule Date'" :showAsterisk="true" />
                                 <BaseDropdown @listenDropdownChange="(val) => (selectedRescheduleDate = val)" :options="rescheduleDates" twClasses="w-[100%]" :placeholder="'Select...'" />
                                 <div class="text-[10px] text-[red]" v-if="errorMessage.rescheduleDate">{{ errorMessage.rescheduleDate }}</div>
