@@ -181,6 +181,10 @@ const validateDetails = () => {
     return hasError;
 };
 
+const validateField = (key) => {
+    errorMessage.value[key] = '';
+};
+
 // on airway bill No - api call
 const airwayBillNoFunction = async (event) => {
     errorMessage.value = {
@@ -263,16 +267,18 @@ const validateValue = (event) => {
                 mobileNumber.value = mobileNumber.value.slice(0, -1);
             }
             break;
-        case 'subject':
-            if (!/^[a-zA-Z\s]*$/.test(value)) {
-                event.target.value = value.slice(0, -1);
-            }
-            break;
         // case 'subject':
         //     errorMessage.value.subject = value ? '' : 'This field is required';
         //     break;
         default:
             break;
+    }
+};
+
+const isEnglishText = (event) => {
+    const pastedText = event.clipboardData.getData('text/plain');
+    if (!/^[a-zA-Z\s]*$/.test(pastedText)) {
+        event.preventDefault();
     }
 };
 
@@ -282,9 +288,6 @@ const handlePaste = (event) => {
         event.preventDefault();
     }
     if (!isAlphanumeric(pastedText)) {
-        event.preventDefault();
-    }
-    if (!/^[a-zA-Z\s]*$/.test(pastedText)) {
         event.preventDefault();
     }
 };
@@ -686,12 +689,31 @@ const isLoadingSubmit = ref(false);
                             <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903" class="flex flex-col md:flex-row justify-between items-center gap-4 mt-1">
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Ticket Type'" :showAsterisk="true" />
-                                    <BaseDropdown @listenDropdownChange="(val) => (selectedTicketType = val)" :options="ticketTypesOptions" twClasses="w-[100%]" :placeholder="'Select...'" />
+                                    <BaseDropdown
+                                        @listenDropdownChange="
+                                            (val) => {
+                                                selectedTicketType = val;
+                                            }
+                                        "
+                                        :options="ticketTypesOptions"
+                                        twClasses="w-[100%]"
+                                        :placeholder="'Select...'"
+                                    />
                                     <div class="text-[10px] text-[red] absolute" v-if="errorMessage.ticketType">{{ errorMessage.ticketType }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Customer Type'" :showAsterisk="true" />
-                                    <BaseDropdown @listenDropdownChange="(val) => (selectedCustomerType = val)" :options="customerSelectOptions" twClasses="w-[100%]" :placeholder="'Select...'" />
+                                    <BaseDropdown
+                                        @listenDropdownChange="
+                                            (val) => {
+                                                selectedTicketType = val;
+                                                validateField('customerType');
+                                            }
+                                        "
+                                        :options="customerSelectOptions"
+                                        twClasses="w-[100%]"
+                                        :placeholder="'Select...'"
+                                    />
                                     <div class="text-[10px] text-[red] absolute" v-if="errorMessage.customerType">{{ errorMessage.customerType }}</div>
                                 </div>
                             </div>
@@ -705,14 +727,21 @@ const isLoadingSubmit = ref(false);
                                 placeholder="Enter Your Subject"
                                 name="subject"
                                 @input="validateValue"
-                                @paste.prevent="handlePaste"
+                                @paste.prevent="isEnglishText"
                             />
                             <div class="text-[10px] text-[red] absolute bottom-2">{{ errorMessage.subject }}</div>
                         </div>
                         <!-- description -->
                         <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 || topHeader.user_id == 903 }">
                             <BaseLabel :labelText="'Description'" :showAsterisk="false" />
-                            <BaseTextarea v-model="description" twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]" placeholder="Enter Description" name="description" @input="validateValue" @paste.prevent="handlePaste" />
+                            <BaseTextarea
+                                v-model="description"
+                                twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]"
+                                placeholder="Enter Description"
+                                name="description"
+                                @input="validateValue"
+                                @paste.prevent="isEnglishText"
+                            />
                         </div>
                         <!-- upload -->
                         <BaseFileUpload
