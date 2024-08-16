@@ -445,7 +445,7 @@ const confirmUnactionbleItlFnc = async () => {
                                 {{ ticketModalData?.ticket_subject }}
                             </div>
                             <div class="whitespace-pre-line">
-                                {{ ticketModalData?.ticket_description.replace(/<br\s*\/?>/gi, '\n')  }}
+                                {{ ticketModalData?.ticket_description.replace(/<br\s*\/?>/gi, '\n') }}
                             </div>
                         </div>
                     </div>
@@ -659,7 +659,7 @@ const confirmUnactionbleItlFnc = async () => {
     </DialogView>
     <!-- image PreView -->
     <DialogView v-model:visible="imgPreview" :modal="true" :draggable="false" dismissableMask id="imgpreview">
-        <button @click="nextImage" class="absolute top-[50%] right-2 z-[9]"><img :src="getImg('filter-next-icon')" /></button>
+        <button v-if="attachmentData.value.length > 1" @click="nextImage" class="absolute top-[50%] right-2 z-[9]"><img :src="getImg('filter-next-icon')" /></button>
         <div v-if="imgPreview" class="relative pb-6 px-6 max-h-[570px] h-full">
             <div v-if="modalImageSrc.imageSrc.type == 'audio' || modalImageSrc.imageSrc.type == 'video'" class="w-[30vw] h-[20vh] flex justify-center items-center">
                 <audio controls v-if="modalImageSrc.imageSrc.type === 'audio'">
@@ -669,7 +669,7 @@ const confirmUnactionbleItlFnc = async () => {
             </div>
             <img v-else :src="modalImageSrc.imageSrc.file" class="w-[40vw] object-contain hover:cursor-pointer" alt="Image Preview" />
         </div>
-        <button @click="prevImage" class="absolute top-[50%] left-2 z-[9]">
+        <button v-if="attachmentData.value.length > 1" @click="prevImage" class="absolute top-[50%] left-2 z-[9]">
             <img :src="getImg('filter-prev-icon')" />
         </button>
     </DialogView>
