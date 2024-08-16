@@ -99,6 +99,17 @@ const closeModal = () => {
     clearData();
 };
 
+const getTomorrowDate = () => {
+    let today = new Date();
+    today.setDate(today.getDate() + 1);
+
+    let day = String(today.getDate()).padStart(2, '0');
+    let month = String(today.getMonth() + 1).padStart(2, '0');
+    let year = today.getFullYear();
+
+    return `${day}-${month}-${year}`;
+};
+
 //validate on submit
 const validateDetails = () => {
     // Define the order of validation and error messages
@@ -170,6 +181,10 @@ const validateDetails = () => {
     return hasError;
 };
 
+const validateField = (key) => {
+    errorMessage.value[key] = '';
+};
+
 // on airway bill No - api call
 const airwayBillNoFunction = async (event) => {
     errorMessage.value = {
@@ -196,6 +211,8 @@ const airwayBillNoFunction = async (event) => {
             showAirwayBillNoDetails.value = true;
             airwayBillNoDetails.value = res.data;
             isLoading.value = false;
+            showTurnaroundTime.value = false;
+            subject.value = '';
             // vendorData.value = [res.data.user_name, res.data.vendor_id];
             const result = [res.data.user_name, res.data.vendor_id].join(',');
             rescheduleDates.value = res.data.reschedule_dates;
@@ -252,16 +269,18 @@ const validateValue = (event) => {
                 mobileNumber.value = mobileNumber.value.slice(0, -1);
             }
             break;
-        case 'subject':
-            if (!/^[a-zA-Z\s]*$/.test(value)) {
-                event.target.value = value.slice(0, -1);
-            }
-            break;
         // case 'subject':
         //     errorMessage.value.subject = value ? '' : 'This field is required';
         //     break;
         default:
             break;
+    }
+};
+
+const isEnglishText = (event) => {
+    const pastedText = event.clipboardData.getData('text/plain');
+    if (!/^[a-zA-Z\s]*$/.test(pastedText)) {
+        event.preventDefault();
     }
 };
 
@@ -271,9 +290,6 @@ const handlePaste = (event) => {
         event.preventDefault();
     }
     if (!isAlphanumeric(pastedText)) {
-        event.preventDefault();
-    }
-    if (!/^[a-zA-Z\s]*$/.test(pastedText)) {
         event.preventDefault();
     }
 };
@@ -292,8 +308,8 @@ const checkDepartmentValue = async () => {
         subject.value = ''; // added this due to the bug number 27 in tickets the screen shot is attached here https://paste.pics/RN6KM
     } else {
         toast.add({ severity: 'error', summary: 'Error', detail: res.message, life: 3000 });
-        showTurnaroundTime.value = false;
     }
+    showTurnaroundTime.value = false;
 };
 
 // get category data
@@ -598,7 +614,7 @@ const isLoadingSubmit = ref(false);
                         <!-- traya ticket created Data -->
                         <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903" class="pb-[24px] relative">
                             <BaseLabel :labelText="'Traya Ticket Created Date'" :showAsterisk="true" />
-                            <SingleDatePicker @date-value="dateValue" placeholder="Select Date" />
+                            <SingleDatePicker @date-value="dateValue" :max-date="getTomorrowDate()" placeholder="Select Date" />
                             <div class="text-[10px] text-[red] absolute" v-if="errorMessage.trayaTicketCreatedDate">{{ errorMessage.trayaTicketCreatedDate }}</div>
                         </div>
                         <!-- select Department & Category -->
@@ -625,7 +641,7 @@ const isLoadingSubmit = ref(false);
                                 </div>
                             </div>
 
-                            <div v-if="showTurnaroundTime" class="text-[#366cb8] w-[30%] ml-auto mt-2 text-[13px] bg-[#d9e9ff] right-0 bottom-0 px-[8px] py-[6px] rounded-[4px]">Turnaround Time: {{ turnaroundTime }}</div>
+                            <div v-if="showTurnaroundTime" class="text-[#366cb8] md:w-[30%] ml-auto mt-2 text-[13px] bg-[#d9e9ff] right-0 bottom-0 px-[8px] py-[6px] rounded-[4px]">Turnaround Time: {{ turnaroundTime }}</div>
                         </div>
                         <div>
                             <!-- Address and LandMark -->
@@ -640,11 +656,11 @@ const isLoadingSubmit = ref(false);
                                     <div class="text-[10px] text-[red]" v-if="errorMessage.inputAddress">{{ errorMessage.inputAddress }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%]">
-                                    <BaseLabel :labelText="'LandMark'" :showAsterisk="true" />
+                                    <BaseLabel :labelText="'Landmark'" :showAsterisk="true" />
                                     <BaseInput
                                         v-model="inputAddress.landmark"
                                         twClasses="!h-[32px] !rounded-[4px] !text-[13px] !text-[#1d252b] border-[#dfe3e6] w-full dark:!bg-[#4d4d4d] dark:!text-[#fff] placeholder:font-interRegular"
-                                        placeholder="Enter LandMark"
+                                        placeholder="Enter Landmark"
                                     />
                                     <div class="text-[10px] text-[red]" v-if="errorMessage.inputLandMark">{{ errorMessage.inputLandMark }}</div>
                                 </div>
@@ -666,7 +682,7 @@ const isLoadingSubmit = ref(false);
                                 <div class="text-[10px] text-[red]" v-if="errorMessage.mobileNumber">{{ errorMessage.mobileNumber }}</div>
                             </div>
                             <!-- reschedule date -->
-                            <div v-show="(selectedCategory?.id == 197 || selectedCategory?.id == 206) && (topHeader.user_id == 3000 || topHeader.user_id == 903)" class="mb-4">
+                            <div v-if="(selectedCategory?.id == 197 || selectedCategory?.id == 206) && (topHeader.user_id == 3000 || topHeader.user_id == 903)" class="mb-4">
                                 <BaseLabel :labelText="'Reschedule Date'" :showAsterisk="true" />
                                 <BaseDropdown @listenDropdownChange="(val) => (selectedRescheduleDate = val)" :options="rescheduleDates" twClasses="w-[100%]" :placeholder="'Select...'" />
                                 <div class="text-[10px] text-[red]" v-if="errorMessage.rescheduleDate">{{ errorMessage.rescheduleDate }}</div>
@@ -675,12 +691,31 @@ const isLoadingSubmit = ref(false);
                             <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903" class="flex flex-col md:flex-row justify-between items-center gap-4 mt-1">
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Ticket Type'" :showAsterisk="true" />
-                                    <BaseDropdown @listenDropdownChange="(val) => (selectedTicketType = val)" :options="ticketTypesOptions" twClasses="w-[100%]" :placeholder="'Select...'" />
+                                    <BaseDropdown
+                                        @listenDropdownChange="
+                                            (val) => {
+                                                selectedTicketType = val;
+                                            }
+                                        "
+                                        :options="ticketTypesOptions"
+                                        twClasses="w-[100%]"
+                                        :placeholder="'Select...'"
+                                    />
                                     <div class="text-[10px] text-[red] absolute" v-if="errorMessage.ticketType">{{ errorMessage.ticketType }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Customer Type'" :showAsterisk="true" />
-                                    <BaseDropdown @listenDropdownChange="(val) => (selectedCustomerType = val)" :options="customerSelectOptions" twClasses="w-[100%]" :placeholder="'Select...'" />
+                                    <BaseDropdown
+                                        @listenDropdownChange="
+                                            (val) => {
+                                                selectedTicketType = val;
+                                                validateField('customerType');
+                                            }
+                                        "
+                                        :options="customerSelectOptions"
+                                        twClasses="w-[100%]"
+                                        :placeholder="'Select...'"
+                                    />
                                     <div class="text-[10px] text-[red] absolute" v-if="errorMessage.customerType">{{ errorMessage.customerType }}</div>
                                 </div>
                             </div>
@@ -694,14 +729,21 @@ const isLoadingSubmit = ref(false);
                                 placeholder="Enter Your Subject"
                                 name="subject"
                                 @input="validateValue"
-                                @paste.prevent="handlePaste"
+                                @paste.prevent="isEnglishText"
                             />
                             <div class="text-[10px] text-[red] absolute bottom-2">{{ errorMessage.subject }}</div>
                         </div>
                         <!-- description -->
                         <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 || topHeader.user_id == 903 }">
                             <BaseLabel :labelText="'Description'" :showAsterisk="false" />
-                            <BaseTextarea v-model="description" twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]" placeholder="Enter Description" name="description" @input="validateValue" @paste.prevent="handlePaste" />
+                            <BaseTextarea
+                                v-model="description"
+                                twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]"
+                                placeholder="Enter Description"
+                                name="description"
+                                @input="validateValue"
+                                @paste.prevent="isEnglishText"
+                            />
                         </div>
                         <!-- upload -->
                         <BaseFileUpload
