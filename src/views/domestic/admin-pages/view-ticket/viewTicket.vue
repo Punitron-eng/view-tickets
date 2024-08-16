@@ -54,8 +54,8 @@ onMounted(() => {
     dataVariables.value.processType = '152';
     dataVariables.value.dtGlobalSearch = 'search_awb_no';
     dataTableFncs.closeAllOverlay();
-    dataVariables.value.dependentFilters = ['ticket_department','ticket_category'];
-    console.log(dataVariables.value.dependentFilters,'dataVariables.value.dependentFilters')
+    dataVariables.value.dependentFilters = ['ticket_department', 'ticket_category'];
+    console.log(dataVariables.value.dependentFilters, 'dataVariables.value.dependentFilters');
 });
 
 watch(
@@ -138,6 +138,8 @@ onMounted(async () => {
 
     if (!dataVariables.value.router.currentRoute.params.id) {
         await dataTableFncs.getColumnData(dataVariables.value.saveFilterID);
+    } else {
+        await dataTableFncs.getColumnData(dataVariables.value.router.currentRoute.params.id);
     }
     document.querySelector('.p-datatable-thead').classList.add('hidden');
     store.dispatch('getPaginatorStart', 0);
@@ -330,7 +332,7 @@ onMounted(() => {
         <div class="page-header-section mb-3">
             <DTPageHeader :headerText="dataVariables.selectedTabHeading">
                 <template #right-side>
-                    <div class="flex lg:items-center tk-create-btn">
+                    <div class="flex items-center tk-create-btn">
                         <HeaderRightSide />
                     </div>
                 </template>

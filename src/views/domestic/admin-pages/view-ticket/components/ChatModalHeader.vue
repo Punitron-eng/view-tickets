@@ -165,7 +165,7 @@ const confirmPendingFnc = async () => {
                 </div>
             </div>
         </div>
-        <div class="flex w-full justify-end items-center gap-2">
+        <div class="flex w-full justify-end items-center gap-2 mobile-chat-modal-header">
             <div v-if="isLoading" class="flex justify-between items-center gap-2">
                 <SkeletonView width="100px" height="16px" />
                 <SkeletonView width="80px" height="32px" />
@@ -211,5 +211,11 @@ const confirmPendingFnc = async () => {
 <style lang="scss">
 .isActive {
     @apply font-interSemiBold;
+}
+
+.mobile-chat-modal-header {
+    @media screen and (max-width: 767px) {
+        width: 85% !important;
+    }
 }
 </style>

@@ -30,10 +30,12 @@ const selectedCategory = ref();
 const airwayBillNo = ref();
 const trayaTicketCreatedDate = ref();
 const store = useStore();
+import { useRouter } from 'vue-router';
 const inputAddress = ref({
     address: '',
     landmark: '',
 });
+const router = useRouter();
 const mobileNumber = ref();
 const subject = ref('');
 const description = ref('');
@@ -250,6 +252,11 @@ const validateValue = (event) => {
                 mobileNumber.value = mobileNumber.value.slice(0, -1);
             }
             break;
+        case 'subject':
+            if (!/^[a-zA-Z\s]*$/.test(value)) {
+                event.target.value = value.slice(0, -1);
+            }
+            break;
         // case 'subject':
         //     errorMessage.value.subject = value ? '' : 'This field is required';
         //     break;
@@ -264,6 +271,9 @@ const handlePaste = (event) => {
         event.preventDefault();
     }
     if (!isAlphanumeric(pastedText)) {
+        event.preventDefault();
+    }
+    if (!/^[a-zA-Z\s]*$/.test(pastedText)) {
         event.preventDefault();
     }
 };
@@ -302,14 +312,13 @@ const getCategory = (categoryValue) => {
 const ticketSubmit = async () => {
     isLoadingSubmit.value = true;
     const validate = validateDetails();
-
     if (validate) {
         isLoadingSubmit.value = false;
         return;
     }
     data.value = {
         awb_no: airwayBillNo.value,
-        ticket_date: (topHeader.user_id != 3000 && topHeader.user_id != 903) ? '' : trayaTicketCreatedDate.value,
+        ticket_date: topHeader.user_id != 3000 && topHeader.user_id != 903 ? '' : trayaTicketCreatedDate.value,
         department_id: selectedDepartment.value?.id,
         category_id: selectedCategory.value?.id,
         address: inputAddress.value.address,
@@ -319,8 +328,8 @@ const ticketSubmit = async () => {
         subject: subject.value,
         description: description.value,
         attachment: file.value,
-        ticket_type: (topHeader.user_id != 3000 && topHeader.user_id != 903) ? 0 : selectedTicketType.value?.id,
-        customer_type: (topHeader.user_id != 3000 && topHeader.user_id != 903) ? 0 : selectedCustomerType.value?.id,
+        ticket_type: topHeader.user_id != 3000 && topHeader.user_id != 903 ? 0 : selectedTicketType.value?.id,
+        customer_type: topHeader.user_id != 3000 && topHeader.user_id != 903 ? 0 : selectedCustomerType.value?.id,
     };
     if (checkUserType('admin') || checkUserType('subadmin')) {
         data.value.selectedVendor = vendorData.value[0];
@@ -334,11 +343,11 @@ const ticketSubmit = async () => {
         }
     });
     await store.dispatch(`${NEWVIEWTICKET.NAME}/getNewTicketData`, filledValues.value);
-
     const newTicketStatus = store.getters[`${NEWVIEWTICKET.NAME}/sendNewTicketStatus`];
     if (newTicketStatus.status === 'success') {
         toast.add({ severity: 'success', summary: 'Success', detail: newTicketStatus.message, life: 3000 });
         dataVariables.value.isCreateNewTicketModalVisible = false;
+        router.push('/tickets/open');
         dataTableFncs.getDataTableData();
         clearData();
     } else {
@@ -435,7 +444,7 @@ const ticketDepartmentApiCall = async () => {
             checkDepartmentValue(selectedDepartment);
         }
     } else {
-        toast.add({ severity: 'error', summary: 'Error', detail: res.html_message, life: 3000 });
+        toast.add({ severity: 'error', summary: 'Error', detail: res.message, life: 3000 });
     }
 };
 
@@ -489,10 +498,10 @@ const formattedCustomerAddress = computed(() => {
 
 onMounted(() => {
     document.body.classList.add('create-new-ticket-modal');
-    if(checkAccessRight() || deepCheckAccessRight('domestic', 'support_ticket', 'add')){
+    if (checkAccessRight() || deepCheckAccessRight('domestic', 'support_ticket', 'add')) {
         ticketDepartmentApiCall();
     }
-    
+
     showAirwayBillNoDetails.value = false;
 });
 
@@ -593,8 +602,8 @@ const isLoadingSubmit = ref(false);
                             <div class="text-[10px] text-[red] absolute" v-if="errorMessage.trayaTicketCreatedDate">{{ errorMessage.trayaTicketCreatedDate }}</div>
                         </div>
                         <!-- select Department & Category -->
-                        <div class="pb-[24px]">
-                            <div class="w-[100%] md:flex gap-4">
+                        <div class="md:pb-[24px]">
+                            <div class="w-[100%] flex gap-4 flex-col md:flex-row">
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Department'" :showAsterisk="true" />
                                     <BaseDropdown
@@ -685,13 +694,14 @@ const isLoadingSubmit = ref(false);
                                 placeholder="Enter Your Subject"
                                 name="subject"
                                 @input="validateValue"
+                                @paste.prevent="handlePaste"
                             />
                             <div class="text-[10px] text-[red] absolute bottom-2">{{ errorMessage.subject }}</div>
                         </div>
                         <!-- description -->
                         <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 || topHeader.user_id == 903 }">
                             <BaseLabel :labelText="'Description'" :showAsterisk="false" />
-                            <BaseTextarea v-model="description" twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]" placeholder="Enter Description" name="description" @input="validateValue" />
+                            <BaseTextarea v-model="description" twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]" placeholder="Enter Description" name="description" @input="validateValue" @paste.prevent="handlePaste" />
                         </div>
                         <!-- upload -->
                         <BaseFileUpload

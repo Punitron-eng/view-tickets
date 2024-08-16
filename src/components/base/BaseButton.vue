@@ -62,8 +62,8 @@ const buttonClasses = computed(() => {
 }
 
 .btn-secondary {
-    @apply bg-[#ffffff] dark:bg-[#313131] dark:text-[#fff] border-[#dfe3e6] dark:border-[#383b40];
-    border: 1px solid #dfe3e6 !important;
+    @apply bg-[#ffffff] dark:bg-transparent dark:text-[#fff] border border-[#dfe3e6] dark:border-[#5d5d5d];
+    border: 1px solid;
     color: #575f6c;
 }
 
