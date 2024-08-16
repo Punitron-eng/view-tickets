@@ -1,5 +1,5 @@
 <template>
-    <div @click="handleBulkUpload('Bulk Upload')" class="export-btn-outer flex gap-2 items-center bg-[#fff] dark:bg-[#313131] shadow-md rounded-[6px] hover:cursor-pointer px-2 dark:border-[#4d4d4d] border-[1px] w-max text-[12px]">
+    <div @click="handleBulkUpload('Bulk Upload')" v-if="checkAccessRight() ? true : deepCheckAccessRight('domestic', 'support_ticket', 'import')" class="export-btn-outer flex gap-2 items-center bg-[#fff] dark:bg-[#313131] shadow-md rounded-[6px] hover:cursor-pointer px-2 dark:border-[#4d4d4d] border-[1px] w-max text-[12px]">
         <img v-if="!darkModeVal" src="@/assets/images/export-btn.svg" />
         <img v-else src="@/assets/images/dark-mode/dark-export-btn.svg" />
         <span>Bulk Upload </span>
@@ -27,6 +27,7 @@ import { useStore } from 'vuex';
 import { DARKMODE } from '@/store/dark-mode/constants';
 import { useToast } from 'primevue/usetoast';
 import { apiHandlerWithFile } from '@/api/common/api.ts';
+import { checkAccessRight, deepCheckAccessRight } from '@/util/commonHandlers';
 import config from '@/util/config';
 const darkModeVal = computed(() => store.getters[`${DARKMODE.NAME}/sendDarkModeVal`]);
 const toast = useToast();

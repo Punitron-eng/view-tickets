@@ -17,6 +17,7 @@ import VendorModal from '../../../../../components/common-modal-files/VendorModa
 import { checkUserType } from '../../../../../util/commonHandlers';
 import { useToast } from 'primevue/usetoast';
 import * as dataTableFncs from '@/components/itl-dataTable-files/itl-dataTable/commonFunctions';
+import { checkAccessRight, deepCheckAccessRight } from '@/util/commonHandlers';
 import { getairwayBillNoDetails, getDepartmentOptionsApi, getCategoryOptionsApi, getFileUploadApi } from '../../../../../api/domestic/view-ticket/viewTicketApi';
 import { isAlphanumeric } from '../../../../../util/commonValidations';
 const darkModeVal = computed(() => store.getters[`${DARKMODE.NAME}/sendDarkModeVal`]);
@@ -488,7 +489,10 @@ const formattedCustomerAddress = computed(() => {
 
 onMounted(() => {
     document.body.classList.add('create-new-ticket-modal');
-    ticketDepartmentApiCall();
+    if(checkAccessRight() || deepCheckAccessRight('domestic', 'support_ticket', 'add')){
+        ticketDepartmentApiCall();
+    }
+    
     showAirwayBillNoDetails.value = false;
 });
 

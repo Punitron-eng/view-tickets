@@ -193,7 +193,8 @@ defineExpose({
                 <div
                     v-else-if="message.chat_position === 'right' || message.chat_position === 'left'"
                     :class="[
-                        message.is_show_pending_from === 2 ? 'border-b-2 border-[red] px-[18px] py-[10px] user-message' : message.chat_position === 'right' ? 'px-[18px] py-[10px] user-message' : 'px-[18px] py-[10px] message',
+                        message.chat_position === 'left' ?'message':'user-message',
+                        message.is_show_pending_from === 2 ? 'border-b-2 border-[red] px-[18px] py-[10px] ' : message.chat_position === 'right' ? 'px-[18px] py-[10px] ' : 'px-[18px] py-[10px] ',
                         message.isError ? 'opacity-[0.5]' : '',
                     ]"
                 >
@@ -225,7 +226,7 @@ defineExpose({
                         </div>
                         <img :src="message.chat_attachment.file_path_large" v-else @click="openModal(message.chat_attachment.file_path_large, 'image')" class="hover:cursor-pointer max-w-[100px] rounded-md" />
                     </div>
-                    {{ message.chat_message.replace(/<br\s*\/?>/gi, ' ') }}
+                    {{ message.chat_message.replace(/<br\s*\/?>/gi, '\n') }}
                 </div>
                 <!-- this is for the Image message -->
                 <!-- <div v-else class="message" :class="message?.chat_message?.length > 0 ? 'px-[18px] py-[10px]' : ''">

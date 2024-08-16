@@ -124,6 +124,7 @@ onMounted(async () => {
     if (!checkAccessRight()) {
         deepCheckAccessRight('domestic', 'support_ticket', 'view');
     }
+    dataVariables.value.isExportBtnAvail = checkAccessRight() ? true : deepCheckAccessRight('domestic', 'support_ticket', 'export');
     dataVariables.value.scrollableTabs = staticTabs;
     dataTableFncs.getSelectedTabOnLoad();
     document.body.classList.add('view-ticket');
