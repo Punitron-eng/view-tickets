@@ -640,11 +640,11 @@ const isLoadingSubmit = ref(false);
                                     <div class="text-[10px] text-[red]" v-if="errorMessage.inputAddress">{{ errorMessage.inputAddress }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%]">
-                                    <BaseLabel :labelText="'LandMark'" :showAsterisk="true" />
+                                    <BaseLabel :labelText="'Landmark'" :showAsterisk="true" />
                                     <BaseInput
                                         v-model="inputAddress.landmark"
                                         twClasses="!h-[32px] !rounded-[4px] !text-[13px] !text-[#1d252b] border-[#dfe3e6] w-full dark:!bg-[#4d4d4d] dark:!text-[#fff] placeholder:font-interRegular"
-                                        placeholder="Enter LandMark"
+                                        placeholder="Enter Landmark"
                                     />
                                     <div class="text-[10px] text-[red]" v-if="errorMessage.inputLandMark">{{ errorMessage.inputLandMark }}</div>
                                 </div>
