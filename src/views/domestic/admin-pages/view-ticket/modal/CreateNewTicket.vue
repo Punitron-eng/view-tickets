@@ -708,7 +708,7 @@ const isLoadingSubmit = ref(false);
                                     <BaseDropdown
                                         @listenDropdownChange="
                                             (val) => {
-                                                selectedTicketType = val;
+                                                selectedCustomerType = val;
                                                 validateField('customerType');
                                             }
                                         "
