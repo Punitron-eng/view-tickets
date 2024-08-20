@@ -195,8 +195,8 @@ const validateExtension = (value) => {
                     <div class="text-[#000] dark:text-[#fff] truncate w-[30vw] md:w-[auto]">{{ fileInfo.name }}</div>
                 </template>
             </div>
-            <img v-if="!darkModeVal" class="cursor-pointer" @click="clearFile" src="@/assets/images/close_icon_mobile.svg" alt="Remove File" :class="{ 'absolute top-5 right-5 ': fileInfo.type.startsWith('image/') }" />
-            <img v-else class="cursor-pointer" @click="clearFile" src="@/assets/images/dark-mode/dark-close_icon_mobile.svg" alt="Remove File" :class="{ 'absolute top-5 right-5 ': fileInfo.type.startsWith('image/') }" />
+            <img v-if="!darkModeVal" class="cursor-pointer absolute top-5 right-5" @click="clearFile" src="@/assets/images/close_icon_mobile.svg" alt="Remove File" :class="{ 'absolute top-5 right-5 ': fileInfo.type.startsWith('image/') }" />
+            <img v-else class="cursor-pointer absolute top-5 right-5" @click="clearFile" src="@/assets/images/dark-mode/dark-close_icon_mobile.svg" alt="Remove File" :class="{ 'absolute top-5 right-5 ': fileInfo.type.startsWith('image/') }" />
         </div>
     </div>
     <!-- csv file upload component design -->
