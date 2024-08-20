@@ -99,6 +99,15 @@ const closeModal = () => {
     clearData();
 };
 
+watch(
+    () => dataVariables.value.isCreateNewTicketModalVisible,
+    (newVal) => {
+        if (newVal == true) {
+            showAirwayBillNoDetails.value = false;
+        }
+    }
+);
+
 const getTomorrowDate = () => {
     let today = new Date();
     today.setDate(today.getDate() + 1);
@@ -213,11 +222,12 @@ const airwayBillNoFunction = async (event) => {
             isLoading.value = false;
             showTurnaroundTime.value = false;
             subject.value = '';
+            selectedCategory.value = '';
             // vendorData.value = [res.data.user_name, res.data.vendor_id];
             const result = [res.data.user_name, res.data.vendor_id].join(',');
             rescheduleDates.value = res.data.reschedule_dates;
             vendorData.value = [result];
-            if (topHeader.user_id == 3000 || topHeader.user_id == 903) {
+            if ((topHeader.user_id == 3000 || topHeader.user_id == 903) && dataVariables.value.isCreateNewTicketModalVisible == true) {
                 const categoryPaylod = {
                     awb_no: airwayBillNo.value,
                     department_id: selectedDepartment.value.id,
@@ -695,6 +705,7 @@ const isLoadingSubmit = ref(false);
                                         @listenDropdownChange="
                                             (val) => {
                                                 selectedTicketType = val;
+                                                validateField('ticketType');
                                             }
                                         "
                                         :options="ticketTypesOptions"
@@ -708,7 +719,7 @@ const isLoadingSubmit = ref(false);
                                     <BaseDropdown
                                         @listenDropdownChange="
                                             (val) => {
-                                                selectedTicketType = val;
+                                                selectedCustomerType = val;
                                                 validateField('customerType');
                                             }
                                         "

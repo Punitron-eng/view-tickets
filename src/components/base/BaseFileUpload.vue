@@ -63,8 +63,8 @@ const onDrop = (files: File[] | null) => {
         selectedImage.value = files[0].type.startsWith('image/') ? URL.createObjectURL(files[0]) : null;
         fileInfo.value = files[0];
         emits('listenFileUploadChange', files[0]);
-        console.log(selectedImage.value,'selectedImage.value')
-        console.log(files,'files')
+        console.log(selectedImage.value, 'selectedImage.value');
+        console.log(files, 'files');
     }
 };
 
@@ -162,7 +162,7 @@ const validateExtension = (value) => {
             </div>
         </div>
         <input @change="onFileSelect" type="file" :accept="props.fileType.toLowerCase()" ref="fileInput" class="hidden" :id="props.fileID" />
-        <div v-if="fileInfo" class="md:w-full border-[2px] border-[#d1d5db] dark:border-[#8d8d8d] border-dashed rounded-[8px] items-center justify-between bg-[#d4ecd5] dark:bg-[#4d4d4d] flex flex-row p-4">
+        <div v-if="fileInfo" class="relative md:w-full border-[2px] border-[#d1d5db] dark:border-[#8d8d8d] border-dashed rounded-[8px] items-center justify-between bg-[#d4ecd5] dark:bg-[#4d4d4d] flex flex-row pt-[50px] md:pt-4 px-4 pb-4">
             <div class="flex items-center justify-between gap-3">
                 <template v-if="fileInfo.type == 'text/csv'">
                     <img src="@/assets/images/bulk-csv-icon.svg" :alt="fileInfo.name" />
@@ -195,8 +195,15 @@ const validateExtension = (value) => {
                     <div class="text-[#000] dark:text-[#fff] truncate w-[30vw] md:w-[auto]">{{ fileInfo.name }}</div>
                 </template>
             </div>
-            <img v-if="!darkModeVal" class="cursor-pointer" @click="clearFile" src="@/assets/images/close_icon_mobile.svg" alt="Remove File" :class="{ 'relative bottom-[86px] right-[-10px] md:static': fileInfo.type.startsWith('image/') }" />
-            <img v-else class="cursor-pointer" @click="clearFile" src="@/assets/images/dark-mode/dark-close_icon_mobile.svg" alt="Remove File" :class="{ 'relative bottom-[86px] right-[-10px] md:static': fileInfo.type.startsWith('image/') }" />
+            <img v-if="!darkModeVal" class="cursor-pointer absolute top-5 right-5 md:top-8" @click="clearFile" src="@/assets/images/close_icon_mobile.svg" alt="Remove File" :class="{ 'absolute top-5 right-5 ': fileInfo.type.startsWith('image/') }" />
+            <img
+                v-else
+                class="cursor-pointer absolute top-5 right-5 md:top-8"
+                @click="clearFile"
+                src="@/assets/images/dark-mode/dark-close_icon_mobile.svg"
+                alt="Remove File"
+                :class="{ 'absolute top-5 right-5 ': fileInfo.type.startsWith('image/') }"
+            />
         </div>
     </div>
     <!-- csv file upload component design -->

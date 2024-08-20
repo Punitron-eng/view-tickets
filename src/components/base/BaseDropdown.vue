@@ -36,9 +36,9 @@ onBeforeMount(() => {
 onMounted(() => {
     listenDropdownChange();
 });
-onBeforeUnmount(() => {
-    document.body.classList.remove('base-dropdown');
-});
+// onBeforeUnmount(() => {
+//     document.body.classList.remove('base-dropdown');
+// });
 const applyCss = (type: string) => {
     if (type != 'onClose') {
         setTimeout(() => {
