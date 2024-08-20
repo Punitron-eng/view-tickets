@@ -661,13 +661,13 @@ const confirmUnactionbleItlFnc = async () => {
     <DialogView v-model:visible="imgPreview" :modal="true" :draggable="false" dismissableMask id="imgpreview">
         <button v-if="modalImageSrc.data.length > 1" @click="nextImage" class="absolute top-[50%] right-2 z-[9]"><img :src="getImg('filter-next-icon')" /></button>
         <div v-if="imgPreview" class="relative pb-6 px-6 max-h-[570px] h-full">
-            <div v-if="modalImageSrc.imageSrc.type == 'audio' || modalImageSrc.imageSrc.type == 'video'" class="w-[30vw] h-[20vh] flex justify-center items-center">
+            <div v-if="modalImageSrc.imageSrc.type == 'audio' || modalImageSrc.imageSrc.type == 'video'" class="md:w-[30vw] h-[20vh] flex justify-center items-center">
                 <audio controls v-if="modalImageSrc.imageSrc.type === 'audio'">
                     <source :src="modalImageSrc.imageSrc.file" type="audio/mpeg" />
                 </audio>
                 <video :src="modalImageSrc.imageSrc.file" controls class="pb-4" v-else></video>
             </div>
-            <img v-else :src="modalImageSrc.imageSrc.file" class="w-[40vw] object-contain hover:cursor-pointer" alt="Image Preview" />
+            <img v-else :src="modalImageSrc.imageSrc.file" class="md:w-[40vw] object-contain hover:cursor-pointer" alt="Image Preview" />
         </div>
         <button v-if="modalImageSrc.data.length > 1" @click="prevImage" class="absolute top-[50%] left-2 z-[9]">
             <img :src="getImg('filter-prev-icon')" />
