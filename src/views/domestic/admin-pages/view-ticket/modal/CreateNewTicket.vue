@@ -226,7 +226,7 @@ const airwayBillNoFunction = async (event) => {
             const result = [res.data.user_name, res.data.vendor_id].join(',');
             rescheduleDates.value = res.data.reschedule_dates;
             vendorData.value = [result];
-            if (topHeader.user_id == 3000 || topHeader.user_id == 903) {
+            if ((topHeader.user_id == 3000 || topHeader.user_id == 903) && dataVariables.value.isCreateNewTicketModalVisible == true) {
                 const categoryPaylod = {
                     awb_no: airwayBillNo.value,
                     department_id: selectedDepartment.value.id,
