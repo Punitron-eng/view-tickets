@@ -705,6 +705,7 @@ const isLoadingSubmit = ref(false);
                                         @listenDropdownChange="
                                             (val) => {
                                                 selectedTicketType = val;
+                                                validateField('ticketType');
                                             }
                                         "
                                         :options="ticketTypesOptions"
