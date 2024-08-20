@@ -99,6 +99,15 @@ const closeModal = () => {
     clearData();
 };
 
+watch(
+    () => dataVariables.value.isCreateNewTicketModalVisible,
+    (newVal) => {
+        if (newVal == true) {
+            showAirwayBillNoDetails.value = false;
+        }
+    }
+);
+
 const getTomorrowDate = () => {
     let today = new Date();
     today.setDate(today.getDate() + 1);
