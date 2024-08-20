@@ -192,7 +192,7 @@ defineExpose({
                 <div
                     v-else-if="message.chat_position === 'right' || message.chat_position === 'left'"
                     :class="[
-                        message.chat_position === 'left' ?'message':'user-message',
+                        message.chat_position === 'left' ? 'message' : 'user-message',
                         message.is_show_pending_from === 2 ? 'border-b-2 border-[red] px-[18px] py-[10px] ' : message.chat_position === 'right' ? 'px-[18px] py-[10px] ' : 'px-[18px] py-[10px] ',
                         message.isError ? 'opacity-[0.5]' : '',
                     ]"
@@ -274,7 +274,7 @@ defineExpose({
     }
 
     height: 100%;
-    max-height: 70%;
+    max-height: 84%;
 
     // @media screen and (device-width: 768px) {
     //     max-height: calc(100vh - 60%);
