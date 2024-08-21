@@ -450,7 +450,7 @@ onMounted(() => {
         <template #header> Close & Reopen Ticket </template>
         <template #body>
             <div class="flex flex-col">
-                <div class="mb-3">Are you sure you want to close & reopen this ticket? {{ dataVariables.isVisibleCloseReopenConfirmation }}</div>
+                <div class="mb-3">Are you sure you want to close & reopen this ticket?</div>
                 <BaseTextarea rows="4" cols="50" v-model="closeReopenRemark" placeholder="Remark" class="rounded-[4px]" />
             </div>
         </template>
