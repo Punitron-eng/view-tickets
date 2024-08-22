@@ -102,6 +102,11 @@ const submitTicketRating = async () => {
 </script>
 
 <style>
+#ticket-rate-modal {
+    @media screen and (max-width: 767px) {
+        width: 95% !important;
+    }
+}
 .p-rating .p-rating-item.p-focus {
     box-shadow: none !important;
     border-color: transparent !important;
