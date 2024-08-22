@@ -172,7 +172,7 @@ defineExpose({
             <SkeletonView width="340px" height="30px" class="user-message-loading" />
         </div>
     </div>
-    <div v-else ref="chatContainer" class="p-3 gap-3 flex flex-col chat-session-container overflow-y-auto h-full mb-[15px]" @scroll="fetchMessagesonScroll">
+    <div v-else ref="chatContainer" class="p-3 gap-3 flex flex-col chat-session-container overflow-y-auto h-full" @scroll="fetchMessagesonScroll">
         <div v-for="(message, index) in messages" :key="index" :class="[message.chat_position === 'right' ? 'flex flex-row-reverse gap-2' : 'flex gap-2', message.notification_type === 'notification' ? 'justify-center' : '']">
             <img v-if="(message.chat_position !== 'right' || message.chat_position == '') && message.notification_type != 'notification' && checkUserType('vendor')" :src="getImg('itl-chat-logo', darkModeVal)" class="w-[33px]" />
             <img v-else-if="(message.chat_position !== 'right' || message.chat_position == '') && message.notification_type != 'notification'" :src="getImg('ticket-message-user', darkModeVal)" class="w-[33px]" />
@@ -274,7 +274,7 @@ defineExpose({
     }
 
     height: 100%;
-    max-height: 72%;
+    max-height: calc(100% - 121px);
 
     // @media screen and (device-width: 768px) {
     //     max-height: calc(100vh - 60%);
@@ -282,11 +282,11 @@ defineExpose({
 
     @media screen and (max-width: 767px) {
         height: 100%;
-        max-height: 44vh !important;
+        max-height: calc(100% - 109px) !important;
     }
 
     @media screen and (max-width: 380px) {
-        max-height: 32vh !important;
+        max-height: calc(100% - 109px) !important;
     }
 }
 
