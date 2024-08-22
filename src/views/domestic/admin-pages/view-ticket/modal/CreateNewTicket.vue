@@ -67,6 +67,7 @@ const showTurnaroundTime = ref(false);
 const turnaroundTime = ref('');
 const selectedTicketType = ref();
 const selectedCustomerType = ref();
+const isAwbValidDepartment = ref(false);
 // const topHeader = ref(JSON.parse(localStorage.getItem('top_header')));
 const topHeader = JSON.parse(localStorage.getItem('top_header'));
 const ticketTypesOptions = [
@@ -119,6 +120,15 @@ const getTomorrowDate = () => {
     let year = today.getFullYear();
 
     return `${day}-${month}-${year}`;
+};
+
+const awbRequiredDepartment = () => {
+    const validDepartments = ['Billing', 'Operations', 'Pickup', 'ONDC IGM', 'Security', 'Special Operations', 'REV'];
+    if (validDepartments.includes(selectedDepartment.value?.value)) {
+        isAwbValidDepartment.value = true;
+    } else {
+        isAwbValidDepartment.value = false;
+    }
 };
 
 //validate on submit
@@ -308,6 +318,10 @@ const handlePaste = (event) => {
 
 // on select department
 const checkDepartmentValue = async () => {
+    awbRequiredDepartment();
+    if (!isAwbValidDepartment.value) {
+        errorMessage.value.airwayBillNo = '';
+    }
     showTurnaroundTime.value = false;
     errorMessage.value.department = ''; // Clear department error message
     const categoryPaylod = {
@@ -340,10 +354,20 @@ const getCategory = (categoryValue) => {
 const ticketSubmit = async () => {
     isLoadingSubmit.value = true;
     const validate = validateDetails();
+    if (isAwbValidDepartment.value) {
+        errorMessage.value.airwayBillNo = 'This field is required';
+        isLoadingSubmit.value = false;
+        return;
+    } else {
+        errorMessage.value.airwayBillNo = '';
+    }
     if (validate) {
         isLoadingSubmit.value = false;
         return;
     }
+    //validate awb depends on department
+    console.log(isAwbValidDepartment.value);
+
     data.value = {
         awb_no: airwayBillNo.value,
         ticket_date: topHeader.user_id != 3000 && topHeader.user_id != 903 ? '' : trayaTicketCreatedDate.value,
@@ -561,7 +585,7 @@ const isLoadingSubmit = ref(false);
                     <div class="m-4 md:my-10 md:mx-24">
                         <!-- airway bill No -->
                         <div class="pb-[16px] relative">
-                            <BaseLabel :labelText="'Airway Bill No'" :showAsterisk="topHeader.user_id == 3000 || topHeader.user_id == 903 ? true : false" />
+                            <BaseLabel :labelText="'Airway Bill No'" :showAsterisk="isAwbValidDepartment || topHeader.user_id == 3000 || topHeader.user_id == 903 ? true : false" />
                             <BaseInput
                                 v-model="airwayBillNo"
                                 twClasses="!h-[32px] !rounded-[4px] !text-[13px] !text-[#1d252b] mb-2 border-[#dfe3e6] w-full dark:!bg-[#4d4d4d] dark:!text-[#fff] font-interRegular placeholder:font-interRegular"
