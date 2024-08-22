@@ -81,7 +81,6 @@
                                 </div>
                             </div>
                             <div v-if="id.isFilterType == 6" :id="id.field" v-show="fieldIdRefs[id.field]?.value">
-                               
                                 <DTMultiSelect v-model="modalRefs" :id="id" />
                             </div>
                             <div v-if="id.isFilterType == 7" :id="id.field" v-show="fieldIdRefs[id.field]?.value">
@@ -155,17 +154,17 @@ onUnmounted(() => {
 });
 //added by bhavna
 const dependentFilter = async () => {
-    if(modalRefs.value[dataVariables.value.dependentFilters[0]].value == ''){
+    if (modalRefs.value[dataVariables.value.dependentFilters[0]].value == '') {
         const targetValue = dataVariables.value.dependentFilters[1];
-        const matchIndex = newTempData.value.findIndex(item => item['field'] === targetValue);
+        const matchIndex = newTempData.value.findIndex((item) => item['field'] === targetValue);
         newTempData.value[matchIndex]['values'] = ref([]);
-    } else if(modalRefs.value[dataVariables.value.dependentFilters[0]].value != '') {
+    } else if (modalRefs.value[dataVariables.value.dependentFilters[0]].value != '') {
         if (dataVariables.value.router.currentRoute.path.includes('tickets')) {
             await store.commit(`${storeName.NAME}/setTicketDepartmentId`, modalRefs.value[dataVariables.value.dependentFilters[0]].id);
         }
         await dataTableFncs.getColumnData(dataVariables.value.saveFilterID);
     }
-}
+};
 //added by bhavna
 const triggerWatch = ref(false);
 watch(
