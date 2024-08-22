@@ -274,7 +274,7 @@ defineExpose({
     }
 
     height: 100%;
-    max-height: 84%;
+    max-height: 72%;
 
     // @media screen and (device-width: 768px) {
     //     max-height: calc(100vh - 60%);
