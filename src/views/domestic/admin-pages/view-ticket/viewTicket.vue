@@ -409,7 +409,15 @@ onMounted(() => {
         <template #footer>
             <div class="flex justify-end">
                 <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => (dataVariables.isVisibleConfirmationforVendor = false)" />
-                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" :disabled="!pendingForVendor.trim()" @click="confirmPendingFncForVendor(dataVariables.selectedRowId)" />
+                <BaseButton
+                    type="primary"
+                    size="medium"
+                    name="Submit"
+                    :isLoading="false"
+                    :disabled="!pendingForVendor.trim()"
+                    :class="{ '!cursor-not-allowed': !pendingForVendor.trim() }"
+                    @click="confirmPendingFncForVendor(dataVariables.selectedRowId)"
+                />
             </div>
         </template>
     </ConfirmationModal>
@@ -424,7 +432,15 @@ onMounted(() => {
         <template #footer>
             <div class="flex justify-end">
                 <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => (dataVariables.isVisibleConfirmationForCs = false)" />
-                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" :disabled="!pendingForCsRemark.trim()" @click="confirmPendingFncForCs(dataVariables.selectedRowId)" />
+                <BaseButton
+                    type="primary"
+                    size="medium"
+                    name="Submit"
+                    :isLoading="false"
+                    :disabled="!pendingForCsRemark.trim()"
+                    :class="{ '!cursor-not-allowed': !pendingForCsRemark.trim() }"
+                    @click="confirmPendingFncForCs(dataVariables.selectedRowId)"
+                />
             </div>
         </template>
     </ConfirmationModal>

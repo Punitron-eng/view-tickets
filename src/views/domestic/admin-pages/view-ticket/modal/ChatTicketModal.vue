@@ -623,7 +623,7 @@ const confirmUnactionbleItlFnc = async () => {
             <template #footer>
                 <div class="flex justify-end">
                     <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => ((isVisibleConfirmation = false), (isCheck.pending_from = false))" />
-                    <BaseButton type="primary" size="medium" name="Submit" :isLoading="pendingFromVendorLoading" :disabled="!pendingForVendor.trim()" @click="confirmPendingFnc" />
+                    <BaseButton type="primary" size="medium" name="Submit" :isLoading="pendingFromVendorLoading" :disabled="!pendingForVendor.trim()" :class="{ '!cursor-not-allowed': !pendingForVendor.trim() }" @click="confirmPendingFnc" />
                 </div>
             </template>
         </ConfirmationModal>
