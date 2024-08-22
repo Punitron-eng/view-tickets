@@ -21,6 +21,7 @@ import { checkAccessRight, deepCheckAccessRight } from '@/util/commonHandlers';
 import { getairwayBillNoDetails, getDepartmentOptionsApi, getCategoryOptionsApi, getFileUploadApi } from '../../../../../api/domestic/view-ticket/viewTicketApi';
 import { isAlphanumeric } from '../../../../../util/commonValidations';
 const darkModeVal = computed(() => store.getters[`${DARKMODE.NAME}/sendDarkModeVal`]);
+
 import Skeleton from 'primevue/skeleton';
 const toast = useToast();
 const dataVariables = viewTicketVariables;
@@ -101,9 +102,10 @@ const closeModal = () => {
 
 watch(
     () => dataVariables.value.isCreateNewTicketModalVisible,
-    (newVal) => {
+    async (newVal) => {
         if (newVal == true) {
             showAirwayBillNoDetails.value = false;
+            categoryData.value = [];
         }
     }
 );
