@@ -78,6 +78,7 @@ const addMessage = (message, file, imageUrl) => {
     });
     selectedFile.value = file;
     imagePreviewUrl.value = imageUrl;
+    scrollToBottom();
 };
 // fetching the messages on scroll
 const fetchMessages = async () => {
@@ -135,6 +136,14 @@ defineExpose({
     messageLoading,
     updateLastMessage,
 });
+watch(
+    () => isLoadingMessages.value,
+    (newValue) => {
+        if (newValue) {
+            scrollToBottom();
+        }
+    }
+);
 </script>
 
 <template>
