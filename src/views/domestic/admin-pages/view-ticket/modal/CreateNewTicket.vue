@@ -1,28 +1,28 @@
 <script setup>
 import { useStore } from 'vuex';
-import { NEWVIEWTICKET } from '@/store/domestic/admin-pages/view-ticket/constants';
 import getImg from '@/util/getImg';
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
-import { DARKMODE } from '@/store/dark-mode/constants';
-import { viewTicketVariables } from '../viewTicketVariables';
-import BaseInput from '../../../../../components/base/BaseInput.vue';
-import BaseTextarea from '../../../../../components/base/BaseTextarea.vue';
-import BaseFileUpload from '../../../../../components/base/BaseFileUpload.vue';
-import BaseDropdown from '../../../../../components/base/BaseDropdown.vue';
-import BaseLabel from '../../../../../components/base/BaseLabel.vue';
-import BaseCheckBox from '../../../../../components/base/BaseCheckBox.vue';
-import BaseButton from '../../../../../components/base/BaseButton.vue';
-import SingleDatePicker from '../../../../../components/itl-common-features/itl-date-range-picker/SingleDatePicker.vue';
-import VendorModal from '../../../../../components/common-modal-files/VendorModal.vue';
-import { checkUserType } from '../../../../../util/commonHandlers';
-import { useToast } from 'primevue/usetoast';
-import * as dataTableFncs from '@/components/itl-dataTable-files/itl-dataTable/commonFunctions';
-import { checkAccessRight, deepCheckAccessRight } from '@/util/commonHandlers';
-import { getairwayBillNoDetails, getDepartmentOptionsApi, getCategoryOptionsApi, getFileUploadApi, getRescheduleDateApi } from '../../../../../api/domestic/view-ticket/viewTicketApi';
-import { isAlphanumeric } from '../../../../../util/commonValidations';
-const darkModeVal = computed(() => store.getters[`${DARKMODE.NAME}/sendDarkModeVal`]);
-
 import Skeleton from 'primevue/skeleton';
+import { useToast } from 'primevue/usetoast';
+import { checkUserType } from '@/util/commonHandlers';
+import { DARKMODE } from '@/store/dark-mode/constants';
+import BaseInput from '@/components/base/BaseInput.vue';
+import BaseLabel from '@/components/base/BaseLabel.vue';
+import BaseButton from '@/components/base/BaseButton.vue';
+import { isAlphanumeric } from '@/util/commonValidations';
+import { viewTicketVariables } from '../viewTicketVariables';
+import BaseDropdown from '@/components/base/BaseDropdown.vue';
+import BaseTextarea from '@/components/base/BaseTextarea.vue';
+import BaseCheckBox from '@/components/base/BaseCheckBox.vue';
+import BaseFileUpload from '@/components/base/BaseFileUpload.vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import VendorModal from '@/components/common-modal-files/VendorModal.vue';
+import { checkAccessRight, deepCheckAccessRight } from '@/util/commonHandlers';
+import { NEWVIEWTICKET } from '@/store/domestic/admin-pages/view-ticket/constants';
+const darkModeVal = computed(() => store.getters[`${DARKMODE.NAME}/sendDarkModeVal`]);
+import * as dataTableFncs from '@/components/itl-dataTable-files/itl-dataTable/commonFunctions';
+import SingleDatePicker from '@/components/itl-common-features/itl-date-range-picker/SingleDatePicker.vue';
+import { getairwayBillNoDetails, getDepartmentOptionsApi, getCategoryOptionsApi, getFileUploadApi, getRescheduleDateApi } from '@/api/domestic/view-ticket/viewTicketApi';
+
 const toast = useToast();
 const dataVariables = viewTicketVariables;
 const data = ref([]);
@@ -392,8 +392,6 @@ const ticketSubmit = async () => {
         customer_type: topHeader.user_id != 3000 && topHeader.user_id != 903 ? 0 : selectedCustomerType.value?.id,
     };
     if (checkUserType('admin') || checkUserType('subadmin')) {
-        console.log(vendorData.value[1]);
-
         data.value.selected_vendor_id = vendorData.value[1];
         data.value.is_show_vendor = checkboxData.is_checked ? 1 : 0;
     }
