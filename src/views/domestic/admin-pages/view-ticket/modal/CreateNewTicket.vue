@@ -238,9 +238,11 @@ const airwayBillNoFunction = async (event) => {
             subject.value = '';
             selectedCategory.value = '';
             // vendorData.value = [res.data.user_name, res.data.vendor_id];
-            const result = [res.data.user_name, res.data.vendor_id].join(',');
+            const vendor_user_name = res.data.user_name;
+            const vendor_user_id = res.data.vendor_id;
             rescheduleDates.value = res.data.reschedule_dates;
-            vendorData.value = [result];
+            vendorData.value.push(vendor_user_name, vendor_user_id);
+
             if ((topHeader.user_id == 3000 || topHeader.user_id == 903) && dataVariables.value.isCreateNewTicketModalVisible == true) {
                 const categoryPaylod = {
                     awb_no: airwayBillNo.value,
@@ -356,7 +358,7 @@ const getCategory = (categoryValue) => {
 const ticketSubmit = async () => {
     isLoadingSubmit.value = true;
     const validate = validateDetails();
-    if (isAwbValidDepartment.value) {
+    if (isAwbValidDepartment.value && !airwayBillNo.value) {
         errorMessage.value.airwayBillNo = 'This field is required';
         isLoadingSubmit.value = false;
         return;
@@ -384,8 +386,10 @@ const ticketSubmit = async () => {
         customer_type: topHeader.user_id != 3000 && topHeader.user_id != 903 ? 0 : selectedCustomerType.value?.id,
     };
     if (checkUserType('admin') || checkUserType('subadmin')) {
-        data.value.selectedVendor = vendorData.value[0];
-        data.value.isCheckedVendor = checkboxData.is_checked;
+        console.log(vendorData.value[1]);
+
+        data.value.selected_vendor_id = vendorData.value[1];
+        data.value.is_show_vendor = checkboxData.is_checked ? 1 : 0;
     }
     // store the filled values
     const filledValues = ref({});
@@ -447,9 +451,6 @@ const showVendorModal = () => {
 const applyVendorFilter = async (vendorName) => {
     vendorName.forEach(async (element) => {
         const tempData = element.split(',');
-        const payload = {
-            vendor_id: tempData[1],
-        };
         vendorData.value = tempData;
         isAdmin.value = false;
     });

@@ -1,7 +1,7 @@
 <script setup>
 import { useStore } from 'vuex';
 import getImg from '@/util/getImg';
-import { ref, nextTick, watch, computed, onMounted } from 'vue';
+import { ref, nextTick, watch, computed } from 'vue';
 import { NEWVIEWTICKET } from '@/store/domestic/admin-pages/view-ticket/constants';
 import { viewTicketVariables } from '../viewTicketVariables';
 import { checkUserType } from '../../../../../util/commonHandlers';
@@ -9,7 +9,7 @@ const messages = ref([]);
 const dataVariables = viewTicketVariables;
 
 const store = useStore();
-const { darkModeVal, chatData, isLoading, changeLoadingStatus } = defineProps(['darkModeVal', 'chatData', 'isLoading', 'changeLoadingStatus']);
+const { darkModeVal, isLoading } = defineProps(['darkModeVal', 'isLoading']);
 const ticketModalComputed = computed(() => store.getters[`${NEWVIEWTICKET.NAME}/sendChatTicketModalData`] || []);
 const currentChatCount = computed(() => store.getters[`${NEWVIEWTICKET.NAME}/sendCurrentChatCount`]);
 const newChatMessageData = computed(() => store.getters[`${NEWVIEWTICKET.NAME}/sendChatMessageData`]);
@@ -34,6 +34,16 @@ const scrollToBottom = () => {
         }
     });
 };
+
+const totalChatHeight = ref(0);
+const chatContainerHeight = () => {
+    const chatHeader = document.querySelector('.chat-header');
+    const chatFooter = document.querySelector('.chat-footer');
+
+    totalChatHeight.value = chatHeader.offsetHeight + chatFooter.offsetHeight + 'px';
+    console.log(totalChatHeight.value);
+};
+
 watch(
     () => chatContainer.value, // or other reactive properties
     (newValue, oldValue) => {
@@ -141,6 +151,9 @@ watch(
     (newValue) => {
         if (newValue) {
             scrollToBottom();
+            console.log('hello');
+
+            chatContainerHeight();
         }
     }
 );
