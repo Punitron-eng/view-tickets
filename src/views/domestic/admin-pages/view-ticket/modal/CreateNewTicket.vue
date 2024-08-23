@@ -106,7 +106,9 @@ watch(
     async (newVal) => {
         if (newVal == true) {
             showAirwayBillNoDetails.value = false;
-            categoryData.value = [];
+            if (!topHeader.user_id == 3000 || !topHeader.user_id == 903) {
+                categoryData.value = [];
+            }
         }
     }
 );
@@ -365,8 +367,6 @@ const ticketSubmit = async () => {
         isLoadingSubmit.value = false;
         return;
     }
-    //validate awb depends on department
-    console.log(isAwbValidDepartment.value);
 
     data.value = {
         awb_no: airwayBillNo.value,
