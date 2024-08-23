@@ -107,6 +107,8 @@ watch(
         if (newVal == true) {
             showAirwayBillNoDetails.value = false;
             rescheduleDates.value = [];
+            showTurnaroundTime.value = false;
+            clearData();
             if (!topHeader.user_id == 3000 || !topHeader.user_id == 903) {
                 categoryData.value = [];
             }
@@ -428,7 +430,7 @@ const clearData = () => {
     mobileNumber.value = '';
     subject.value = '';
     description.value = '';
-    selectedDepartment.value = '';
+    selectedDepartment.value = topHeader.user_id == 3000 || topHeader.user_id == 903 ? '' : 16;
     selectedCategory.value = '';
     selectedTicketType.value = '';
     selectedCustomerType.value = '';
@@ -681,7 +683,6 @@ const isLoadingSubmit = ref(false);
                                     <div class="text-[10px] text-[red] absolute">{{ errorMessage.category }}</div>
                                 </div>
                             </div>
-
                             <div v-if="showTurnaroundTime" class="text-[#366cb8] md:w-[30%] w-[80%] ml-auto mt-2 text-[13px] bg-[#d9e9ff] right-0 bottom-0 px-[8px] py-[6px] rounded-[4px]">Turnaround Time: {{ turnaroundTime }}</div>
                         </div>
                         <div>
