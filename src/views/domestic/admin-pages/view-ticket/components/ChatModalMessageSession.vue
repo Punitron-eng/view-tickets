@@ -5,6 +5,7 @@ import { ref, nextTick, watch, computed } from 'vue';
 import { NEWVIEWTICKET } from '@/store/domestic/admin-pages/view-ticket/constants';
 import { viewTicketVariables } from '../viewTicketVariables';
 import { checkUserType } from '../../../../../util/commonHandlers';
+import { set } from '@vueuse/core';
 const messages = ref([]);
 const dataVariables = viewTicketVariables;
 
@@ -39,9 +40,13 @@ const totalChatHeight = ref(0);
 const chatContainerHeight = () => {
     const chatHeader = document.querySelector('.chat-header');
     const chatFooter = document.querySelector('.chat-footer');
-
+    const chatSessionContainer = document.querySelector('.chat-session-container');
     totalChatHeight.value = chatHeader.offsetHeight + chatFooter.offsetHeight + 'px';
-    console.log(totalChatHeight.value);
+
+    chatSessionContainer.style.maxHeight = `calc(100% - ${totalChatHeight.value})`;
+    setTimeout(() => {
+        scrollToBottom();
+    }, 100);
 };
 
 watch(
@@ -49,7 +54,7 @@ watch(
     (newValue, oldValue) => {
         if (newValue && isScrollUpdating.value) {
             // Check if scroll update is not in progress
-            scrollToBottom();
+            chatContainerHeight();
         }
     }
 );
@@ -106,7 +111,6 @@ const fetchMessages = async () => {
         messages.value.unshift(...newChatMessageData.value.data);
         // store.commit(`${NEWVIEWTICKET.NAME}/setCurrentChatCount`, currentChatCount.value + 1);
         isLoadingMessages.value = false;
-
         return true;
     }
     isMoreMessagesAfterScroll.value = true;
@@ -147,13 +151,11 @@ defineExpose({
     updateLastMessage,
 });
 watch(
-    () => isLoadingMessages.value,
+    () => isLoading.value,
     (newValue) => {
+        console.log('hello', newValue);
         if (newValue) {
             scrollToBottom();
-            console.log('hello');
-
-            chatContainerHeight();
         }
     }
 );
@@ -290,27 +292,27 @@ watch(
     }
 }
 
-.chat-session-container {
-    @media screen and (device-width: 1280px) and (device-height: 1366px) {
-        max-height: calc(100vh - 270px) !important;
-    }
+// .chat-session-container {
+//     @media screen and (device-width: 1280px) and (device-height: 1366px) {
+//         max-height: calc(100vh - 270px) !important;
+//     }
 
-    height: 100%;
-    max-height: calc(100% - 121px);
+//     height: 100%;
+//     max-height: calc(100% - 121px);
 
-    // @media screen and (device-width: 768px) {
-    //     max-height: calc(100vh - 60%);
-    // }
+//     // @media screen and (device-width: 768px) {
+//     //     max-height: calc(100vh - 60%);
+//     // }
 
-    @media screen and (max-width: 767px) {
-        height: 100%;
-        max-height: calc(100% - 109px) !important;
-    }
+//     @media screen and (max-width: 767px) {
+//         height: 100%;
+//         max-height: calc(100% - 109px) !important;
+//     }
 
-    @media screen and (max-width: 380px) {
-        max-height: calc(100% - 109px) !important;
-    }
-}
+//     @media screen and (max-width: 380px) {
+//         max-height: calc(100% - 109px) !important;
+//     }
+// }
 
 .message {
     max-width: 356px;
