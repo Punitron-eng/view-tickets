@@ -156,12 +156,12 @@ const validateDetails = () => {
         },
         {
             key: 'ticketType',
-            check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedTicketType.value,
+            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedTicketType.value) || selectedDepartment.value?.id == 16,
             message: 'This field is required',
         },
         {
             key: 'customerType',
-            check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedCustomerType.value,
+            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedCustomerType.value) || selectedDepartment.value?.id == 16,
             message: 'This field is required',
         },
         {
@@ -466,6 +466,11 @@ const applyVendorFilter = async (vendorName) => {
         isAdmin.value = false;
         if (tempData[1] == 903 || tempData[1] == 3000) {
             showFields.value = true;
+            if (selectedDepartment.value?.id == 16) {
+                isTicketNCustomerTypeImp.value = true;
+            } else {
+                isTicketNCustomerTypeImp.value = false;
+            }
         } else {
             showFields.value = false;
         }
