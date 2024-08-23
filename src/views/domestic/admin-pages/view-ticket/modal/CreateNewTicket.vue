@@ -106,6 +106,7 @@ watch(
     async (newVal) => {
         if (newVal == true) {
             showAirwayBillNoDetails.value = false;
+            rescheduleDates.value = null;
             if (!topHeader.user_id == 3000 || !topHeader.user_id == 903) {
                 categoryData.value = [];
             }
