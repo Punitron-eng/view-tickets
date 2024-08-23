@@ -2,7 +2,7 @@
     <Dropdown v-model="modal[id.field]" filter :options="id.values" optionLabel="value" id="filter-modal" placeholder="Select One" class="w-[216px] md:w-[226px] font-normal dark:bg-[#414141] rounded-[4px] dropdown-radio" appendTo="self">
         <template #option="slotProps">
             <div class="flex items-center gap-2 p-[10px]" @click="ticketDepartmentApiCall(slotProps.option.id, modal, id.field)">
-                <input type="radio" :id="slotProps.option.id" v-model="modal[id.field].id" :value="slotProps.option.id" :name="slotProps.option.value" />
+                <input type="radio" :id="slotProps.option.id" v-model="modal[id.field]" :value="slotProps.option" :name="slotProps.option.value" />
                 <label :for="slotProps.option.id" class="hover:cursor-pointer">
                     {{ slotProps.option.value }}
                 </label>

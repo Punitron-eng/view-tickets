@@ -129,7 +129,7 @@ export const setFilterValue = (state: any, payloads: any) => {
             case 'vendorModal':
                 payload[dataKey].forEach((values) => {
                     const [id, value] = values.split(',');
-                    temp.id.push(id);
+                    temp.id.push(Number(id));
                     temp.value.push(value);
                 });
                 updateFilterData(state, dataKey, { ...temp });
@@ -140,11 +140,11 @@ export const setFilterValue = (state: any, payloads: any) => {
             case 'minMax':
                 updateFilterData(state, dataKey, payload[dataKey]);
                 break;
-            case 'dropdownRadio':
-                payload[dataKey].id !== undefined ? (temp.id = payload[dataKey].id) : (temp.id = '');
-                payload[dataKey].value && payload[dataKey].value !== undefined ? (temp.value = payload[dataKey].value) : (temp.value = '');
-                updateFilterData(state, dataKey, { ...temp });
-                break;
+            // case 'dropdownRadio':
+            //     payload[dataKey].id !== undefined ? (temp.id = payload[dataKey].id) : (temp.id = '');
+            //     payload[dataKey].value && payload[dataKey].value !== undefined ? (temp.value = payload[dataKey].value) : (temp.value = '');
+            //     updateFilterData(state, dataKey, { ...temp });
+            //     break;
         }
     });
 };
@@ -269,7 +269,7 @@ export const setApplySaveFilterData = (state: any, selectedFilter: any) => {
             case 'search':
             case 'sort':
             case 'minMax':
-            case 'dropdownRadio':
+                // case 'dropdownRadio':
                 updateFilterData(state, dataKey, payload[dataKey]);
                 break;
         }
@@ -301,7 +301,7 @@ export const setViewSaveFilterData = (state: any, item: any, tempFilterObject: a
             case 'search':
             case 'radio':
             case 'minMax':
-            case 'dropdownRadio':
+                // case 'dropdownRadio':
                 tempFilterObject[dataKey] = payload[dataKey];
                 tempFilterObject = { ...tempFilterObject };
                 break;

@@ -313,7 +313,7 @@ const applyFilter = () => {
     try {
         if (!Object.values(dataVariables.value.searchFilterValidationResult).includes(false)) {
             const newArr = Object.entries(modalRefs.value).map(([key, value]) => ({ key, value }));
-            const typeMapping = { 1: 'multiSelect', 2: 'search', 3: 'radio', 4: 'minMax', 5: 'dateRange', 6: 'multiSelect', 7: 'dropdownRadio', 9: 'mutipleArraySelectCheckbox' };
+            const typeMapping = { 1: 'multiSelect', 2: 'search', 3: 'radio', 4: 'minMax', 5: 'dateRange', 6: 'multiSelect', 7: 'multiSelect', 9: 'mutipleArraySelectCheckbox' };
             const result = [];
             let temp = [];
             const newtemp = [];
@@ -340,14 +340,28 @@ const applyFilter = () => {
                             } else {
                                 result.push({ type: typeMapping[item.isFilterType], [key]: value });
                             }
-                        } else if (!item.isIconAvail && item.isFilterType == 6) {
+                        } else if (!item.isIconAvail && (item.isFilterType == 6 || item.isFilterType == 7)) {
+                            if (!Array.isArray(value)) {
+                                if (value.id) {
+                                    value = [value];
+                                } else {
+                                    value = '';
+                                }
+                            }
                             if (Array.isArray(value)) {
                                 const res = value.map((res) => `${res.id},${res.value}`);
                                 temp.push(...res);
                                 result.push({ type: typeMapping[item.isFilterType], [key]: temp });
                                 temp = [];
                             }
-                        } else if (item.isIconAvail && item.isFilterType == 6) {
+                        } else if (item.isIconAvail && (item.isFilterType == 6 || item.isFilterType == 7)) {
+                            if (!Array.isArray(value)) {
+                                if (value.id) {
+                                    value = [value];
+                                } else {
+                                    value = '';
+                                }
+                            }
                             if (Array.isArray(value)) {
                                 const res = value.map((res) => `${res.id},${res.value}`);
                                 newtemp.push(...res);
