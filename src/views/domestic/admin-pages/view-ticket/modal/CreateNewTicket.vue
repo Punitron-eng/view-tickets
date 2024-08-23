@@ -69,7 +69,7 @@ const selectedTicketType = ref();
 const selectedCustomerType = ref();
 const isAwbValidDepartment = ref(false);
 const showFields = ref(false);
-const isTicketNCustomerTypeImp = ref(false);
+const isTicketNCustomerTypeNTrayaTicketImp = ref(false);
 // const topHeader = ref(JSON.parse(localStorage.getItem('top_header')));
 const topHeader = JSON.parse(localStorage.getItem('top_header'));
 const ticketTypesOptions = [
@@ -156,17 +156,17 @@ const validateDetails = () => {
         },
         {
             key: 'ticketType',
-            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedTicketType.value) || selectedDepartment.value?.id == 16,
+            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedTicketType.value) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16),
             message: 'This field is required',
         },
         {
             key: 'customerType',
-            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedCustomerType.value) || selectedDepartment.value?.id == 16,
+            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedCustomerType.value) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16),
             message: 'This field is required',
         },
         {
             key: 'trayaTicketCreatedDate',
-            check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && !trayaTicketCreatedDate.value,
+            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !trayaTicketCreatedDate.value) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16),
             message: 'This field is required',
         },
         {
@@ -326,9 +326,9 @@ const handlePaste = (event) => {
 // on select department
 const checkDepartmentValue = async () => {
     if ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16) {
-        isTicketNCustomerTypeImp.value = true;
+        isTicketNCustomerTypeNTrayaTicketImp.value = true;
     } else {
-        isTicketNCustomerTypeImp.value = false;
+        isTicketNCustomerTypeNTrayaTicketImp.value = false;
     }
     awbRequiredDepartment();
     if (!isAwbValidDepartment.value) {
@@ -467,9 +467,9 @@ const applyVendorFilter = async (vendorName) => {
         if (tempData[1] == 903 || tempData[1] == 3000) {
             showFields.value = true;
             if (selectedDepartment.value?.id == 16) {
-                isTicketNCustomerTypeImp.value = true;
+                isTicketNCustomerTypeNTrayaTicketImp.value = true;
             } else {
-                isTicketNCustomerTypeImp.value = false;
+                isTicketNCustomerTypeNTrayaTicketImp.value = false;
             }
         } else {
             showFields.value = false;
@@ -516,7 +516,7 @@ const ticketDepartmentApiCall = async () => {
                 id: 16,
             };
             checkDepartmentValue(selectedDepartment);
-            isTicketNCustomerTypeImp.value = true;
+            isTicketNCustomerTypeNTrayaTicketImp.value = true;
         }
     } else {
         toast.add({ severity: 'error', summary: 'Error', detail: res.message, life: 3000 });
@@ -671,8 +671,8 @@ const isLoadingSubmit = ref(false);
                             <div v-if="errorMessage.vendor" class="text-[10px] text-[red] absolute left-1 bottom-2">{{ errorMessage.vendor }}</div>
                         </div>
                         <!-- traya ticket created Data -->
-                        <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903" class="pb-[24px] relative">
-                            <BaseLabel :labelText="'Traya Ticket Created Date'" :showAsterisk="true" />
+                        <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903 || showFields" class="pb-[24px] relative">
+                            <BaseLabel :labelText="'Traya Ticket Created Date'" :showAsterisk="isTicketNCustomerTypeNTrayaTicketImp" />
                             <SingleDatePicker @date-value="dateValue" :max-date="getTomorrowDate()" placeholder="Select Date" />
                             <div class="text-[10px] text-[red] absolute" v-if="errorMessage.trayaTicketCreatedDate">{{ errorMessage.trayaTicketCreatedDate }}</div>
                         </div>
@@ -748,7 +748,7 @@ const isLoadingSubmit = ref(false);
                             <!-- ticket type & customer type -->
                             <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903 || showFields" class="flex flex-col md:flex-row justify-between items-center gap-4 mt-1">
                                 <div class="w-[100%] md:w-[50%] relative">
-                                    <BaseLabel :labelText="'Select Ticket Type'" :showAsterisk="isTicketNCustomerTypeImp" />
+                                    <BaseLabel :labelText="'Select Ticket Type'" :showAsterisk="isTicketNCustomerTypeNTrayaTicketImp" />
                                     <BaseDropdown
                                         @listenDropdownChange="
                                             (val) => {
@@ -763,7 +763,7 @@ const isLoadingSubmit = ref(false);
                                     <div class="text-[10px] text-[red] absolute" v-if="errorMessage.ticketType">{{ errorMessage.ticketType }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%] relative">
-                                    <BaseLabel :labelText="'Select Customer Type'" :showAsterisk="isTicketNCustomerTypeImp" />
+                                    <BaseLabel :labelText="'Select Customer Type'" :showAsterisk="isTicketNCustomerTypeNTrayaTicketImp" />
                                     <BaseDropdown
                                         @listenDropdownChange="
                                             (val) => {
