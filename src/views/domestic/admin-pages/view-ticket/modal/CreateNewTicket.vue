@@ -82,7 +82,7 @@ const customerSelectOptions = [
     { id: 2, value: 'Repeat' },
 ];
 
-const rescheduleDates = ref([]);
+const rescheduleDates = ref();
 
 const checkboxData = {
     id: 1,
@@ -240,7 +240,6 @@ const airwayBillNoFunction = async (event) => {
             // vendorData.value = [res.data.user_name, res.data.vendor_id];
             const vendor_user_name = res.data.user_name;
             const vendor_user_id = res.data.vendor_id;
-            rescheduleDates.value = res.data.reschedule_dates;
             vendorData.value.push(vendor_user_name, vendor_user_id);
 
             if ((topHeader.user_id == 3000 || topHeader.user_id == 903) && dataVariables.value.isCreateNewTicketModalVisible == true) {
@@ -272,7 +271,6 @@ const handleAirwayBillNo = (event, value) => {
         return;
     } else if (value == '') {
         showAirwayBillNoDetails.value = false;
-        rescheduleDates.value = [];
         vendorData.value = [];
         isLoading.value = false;
         errorMessage.value.airwayBillNo = topHeader.user_id == 3000 || topHeader.user_id == 903 ? 'This field is required' : '';
@@ -344,7 +342,11 @@ const checkDepartmentValue = async () => {
 
 // get category data
 const getCategory = async (categoryValue) => {
-    await getRescheduleDateApi(categoryValue.id);
+    if (categoryValue.id == 206 || categoryValue.id == 197) {
+        const res = await getRescheduleDateApi(categoryValue.id);
+        rescheduleDates.value = res.data.reschedule_dates;
+    }
+
     selectedCategory.value = categoryValue;
     subject.value = categoryValue.value;
     showTurnaroundTime.value = true;
