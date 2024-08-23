@@ -82,7 +82,7 @@ const customerSelectOptions = [
     { id: 2, value: 'Repeat' },
 ];
 
-const rescheduleDates = ref();
+const rescheduleDates = ref([]);
 
 const checkboxData = {
     id: 1,
@@ -106,7 +106,7 @@ watch(
     async (newVal) => {
         if (newVal == true) {
             showAirwayBillNoDetails.value = false;
-            rescheduleDates.value = null;
+            rescheduleDates.value = [];
             if (!topHeader.user_id == 3000 || !topHeader.user_id == 903) {
                 categoryData.value = [];
             }
