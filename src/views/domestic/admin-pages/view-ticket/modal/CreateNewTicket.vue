@@ -68,6 +68,8 @@ const turnaroundTime = ref('');
 const selectedTicketType = ref();
 const selectedCustomerType = ref();
 const isAwbValidDepartment = ref(false);
+const showFields = ref(false);
+const isTicketNCustomerTypeImp = ref(false);
 // const topHeader = ref(JSON.parse(localStorage.getItem('top_header')));
 const topHeader = JSON.parse(localStorage.getItem('top_header'));
 const ticketTypesOptions = [
@@ -323,6 +325,11 @@ const handlePaste = (event) => {
 
 // on select department
 const checkDepartmentValue = async () => {
+    if ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16) {
+        isTicketNCustomerTypeImp.value = true;
+    } else {
+        isTicketNCustomerTypeImp.value = false;
+    }
     awbRequiredDepartment();
     if (!isAwbValidDepartment.value) {
         errorMessage.value.airwayBillNo = '';
@@ -457,6 +464,11 @@ const applyVendorFilter = async (vendorName) => {
         const tempData = element.split(',');
         vendorData.value = tempData;
         isAdmin.value = false;
+        if (tempData[1] == 903 || tempData[1] == 3000) {
+            showFields.value = true;
+        } else {
+            showFields.value = false;
+        }
     });
     errorMessage.value.vendor = '';
     airwayBillNo.value = '';
@@ -499,6 +511,7 @@ const ticketDepartmentApiCall = async () => {
                 id: 16,
             };
             checkDepartmentValue(selectedDepartment);
+            isTicketNCustomerTypeImp.value = true;
         }
     } else {
         toast.add({ severity: 'error', summary: 'Error', detail: res.message, life: 3000 });
@@ -728,9 +741,9 @@ const isLoadingSubmit = ref(false);
                                 <div class="text-[10px] text-[red]" v-if="errorMessage.rescheduleDate">{{ errorMessage.rescheduleDate }}</div>
                             </div>
                             <!-- ticket type & customer type -->
-                            <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903" class="flex flex-col md:flex-row justify-between items-center gap-4 mt-1">
+                            <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903 || showFields" class="flex flex-col md:flex-row justify-between items-center gap-4 mt-1">
                                 <div class="w-[100%] md:w-[50%] relative">
-                                    <BaseLabel :labelText="'Select Ticket Type'" :showAsterisk="true" />
+                                    <BaseLabel :labelText="'Select Ticket Type'" :showAsterisk="isTicketNCustomerTypeImp" />
                                     <BaseDropdown
                                         @listenDropdownChange="
                                             (val) => {
@@ -745,7 +758,7 @@ const isLoadingSubmit = ref(false);
                                     <div class="text-[10px] text-[red] absolute" v-if="errorMessage.ticketType">{{ errorMessage.ticketType }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%] relative">
-                                    <BaseLabel :labelText="'Select Customer Type'" :showAsterisk="true" />
+                                    <BaseLabel :labelText="'Select Customer Type'" :showAsterisk="isTicketNCustomerTypeImp" />
                                     <BaseDropdown
                                         @listenDropdownChange="
                                             (val) => {
