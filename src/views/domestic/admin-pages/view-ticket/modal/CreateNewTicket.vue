@@ -109,6 +109,7 @@ watch(
         if (newVal == true) {
             showAirwayBillNoDetails.value = false;
             rescheduleDates.value = [];
+            showFields.value = false;
             showTurnaroundTime.value = false;
             clearData();
             if (!topHeader.user_id == 3000 || !topHeader.user_id == 903) {
@@ -171,22 +172,24 @@ const validateDetails = () => {
         },
         {
             key: 'inputAddress',
-            check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !inputAddress.value.address,
+            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !inputAddress.value.address),
             message: 'This field is required',
         },
         {
             key: 'inputLandMark',
-            check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !inputAddress.value.landmark,
+            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !inputAddress.value.landmark),
             message: 'This field is required',
         },
         {
             key: 'mobileNumber',
-            check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !mobileNumber.value,
+            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !mobileNumber.value),
             message: 'This field is required',
         },
         {
             key: 'rescheduleDate',
-            check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && (selectedCategory.value?.id == 197 || selectedCategory.value?.id == 206) && !selectedRescheduleDate.value,
+            check:
+                ((topHeader.user_id == 3000 || topHeader.user_id == 903) && (selectedCategory.value?.id == 197 || selectedCategory.value?.id == 206)) ||
+                ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !selectedRescheduleDate.value),
             message: 'This field is required',
         },
     ];
@@ -703,7 +706,10 @@ const isLoadingSubmit = ref(false);
                         </div>
                         <div>
                             <!-- Address and LandMark -->
-                            <div v-if="selectedCategory?.id == 197 && (topHeader.user_id == 3000 || topHeader.user_id == 903)" class="flex flex-col md:flex-row w-full gap-4 mt-2 mb-4">
+                            <div
+                                v-if="selectedCategory?.id == 197 && (topHeader.user_id == 3000 || topHeader.user_id == 903 || ((checkUserType('admin') || checkUserType('subadmin')) && (vendorData[1] == 903 || vendorData[1] == 3000)))"
+                                class="flex flex-col md:flex-row w-full gap-4 mt-2 mb-4"
+                            >
                                 <div class="w-[100%] md:w-[50%]">
                                     <BaseLabel :labelText="'Address'" :showAsterisk="true" />
                                     <BaseInput
@@ -740,7 +746,14 @@ const isLoadingSubmit = ref(false);
                                 <div class="text-[10px] text-[red]" v-if="errorMessage.mobileNumber">{{ errorMessage.mobileNumber }}</div>
                             </div>
                             <!-- reschedule date -->
-                            <div v-if="(selectedCategory?.id == 197 || selectedCategory?.id == 206) && (topHeader.user_id == 3000 || topHeader.user_id == 903) && rescheduleDates.length > 0" class="mb-4">
+                            <div
+                                v-if="
+                                    (selectedCategory?.id == 197 || selectedCategory?.id == 206) &&
+                                    (topHeader.user_id == 3000 || topHeader.user_id == 903 || ((checkUserType('admin') || checkUserType('subadmin')) && (vendorData[1] == 903 || vendorData[1] == 3000))) &&
+                                    rescheduleDates.length > 0
+                                "
+                                class="mb-4"
+                            >
                                 <BaseLabel :labelText="'Reschedule Date'" :showAsterisk="true" />
                                 <BaseDropdown @listenDropdownChange="(val) => (selectedRescheduleDate = val)" :options="rescheduleDates" twClasses="w-[100%]" :placeholder="'Select...'" />
                                 <div class="text-[10px] text-[red]" v-if="errorMessage.rescheduleDate">{{ errorMessage.rescheduleDate }}</div>
