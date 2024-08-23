@@ -18,7 +18,7 @@ import { checkUserType } from '../../../../../util/commonHandlers';
 import { useToast } from 'primevue/usetoast';
 import * as dataTableFncs from '@/components/itl-dataTable-files/itl-dataTable/commonFunctions';
 import { checkAccessRight, deepCheckAccessRight } from '@/util/commonHandlers';
-import { getairwayBillNoDetails, getDepartmentOptionsApi, getCategoryOptionsApi, getFileUploadApi } from '../../../../../api/domestic/view-ticket/viewTicketApi';
+import { getairwayBillNoDetails, getDepartmentOptionsApi, getCategoryOptionsApi, getFileUploadApi, getRescheduleDateApi } from '../../../../../api/domestic/view-ticket/viewTicketApi';
 import { isAlphanumeric } from '../../../../../util/commonValidations';
 const darkModeVal = computed(() => store.getters[`${DARKMODE.NAME}/sendDarkModeVal`]);
 
@@ -343,7 +343,8 @@ const checkDepartmentValue = async () => {
 };
 
 // get category data
-const getCategory = (categoryValue) => {
+const getCategory = async (categoryValue) => {
+    await getRescheduleDateApi(categoryValue.id);
     selectedCategory.value = categoryValue;
     subject.value = categoryValue.value;
     showTurnaroundTime.value = true;
