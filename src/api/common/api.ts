@@ -1,5 +1,6 @@
 import { authHeader } from '../../util/AuthHeader';
 import config from '../../util/config';
+import { dataTableVariables as dataVariable } from '../../components/itl-dataTable-files/itl-dataTable/commonVariable';
 
 export const apiHandler = async (url: string, payload?: object, isFilePresent?: boolean) => {
     const apiPath = url;
@@ -21,13 +22,17 @@ export const apiHandler = async (url: string, payload?: object, isFilePresent?: 
             try {
                 const errorData = await result.json();
                 // throw new Error(errorData.message || 'Failed to fetch data'); // it was not working when we are getting the error 422 and it was not sending the message weher we are calling the api.
+                const statusCode = result.status;
+                if (statusCode == 403) {
+                    dataVariable.value.toast.add({ severity: 'error', summary: 'Error Message', detail: errorData.message, life: 3000 });
+                }
                 return errorData || 'Failed to fetch data';
             } catch (error) {
                 throw error;
             }
         }
     } catch (error) {
-        throw error.message;
+        return 'error';
     }
 };
 
@@ -130,8 +135,10 @@ export const apiHandlerWithFormData = async (url: string, payload?: object) => {
 };
 export const checkTokenValidation = async (result) => {
     const data = await result.json();
+    const statusCode = result.status;
+
     if (data.status == 'error') {
-        if (data.html_message == 'Access Denied' || data.html_message == 'Please Login' || data.html_message == 'Please Login.' || data.message == 'Invalid Access') {
+        if (data.html_message == 'Access Denied' || data.html_message == 'Please Login' || data.html_message == 'Please Login.' || data.message == 'Invalid Access' || statusCode == 401) {
             window.location.href = config.baseUrlPanel + 'logout';
         }
         return data;

@@ -23,23 +23,8 @@ export const dataTableData = async (data, filterPayload) => {
     const result = await apiHandler(apiPath, payload);
     return result;
 };
-// export const dataTableData = async (data, filterPayload) => {
-//     const apiPath = `${config.baseUrlApiNew}api/v1/support-ticket/get/data`;
-//     const payload = {
-//         module_name: data.moduleName,
-//         tab_name: data.selectedTab,
-//         sub_tab_name: data.subTabName,
-//         is_active_sub_tab_filter: data.is_active_sub_tab_filter,
-//         page_start: filterPayload.paginatorStart,
-//         page_count: data.length,
-//     };
-//     const filteredPayload = Object.fromEntries(Object.entries(filterPayload).filter(([key, value]) => value !== '' && value !== null && value !== undefined && value.length > 0 && JSON.stringify(value) !== JSON.stringify({})));
-//     Object.assign(payload, filteredPayload);
-//     const result = await apiHandler(apiPath, payload);
-//     return result;
-// };
 
-export const ticketDepartmentApiCall = async (id, modal,field) => {
+export const ticketDepartmentApiCall = async (id, modal, field) => {
     if (field == 'ticket_department') {
         const data = { id, modalValue: modal };
         await store.commit(`${NEWVIEWTICKET.NAME}/setTicketDepartmentId`, data.id);
@@ -58,11 +43,7 @@ export const exportBgProcess = async (data, filterPayload, selectedCheckboxData)
         is_active_sub_tab_filter: data.is_active_sub_tab_filter,
         filter_payload: filteredPayload,
     };
-    // since the checkbox is removed from the dt table, we are not using it anymore
-    // const selectedCheckboxExportData = selectedCheckboxData.selectedCheckbox;
-    // if (selectedCheckboxExportData.length > 0) {
-    //     payload.selectedCheckbox = selectedCheckboxExportData;
-    // }
+
     const result = await apiHandler(apiPath, payload);
     return result;
 };
@@ -111,26 +92,6 @@ export const viewDetailsData = async (payload: any) => {
     return 'error';
 };
 
-// export const bulkUploadModal = async (payload: any) => {
-//     const apiPath = 'common-module-v3/bg-process-import-submit-v3.json';
-//     const formData = new FormData();
-//     formData.append('process_type', '176');
-//     formData.append('input_bulk_upload', payload);
-//     const result = await fetch(config.baseUrlApi + apiPath, {
-//         method: 'POST',
-//         headers: authHeader(),
-//         body: formData,
-//     });
-//     if (result) {
-//         try {
-//             return checkTokenValidation(result);
-//         } catch (error) {
-//             console.log('Error:', error);
-//             // Handle the error as needed
-//         }
-//     }
-//     return 'error';
-// };
 export const imageUpload = async (payload: any) => {
     const apiPath = 'weight-discrepancy/upload-weight-discrepancy-image.json';
     const formData = new FormData();
@@ -224,6 +185,14 @@ export const closeTicketApi = async (selectedTicketId: number) => {
         ticket_id: selectedTicketId,
     };
     const apiPath = `${config.baseUrlApiNew}api/v1/support-ticket/edit/close`;
+    return await apiHandler(apiPath, payload);
+};
+//Reschedule Date api
+export const getRescheduleDateApi = async (categoryId) => {
+    const payload = {
+        category_id: categoryId,
+    };
+    const apiPath = `${config.baseUrlApiNew}api/v1/support-ticket/get/reschedule-date`;
     return await apiHandler(apiPath, payload);
 };
 // Reopen ticket api

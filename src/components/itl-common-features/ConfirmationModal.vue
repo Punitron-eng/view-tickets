@@ -22,9 +22,7 @@ const handleChange = () => {
 </script>
 
 <template>
-    <DialogView v-model:visible="visible" :draggable="false" :modal="true" dismissableMask @hide="handleChange"
-        id="confirmation-modal">
-
+    <DialogView v-model:visible="visible" :draggable="false" :modal="true" dismissableMask @hide="handleChange" id="confirmation-modal">
         <template #header>
             <div class="w-full p-3 font-interSemiBold text-h4">
                 <slot name="header"></slot>
@@ -71,6 +69,10 @@ const handleChange = () => {
             border-bottom: 1px solid theme-get('modal-header-border-bottom');
             background-color: theme-get('background') !important;
         }
+    }
+
+    @media screen and (max-width: 767px) {
+        width: 95% !important;
     }
 }
 </style>

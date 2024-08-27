@@ -1,7 +1,7 @@
 <script setup>
 import { useStore } from 'vuex';
 import getImg from '@/util/getImg';
-import { ref, nextTick, watch, computed, onMounted } from 'vue';
+import { ref, nextTick, watch, computed } from 'vue';
 import { NEWVIEWTICKET } from '@/store/domestic/admin-pages/view-ticket/constants';
 import { viewTicketVariables } from '../viewTicketVariables';
 import { checkUserType } from '../../../../../util/commonHandlers';
@@ -9,7 +9,7 @@ const messages = ref([]);
 const dataVariables = viewTicketVariables;
 
 const store = useStore();
-const { darkModeVal, chatData, isLoading, changeLoadingStatus } = defineProps(['darkModeVal', 'chatData', 'isLoading', 'changeLoadingStatus']);
+const { darkModeVal, isLoading } = defineProps(['darkModeVal', 'isLoading']);
 const ticketModalComputed = computed(() => store.getters[`${NEWVIEWTICKET.NAME}/sendChatTicketModalData`] || []);
 const currentChatCount = computed(() => store.getters[`${NEWVIEWTICKET.NAME}/sendCurrentChatCount`]);
 const newChatMessageData = computed(() => store.getters[`${NEWVIEWTICKET.NAME}/sendChatMessageData`]);
@@ -34,12 +34,26 @@ const scrollToBottom = () => {
         }
     });
 };
+
+const totalChatHeight = ref(0);
+const chatContainerHeight = () => {
+    const chatHeader = document.querySelector('.chat-header');
+    const chatFooter = document.querySelector('.chat-footer');
+    const chatSessionContainer = document.querySelector('.chat-session-container');
+    totalChatHeight.value = chatHeader.offsetHeight + chatFooter.offsetHeight + 'px';
+
+    chatSessionContainer.style.maxHeight = `calc(100% - ${totalChatHeight.value})`;
+    setTimeout(() => {
+        scrollToBottom();
+    }, 100);
+};
+
 watch(
     () => chatContainer.value, // or other reactive properties
-    (newValue, oldValue) => {
+    (newValue) => {
         if (newValue && isScrollUpdating.value) {
             // Check if scroll update is not in progress
-            scrollToBottom();
+            chatContainerHeight();
         }
     }
 );
@@ -78,6 +92,7 @@ const addMessage = (message, file, imageUrl) => {
     });
     selectedFile.value = file;
     imagePreviewUrl.value = imageUrl;
+    scrollToBottom();
 };
 // fetching the messages on scroll
 const fetchMessages = async () => {
@@ -95,7 +110,6 @@ const fetchMessages = async () => {
         messages.value.unshift(...newChatMessageData.value.data);
         // store.commit(`${NEWVIEWTICKET.NAME}/setCurrentChatCount`, currentChatCount.value + 1);
         isLoadingMessages.value = false;
-
         return true;
     }
     isMoreMessagesAfterScroll.value = true;
@@ -114,6 +128,12 @@ const fetchMessagesonScroll = async () => {
                 // After fetching messages, adjust the scrollTop by adding 10 pixels
                 chatContainer.value.scrollTop = scrollTop + 50;
             }
+            const chatHeader = document.querySelector('.chat-header');
+            const chatFooter = document.querySelector('.chat-footer');
+            const chatSessionContainer = document.querySelector('.chat-session-container');
+            totalChatHeight.value = chatHeader.offsetHeight + chatFooter.offsetHeight + 'px';
+
+            chatSessionContainer.style.maxHeight = `calc(100% - ${totalChatHeight.value})`;
         }
     }
 };
@@ -135,6 +155,15 @@ defineExpose({
     messageLoading,
     updateLastMessage,
 });
+watch(
+    () => isLoading.value,
+    (newValue) => {
+        console.log('hello', newValue);
+        if (newValue) {
+            scrollToBottom();
+        }
+    }
+);
 </script>
 
 <template>
@@ -172,7 +201,7 @@ defineExpose({
             <SkeletonView width="340px" height="30px" class="user-message-loading" />
         </div>
     </div>
-    <div v-else ref="chatContainer" class="p-3 gap-3 flex flex-col chat-session-container overflow-y-auto h-full mb-[15px]" @scroll="fetchMessagesonScroll">
+    <div v-else ref="chatContainer" class="p-3 gap-3 flex flex-col chat-session-container overflow-y-auto h-full" @scroll="fetchMessagesonScroll">
         <div v-for="(message, index) in messages" :key="index" :class="[message.chat_position === 'right' ? 'flex flex-row-reverse gap-2' : 'flex gap-2', message.notification_type === 'notification' ? 'justify-center' : '']">
             <img v-if="(message.chat_position !== 'right' || message.chat_position == '') && message.notification_type != 'notification' && checkUserType('vendor')" :src="getImg('itl-chat-logo', darkModeVal)" class="w-[33px]" />
             <img v-else-if="(message.chat_position !== 'right' || message.chat_position == '') && message.notification_type != 'notification'" :src="getImg('ticket-message-user', darkModeVal)" class="w-[33px]" />
@@ -268,27 +297,27 @@ defineExpose({
     }
 }
 
-.chat-session-container {
-    @media screen and (device-width: 1280px) and (device-height: 1366px) {
-        max-height: calc(100vh - 270px) !important;
-    }
+// .chat-session-container {
+//     @media screen and (device-width: 1280px) and (device-height: 1366px) {
+//         max-height: calc(100vh - 270px) !important;
+//     }
 
-    height: 100%;
-    max-height: 84%;
+//     height: 100%;
+//     max-height: calc(100% - 121px);
 
-    // @media screen and (device-width: 768px) {
-    //     max-height: calc(100vh - 60%);
-    // }
+//     // @media screen and (device-width: 768px) {
+//     //     max-height: calc(100vh - 60%);
+//     // }
 
-    @media screen and (max-width: 767px) {
-        height: 100%;
-        max-height: 44vh !important;
-    }
+//     @media screen and (max-width: 767px) {
+//         height: 100%;
+//         max-height: calc(100% - 109px) !important;
+//     }
 
-    @media screen and (max-width: 380px) {
-        max-height: 32vh !important;
-    }
-}
+//     @media screen and (max-width: 380px) {
+//         max-height: calc(100% - 109px) !important;
+//     }
+// }
 
 .message {
     max-width: 356px;

@@ -409,7 +409,15 @@ onMounted(() => {
         <template #footer>
             <div class="flex justify-end">
                 <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => (dataVariables.isVisibleConfirmationforVendor = false)" />
-                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" :disabled="!pendingForVendor.trim()" @click="confirmPendingFncForVendor(dataVariables.selectedRowId)" />
+                <BaseButton
+                    type="primary"
+                    size="medium"
+                    name="Submit"
+                    :isLoading="false"
+                    :disabled="!pendingForVendor.trim()"
+                    :class="{ '!cursor-not-allowed': !pendingForVendor.trim() }"
+                    @click="confirmPendingFncForVendor(dataVariables.selectedRowId)"
+                />
             </div>
         </template>
     </ConfirmationModal>
@@ -424,7 +432,15 @@ onMounted(() => {
         <template #footer>
             <div class="flex justify-end">
                 <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => (dataVariables.isVisibleConfirmationForCs = false)" />
-                <BaseButton type="primary" size="medium" name="Submit" :isLoading="false" :disabled="!pendingForCsRemark.trim()" @click="confirmPendingFncForCs(dataVariables.selectedRowId)" />
+                <BaseButton
+                    type="primary"
+                    size="medium"
+                    name="Submit"
+                    :isLoading="false"
+                    :disabled="!pendingForCsRemark.trim()"
+                    :class="{ '!cursor-not-allowed': !pendingForCsRemark.trim() }"
+                    @click="confirmPendingFncForCs(dataVariables.selectedRowId)"
+                />
             </div>
         </template>
     </ConfirmationModal>
@@ -450,7 +466,7 @@ onMounted(() => {
         <template #header> Close & Reopen Ticket </template>
         <template #body>
             <div class="flex flex-col">
-                <div class="mb-3">Are you sure you want to close & reopen this ticket? {{ dataVariables.isVisibleCloseReopenConfirmation }}</div>
+                <div class="mb-3">Are you sure you want to close & reopen this ticket?</div>
                 <BaseTextarea rows="4" cols="50" v-model="closeReopenRemark" placeholder="Remark" class="rounded-[4px]" />
             </div>
         </template>

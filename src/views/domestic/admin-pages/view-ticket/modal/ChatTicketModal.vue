@@ -547,11 +547,11 @@ const confirmUnactionbleItlFnc = async () => {
                 </div>
             </div>
             <div
-                class="right-chat-ticket-modal max-w-[752px] w-[752px] max-h-[1085px] h-max md:!h-[100%] md:w-[50%] lg:w-[70%] bg-[#ffffff] dark:bg-[#313131] rounded-sm shadow-xl overflow-hidden"
+                class="relative right-chat-ticket-modal max-w-[752px] w-[752px] max-h-[1085px] h-[calc(100%-121px)] md:!h-[100%] md:w-[50%] lg:w-[70%] bg-[#ffffff] dark:bg-[#313131] rounded-sm shadow-xl overflow-hidden"
                 :class="isActive.chat ? ' md:block' : 'hidden md:block'"
             >
                 <!-- Header section -->
-                <div class="border-b dark:border-[#383b40] p-3 gap-3 flex items-center sticky top-0">
+                <div class="border-b dark:border-[#383b40] p-3 gap-3 flex items-center sticky top-0 chat-header">
                     <div v-if="isLoading" class="flex gap-2">
                         <SkeletonView width="30px" height="30px" shape="circle" />
                         <SkeletonView width="340px" height="30px" />
@@ -568,7 +568,7 @@ const confirmUnactionbleItlFnc = async () => {
                 <!-- Messages section -->
                 <ChatModalMessageSession :darmModeVal="darkModeVal" ref="chatMessageSession" :chatData="chatData" :isLoading="isLoading" :changeLoadingStatus="changeLoadingStatus" :selectedId="ticketModalData.ticket_id" />
                 <!-- message Footer section -->
-                <div v-if="ticketModalData.ticket_status == 'Open' && (checkAccessRight() ? true : deepCheckAccessRight('domestic', 'support_ticket', 'edit'))" class="sticky bottom-0 bg-[#ffffff] dark:bg-[#313131]">
+                <div v-if="ticketModalData.ticket_status == 'Open' && (checkAccessRight() ? true : deepCheckAccessRight('domestic', 'support_ticket', 'edit'))" class="absolute w-full bottom-0 bg-[#ffffff] dark:bg-[#313131] chat-footer">
                     <div class="flex items-center gap-2 py-2 md:py-3 w-full border-t border-[#f1f3f5] dark:border-[#383b40] relative">
                         <div class="absolute left-5 -top-[80px] border p-3 bg-[#f1f3f5] dark:bg-[#383b40] dark:border-[#383b40]" v-if="selectedFile">
                             <template v-if="selectedFile.type === 'application/vnd.ms-excel' || selectedFile.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || selectedFile.type === 'text/csv'">
@@ -623,7 +623,7 @@ const confirmUnactionbleItlFnc = async () => {
             <template #footer>
                 <div class="flex justify-end">
                     <BaseButton type="secondary" size="small" name="Cancel" :isLoading="false" @click="() => ((isVisibleConfirmation = false), (isCheck.pending_from = false))" />
-                    <BaseButton type="primary" size="medium" name="Submit" :isLoading="pendingFromVendorLoading" :disabled="!pendingForVendor.trim()" @click="confirmPendingFnc" />
+                    <BaseButton type="primary" size="medium" name="Submit" :isLoading="pendingFromVendorLoading" :disabled="!pendingForVendor.trim()" :class="{ '!cursor-not-allowed': !pendingForVendor.trim() }" @click="confirmPendingFnc" />
                 </div>
             </template>
         </ConfirmationModal>
@@ -659,7 +659,9 @@ const confirmUnactionbleItlFnc = async () => {
     </DialogView>
     <!-- image PreView -->
     <DialogView v-model:visible="imgPreview" :modal="true" :draggable="false" dismissableMask id="imgpreview">
-        <button v-if="modalImageSrc.data.length > 1" @click="nextImage" class="absolute top-[50%] right-2 z-[9]"><img :src="getImg('filter-next-icon')" /></button>
+        <button v-if="modalImageSrc.data.length > 1" @click="nextImage" class="absolute top-[50%] right-2 z-[9]">
+            <img :src="getImg('filter-next-icon', darkModeVal)" />
+        </button>
         <div v-if="imgPreview" class="relative pb-6 px-6 max-h-[570px] h-full">
             <div v-if="modalImageSrc.imageSrc.type == 'audio' || modalImageSrc.imageSrc.type == 'video'" class="md:w-[30vw] h-[20vh] flex justify-center items-center">
                 <audio controls v-if="modalImageSrc.imageSrc.type === 'audio'">
@@ -670,7 +672,7 @@ const confirmUnactionbleItlFnc = async () => {
             <img v-else :src="modalImageSrc.imageSrc.file" class="md:w-[40vw] object-contain hover:cursor-pointer" alt="Image Preview" />
         </div>
         <button v-if="modalImageSrc.data.length > 1" @click="prevImage" class="absolute top-[50%] left-2 z-[9]">
-            <img :src="getImg('filter-prev-icon')" />
+            <img :src="getImg('filter-prev-icon', darkModeVal)" />
         </button>
     </DialogView>
 </template>
