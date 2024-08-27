@@ -817,7 +817,7 @@ const isLoadingSubmit = ref(false);
                                 placeholder="Enter Your Subject"
                                 name="subject"
                                 @input="validateValue"
-                                @paste.prevent="isEnglishText"
+                                @paste="isEnglishText"
                             />
                             <div class="text-[10px] text-[red] absolute bottom-2">{{ errorMessage.subject }}</div>
                         </div>
@@ -830,7 +830,7 @@ const isLoadingSubmit = ref(false);
                                 placeholder="Enter Description"
                                 name="description"
                                 @input="validateValue && validateField('description')"
-                                @paste.prevent="isEnglishText"
+                                @paste="isEnglishText"
                             />
                             <div class="text-[10px] text-[red]">{{ errorMessage.description }}</div>
                         </div>
