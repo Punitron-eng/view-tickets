@@ -158,17 +158,17 @@ const validateDetails = () => {
         },
         {
             key: 'ticketType',
-            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedTicketType.value) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16),
+            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedTicketType.value) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !selectedTicketType.value),
             message: 'This field is required',
         },
         {
             key: 'customerType',
-            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedCustomerType.value) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16),
+            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !selectedCustomerType.value) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !selectedCustomerType.value),
             message: 'This field is required',
         },
         {
             key: 'trayaTicketCreatedDate',
-            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !trayaTicketCreatedDate.value) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16),
+            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !trayaTicketCreatedDate.value) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !trayaTicketCreatedDate.value),
             message: 'This field is required',
         },
         {
