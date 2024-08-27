@@ -155,7 +155,7 @@ const validateExtension = (value) => {
                 </div>
                 <div class="text-[12px] text-[#344563] dark:text-[#dfdfdf] mt-2 text-center">
                     <span v-if="props.maxFileSize"> Max {{ props.maxFileSize }} MB </span> ({{
-                        props.fileType == 'CSV' ? 'CSV' : props.fileType == 'Image' ? 'PNG / JPG' : props.allowedExtensions ? props.allowedExtensions.map((ele) => ele).join(', ') : 'Only PDF, DOC, DOCX, XLS, XLSX, WAV, MP3, MP4.JPG, JPEG or PNG'
+                        props.fileType == 'CSV' ? 'CSV' : props.fileType == 'Image' ? 'PNG / JPG' : props.allowedExtensions ? props.allowedExtensions.map((ele) => ele).join(', ') : 'Only PDF, DOC, DOCX, XLS, XLSX, WAV, MP3, MP4, JPG, JPEG or PNG'
                     }}
                     format only)
                 </div>
