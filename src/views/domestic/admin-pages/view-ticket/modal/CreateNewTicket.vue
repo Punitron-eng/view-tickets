@@ -60,6 +60,7 @@ const errorMessage = ref({
     inputLandMark: '',
     mobileNumber: '',
     rescheduleDate: '',
+    description: '',
 });
 const categoryData = ref([]);
 const departmentData = ref([]);
@@ -192,6 +193,11 @@ const validateDetails = () => {
                 ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !selectedRescheduleDate.value),
             message: 'This field is required',
         },
+        {
+            key: 'description',
+            check: (topHeader.user_id != 3000 || topHeader.user_id != 903) && !description.value,
+            message: 'This field is required',
+        },
     ];
 
     let hasError = false;
@@ -228,6 +234,7 @@ const airwayBillNoFunction = async (event) => {
         ticketType: '',
         customerType: '',
         trayaTicketCreatedDate: '',
+        description: '',
     };
     if (event instanceof Event && event.type === 'blur' && showAirwayBillNoDetails.value) {
         return; //if paste event occurs the blur event is stop
@@ -807,15 +814,16 @@ const isLoadingSubmit = ref(false);
                         </div>
                         <!-- description -->
                         <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 || topHeader.user_id == 903 }">
-                            <BaseLabel :labelText="'Description'" :showAsterisk="false" />
+                            <BaseLabel :labelText="'Description'" :showAsterisk="topHeader.user_id != 3000 || topHeader.user_id != 903" />
                             <BaseTextarea
                                 v-model="description"
                                 twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]"
                                 placeholder="Enter Description"
                                 name="description"
-                                @input="validateValue"
+                                @input="validateValue && validateField('description')"
                                 @paste.prevent="isEnglishText"
                             />
+                            <div class="text-[10px] text-[red]">{{ errorMessage.description }}</div>
                         </div>
                         <!-- upload -->
                         <BaseFileUpload
