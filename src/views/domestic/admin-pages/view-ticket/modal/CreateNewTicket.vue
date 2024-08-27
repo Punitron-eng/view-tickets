@@ -149,8 +149,8 @@ const validateDetails = () => {
         { key: 'vendor', check: checkUserType('vendor') ? false : vendorData.value.length === 0, message: 'This field is required' },
         { key: 'airwayBillNo', check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && !airwayBillNo.value, message: 'This field is required' },
         { key: 'department', check: !selectedDepartment.value, message: 'This field is required' },
-        { key: 'category', check: categoryData.value.length ? !selectedCategory.value : selectedCategory.value, message: 'This field is required' },
-        { key: 'airwayBillNo', check: airwayBillNo.value ? !showAirwayBillNoDetails.value : showAirwayBillNoDetails.value, message: '' },
+        { key: 'category', check: !selectedCategory.value, message: 'This field is required' },
+        // { key: 'airwayBillNo', check: airwayBillNo.value ? !showAirwayBillNoDetails.value : showAirwayBillNoDetails.value, message: '' },
         {
             key: 'fileUpload',
             check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && (selectedCategory.value?.id == 210 || selectedCategory.value?.id == 211 || selectedCategory.value?.id == 212 || selectedCategory.value?.id == 227) && !file.value,
@@ -209,6 +209,7 @@ const validateDetails = () => {
 
     // Iterate through validationOrder and update errorMessage accordingly
     for (const { key, check, message } of validationOrder) {
+        debugger;
         if (check) {
             errorMessage.value[key] = message;
             hasError = true;
@@ -255,7 +256,18 @@ const airwayBillNoFunction = async (event) => {
             // vendorData.value = [res.data.user_name, res.data.vendor_id];
             const vendor_user_name = res.data.user_name;
             const vendor_user_id = res.data.vendor_id;
-            vendorData.value.push(vendor_user_name, vendor_user_id);
+            vendorData.value = [vendor_user_name, vendor_user_id];
+            // vendorData.value.push(vendor_user_name, vendor_user_id);
+            console.log(vendorData.value[1] == 903 || vendorData.value[1] == 3000, 'vendoooooorrrrr');
+            console.log(vendorData.value, 'vendorData');
+
+            if (vendorData.value[1] == 903 || vendorData.value[1] == 3000) {
+                showFields.value = true;
+                isTicketNCustomerTypeNTrayaTicketImp.value = true;
+            } else {
+                showFields.value = false;
+                isTicketNCustomerTypeNTrayaTicketImp.value = false;
+            }
 
             if ((topHeader.user_id == 3000 || topHeader.user_id == 903) && dataVariables.value.isCreateNewTicketModalVisible == true) {
                 const categoryPaylod = {
@@ -381,6 +393,7 @@ const getCategory = async (categoryValue) => {
 const ticketSubmit = async () => {
     isLoadingSubmit.value = true;
     const validate = validateDetails();
+    console.log(validate, 'validate');
     if (isAwbValidDepartment.value && !airwayBillNo.value) {
         errorMessage.value.airwayBillNo = 'This field is required';
         isLoadingSubmit.value = false;
