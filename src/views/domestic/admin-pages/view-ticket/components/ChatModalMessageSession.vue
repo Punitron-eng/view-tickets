@@ -5,7 +5,6 @@ import { ref, nextTick, watch, computed } from 'vue';
 import { NEWVIEWTICKET } from '@/store/domestic/admin-pages/view-ticket/constants';
 import { viewTicketVariables } from '../viewTicketVariables';
 import { checkUserType } from '../../../../../util/commonHandlers';
-import { set } from '@vueuse/core';
 const messages = ref([]);
 const dataVariables = viewTicketVariables;
 
@@ -51,7 +50,7 @@ const chatContainerHeight = () => {
 
 watch(
     () => chatContainer.value, // or other reactive properties
-    (newValue, oldValue) => {
+    (newValue) => {
         if (newValue && isScrollUpdating.value) {
             // Check if scroll update is not in progress
             chatContainerHeight();
@@ -129,6 +128,12 @@ const fetchMessagesonScroll = async () => {
                 // After fetching messages, adjust the scrollTop by adding 10 pixels
                 chatContainer.value.scrollTop = scrollTop + 50;
             }
+            const chatHeader = document.querySelector('.chat-header');
+            const chatFooter = document.querySelector('.chat-footer');
+            const chatSessionContainer = document.querySelector('.chat-session-container');
+            totalChatHeight.value = chatHeader.offsetHeight + chatFooter.offsetHeight + 'px';
+
+            chatSessionContainer.style.maxHeight = `calc(100% - ${totalChatHeight.value})`;
         }
     }
 };
