@@ -125,8 +125,7 @@ const updateAssignMember = async () => {
     try {
         assignMemberUpdateIsLoading.value = true;
 
-        const options = { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'Asia/Kolkata' };
-        const formattedDate = singleSelectedDate.value.toLocaleDateString('en-IN', options).split('/').reverse().join('-');
+        const formattedDate = singleSelectedDate.value;
 
         const payload = {
             ticket_id: ticketModalData.value?.ticket_id,
