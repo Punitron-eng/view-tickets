@@ -113,7 +113,7 @@ watch(
             showFields.value = false;
             showTurnaroundTime.value = false;
             clearData();
-            if (!topHeader.user_id == 3000 || !topHeader.user_id == 903) {
+            if (topHeader.user_id != 3000 || !topHeader.user_id != 903) {
                 categoryData.value = [];
             }
         }
