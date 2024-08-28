@@ -173,29 +173,35 @@ const validateDetails = () => {
         },
         {
             key: 'inputAddress',
-            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedCategory.value?.id == 197 && !inputAddress.value.address),
+            check:
+                ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !inputAddress.value.address) ||
+                ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedCategory.value?.id == 197 && !inputAddress.value.address),
             message: 'This field is required',
         },
         {
             key: 'inputLandMark',
-            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedCategory.value?.id == 197 && !inputAddress.value.landmark),
+            check:
+                ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !inputAddress.value.landmark) ||
+                ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedCategory.value?.id == 197 && !inputAddress.value.landmark),
             message: 'This field is required',
         },
         {
             key: 'mobileNumber',
-            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedCategory.value?.id == 197 && !mobileNumber.value),
+            check:
+                ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !mobileNumber.value) ||
+                ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedCategory.value?.id == 197 && !mobileNumber.value),
             message: 'This field is required',
         },
         {
             key: 'rescheduleDate',
             check:
-                ((topHeader.user_id == 3000 || topHeader.user_id == 903) && (selectedCategory.value?.id == 197 || selectedCategory.value?.id == 206)) ||
+                ((topHeader.user_id == 3000 || topHeader.user_id == 903) && (selectedCategory.value?.id == 197 || selectedCategory.value?.id == 206) && !selectedRescheduleDate.value) ||
                 ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !selectedRescheduleDate.value),
             message: 'This field is required',
         },
         {
             key: 'description',
-            check: (topHeader.user_id != 3000 || topHeader.user_id != 903) && !description.value,
+            check: topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value,
             message: 'This field is required',
         },
     ];
@@ -393,7 +399,7 @@ const getCategory = async (categoryValue) => {
 const ticketSubmit = async () => {
     isLoadingSubmit.value = true;
     const validate = validateDetails();
-    if (isAwbValidDepartment.value && !airwayBillNo.value) {
+    if ((isAwbValidDepartment.value && !airwayBillNo.value) || ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !airwayBillNo.value)) {
         errorMessage.value.airwayBillNo = 'This field is required';
         isLoadingSubmit.value = false;
         return;
@@ -828,8 +834,8 @@ const isLoadingSubmit = ref(false);
                             <div class="text-[10px] text-[red] absolute bottom-2">{{ errorMessage.subject }}</div>
                         </div>
                         <!-- description -->
-                        <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 || topHeader.user_id == 903 }">
-                            <BaseLabel :labelText="'Description'" :showAsterisk="topHeader.user_id != 3000 || topHeader.user_id != 903" />
+                        <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 && topHeader.user_id == 903 }">
+                            <BaseLabel :labelText="'Description'" :showAsterisk="topHeader.user_id != 3000 && topHeader.user_id != 903" />
                             <BaseTextarea
                                 v-model="description"
                                 twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]"
