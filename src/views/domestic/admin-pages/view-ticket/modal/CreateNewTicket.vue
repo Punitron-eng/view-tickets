@@ -260,10 +260,13 @@ const airwayBillNoFunction = async (event) => {
 
             if (vendorData.value[1] == 903 || vendorData.value[1] == 3000) {
                 showFields.value = true;
-                isTicketNCustomerTypeNTrayaTicketImp.value = true;
+                if (selectedDepartment.value?.id == 16) {
+                    isTicketNCustomerTypeNTrayaTicketImp.value = true;
+                } else {
+                    isTicketNCustomerTypeNTrayaTicketImp.value = false;
+                }
             } else {
                 showFields.value = false;
-                isTicketNCustomerTypeNTrayaTicketImp.value = false;
             }
 
             if ((topHeader.user_id == 3000 || topHeader.user_id == 903) && dataVariables.value.isCreateNewTicketModalVisible == true) {
