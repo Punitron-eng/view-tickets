@@ -150,7 +150,6 @@ const validateDetails = () => {
         { key: 'airwayBillNo', check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && !airwayBillNo.value, message: 'This field is required' },
         { key: 'department', check: !selectedDepartment.value, message: 'This field is required' },
         { key: 'category', check: !selectedCategory.value, message: 'This field is required' },
-        { key: 'airwayBillNo', check: airwayBillNo.value ? !showAirwayBillNoDetails.value : showAirwayBillNoDetails.value, message: '' },
         {
             key: 'fileUpload',
             check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && (selectedCategory.value?.id == 210 || selectedCategory.value?.id == 211 || selectedCategory.value?.id == 212 || selectedCategory.value?.id == 227) && !file.value,
@@ -196,7 +195,7 @@ const validateDetails = () => {
             key: 'rescheduleDate',
             check:
                 ((topHeader.user_id == 3000 || topHeader.user_id == 903) && (selectedCategory.value?.id == 197 || selectedCategory.value?.id == 206) && !selectedRescheduleDate.value) ||
-                ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !selectedRescheduleDate.value),
+                ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && (selectedCategory.value?.id == 197 || selectedCategory.value?.id == 206) && !selectedRescheduleDate.value),
             message: 'This field is required',
         },
         {
