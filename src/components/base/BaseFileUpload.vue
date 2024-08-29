@@ -33,7 +33,7 @@ const defaultClasses = 'w-[auto] md:w-[420px] h-44 rounded-xl border-2 dark:bord
 type FileTypes = '*' | 'Image' | 'CSV';
 
 const selectedImage = ref();
-const allowedExtensions = ['pdf', 'doc', 'docx', 'csv', 'xls', 'xlsx', 'wav', 'mp3', 'mpeg', 'mp4', 'jpg', 'jpeg', 'png'];
+const allowedExtensions = ['pdf', 'doc', 'docx', 'csv', 'xls', 'xlsx', 'wav', 'mp3', 'csv', 'mp4', 'jpg', 'jpeg', 'png'];
 
 const dropZoneRef = ref<HTMLDivElement>();
 const fileInfo = ref<File | null>(null);
