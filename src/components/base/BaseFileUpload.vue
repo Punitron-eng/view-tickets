@@ -163,7 +163,7 @@ const validateExtension = (value) => {
         </div>
         <input @change="onFileSelect" type="file" :accept="props.fileType.toLowerCase()" ref="fileInput" class="hidden" :id="props.fileID" />
         <div v-if="fileInfo" class="relative md:w-full border-[2px] border-[#d1d5db] dark:border-[#8d8d8d] border-dashed rounded-[8px] items-center justify-between bg-[#d4ecd5] dark:bg-[#4d4d4d] flex flex-row pt-[50px] md:pt-4 px-4 pb-4">
-            <div class="flex items-center justify-between gap-3 w-[90%]">
+            <div class="flex items-center justify-start gap-3 w-[90%]">
                 <template v-if="fileInfo.type == 'text/csv'">
                     <img src="@/assets/images/bulk-csv-icon.svg" :alt="fileInfo.name" />
                     <div class="text-[#000] dark:text-[#fff] truncate w-[30vw] md:w-[auto]">{{ fileInfo.name }}</div>
