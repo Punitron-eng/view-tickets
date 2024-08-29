@@ -54,7 +54,6 @@ const applyCss = (type: string) => {
 };
 
 const listenDropdownChange = () => {
-    // console.log('selectedValue.value', selectedValue.value)
     if (selectedValue.value) emits('listenDropdownChange', selectedValue.value);
 };
 
@@ -62,7 +61,12 @@ watch(
     () => props.defaultValue,
     (value) => {
         // if (props.options) selectedValue.value = null;
-        if (value) selectedValue.value = props.options.find((option) => option?.id == value) || null;
+
+        if (value) {
+            selectedValue.value = props.options.find((option) => option?.id == value) || null;
+        } else {
+            selectedValue.value = null;
+        }
     }
 );
 watch(
@@ -76,7 +80,7 @@ watch(
 
 <template>
     <Dropdown
-        @change="listenDropdownChange()"
+        @change="listenDropdownChange"
         id="baseDropdown"
         :auto-option-focus="false"
         @click="applyCss"

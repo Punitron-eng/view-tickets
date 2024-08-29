@@ -15,7 +15,6 @@ export const apiHandler = async (url: string, payload?: object, isFilePresent?: 
             headers: headers,
             body: JSON.stringify(payload),
         });
-        console.log(result);
 
         if (result.status != 500) {
             return checkTokenValidation(result);

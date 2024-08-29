@@ -27,7 +27,7 @@ const toast = useToast();
 const dataVariables = viewTicketVariables;
 const data = ref([]);
 const selectedDepartment = ref();
-const selectedCategory = ref();
+const selectedCategory = ref(null);
 const airwayBillNo = ref();
 const trayaTicketCreatedDate = ref();
 const store = useStore();
@@ -200,7 +200,7 @@ const validateDetails = () => {
         },
         {
             key: 'description',
-            check: (topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value) || (vendorData.value[1] != 903 && vendorData.value[1] != 3000 && !description.value ),
+            check: (topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value) || (vendorData.value[1] != 903 && vendorData.value[1] != 3000 && !description.value),
             message: 'This field is required',
         },
     ];
@@ -723,7 +723,7 @@ const isLoadingSubmit = ref(false);
                                 </div>
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Category'" :showAsterisk="true" />
-                                    <BaseDropdown @listenDropdownChange="getCategory" :options="categoryData" twClasses="w-[100%]" :placeholder="'Select..'" />
+                                    <BaseDropdown @listenDropdownChange="getCategory" :defaultValue="selectedCategory.id" :options="categoryData" twClasses="w-[100%]" :placeholder="'Select..'" />
                                     <div class="text-[10px] text-[red] absolute">{{ errorMessage.category }}</div>
                                 </div>
                             </div>
@@ -777,7 +777,9 @@ const isLoadingSubmit = ref(false);
                             <div
                                 v-if="
                                     (selectedCategory?.id == 197 || selectedCategory?.id == 206) &&
-                                    (topHeader.user_id == 3000 || topHeader.user_id == 903 || ((checkUserType('admin') || checkUserType('subadmin')) && (vendorData[1] == 903 || vendorData[1] == 3000))) && rescheduleDates.length > 0"
+                                    (topHeader.user_id == 3000 || topHeader.user_id == 903 || ((checkUserType('admin') || checkUserType('subadmin')) && (vendorData[1] == 903 || vendorData[1] == 3000))) &&
+                                    rescheduleDates.length > 0
+                                "
                                 class="mb-4"
                             >
                                 <BaseLabel :labelText="'Reschedule Date'" :showAsterisk="true" />
