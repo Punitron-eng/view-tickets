@@ -144,7 +144,7 @@ const awbRequiredDepartment = () => {
 //validate on submit
 const validateDetails = () => {
     // Define the order of validation and error messages
-
+    console.log((topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value),'s')
     // { key: 'subject', check: (topHeader.user_id != 3000 || topHeader.user_id != 903) && subject.value, message: 'This field is required' },
     const validationOrder = [
         { key: 'vendor', check: checkUserType('vendor') ? false : vendorData.value.length === 0, message: 'This field is required' },
@@ -201,7 +201,7 @@ const validateDetails = () => {
         },
         {
             key: 'description',
-            check: (topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value) || (vendorData.value[1] != 903 && vendorData.value[1] != 3000 && !description.value ),
+            check: (checkUserType('vendor') && topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value) || ((checkUserType('admin') || checkUserType('subadmin')) && (vendorData.value[1] != 903 && vendorData.value[1] != 3000 && !description.value) ),
             message: 'This field is required',
         },
     ];
@@ -838,7 +838,7 @@ const isLoadingSubmit = ref(false);
                         </div>
                         <!-- description -->
                         <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 && topHeader.user_id == 903 }">
-                            <BaseLabel :labelText="'Description'" :showAsterisk="(isDescriptionImp || (topHeader.user_id != 3000 && topHeader.user_id != 903))" />
+                            <BaseLabel :labelText="'Description'" :showAsterisk="(isDescriptionImp || (checkUserType('vendor') && (topHeader.user_id != 3000 && topHeader.user_id != 903)))" />
                             <BaseTextarea
                                 v-model="description"
                                 twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]"
