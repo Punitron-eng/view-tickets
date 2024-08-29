@@ -834,7 +834,7 @@ const isLoadingSubmit = ref(false);
                         </div>
                         <!-- description -->
                         <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 && topHeader.user_id == 903 }">
-                            <BaseLabel :labelText="'Description'" :showAsterisk="topHeader.user_id != 3000 && topHeader.user_id != 903" />
+                            <BaseLabel :labelText="'Description'" :showAsterisk="(topHeader.user_id != 3000 && topHeader.user_id != 903) || ((checkUserType('admin') || checkUserType('subadmin')) && (vendorData[1] != 903 || vendorData[1] != 3000))" />
                             <BaseTextarea
                                 v-model="description"
                                 twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]"
