@@ -257,6 +257,7 @@ const airwayBillNoFunction = async (event) => {
             isLoading.value = false;
             showTurnaroundTime.value = false;
             selectedCategory.value = '';
+            subject.value = '';
 
             // vendorData.value = [res.data.user_name, res.data.vendor_id];
             const vendor_user_name = res.data.user_name;
