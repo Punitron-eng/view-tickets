@@ -776,9 +776,7 @@ const isLoadingSubmit = ref(false);
                             <div
                                 v-if="
                                     (selectedCategory?.id == 197 || selectedCategory?.id == 206) &&
-                                    (topHeader.user_id == 3000 || topHeader.user_id == 903 || ((checkUserType('admin') || checkUserType('subadmin')) && (vendorData[1] == 903 || vendorData[1] == 3000))) &&
-                                    rescheduleDates.length > 0
-                                "
+                                    (topHeader.user_id == 3000 || topHeader.user_id == 903 || ((checkUserType('admin') || checkUserType('subadmin')) && (vendorData[1] == 903 || vendorData[1] == 3000))) && rescheduleDates.length > 0"
                                 class="mb-4"
                             >
                                 <BaseLabel :labelText="'Reschedule Date'" :showAsterisk="true" />
