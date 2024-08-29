@@ -200,7 +200,7 @@ const validateDetails = () => {
         },
         {
             key: 'description',
-            check: topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value,
+            check: (topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value) || (vendorData.value[1] != 903 && vendorData.value[1] != 3000 && !description.value ),
             message: 'This field is required',
         },
     ];
