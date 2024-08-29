@@ -71,6 +71,7 @@ const selectedCustomerType = ref();
 const isAwbValidDepartment = ref(false);
 const showFields = ref(false);
 const isTicketNCustomerTypeNTrayaTicketImp = ref(false);
+const isDescriptionImp = ref(false);
 // const topHeader = ref(JSON.parse(localStorage.getItem('top_header')));
 const topHeader = JSON.parse(localStorage.getItem('top_header'));
 const ticketTypesOptions = [
@@ -143,7 +144,7 @@ const awbRequiredDepartment = () => {
 //validate on submit
 const validateDetails = () => {
     // Define the order of validation and error messages
-
+    console.log(topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value, 's');
     // { key: 'subject', check: (topHeader.user_id != 3000 || topHeader.user_id != 903) && subject.value, message: 'This field is required' },
     const validationOrder = [
         { key: 'vendor', check: checkUserType('vendor') ? false : vendorData.value.length === 0, message: 'This field is required' },
@@ -200,7 +201,9 @@ const validateDetails = () => {
         },
         {
             key: 'description',
-            check: (topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value) || (vendorData.value[1] != 903 && vendorData.value[1] != 3000 && !description.value),
+            check:
+                (checkUserType('vendor') && topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value) ||
+                ((checkUserType('admin') || checkUserType('subadmin')) && vendorData.value[1] != 903 && vendorData.value[1] != 3000 && !description.value),
             message: 'This field is required',
         },
     ];
@@ -266,6 +269,7 @@ const airwayBillNoFunction = async (event) => {
 
             if (vendorData.value[1] == 903 || vendorData.value[1] == 3000) {
                 showFields.value = true;
+                isDescriptionImp.value = false;
                 if (selectedDepartment.value?.id == 16) {
                     isTicketNCustomerTypeNTrayaTicketImp.value = true;
                 } else {
@@ -273,6 +277,7 @@ const airwayBillNoFunction = async (event) => {
                 }
             } else {
                 showFields.value = false;
+                isDescriptionImp.value = true;
             }
 
             if ((topHeader.user_id == 3000 || topHeader.user_id == 903) && dataVariables.value.isCreateNewTicketModalVisible == true) {
@@ -494,6 +499,7 @@ const applyVendorFilter = async (vendorName) => {
         isAdmin.value = false;
         if (tempData[1] == 903 || tempData[1] == 3000) {
             showFields.value = true;
+            isDescriptionImp.value = false;
             if (selectedDepartment.value?.id == 16) {
                 isTicketNCustomerTypeNTrayaTicketImp.value = true;
             } else {
@@ -501,6 +507,7 @@ const applyVendorFilter = async (vendorName) => {
             }
         } else {
             showFields.value = false;
+            isDescriptionImp.value = true;
         }
     });
     errorMessage.value.vendor = '';
@@ -835,7 +842,7 @@ const isLoadingSubmit = ref(false);
                         </div>
                         <!-- description -->
                         <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 && topHeader.user_id == 903 }">
-                            <BaseLabel :labelText="'Description'" :showAsterisk="(topHeader.user_id != 3000 && topHeader.user_id != 903) || ((checkUserType('admin') || checkUserType('subadmin')) && (vendorData[1] != 903 || vendorData[1] != 3000))" />
+                            <BaseLabel :labelText="'Description'" :showAsterisk="isDescriptionImp || (checkUserType('vendor') && topHeader.user_id != 3000 && topHeader.user_id != 903)" />
                             <BaseTextarea
                                 v-model="description"
                                 twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]"
