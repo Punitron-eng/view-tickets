@@ -57,16 +57,7 @@ watch(
         }
     }
 );
-// watch(
-//     () => chatContainer.value,
-//     (newValue,oldValue) => {
-//         if(newValue){
-//             scrollToBottom();
-//             hasScrolled = true;
-//         }
-//     },
-//     { immediate: true }
-// );
+
 const selectedFile = ref(null); // for the image preview
 const imagePreviewUrl = ref(null); // for the image preview
 

@@ -113,19 +113,15 @@ const triggerFileUpload = () => {
 // for the assign options
 const assignOptions = ref([]);
 const selectedOptionsText = ref([]);
-const chatTicketAssignMemberDate = ref('');
 const singleSelectedDate = ref('');
 const dateValue = (date) => {
-    const tempDate = [format(new Date(date), 'yyyy-MM-dd')];
-    chatTicketAssignMemberDate.value = tempDate[0];
-    singleSelectedDate.value = tempDate[0];
+    singleSelectedDate.value = date;
 };
 const assignMemberUpdateIsLoading = ref(false);
 const updateAssignMember = async () => {
     try {
         assignMemberUpdateIsLoading.value = true;
-
-        const formattedDate = singleSelectedDate.value;
+        const formattedDate = format(new Date(singleSelectedDate.value), 'yyyy-MM-dd');
 
         const payload = {
             ticket_id: ticketModalData.value?.ticket_id,
