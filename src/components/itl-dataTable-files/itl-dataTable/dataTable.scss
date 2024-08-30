@@ -1431,11 +1431,15 @@
         @include width(auto);
         @include custom-positioning($top: auto !important, $bottom: 0);
         opacity: 1;
+       
         @media (max-width: 1000px) {
             width: max-content !important;
             right: 0px !important;
             left: 20px !important;
             // @include width($width: 120px);
+        }
+        @media (max-width: 575px) {
+            left: 0 !important;
         }
         .p-toast-message {
             &.p-toast-message-success {
@@ -1507,14 +1511,14 @@
                 background: $notificationBarErrorBackground;
                 padding-left: 20px;
                 @include width(auto);
-                @include height($height: 36px);
+                padding: 6px 0 8px;
                 // @include displayFlex;
                 display: flex;
                 align-items: center;
                 border: none;
                 @include borderRadius(6px);
                 @media (max-width: 575px) {
-                    @include width($width: max-content);
+                    width:calc(100% - 80px)
                 }
             }
         }

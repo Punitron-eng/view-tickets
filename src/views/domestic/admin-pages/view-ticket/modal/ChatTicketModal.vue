@@ -859,7 +859,9 @@ const confirmUnactionbleItlFnc = async () => {
     .darkTheme .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
         background-color: #5d5d5d !important;
     }
-
+    .lightTheme .chat-ticket-modal .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover{
+        background-color: #000000 !important;
+    }
     .p-multiselect-panel .p-multiselect-items .p-multiselect-item {
         font-size: 12px !important;
     }

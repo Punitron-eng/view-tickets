@@ -133,7 +133,7 @@ const getTomorrowDate = () => {
 };
 
 const awbRequiredDepartment = () => {
-    const validDepartments = ['Billing', 'Operations', 'Pickup', 'ONDC IGM', 'Security', 'Special Operations', 'REV'];
+    const validDepartments = ['Billing', 'Operations', 'Pickup', 'ONDC IGM', 'Security', 'Special Operations', 'REV', 'CS'];
     if (validDepartments.includes(selectedDepartment.value?.value)) {
         isAwbValidDepartment.value = true;
     } else {
@@ -658,7 +658,7 @@ const isLoadingSubmit = ref(false);
                             <div class="text-[10px] text-[red] absolute left-1 bottom-2" v-if="errorMessage.airwayBillNo">{{ errorMessage.airwayBillNo }}</div>
                             <!-- details -->
                             <div v-if="showAirwayBillNoDetails && !isLoading" class="bg-[#f4f7f9] dark:bg-[#363636] p-2 rounded-lg">
-                                <div class="flex flex-col md:flex-row items-center pb-[6px] md:gap-20">
+                                <div class="flex flex-col md:flex-row items-center pb-[6px] md:gap-16">
                                     <div class="flex items-center w-full md:w-auto">
                                         <div class="text-[#3c4249] text-[11px] md:text-[12px] w-[50%] md:w-auto dark:text-[#DFDFDF]">Order Number :</div>
                                         <span class="text-[#0c0c0d] text-[11px] md:text-[12px] w-[50%] md:w-auto font-interMedium md:pl-1 dark:text-[#ffffff]">{{ airwayBillNoDetails.order_number }}</span>

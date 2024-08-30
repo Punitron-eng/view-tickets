@@ -586,13 +586,16 @@ input[type='number'] {
 
 .p-multiselect-panel .p-multiselect-header,
 .p-inputtext,
-.p-multiselect-items-wrapper,
-.p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
+.p-multiselect-items-wrapper {
     @include theme() {
         background-color: theme-get('background') !important;
     }
 }
-
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
+    @include theme() {
+        background-color: theme-get('border-black-500') !important;
+    }
+}
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled).p-focus {
     background: transparent !important;
 }

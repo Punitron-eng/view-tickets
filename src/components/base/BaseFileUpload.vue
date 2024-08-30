@@ -145,7 +145,7 @@ const validateExtension = (value) => {
 </script>
 
 <template>
-    <div v-if="!inputTypeFileUpload">
+    <div class="w-full" v-if="!inputTypeFileUpload">
         <div ref="dropZoneRef" v-if="!fileInfo" :class="[props?.twClasses || defaultClasses, isOverDropZone ? 'bg-slate-100' : '']" class="flex justify-center items-center">
             <div class="flex flex-col items-center">
                 <img src="@/assets/images/file-upload.svg" alt="File Upload" class="w-10 h-10 mt-3" />
@@ -168,7 +168,7 @@ const validateExtension = (value) => {
             </div>
         </div>
         <input @change="onFileSelect" type="file" :accept="props.fileType.toLowerCase()" ref="fileInput" class="hidden" :id="props.fileID" />
-        <div v-if="fileInfo" class="relative md:w-full border-[2px] border-[#d1d5db] dark:border-[#8d8d8d] border-dashed rounded-[8px] items-center justify-between bg-[#d4ecd5] dark:bg-[#4d4d4d] flex flex-row pt-[50px] md:pt-4 px-4 pb-4">
+        <div v-if="fileInfo" class="md:w-[500px] relative border-[2px] border-[#d1d5db] dark:border-[#8d8d8d] border-dashed rounded-[8px] items-center justify-between bg-[#d4ecd5] dark:bg-[#4d4d4d] flex flex-row pt-[50px] md:pt-4 px-4 pb-4">
             <div class="flex items-center justify-start gap-3 w-[90%]">
                 <template v-if="fileInfo.type == 'text/csv'">
                     <img src="@/assets/images/bulk-csv-icon.svg" :alt="fileInfo.name" />
