@@ -112,6 +112,7 @@ const triggerFileUpload = () => {
 };
 // for the assign options
 const assignOptions = ref([]);
+
 const selectedOptionsText = ref([]);
 const singleSelectedDate = ref('');
 const dateValue = (date) => {
@@ -420,6 +421,7 @@ const confirmUnactionbleItlFnc = async () => {
         unactionbleItlLoading.value = false;
     }
 };
+
 </script>
 <template>
     <DialogView id="chat-ticket-modal" v-model:visible="dataVariables.isChatModalVisible" :modal="true" :draggable="false" dismissableMask>
@@ -491,9 +493,11 @@ const confirmUnactionbleItlFnc = async () => {
                                     filter
                                     v-model="selectedOptionsText"
                                     :options="assignOptions"
-                                    optionLabel="value"
-                                    placeholder="Select Assign Option"
                                     :maxSelectedLabels="1"
+                                    optionLabel="value"
+                                    optionValue="value"
+                                    placeholder="Select Assign Option"
+                                    :virtualScrollerOptions="{ itemSize: 100 }"
                                     class="!max-w-[158px] w-[158px] h-[35px] chat-ticket-multiselect relative"
                                     appendTo="self"
                                 >
@@ -501,6 +505,8 @@ const confirmUnactionbleItlFnc = async () => {
                                         <div class="truncate">{{ slotProps.option.value }}</div>
                                     </template>
                                 </MultiSelect>
+                              
+                               
                                 <div class="flex flex-row md:!flex-col gap-2 relative !max-w-[158px] w-[158px]" @click="hideMultiSelect">
                                     <SingleDatePicker @date-value="dateValue" :min-date="new Date()" :defaultDate="singleSelectedDate" @open="hideMultiSelect" />
                                     <!-- class="py-2 border-[#0168ED] font-interSemiBold text- border rounded-md bg-itl-primary text-white w-full" -->

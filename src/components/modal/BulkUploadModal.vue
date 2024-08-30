@@ -6,7 +6,7 @@
         <main class="border-y-[1px] dark:border-[#5d5d5d] px-[32px] py-[16px] flex items-center justify-center flex-col gap-3">
             <div class="w-fit md:w-full h-fit bg-[#e8f2ff] dark:bg-[#4d4d4d] flex flex-col gap-[8px] rounded-xl py-[16px] px-[24px]" id="sample-file-content">
                 <p class="text-[#1d252b] dark:text-[#fff] text-[14px] m-0">Please download the below sample file and upload your data.</p>
-                <a class="font-medium text-[#1279ff] dark:text-[#7aadf0] text-[13px]" :href="props.sampleDownloadLink" download="sample_template.xlsx"> Download Sample Template </a>
+                <a class="font-medium text-[#1279ff] dark:text-[#7aadf0] text-[13px]" :href="props.sampleDownloadLink" :download="props.sampleDownloadLink"> Download Sample Template </a>
             </div>
             <div class="w-full">
                 <slot name="vendorModal"></slot>

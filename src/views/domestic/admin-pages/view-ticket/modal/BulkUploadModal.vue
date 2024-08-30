@@ -11,7 +11,7 @@
         title="Bulk Upload Processing via CSV"
         :isloading="setBulkUploadIsLoading"
         maxFileSize="6"
-        :sampleDownloadLink="config.baseUrlUploads + (topHeader['user_type'] == '3' ? 'support_tickets/support_tickets_bulk_upload/excel/support_ticket_bulk_upload.csv' : 'tickets/bulk-upload-tickets-sample-file-alpha-v3.csv')"
+        :sampleDownloadLink="sampleFileUrl"
         @handleChangeVisible="handleChangeShowBulkUpload"
         @returnObjectProps="handleBulkUploadData"
     >
@@ -28,6 +28,7 @@ import { DARKMODE } from '@/store/dark-mode/constants';
 import { useToast } from 'primevue/usetoast';
 import { apiHandlerWithFile } from '@/api/common/api.ts';
 import { checkAccessRight, deepCheckAccessRight } from '@/util/commonHandlers';
+import { bulkUploadApi } from '@/api/domestic/view-ticket/viewTicketApi';
 import config from '@/util/config';
 const darkModeVal = computed(() => store.getters[`${DARKMODE.NAME}/sendDarkModeVal`]);
 const toast = useToast();
@@ -35,11 +36,18 @@ const topHeader = JSON.parse(localStorage.getItem('top_header'));
 const store = useStore();
 const showBulkUpload = ref(false);
 const showBulkTitle = ref('');
+const sampleFileUrl = ref('bhavna');
 const setBulkUploadIsLoading = ref(false);
 
-const handleBulkUpload = (title) => {
+const handleBulkUpload = async (title) => {
     showBulkTitle.value = title;
+    const result = await bulkUploadApi();
+    if (result.status == 'success') {
+        console.log(result.data.sample_file_url,'result.data.sample_file_url')
+        sampleFileUrl.value = result.data.sample_file_url
+    }
     showBulkUpload.value = !showBulkUpload.value;
+
 };
 const handleChangeShowBulkUpload = (hidevalue) => {
     showBulkUpload.value = hidevalue;
