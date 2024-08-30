@@ -144,7 +144,6 @@ const awbRequiredDepartment = () => {
 //validate on submit
 const validateDetails = () => {
     // Define the order of validation and error messages
-    console.log(topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value, 's');
     // { key: 'subject', check: (topHeader.user_id != 3000 || topHeader.user_id != 903) && subject.value, message: 'This field is required' },
     const validationOrder = [
         { key: 'vendor', check: checkUserType('vendor') ? false : vendorData.value.length === 0, message: 'This field is required' },
@@ -457,6 +456,22 @@ const ticketSubmit = async () => {
     isLoadingSubmit.value = false;
 };
 
+const closeDropdown = () => {
+    const dpInputWrap = document.querySelector('.dp--menu-wrapper"');
+    const overlaypanel = document.querySelector('.p-overlaypanel');
+    const dropdownPanel = document.querySelector('.p-dropdown-panel');
+    const datatableoverlaypanel = document.querySelector('.p-column-filter-overlay');
+    dpInputWrap.addEventListener('click', function () {
+        if (overlaypanel) {
+            overlaypanel.style.display = 'none';
+        } else if (datatableoverlaypanel) {
+            datatableoverlaypanel.style.display = 'none';
+        } else if (dropdownPanel) {
+            dropdownPanel.style.display = 'none';
+        }
+    });
+};
+
 // clear data
 const clearData = () => {
     ticketDepartmentApiCall();
@@ -708,7 +723,7 @@ const isLoadingSubmit = ref(false);
                         <!-- traya ticket created Data -->
                         <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903 || showFields" class="pb-[24px] relative">
                             <BaseLabel :labelText="'Traya Ticket Created Date'" :showAsterisk="isTicketNCustomerTypeNTrayaTicketImp" />
-                            <SingleDatePicker @date-value="dateValue" :max-date="getTomorrowDate()" placeholder="Select Date" />
+                            <SingleDatePicker @date-value="dateValue" :max-date="getTomorrowDate()" placeholder="Select Date" @click="closeDropdown" />
                             <div class="text-[10px] text-[red] absolute" v-if="errorMessage.trayaTicketCreatedDate">{{ errorMessage.trayaTicketCreatedDate }}</div>
                         </div>
                         <!-- select Department & Category -->
