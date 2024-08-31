@@ -266,7 +266,7 @@ const airwayBillNoFunction = async (event) => {
             vendorData.value = [vendor_user_name, vendor_user_id];
             // vendorData.value.push(vendor_user_name, vendor_user_id);
 
-            if (vendorData.value[1] == 903 || vendorData.value[1] == 3000) {
+            if ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) || (topHeader.user_id == 3000 || topHeader.user_id == 903)) {
                 showFields.value = true;
                 isDescriptionImp.value = false;
                 if (selectedDepartment.value?.id == 16) {
@@ -723,7 +723,7 @@ const isLoadingSubmit = ref(false);
                         <!-- traya ticket created Data -->
                         <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903 || showFields" class="pb-[24px] relative">
                             <BaseLabel :labelText="'Traya Ticket Created Date'" :showAsterisk="isTicketNCustomerTypeNTrayaTicketImp" />
-                            <SingleDatePicker @date-value="dateValue" :max-date="getTomorrowDate()" placeholder="Select Date" @click="closeDropdown" />
+                            <SingleDatePicker @date-value="dateValue" placeholder="Select Date" />
                             <div class="text-[10px] text-[red] absolute" v-if="errorMessage.trayaTicketCreatedDate">{{ errorMessage.trayaTicketCreatedDate }}</div>
                         </div>
                         <!-- select Department & Category -->

@@ -421,7 +421,18 @@ const confirmUnactionbleItlFnc = async () => {
         unactionbleItlLoading.value = false;
     }
 };
-
+// Computed property to filter out duplicates
+const uniqueAssignOptions = computed(() => {
+  const uniqueValues = new Set();
+  debugger
+  return assignOptions.value.filter(option => {
+    if (!uniqueValues.has(option.value)) {
+      uniqueValues.add(option.value);
+      return true;
+    }
+    return false;
+  });
+});
 </script>
 <template>
     <DialogView id="chat-ticket-modal" v-model:visible="dataVariables.isChatModalVisible" :modal="true" :draggable="false" dismissableMask>
@@ -492,12 +503,12 @@ const confirmUnactionbleItlFnc = async () => {
                                 <MultiSelect
                                     filter
                                     v-model="selectedOptionsText"
-                                    :options="assignOptions"
+                                    :options="uniqueAssignOptions"
                                     :maxSelectedLabels="1"
                                     optionLabel="value"
                                     optionValue="value"
                                     placeholder="Select Assign Option"
-                                    :virtualScrollerOptions="{ itemSize: 100 }"
+                                    
                                     class="!max-w-[158px] w-[158px] h-[35px] chat-ticket-multiselect relative"
                                     appendTo="self"
                                 >
