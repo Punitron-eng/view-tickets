@@ -1439,7 +1439,10 @@
             // @include width($width: 120px);
         }
         @media (max-width: 575px) {
-            left: 0 !important;
+            left: 50% !important;
+            transform: translateX(-50%);
+            z-index: 9999;
+            max-width: 80vw;
         }
         .p-toast-message {
             &.p-toast-message-success {
@@ -1518,7 +1521,9 @@
                 border: none;
                 @include borderRadius(6px);
                 @media (max-width: 575px) {
-                    width:calc(100% - 80px)
+                    word-wrap: break-word;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
         }

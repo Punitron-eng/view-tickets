@@ -424,7 +424,6 @@ const confirmUnactionbleItlFnc = async () => {
 // Computed property to filter out duplicates
 const uniqueAssignOptions = computed(() => {
   const uniqueValues = new Set();
-  debugger
   return assignOptions.value.filter(option => {
     if (!uniqueValues.has(option.value)) {
       uniqueValues.add(option.value);
