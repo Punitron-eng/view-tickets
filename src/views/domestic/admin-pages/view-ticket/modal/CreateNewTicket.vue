@@ -337,11 +337,10 @@ const validateValue = (event) => {
             break;
     }
 };
-
 const isEnglishText = (event) => {
     const pastedText = event.clipboardData.getData('text/plain');
-    // Allow letters, digits, and spaces
-    if (!/^[\p{L}\p{N}\s]*$/u.test(pastedText)) {
+    // Allow letters, numbers, spaces, and special characters
+    if (!/^[\p{L}\p{N}\p{P}\p{S}\s]*$/u.test(pastedText)) {
         event.preventDefault();
     }
 };
