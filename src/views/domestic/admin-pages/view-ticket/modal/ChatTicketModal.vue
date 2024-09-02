@@ -100,7 +100,7 @@ const handleFileUpload = (event) => {
         selectedFile.value = file;
         imagePreviewUrl.value = file.type.startsWith('image/') ? URL.createObjectURL(file) : null;
     } else {
-        toast.add({ severity: 'error', summary: 'Error Message', detail: 'Only PDF, DOC, DOCX, CSV, XLS, XLSX, WAV, MP3,MPEG, MP4, JPG, JPEG or PNG files are allowed.', life: 3000 });
+        toast.add({ severity: 'error', summary: 'Error Message', detail: 'Only PDF, DOC, DOCX, CSV, XLS, XLSX, WAV, MPEG, CSV, MP3,MPEG, MP4, JPG, JPEG or PNG files are allowed.', life: 3000 });
     }
 
     fileInputRef.value.value = '';
@@ -123,7 +123,6 @@ const updateAssignMember = async () => {
     try {
         assignMemberUpdateIsLoading.value = true;
         const formattedDate = format(new Date(singleSelectedDate.value), 'yyyy-MM-dd');
-
         const payload = {
             ticket_id: ticketModalData.value?.ticket_id,
             assign_member: selectedOptionsText.value.map((item) => item.id),
@@ -178,14 +177,14 @@ const fetchTicketData = async () => {
             { label: 'Closed Date', value: ticketModalData.value?.ticket_closed_date || '-' },
         ];
         SubAdminticketItems.value = [
-            { label: 'Close by', value: ticketModalData.value?.ticket_close_by },
+            { label: 'Closed by', value: ticketModalData.value?.ticket_close_by },
             { label: 'Clone Ticket', value: ticketModalData.value?.cloned_from_ticket },
             { label: 'Clone Date', value: ticketModalData.value?.clone_date },
             { label: 'Tracking Status', value: ticketModalData.value?.tracking_status },
             { label: 'No of Attempt', value: ticketModalData.value?.no_of_attempts },
             { label: 'EDD', value: ticketModalData.value?.order_edd },
             { label: 'Last Attempt Date', value: ticketModalData.value?.last_attempt_date },
-            { label: 'Assign By', value: ticketModalData.value?.ticket_assign_by },
+            { label: 'Assigned By', value: ticketModalData.value?.ticket_assign_by },
             { label: 'CS Remark', value: ticketModalData.value?.ticket_cs_remark },
             // { label: 'LSP Remark', value: ticketModalData.value?.ticket_lsp_remark  },
             { label: 'Pending CS Remark', value: ticketModalData.value?.pending_cs_remark },
@@ -505,7 +504,7 @@ const uniqueAssignOptions = computed(() => {
                                     :options="uniqueAssignOptions"
                                     :maxSelectedLabels="1"
                                     optionLabel="value"
-                                    optionValue="value"
+                                    
                                     placeholder="Select Assign Option"
                                     
                                     class="!max-w-[158px] w-[158px] h-[35px] chat-ticket-multiselect relative"
@@ -693,7 +692,9 @@ const uniqueAssignOptions = computed(() => {
 
 .chat-ticket-multiselect {
     .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
-        border-color: #1579ff !important;
+        @include theme() {
+            border-color: theme-get('border-bottom') !important;
+        }
         box-shadow: none !important;
     }
 }

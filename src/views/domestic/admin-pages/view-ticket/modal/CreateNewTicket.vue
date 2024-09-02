@@ -670,7 +670,7 @@ const isLoadingSubmit = ref(false);
                                 @focusout="airwayBillNoFunction"
                             />
                             <!-- @blur="airwayBillNoFunction"  // remove this because 2 times api is called if user have any acyion in awb and 2 error message occurs -->
-                            <div class="text-[10px] text-[red] absolute left-1 bottom-2" v-if="errorMessage.airwayBillNo">{{ errorMessage.airwayBillNo }}</div>
+                            <div class="text-[10px] text-[#ff5630] absolute left-1 bottom-2" v-if="errorMessage.airwayBillNo">{{ errorMessage.airwayBillNo }}</div>
                             <!-- details -->
                             <div v-if="showAirwayBillNoDetails && !isLoading" class="bg-[#f4f7f9] dark:bg-[#363636] p-2 rounded-lg">
                                 <div class="flex flex-col md:flex-row items-center pb-[6px] md:gap-16">
@@ -718,13 +718,13 @@ const isLoadingSubmit = ref(false);
                                 </div>
                                 <BaseCheckBox :data="checkboxData" @listenCheckboxChange="isCheckedCheckbox" class="w-[100%] md:w-[50%] md:pl-4" />
                             </div>
-                            <div v-if="errorMessage.vendor" class="text-[10px] text-[red] absolute left-1 bottom-2">{{ errorMessage.vendor }}</div>
+                            <div v-if="errorMessage.vendor" class="text-[10px] text-[#ff5630] absolute left-1 bottom-2">{{ errorMessage.vendor }}</div>
                         </div>
                         <!-- traya ticket created Data -->
                         <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903 || showFields" class="pb-[24px] relative">
                             <BaseLabel :labelText="'Traya Ticket Created Date'" :showAsterisk="isTicketNCustomerTypeNTrayaTicketImp" />
                             <SingleDatePicker @date-value="dateValue" placeholder="Select Date" />
-                            <div class="text-[10px] text-[red] absolute" v-if="errorMessage.trayaTicketCreatedDate">{{ errorMessage.trayaTicketCreatedDate }}</div>
+                            <div class="text-[10px] text-[#ff5630] absolute" v-if="errorMessage.trayaTicketCreatedDate">{{ errorMessage.trayaTicketCreatedDate }}</div>
                         </div>
                         <!-- select Department & Category -->
                         <div class="pb-[24px]">
@@ -741,12 +741,12 @@ const isLoadingSubmit = ref(false);
                                         :placeholder="'Select Department'"
                                         @change="checkDepartmentValue"
                                     />
-                                    <div class="text-[10px] text-[red] absolute">{{ errorMessage.department }}</div>
+                                    <div class="text-[10px] text-[#ff5630] absolute">{{ errorMessage.department }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Category'" :showAsterisk="true" />
                                     <BaseDropdown @listenDropdownChange="getCategory" :defaultValue="selectedCategory.id" :options="categoryData" twClasses="w-[100%]" :placeholder="'Select..'" />
-                                    <div class="text-[10px] text-[red] absolute">{{ errorMessage.category }}</div>
+                                    <div class="text-[10px] text-[#ff5630] absolute">{{ errorMessage.category }}</div>
                                 </div>
                             </div>
                             <div v-if="showTurnaroundTime" class="text-[#366cb8] md:w-[30%] w-[80%] ml-auto mt-2 text-[13px] bg-[#d9e9ff] right-0 bottom-0 px-[8px] py-[6px] rounded-[4px]">Turnaround Time: {{ turnaroundTime }}</div>
@@ -764,7 +764,7 @@ const isLoadingSubmit = ref(false);
                                         twClasses="!h-[32px] !rounded-[4px] !text-[13px] !text-[#1d252b] border-[#dfe3e6] w-full dark:!bg-[#4d4d4d] dark:!text-[#fff] placeholder:font-interRegular"
                                         placeholder="Enter Address"
                                     />
-                                    <div class="text-[10px] text-[red]" v-if="errorMessage.inputAddress">{{ errorMessage.inputAddress }}</div>
+                                    <div class="text-[10px] text-[#ff5630]" v-if="errorMessage.inputAddress">{{ errorMessage.inputAddress }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%]">
                                     <BaseLabel :labelText="'Landmark'" :showAsterisk="true" />
@@ -773,7 +773,7 @@ const isLoadingSubmit = ref(false);
                                         twClasses="!h-[32px] !rounded-[4px] !text-[13px] !text-[#1d252b] border-[#dfe3e6] w-full dark:!bg-[#4d4d4d] dark:!text-[#fff] placeholder:font-interRegular"
                                         placeholder="Enter Landmark"
                                     />
-                                    <div class="text-[10px] text-[red]" v-if="errorMessage.inputLandMark">{{ errorMessage.inputLandMark }}</div>
+                                    <div class="text-[10px] text-[#ff5630]" v-if="errorMessage.inputLandMark">{{ errorMessage.inputLandMark }}</div>
                                 </div>
                             </div>
                             <!-- mobile number -->
@@ -793,7 +793,7 @@ const isLoadingSubmit = ref(false);
                                     autocomplete="off"
                                     @paste="handlePaste"
                                 />
-                                <div class="text-[10px] text-[red]" v-if="errorMessage.mobileNumber">{{ errorMessage.mobileNumber }}</div>
+                                <div class="text-[10px] text-[#ff5630]" v-if="errorMessage.mobileNumber">{{ errorMessage.mobileNumber }}</div>
                             </div>
                             <!-- reschedule date -->
                             <div
@@ -806,7 +806,7 @@ const isLoadingSubmit = ref(false);
                             >
                                 <BaseLabel :labelText="'Reschedule Date'" :showAsterisk="true" />
                                 <BaseDropdown @listenDropdownChange="(val) => (selectedRescheduleDate = val)" :options="rescheduleDates" twClasses="w-[100%]" :placeholder="'Select...'" />
-                                <div class="text-[10px] text-[red]" v-if="errorMessage.rescheduleDate">{{ errorMessage.rescheduleDate }}</div>
+                                <div class="text-[10px] text-[#ff5630]" v-if="errorMessage.rescheduleDate">{{ errorMessage.rescheduleDate }}</div>
                             </div>
                             <!-- ticket type & customer type -->
                             <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903 || showFields" class="flex flex-col md:flex-row justify-between items-center gap-4 mt-1">
@@ -823,7 +823,7 @@ const isLoadingSubmit = ref(false);
                                         twClasses="w-[100%]"
                                         :placeholder="'Select...'"
                                     />
-                                    <div class="text-[10px] text-[red] absolute" v-if="errorMessage.ticketType">{{ errorMessage.ticketType }}</div>
+                                    <div class="text-[10px] text-[#ff5630] absolute" v-if="errorMessage.ticketType">{{ errorMessage.ticketType }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Customer Type'" :showAsterisk="isTicketNCustomerTypeNTrayaTicketImp" />
@@ -838,7 +838,7 @@ const isLoadingSubmit = ref(false);
                                         twClasses="w-[100%]"
                                         :placeholder="'Select...'"
                                     />
-                                    <div class="text-[10px] text-[red] absolute" v-if="errorMessage.customerType">{{ errorMessage.customerType }}</div>
+                                    <div class="text-[10px] text-[#ff5630] absolute" v-if="errorMessage.customerType">{{ errorMessage.customerType }}</div>
                                 </div>
                             </div>
                         </div>
@@ -853,7 +853,7 @@ const isLoadingSubmit = ref(false);
                                 @input="validateValue"
                                 @paste="isEnglishText"
                             />
-                            <div class="text-[10px] text-[red] absolute bottom-2">{{ errorMessage.subject }}</div>
+                            <div class="text-[10px] text-[#ff5630] absolute bottom-2">{{ errorMessage.subject }}</div>
                         </div>
                         <!-- description -->
                         <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 && topHeader.user_id == 903 }">
@@ -866,7 +866,7 @@ const isLoadingSubmit = ref(false);
                                 @input="validateValue && validateField('description')"
                                 @paste="isEnglishText"
                             />
-                            <div class="text-[10px] text-[red]">{{ errorMessage.description }}</div>
+                            <div class="text-[10px] text-[#ff5630]">{{ errorMessage.description }}</div>
                         </div>
                         <!-- upload -->
                         <BaseFileUpload
@@ -877,7 +877,7 @@ const isLoadingSubmit = ref(false);
                             @clearFile="(val) => (file = val)"
                             twClasses="w-full h-44 rounded-xl h-44 rounded-xl dark:bg-[#4d4d4d] border-2 dark:border-[#5d5d5d] border-dashed"
                         />
-                        <div class="text-[10px] text-[red]">{{ errorMessage.fileUpload }}</div>
+                        <div class="text-[10px] text-[#ff5630]">{{ errorMessage.fileUpload }}</div>
                     </div>
                 </div>
             </div>

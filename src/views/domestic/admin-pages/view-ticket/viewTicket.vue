@@ -109,8 +109,11 @@ watch(
     (newValue) => {
         if (newValue[0] || newValue[1]) {
             document.body.classList.add('confirmation-modal');
+            pendingForVendor.value = '';
+            
         } else {
             document.body.classList.remove('confirmation-modal');
+            pendingForVendor.value = '';
         }
     }
 );
