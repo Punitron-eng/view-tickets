@@ -507,7 +507,7 @@ const uniqueAssignOptions = computed(() => {
                                     
                                     placeholder="Select Assign Option"
                                     
-                                    class="!max-w-[158px] w-[158px] h-[35px] chat-ticket-multiselect relative"
+                                    class="md:!max-w-[158px] md:w-[158px] h-[35px] chat-ticket-multiselect relative"
                                     appendTo="self"
                                 >
                                     <template #option="slotProps">
@@ -516,7 +516,7 @@ const uniqueAssignOptions = computed(() => {
                                 </MultiSelect>
                               
                                
-                                <div class="flex flex-row md:!flex-col gap-2 relative !max-w-[158px] w-[158px]" @click="hideMultiSelect">
+                                <div class="flex flex-row md:!flex-col gap-2 relative md:!max-w-[158px] md:w-[158px]" @click="hideMultiSelect">
                                     <SingleDatePicker @date-value="dateValue" :min-date="new Date()" :defaultDate="singleSelectedDate" @open="hideMultiSelect" />
                                     <!-- class="py-2 border-[#0168ED] font-interSemiBold text- border rounded-md bg-itl-primary text-white w-full" -->
                                     <BaseButton name="Update" class="py-2 font-interSemiBold rounded-md text-white" @click="updateAssignMember" :isLoading="assignMemberUpdateIsLoading" />
