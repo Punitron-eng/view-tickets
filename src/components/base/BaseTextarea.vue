@@ -1,8 +1,9 @@
 <template>
-    <Textarea v-model="commonModel" :rows="props.rows" :cols="props.cols" :class="props?.twClasses" class="text-area" />
+    <Textarea v-model="trimmedModel" :rows="props.rows" :cols="props.cols" :class="props?.twClasses" class="text-area" />
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import Textarea from 'primevue/textarea';
 import { defineProps, defineModel } from 'vue';
 
@@ -13,6 +14,19 @@ const props = defineProps({
 });
 
 const commonModel = defineModel();
+
+const trimmedModel = computed({
+    get() {
+        return commonModel.value;
+    },
+    set(value) {
+        commonModel.value = value
+            .replace(/\t+/g, '\t') // Allows only one tab space.
+            .replace(/[^\S\r\n]+/g, ' ') // Replace multiple spaces with a single space, preserving newlines.
+            .replace(/\n{2,}/g, '\n') // Replace multiple newlines with a single newline.
+            .trim();
+    },
+});
 </script>
 
 <style lang="scss">
