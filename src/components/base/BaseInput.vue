@@ -8,7 +8,7 @@
   const commonModel = defineModel();
   const formattedModel = computed({
     get() {
-        return commonModel.value.trim();
+        return commonModel.value;
     },
     set(value) {
         commonModel.value = value.replace(/\s+/g, ' ').trim();

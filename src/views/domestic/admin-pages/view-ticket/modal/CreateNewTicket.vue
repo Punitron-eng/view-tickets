@@ -340,7 +340,8 @@ const validateValue = (event) => {
 
 const isEnglishText = (event) => {
     const pastedText = event.clipboardData.getData('text/plain');
-    if (!/^[a-zA-Z\s]*$/.test(pastedText)) {
+    // Allow letters, digits, and spaces
+    if (!/^[\p{L}\p{N}\s]*$/u.test(pastedText)) {
         event.preventDefault();
     }
 };
@@ -388,7 +389,7 @@ const getCategory = async (categoryValue) => {
         const res = await getRescheduleDateApi(categoryValue.id);
         rescheduleDates.value = res.data.reschedule_dates;
     }
-
+    
     selectedCategory.value = categoryValue;
     subject.value = categoryValue.value;
     showTurnaroundTime.value = true;
