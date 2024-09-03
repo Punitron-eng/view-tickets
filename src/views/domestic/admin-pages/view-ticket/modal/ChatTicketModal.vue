@@ -258,7 +258,7 @@ const postComment = async (selectedFileValue, successFileUpload) => {
         const result = await addCommentApi(ticketModalData.value?.ticket_id, payload);
         if (result.status !== 'success') {
             chatMessageSession.value.updateLastMessage(true, false);
-            throw new Error(result.message);
+            throw result.message;
         }
         chatMessageSession.value.updateLastMessage(false, false);
         currentMessage.value = '';
