@@ -291,7 +291,7 @@ const actionModal = async (data) => {
     } else if (data.selectedAction.name === 'Pending From Vendor') {
         dataVariables.value.isVisibleConfirmationforVendor = true;
         dataVariables.value.selectedRowId = data.rowId;
-    } else if (data.selectedAction.name === 'Pending From Cs') {
+    } else if (data.selectedAction.name === 'Pending From CS') {
         dataVariables.value.isVisibleConfirmationForCs = true;
         dataVariables.value.selectedRowId = data.rowId;
         selectedRowId.value.awb_no = data.selectedRowData.awb_no_logistics;
@@ -428,7 +428,7 @@ onMounted(() => {
         <template #header> Show Confirmation </template>
         <template #body>
             <div class="flex flex-col items-center justify-center">
-                <div class="mb-3">Are you sure you want to mark this ticket as pending from Cs?</div>
+                <div class="mb-3">Are you sure you want to mark this ticket as Pending from CS?</div>
                 <BaseTextarea rows="4" cols="50" v-model="pendingForCsRemark" placeholder="Remark" class="rounded-[4px]" />
             </div>
         </template>
