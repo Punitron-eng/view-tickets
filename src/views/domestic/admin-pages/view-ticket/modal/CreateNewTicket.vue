@@ -431,7 +431,7 @@ const ticketSubmit = async () => {
         customer_type: topHeader.user_id != 3000 && topHeader.user_id != 903 && vendorData.value[1] != 903 && vendorData.value[1] != 3000 ? 0 : selectedCustomerType.value?.id,
     };
     if (checkUserType('admin') || checkUserType('subadmin')) {
-        data.value.selected_vendor_id = vendorData.value[1];
+        data.value.selected_vendor_id = Number(vendorData.value[1]);
         data.value.is_show_vendor = checkboxData.is_checked ? 1 : 0;
     }
     // store the filled values
