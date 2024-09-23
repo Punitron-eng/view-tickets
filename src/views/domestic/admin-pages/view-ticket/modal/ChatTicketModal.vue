@@ -100,7 +100,7 @@ const handleFileUpload = (event) => {
         selectedFile.value = file;
         imagePreviewUrl.value = file.type.startsWith('image/') ? URL.createObjectURL(file) : null;
     } else {
-        toast.add({ severity: 'error', summary: 'Error Message', detail: 'Only PDF, DOC, DOCX, CSV, XLS, XLSX, WAV, MP3,MPEG, MP4, JPG, JPEG or PNG files are allowed.', life: 3000 });
+        toast.add({ severity: 'error', summary: 'Error Message', detail: 'Only PDF, DOC, DOCX, CSV, XLS, XLSX, WAV, MPEG, CSV, MP3,MPEG, MP4, JPG, JPEG or PNG files are allowed.', life: 3000 });
     }
 
     fileInputRef.value.value = '';
@@ -112,22 +112,17 @@ const triggerFileUpload = () => {
 };
 // for the assign options
 const assignOptions = ref([]);
+
 const selectedOptionsText = ref([]);
-const chatTicketAssignMemberDate = ref('');
 const singleSelectedDate = ref('');
 const dateValue = (date) => {
-    const tempDate = [format(new Date(date), 'yyyy-MM-dd')];
-    chatTicketAssignMemberDate.value = tempDate[0];
-    singleSelectedDate.value = tempDate[0];
+    singleSelectedDate.value = date;
 };
 const assignMemberUpdateIsLoading = ref(false);
 const updateAssignMember = async () => {
     try {
         assignMemberUpdateIsLoading.value = true;
-
-        const options = { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'Asia/Kolkata' };
-        const formattedDate = singleSelectedDate.value.toLocaleDateString('en-IN', options).split('/').reverse().join('-');
-
+        const formattedDate = format(new Date(singleSelectedDate.value), 'yyyy-MM-dd');
         const payload = {
             ticket_id: ticketModalData.value?.ticket_id,
             assign_member: selectedOptionsText.value.map((item) => item.id),
@@ -182,14 +177,14 @@ const fetchTicketData = async () => {
             { label: 'Closed Date', value: ticketModalData.value?.ticket_closed_date || '-' },
         ];
         SubAdminticketItems.value = [
-            { label: 'Close by', value: ticketModalData.value?.ticket_close_by },
+            { label: 'Closed by', value: ticketModalData.value?.ticket_close_by },
             { label: 'Clone Ticket', value: ticketModalData.value?.cloned_from_ticket },
             { label: 'Clone Date', value: ticketModalData.value?.clone_date },
             { label: 'Tracking Status', value: ticketModalData.value?.tracking_status },
             { label: 'No of Attempt', value: ticketModalData.value?.no_of_attempts },
             { label: 'EDD', value: ticketModalData.value?.order_edd },
             { label: 'Last Attempt Date', value: ticketModalData.value?.last_attempt_date },
-            { label: 'Assign By', value: ticketModalData.value?.ticket_assign_by },
+            { label: 'Assigned By', value: ticketModalData.value?.ticket_assign_by },
             { label: 'CS Remark', value: ticketModalData.value?.ticket_cs_remark },
             // { label: 'LSP Remark', value: ticketModalData.value?.ticket_lsp_remark  },
             { label: 'Pending CS Remark', value: ticketModalData.value?.pending_cs_remark },
@@ -263,7 +258,7 @@ const postComment = async (selectedFileValue, successFileUpload) => {
         const result = await addCommentApi(ticketModalData.value?.ticket_id, payload);
         if (result.status !== 'success') {
             chatMessageSession.value.updateLastMessage(true, false);
-            throw new Error(result.message);
+            throw result.message;
         }
         chatMessageSession.value.updateLastMessage(false, false);
         currentMessage.value = '';
@@ -425,6 +420,17 @@ const confirmUnactionbleItlFnc = async () => {
         unactionbleItlLoading.value = false;
     }
 };
+// Computed property to filter out duplicates
+const uniqueAssignOptions = computed(() => {
+  const uniqueValues = new Set();
+  return assignOptions.value.filter(option => {
+    if (!uniqueValues.has(option.value)) {
+      uniqueValues.add(option.value);
+      return true;
+    }
+    return false;
+  });
+});
 </script>
 <template>
     <DialogView id="chat-ticket-modal" v-model:visible="dataVariables.isChatModalVisible" :modal="true" :draggable="false" dismissableMask>
@@ -495,18 +501,22 @@ const confirmUnactionbleItlFnc = async () => {
                                 <MultiSelect
                                     filter
                                     v-model="selectedOptionsText"
-                                    :options="assignOptions"
-                                    optionLabel="value"
-                                    placeholder="Select Assign Option"
+                                    :options="uniqueAssignOptions"
                                     :maxSelectedLabels="1"
-                                    class="!max-w-[158px] w-[158px] h-[35px] chat-ticket-multiselect relative"
+                                    optionLabel="value"
+                                    
+                                    placeholder="Select Assign Option"
+                                    
+                                    class="md:!max-w-[158px] md:w-[158px] h-[35px] chat-ticket-multiselect relative"
                                     appendTo="self"
                                 >
                                     <template #option="slotProps">
                                         <div class="truncate">{{ slotProps.option.value }}</div>
                                     </template>
                                 </MultiSelect>
-                                <div class="flex flex-row md:!flex-col gap-2 relative !max-w-[158px] w-[158px]" @click="hideMultiSelect">
+                              
+                               
+                                <div class="flex flex-row md:!flex-col gap-2 relative md:!max-w-[158px] md:w-[158px]" @click="hideMultiSelect">
                                     <SingleDatePicker @date-value="dateValue" :min-date="new Date()" :defaultDate="singleSelectedDate" @open="hideMultiSelect" />
                                     <!-- class="py-2 border-[#0168ED] font-interSemiBold text- border rounded-md bg-itl-primary text-white w-full" -->
                                     <BaseButton name="Update" class="py-2 font-interSemiBold rounded-md text-white" @click="updateAssignMember" :isLoading="assignMemberUpdateIsLoading" />
@@ -682,7 +692,9 @@ const confirmUnactionbleItlFnc = async () => {
 
 .chat-ticket-multiselect {
     .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
-        border-color: #1579ff !important;
+        @include theme() {
+            border-color: theme-get('border-bottom') !important;
+        }
         box-shadow: none !important;
     }
 }
@@ -864,7 +876,9 @@ const confirmUnactionbleItlFnc = async () => {
     .darkTheme .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
         background-color: #5d5d5d !important;
     }
-
+    .lightTheme .chat-ticket-modal .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover{
+        background-color: #000000 !important;
+    }
     .p-multiselect-panel .p-multiselect-items .p-multiselect-item {
         font-size: 12px !important;
     }

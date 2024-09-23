@@ -40,13 +40,20 @@ const chatContainerHeight = () => {
     const chatHeader = document.querySelector('.chat-header');
     const chatFooter = document.querySelector('.chat-footer');
     const chatSessionContainer = document.querySelector('.chat-session-container');
-    totalChatHeight.value = chatHeader.offsetHeight + chatFooter.offsetHeight + 'px';
+    
+    let footerHeight = 0;
+    if (chatFooter) {
+        footerHeight = chatFooter.offsetHeight;
+    }
 
+    totalChatHeight.value = chatHeader.offsetHeight + footerHeight + 'px';
     chatSessionContainer.style.maxHeight = `calc(100% - ${totalChatHeight.value})`;
+
     setTimeout(() => {
         scrollToBottom();
     }, 100);
 };
+
 
 watch(
     () => chatContainer.value, // or other reactive properties
@@ -57,16 +64,7 @@ watch(
         }
     }
 );
-// watch(
-//     () => chatContainer.value,
-//     (newValue,oldValue) => {
-//         if(newValue){
-//             scrollToBottom();
-//             hasScrolled = true;
-//         }
-//     },
-//     { immediate: true }
-// );
+
 const selectedFile = ref(null); // for the image preview
 const imagePreviewUrl = ref(null); // for the image preview
 
@@ -296,7 +294,9 @@ watch(
         justify-content: end; // added this due to the bug number 29 in ticket https://snipboard.io/BOkxve.jpg
     }
 }
-
+.chat-session-container {
+    height: calc(100% - 75px) !important;
+}
 // .chat-session-container {
 //     @media screen and (device-width: 1280px) and (device-height: 1366px) {
 //         max-height: calc(100vh - 270px) !important;

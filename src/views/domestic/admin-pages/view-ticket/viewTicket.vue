@@ -109,8 +109,11 @@ watch(
     (newValue) => {
         if (newValue[0] || newValue[1]) {
             document.body.classList.add('confirmation-modal');
+            pendingForVendor.value = '';
+            
         } else {
             document.body.classList.remove('confirmation-modal');
+            pendingForVendor.value = '';
         }
     }
 );
@@ -269,7 +272,7 @@ const comfirmCloseReopenFnc = async () => {
         };
         const result = await confirmCloseReopenApi(payload);
         if (result.status !== 'success') {
-            throw new Error(result.message);
+            throw result.message;
         }
         toast.add({ severity: 'success', summary: 'Success Message', detail: result.message, life: 3000 });
         dataVariables.value.isVisibleCloseReopenConfirmation = false;
@@ -288,7 +291,7 @@ const actionModal = async (data) => {
     } else if (data.selectedAction.name === 'Pending From Vendor') {
         dataVariables.value.isVisibleConfirmationforVendor = true;
         dataVariables.value.selectedRowId = data.rowId;
-    } else if (data.selectedAction.name === 'Pending From Cs') {
+    } else if (data.selectedAction.name === 'Pending From CS') {
         dataVariables.value.isVisibleConfirmationForCs = true;
         dataVariables.value.selectedRowId = data.rowId;
         selectedRowId.value.awb_no = data.selectedRowData.awb_no_logistics;
@@ -425,7 +428,7 @@ onMounted(() => {
         <template #header> Show Confirmation </template>
         <template #body>
             <div class="flex flex-col items-center justify-center">
-                <div class="mb-3">Are you sure you want to mark this ticket as pending from Cs?</div>
+                <div class="mb-3">Are you sure you want to mark this ticket as Pending from CS?</div>
                 <BaseTextarea rows="4" cols="50" v-model="pendingForCsRemark" placeholder="Remark" class="rounded-[4px]" />
             </div>
         </template>
@@ -466,7 +469,7 @@ onMounted(() => {
         <template #header> Close & Reopen Ticket </template>
         <template #body>
             <div class="flex flex-col">
-                <div class="mb-3">Are you sure you want to close & reopen this ticket?</div>
+                <div class="mb-3 flex gap-1">Are you sure you want to close & reopen this ticket? <div class="text-[red]">*</div></div>
                 <BaseTextarea rows="4" cols="50" v-model="closeReopenRemark" placeholder="Remark" class="rounded-[4px]" />
             </div>
         </template>

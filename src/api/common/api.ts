@@ -16,7 +16,7 @@ export const apiHandler = async (url: string, payload?: object, isFilePresent?: 
             body: JSON.stringify(payload),
         });
 
-        if (result.ok) {
+        if (result.status != 500) {
             return checkTokenValidation(result);
         } else {
             try {
@@ -136,7 +136,11 @@ export const apiHandlerWithFormData = async (url: string, payload?: object) => {
 export const checkTokenValidation = async (result) => {
     const data = await result.json();
     const statusCode = result.status;
-
+    if (statusCode == 403) {
+        const errorData = await result.json();
+        dataVariable.value.toast.add({ severity: 'error', summary: 'Error Message', detail: errorData.message, life: 3000 });
+        return statusCode;
+    }
     if (data.status == 'error') {
         if (data.html_message == 'Access Denied' || data.html_message == 'Please Login' || data.html_message == 'Please Login.' || data.message == 'Invalid Access' || statusCode == 401) {
             window.location.href = config.baseUrlPanel + 'logout';

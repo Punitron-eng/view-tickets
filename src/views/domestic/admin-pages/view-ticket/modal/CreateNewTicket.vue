@@ -27,7 +27,7 @@ const toast = useToast();
 const dataVariables = viewTicketVariables;
 const data = ref([]);
 const selectedDepartment = ref();
-const selectedCategory = ref();
+const selectedCategory = ref(null);
 const airwayBillNo = ref();
 const trayaTicketCreatedDate = ref();
 const store = useStore();
@@ -71,6 +71,7 @@ const selectedCustomerType = ref();
 const isAwbValidDepartment = ref(false);
 const showFields = ref(false);
 const isTicketNCustomerTypeNTrayaTicketImp = ref(false);
+const isDescriptionImp = ref(false);
 // const topHeader = ref(JSON.parse(localStorage.getItem('top_header')));
 const topHeader = JSON.parse(localStorage.getItem('top_header'));
 const ticketTypesOptions = [
@@ -113,7 +114,7 @@ watch(
             showFields.value = false;
             showTurnaroundTime.value = false;
             clearData();
-            if (topHeader.user_id != 3000 || !topHeader.user_id != 903) {
+            if (topHeader.user_id != 3000 || topHeader.user_id != 903) {
                 categoryData.value = [];
             }
         }
@@ -132,7 +133,7 @@ const getTomorrowDate = () => {
 };
 
 const awbRequiredDepartment = () => {
-    const validDepartments = ['Billing', 'Operations', 'Pickup', 'ONDC IGM', 'Security', 'Special Operations', 'REV'];
+    const validDepartments = ['Billing', 'Operations', 'Pickup', 'ONDC IGM', 'Security', 'Special Operations', 'REV', 'CS'];
     if (validDepartments.includes(selectedDepartment.value?.value)) {
         isAwbValidDepartment.value = true;
     } else {
@@ -143,14 +144,12 @@ const awbRequiredDepartment = () => {
 //validate on submit
 const validateDetails = () => {
     // Define the order of validation and error messages
-
     // { key: 'subject', check: (topHeader.user_id != 3000 || topHeader.user_id != 903) && subject.value, message: 'This field is required' },
     const validationOrder = [
         { key: 'vendor', check: checkUserType('vendor') ? false : vendorData.value.length === 0, message: 'This field is required' },
         { key: 'airwayBillNo', check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && !airwayBillNo.value, message: 'This field is required' },
         { key: 'department', check: !selectedDepartment.value, message: 'This field is required' },
         { key: 'category', check: !selectedCategory.value, message: 'This field is required' },
-        // { key: 'airwayBillNo', check: airwayBillNo.value ? !showAirwayBillNoDetails.value : showAirwayBillNoDetails.value, message: '' },
         {
             key: 'fileUpload',
             check: (topHeader.user_id == 3000 || topHeader.user_id == 903) && (selectedCategory.value?.id == 210 || selectedCategory.value?.id == 211 || selectedCategory.value?.id == 212 || selectedCategory.value?.id == 227) && !file.value,
@@ -173,29 +172,37 @@ const validateDetails = () => {
         },
         {
             key: 'inputAddress',
-            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !inputAddress.value.address),
+            check:
+                ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !inputAddress.value.address) ||
+                ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedCategory.value?.id == 197 && !inputAddress.value.address),
             message: 'This field is required',
         },
         {
             key: 'inputLandMark',
-            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !inputAddress.value.landmark),
+            check:
+                ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !inputAddress.value.landmark) ||
+                ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedCategory.value?.id == 197 && !inputAddress.value.landmark),
             message: 'This field is required',
         },
         {
             key: 'mobileNumber',
-            check: ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197) || ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !mobileNumber.value),
+            check:
+                ((topHeader.user_id == 3000 || topHeader.user_id == 903) && selectedCategory.value?.id == 197 && !mobileNumber.value) ||
+                ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedCategory.value?.id == 197 && !mobileNumber.value),
             message: 'This field is required',
         },
         {
             key: 'rescheduleDate',
             check:
-                ((topHeader.user_id == 3000 || topHeader.user_id == 903) && (selectedCategory.value?.id == 197 || selectedCategory.value?.id == 206)) ||
-                ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && selectedDepartment.value?.id == 16 && !selectedRescheduleDate.value),
+                ((topHeader.user_id == 3000 || topHeader.user_id == 903) && (selectedCategory.value?.id == 197 || selectedCategory.value?.id == 206) && !selectedRescheduleDate.value) ||
+                ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) && (selectedCategory.value?.id == 197 || selectedCategory.value?.id == 206) && !selectedRescheduleDate.value),
             message: 'This field is required',
         },
         {
             key: 'description',
-            check: (topHeader.user_id != 3000 || topHeader.user_id != 903) && !description.value,
+            check:
+                (checkUserType('vendor') && topHeader.user_id != 3000 && topHeader.user_id != 903 && !description.value) ||
+                ((checkUserType('admin') || checkUserType('subadmin')) && vendorData.value[1] != 903 && vendorData.value[1] != 3000 && !description.value),
             message: 'This field is required',
         },
     ];
@@ -209,7 +216,6 @@ const validateDetails = () => {
 
     // Iterate through validationOrder and update errorMessage accordingly
     for (const { key, check, message } of validationOrder) {
-        debugger;
         if (check) {
             errorMessage.value[key] = message;
             hasError = true;
@@ -252,21 +258,25 @@ const airwayBillNoFunction = async (event) => {
             isLoading.value = false;
             showTurnaroundTime.value = false;
             selectedCategory.value = '';
+            subject.value = '';
 
             // vendorData.value = [res.data.user_name, res.data.vendor_id];
             const vendor_user_name = res.data.user_name;
             const vendor_user_id = res.data.vendor_id;
             vendorData.value = [vendor_user_name, vendor_user_id];
             // vendorData.value.push(vendor_user_name, vendor_user_id);
-            console.log(vendorData.value[1] == 903 || vendorData.value[1] == 3000, 'vendoooooorrrrr');
-            console.log(vendorData.value, 'vendorData');
 
-            if (vendorData.value[1] == 903 || vendorData.value[1] == 3000) {
+            if ((vendorData.value[1] == 903 || vendorData.value[1] == 3000) || (topHeader.user_id == 3000 || topHeader.user_id == 903)) {
                 showFields.value = true;
-                isTicketNCustomerTypeNTrayaTicketImp.value = true;
+                isDescriptionImp.value = false;
+                if (selectedDepartment.value?.id == 16) {
+                    isTicketNCustomerTypeNTrayaTicketImp.value = true;
+                } else {
+                    isTicketNCustomerTypeNTrayaTicketImp.value = false;
+                }
             } else {
                 showFields.value = false;
-                isTicketNCustomerTypeNTrayaTicketImp.value = false;
+                isDescriptionImp.value = true;
             }
 
             if ((topHeader.user_id == 3000 || topHeader.user_id == 903) && dataVariables.value.isCreateNewTicketModalVisible == true) {
@@ -327,10 +337,10 @@ const validateValue = (event) => {
             break;
     }
 };
-
 const isEnglishText = (event) => {
     const pastedText = event.clipboardData.getData('text/plain');
-    if (!/^[a-zA-Z\s]*$/.test(pastedText)) {
+    // Allow letters, numbers, spaces, and special characters
+    if (!/^[\p{L}\p{N}\p{P}\p{S}\s]*$/u.test(pastedText)) {
         event.preventDefault();
     }
 };
@@ -378,7 +388,7 @@ const getCategory = async (categoryValue) => {
         const res = await getRescheduleDateApi(categoryValue.id);
         rescheduleDates.value = res.data.reschedule_dates;
     }
-
+    
     selectedCategory.value = categoryValue;
     subject.value = categoryValue.value;
     showTurnaroundTime.value = true;
@@ -393,8 +403,7 @@ const getCategory = async (categoryValue) => {
 const ticketSubmit = async () => {
     isLoadingSubmit.value = true;
     const validate = validateDetails();
-    console.log(validate, 'validate');
-    if (isAwbValidDepartment.value && !airwayBillNo.value) {
+    if ((isAwbValidDepartment.value && !airwayBillNo.value) || ((topHeader.user_id == 3000 || topHeader.user_id == 903) && !airwayBillNo.value)) {
         errorMessage.value.airwayBillNo = 'This field is required';
         isLoadingSubmit.value = false;
         return;
@@ -408,7 +417,7 @@ const ticketSubmit = async () => {
 
     data.value = {
         awb_no: airwayBillNo.value,
-        ticket_date: topHeader.user_id != 3000 && topHeader.user_id != 903 ? '' : trayaTicketCreatedDate.value,
+        ticket_date: topHeader.user_id != 3000 && topHeader.user_id != 903 && vendorData.value[1] != 903 && vendorData.value[1] != 3000 ? '' : trayaTicketCreatedDate.value,
         department_id: selectedDepartment.value?.id,
         category_id: selectedCategory.value?.id,
         address: inputAddress.value.address,
@@ -418,11 +427,11 @@ const ticketSubmit = async () => {
         subject: subject.value,
         description: description.value,
         attachment: file.value,
-        ticket_type: topHeader.user_id != 3000 && topHeader.user_id != 903 ? 0 : selectedTicketType.value?.id,
-        customer_type: topHeader.user_id != 3000 && topHeader.user_id != 903 ? 0 : selectedCustomerType.value?.id,
+        ticket_type: topHeader.user_id != 3000 && topHeader.user_id != 903 && vendorData.value[1] != 903 && vendorData.value[1] != 3000 ? 0 : selectedTicketType.value?.id,
+        customer_type: topHeader.user_id != 3000 && topHeader.user_id != 903 && vendorData.value[1] != 903 && vendorData.value[1] != 3000 ? 0 : selectedCustomerType.value?.id,
     };
     if (checkUserType('admin') || checkUserType('subadmin')) {
-        data.value.selected_vendor_id = vendorData.value[1];
+        data.value.selected_vendor_id = Number(vendorData.value[1]);
         data.value.is_show_vendor = checkboxData.is_checked ? 1 : 0;
     }
     // store the filled values
@@ -445,6 +454,22 @@ const ticketSubmit = async () => {
         // clearData();
     }
     isLoadingSubmit.value = false;
+};
+
+const closeDropdown = () => {
+    const dpInputWrap = document.querySelector('.dp--menu-wrapper"');
+    const overlaypanel = document.querySelector('.p-overlaypanel');
+    const dropdownPanel = document.querySelector('.p-dropdown-panel');
+    const datatableoverlaypanel = document.querySelector('.p-column-filter-overlay');
+    dpInputWrap.addEventListener('click', function () {
+        if (overlaypanel) {
+            overlaypanel.style.display = 'none';
+        } else if (datatableoverlaypanel) {
+            datatableoverlaypanel.style.display = 'none';
+        } else if (dropdownPanel) {
+            dropdownPanel.style.display = 'none';
+        }
+    });
 };
 
 // clear data
@@ -489,6 +514,7 @@ const applyVendorFilter = async (vendorName) => {
         isAdmin.value = false;
         if (tempData[1] == 903 || tempData[1] == 3000) {
             showFields.value = true;
+            isDescriptionImp.value = false;
             if (selectedDepartment.value?.id == 16) {
                 isTicketNCustomerTypeNTrayaTicketImp.value = true;
             } else {
@@ -496,6 +522,7 @@ const applyVendorFilter = async (vendorName) => {
             }
         } else {
             showFields.value = false;
+            isDescriptionImp.value = true;
         }
     });
     errorMessage.value.vendor = '';
@@ -643,10 +670,10 @@ const isLoadingSubmit = ref(false);
                                 @focusout="airwayBillNoFunction"
                             />
                             <!-- @blur="airwayBillNoFunction"  // remove this because 2 times api is called if user have any acyion in awb and 2 error message occurs -->
-                            <div class="text-[10px] text-[red] absolute left-1 bottom-2" v-if="errorMessage.airwayBillNo">{{ errorMessage.airwayBillNo }}</div>
+                            <div class="text-[10px] text-[#ff5630] absolute left-1 bottom-2" v-if="errorMessage.airwayBillNo">{{ errorMessage.airwayBillNo }}</div>
                             <!-- details -->
                             <div v-if="showAirwayBillNoDetails && !isLoading" class="bg-[#f4f7f9] dark:bg-[#363636] p-2 rounded-lg">
-                                <div class="flex flex-col md:flex-row items-center pb-[6px] md:gap-20">
+                                <div class="flex flex-col md:flex-row items-center pb-[6px] md:gap-16">
                                     <div class="flex items-center w-full md:w-auto">
                                         <div class="text-[#3c4249] text-[11px] md:text-[12px] w-[50%] md:w-auto dark:text-[#DFDFDF]">Order Number :</div>
                                         <span class="text-[#0c0c0d] text-[11px] md:text-[12px] w-[50%] md:w-auto font-interMedium md:pl-1 dark:text-[#ffffff]">{{ airwayBillNoDetails.order_number }}</span>
@@ -691,13 +718,13 @@ const isLoadingSubmit = ref(false);
                                 </div>
                                 <BaseCheckBox :data="checkboxData" @listenCheckboxChange="isCheckedCheckbox" class="w-[100%] md:w-[50%] md:pl-4" />
                             </div>
-                            <div v-if="errorMessage.vendor" class="text-[10px] text-[red] absolute left-1 bottom-2">{{ errorMessage.vendor }}</div>
+                            <div v-if="errorMessage.vendor" class="text-[10px] text-[#ff5630] absolute left-1 bottom-2">{{ errorMessage.vendor }}</div>
                         </div>
                         <!-- traya ticket created Data -->
                         <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903 || showFields" class="pb-[24px] relative">
                             <BaseLabel :labelText="'Traya Ticket Created Date'" :showAsterisk="isTicketNCustomerTypeNTrayaTicketImp" />
-                            <SingleDatePicker @date-value="dateValue" :max-date="getTomorrowDate()" placeholder="Select Date" />
-                            <div class="text-[10px] text-[red] absolute" v-if="errorMessage.trayaTicketCreatedDate">{{ errorMessage.trayaTicketCreatedDate }}</div>
+                            <SingleDatePicker @date-value="dateValue" placeholder="Select Date" />
+                            <div class="text-[10px] text-[#ff5630] absolute" v-if="errorMessage.trayaTicketCreatedDate">{{ errorMessage.trayaTicketCreatedDate }}</div>
                         </div>
                         <!-- select Department & Category -->
                         <div class="pb-[24px]">
@@ -714,12 +741,12 @@ const isLoadingSubmit = ref(false);
                                         :placeholder="'Select Department'"
                                         @change="checkDepartmentValue"
                                     />
-                                    <div class="text-[10px] text-[red] absolute">{{ errorMessage.department }}</div>
+                                    <div class="text-[10px] text-[#ff5630] absolute">{{ errorMessage.department }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Category'" :showAsterisk="true" />
-                                    <BaseDropdown @listenDropdownChange="getCategory" :options="categoryData" twClasses="w-[100%]" :placeholder="'Select..'" />
-                                    <div class="text-[10px] text-[red] absolute">{{ errorMessage.category }}</div>
+                                    <BaseDropdown @listenDropdownChange="getCategory" :defaultValue="selectedCategory.id" :options="categoryData" twClasses="w-[100%]" :placeholder="'Select..'" />
+                                    <div class="text-[10px] text-[#ff5630] absolute">{{ errorMessage.category }}</div>
                                 </div>
                             </div>
                             <div v-if="showTurnaroundTime" class="text-[#366cb8] md:w-[30%] w-[80%] ml-auto mt-2 text-[13px] bg-[#d9e9ff] right-0 bottom-0 px-[8px] py-[6px] rounded-[4px]">Turnaround Time: {{ turnaroundTime }}</div>
@@ -737,7 +764,7 @@ const isLoadingSubmit = ref(false);
                                         twClasses="!h-[32px] !rounded-[4px] !text-[13px] !text-[#1d252b] border-[#dfe3e6] w-full dark:!bg-[#4d4d4d] dark:!text-[#fff] placeholder:font-interRegular"
                                         placeholder="Enter Address"
                                     />
-                                    <div class="text-[10px] text-[red]" v-if="errorMessage.inputAddress">{{ errorMessage.inputAddress }}</div>
+                                    <div class="text-[10px] text-[#ff5630]" v-if="errorMessage.inputAddress">{{ errorMessage.inputAddress }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%]">
                                     <BaseLabel :labelText="'Landmark'" :showAsterisk="true" />
@@ -746,11 +773,14 @@ const isLoadingSubmit = ref(false);
                                         twClasses="!h-[32px] !rounded-[4px] !text-[13px] !text-[#1d252b] border-[#dfe3e6] w-full dark:!bg-[#4d4d4d] dark:!text-[#fff] placeholder:font-interRegular"
                                         placeholder="Enter Landmark"
                                     />
-                                    <div class="text-[10px] text-[red]" v-if="errorMessage.inputLandMark">{{ errorMessage.inputLandMark }}</div>
+                                    <div class="text-[10px] text-[#ff5630]" v-if="errorMessage.inputLandMark">{{ errorMessage.inputLandMark }}</div>
                                 </div>
                             </div>
                             <!-- mobile number -->
-                            <div v-show="selectedCategory?.id == 197 && (topHeader.user_id == 3000 || topHeader.user_id == 903)" class="mb-4">
+                            <div
+                                v-show="selectedCategory?.id == 197 && (topHeader.user_id == 3000 || topHeader.user_id == 903 || ((checkUserType('admin') || checkUserType('subadmin')) && (vendorData[1] == 903 || vendorData[1] == 3000)))"
+                                class="mb-4"
+                            >
                                 <BaseLabel :labelText="'Mobile Number'" :showAsterisk="true" />
                                 <BaseInput
                                     v-model="mobileNumber"
@@ -763,7 +793,7 @@ const isLoadingSubmit = ref(false);
                                     autocomplete="off"
                                     @paste="handlePaste"
                                 />
-                                <div class="text-[10px] text-[red]" v-if="errorMessage.mobileNumber">{{ errorMessage.mobileNumber }}</div>
+                                <div class="text-[10px] text-[#ff5630]" v-if="errorMessage.mobileNumber">{{ errorMessage.mobileNumber }}</div>
                             </div>
                             <!-- reschedule date -->
                             <div
@@ -776,7 +806,7 @@ const isLoadingSubmit = ref(false);
                             >
                                 <BaseLabel :labelText="'Reschedule Date'" :showAsterisk="true" />
                                 <BaseDropdown @listenDropdownChange="(val) => (selectedRescheduleDate = val)" :options="rescheduleDates" twClasses="w-[100%]" :placeholder="'Select...'" />
-                                <div class="text-[10px] text-[red]" v-if="errorMessage.rescheduleDate">{{ errorMessage.rescheduleDate }}</div>
+                                <div class="text-[10px] text-[#ff5630]" v-if="errorMessage.rescheduleDate">{{ errorMessage.rescheduleDate }}</div>
                             </div>
                             <!-- ticket type & customer type -->
                             <div v-if="topHeader.user_id == 3000 || topHeader.user_id == 903 || showFields" class="flex flex-col md:flex-row justify-between items-center gap-4 mt-1">
@@ -793,7 +823,7 @@ const isLoadingSubmit = ref(false);
                                         twClasses="w-[100%]"
                                         :placeholder="'Select...'"
                                     />
-                                    <div class="text-[10px] text-[red] absolute" v-if="errorMessage.ticketType">{{ errorMessage.ticketType }}</div>
+                                    <div class="text-[10px] text-[#ff5630] absolute" v-if="errorMessage.ticketType">{{ errorMessage.ticketType }}</div>
                                 </div>
                                 <div class="w-[100%] md:w-[50%] relative">
                                     <BaseLabel :labelText="'Select Customer Type'" :showAsterisk="isTicketNCustomerTypeNTrayaTicketImp" />
@@ -808,7 +838,7 @@ const isLoadingSubmit = ref(false);
                                         twClasses="w-[100%]"
                                         :placeholder="'Select...'"
                                     />
-                                    <div class="text-[10px] text-[red] absolute" v-if="errorMessage.customerType">{{ errorMessage.customerType }}</div>
+                                    <div class="text-[10px] text-[#ff5630] absolute" v-if="errorMessage.customerType">{{ errorMessage.customerType }}</div>
                                 </div>
                             </div>
                         </div>
@@ -821,22 +851,22 @@ const isLoadingSubmit = ref(false);
                                 placeholder="Enter Your Subject"
                                 name="subject"
                                 @input="validateValue"
-                                @paste.prevent="isEnglishText"
+                                @paste="isEnglishText"
                             />
-                            <div class="text-[10px] text-[red] absolute bottom-2">{{ errorMessage.subject }}</div>
+                            <div class="text-[10px] text-[#ff5630] absolute bottom-2">{{ errorMessage.subject }}</div>
                         </div>
                         <!-- description -->
-                        <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 || topHeader.user_id == 903 }">
-                            <BaseLabel :labelText="'Description'" :showAsterisk="topHeader.user_id != 3000 || topHeader.user_id != 903" />
+                        <div class="pb-[24px] flex flex-col" :class="{ 'pt-[24px]': topHeader.user_id == 3000 && topHeader.user_id == 903 }">
+                            <BaseLabel :labelText="'Description'" :showAsterisk="isDescriptionImp || (checkUserType('vendor') && topHeader.user_id != 3000 && topHeader.user_id != 903)" />
                             <BaseTextarea
                                 v-model="description"
                                 twClasses="border-[#dfe3e6] rounded-[4px] h-[80px] bg-[fff] dark:!bg-[#4d4d4d]"
                                 placeholder="Enter Description"
                                 name="description"
                                 @input="validateValue && validateField('description')"
-                                @paste.prevent="isEnglishText"
+                                @paste="isEnglishText"
                             />
-                            <div class="text-[10px] text-[red]">{{ errorMessage.description }}</div>
+                            <div class="text-[10px] text-[#ff5630]">{{ errorMessage.description }}</div>
                         </div>
                         <!-- upload -->
                         <BaseFileUpload
@@ -847,7 +877,7 @@ const isLoadingSubmit = ref(false);
                             @clearFile="(val) => (file = val)"
                             twClasses="w-full h-44 rounded-xl h-44 rounded-xl dark:bg-[#4d4d4d] border-2 dark:border-[#5d5d5d] border-dashed"
                         />
-                        <div class="text-[10px] text-[red]">{{ errorMessage.fileUpload }}</div>
+                        <div class="text-[10px] text-[#ff5630]">{{ errorMessage.fileUpload }}</div>
                     </div>
                 </div>
             </div>
@@ -892,8 +922,8 @@ const isLoadingSubmit = ref(false);
     }
 
     .p-icon {
-        width: 13px;
-        height: 13px;
+        width: 15px;
+        height: 15px;
     }
 
     .ticket {

@@ -103,8 +103,6 @@ const createGetters = () => ({
     // },
     [NEWVIEWTICKET.GETTERS.GETEXPORTVALUEPAYLOAD](state: any) {
         const allFilterData = getFilterMappedPayload(state);
-
-        allFilterData['selectedCheckbox'] = state.selectedCheckbox;
         return allFilterData;
     },
 

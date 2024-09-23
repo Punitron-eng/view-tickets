@@ -259,3 +259,8 @@ export const confirmCloseReopenApi = async (payload: any) => {
     const apiPath = `${config.baseUrlApiNew}api/v1/support-ticket/edit/clone`;
     return await apiHandler(apiPath, payload);
 };
+
+export const bulkUploadApi = async (payload: any) => {
+    const apiPath = `${config.baseUrlApiNew}api/v1/support-ticket/get/sample-import-file-url`;
+    return await apiHandler(apiPath, payload);
+};

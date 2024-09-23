@@ -33,7 +33,7 @@ const defaultClasses = 'w-[auto] md:w-[420px] h-44 rounded-xl border-2 dark:bord
 type FileTypes = '*' | 'Image' | 'CSV';
 
 const selectedImage = ref();
-const allowedExtensions = ['pdf', 'doc', 'docx', 'csv', 'xls', 'xlsx', 'wav', 'mp3', 'mpeg', 'mp4', 'jpg', 'jpeg', 'png'];
+const allowedExtensions = ['pdf', 'doc', 'docx', 'csv', 'mpeg', 'xls', 'xlsx', 'wav', 'mp3', 'mp4', 'jpg', 'jpeg', 'png'];
 
 const dropZoneRef = ref<HTMLDivElement>();
 const fileInfo = ref<File | null>(null);
@@ -145,7 +145,7 @@ const validateExtension = (value) => {
 </script>
 
 <template>
-    <div v-if="!inputTypeFileUpload">
+    <div class="w-full" v-if="!inputTypeFileUpload">
         <div ref="dropZoneRef" v-if="!fileInfo" :class="[props?.twClasses || defaultClasses, isOverDropZone ? 'bg-slate-100' : '']" class="flex justify-center items-center">
             <div class="flex flex-col items-center">
                 <img src="@/assets/images/file-upload.svg" alt="File Upload" class="w-10 h-10 mt-3" />
@@ -155,15 +155,21 @@ const validateExtension = (value) => {
                 </div>
                 <div class="text-[12px] text-[#344563] dark:text-[#dfdfdf] mt-2 text-center">
                     <span v-if="props.maxFileSize"> Max {{ props.maxFileSize }} MB </span> ({{
-                        props.fileType == 'CSV' ? 'CSV' : props.fileType == 'Image' ? 'PNG / JPG' : props.allowedExtensions ? props.allowedExtensions.map((ele) => ele).join(', ') : 'Only PDF, DOC, DOCX, XLS, XLSX, WAV, MP3, MP4, JPG, JPEG or PNG'
+                        props.fileType == 'CSV'
+                            ? 'CSV'
+                            : props.fileType == 'Image'
+                            ? 'PNG / JPG'
+                            : props.allowedExtensions
+                            ? props.allowedExtensions.map((ele) => ele).join(', ')
+                            : 'Only PDF, DOC, DOCX, XLS, XLSX, MPEG, CSV, WAV, MP3, MP4, JPG, CSV, JPEG or PNG'
                     }}
                     format only)
                 </div>
             </div>
         </div>
         <input @change="onFileSelect" type="file" :accept="props.fileType.toLowerCase()" ref="fileInput" class="hidden" :id="props.fileID" />
-        <div v-if="fileInfo" class="relative md:w-full border-[2px] border-[#d1d5db] dark:border-[#8d8d8d] border-dashed rounded-[8px] items-center justify-between bg-[#d4ecd5] dark:bg-[#4d4d4d] flex flex-row pt-[50px] md:pt-4 px-4 pb-4">
-            <div class="flex items-center justify-between gap-3 w-[90%]">
+        <div v-if="fileInfo" class="md:w-full relative border-[2px] border-[#d1d5db] dark:border-[#8d8d8d] border-dashed rounded-[8px] items-center justify-between bg-[#d4ecd5] dark:bg-[#4d4d4d] flex flex-row pt-[50px] md:pt-4 px-4 pb-4">
+            <div class="flex items-center justify-start gap-3 w-[90%]">
                 <template v-if="fileInfo.type == 'text/csv'">
                     <img src="@/assets/images/bulk-csv-icon.svg" :alt="fileInfo.name" />
                     <div class="text-[#000] dark:text-[#fff] truncate w-[30vw] md:w-[auto]">{{ fileInfo.name }}</div>

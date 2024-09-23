@@ -70,10 +70,7 @@ const state: any = {
             id: [],
             value: [],
         },
-        no_of_attempts: {
-            id: [],
-            value: [],
-        },
+        no_of_attempts: '',
         ticket_status: {
             id: [],
             value: [],
