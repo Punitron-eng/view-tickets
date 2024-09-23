@@ -511,7 +511,6 @@ const changeDate = (id, field, selectedId) => {
     .p-dialog-header {
         display: none;
     }
-
     @media (min-width: 340px) and (max-width: 470px) {
         .header-div {
             padding-top: 0px;
@@ -589,11 +588,6 @@ input[type='number'] {
 .p-multiselect-items-wrapper {
     @include theme() {
         background-color: theme-get('background') !important;
-    }
-}
-.p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
-    @include theme() {
-        background-color: theme-get('border-black-500') !important;
     }
 }
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled).p-focus {
@@ -771,12 +765,6 @@ input[type='number'] {
         border-color: #dfdfdf;
     }
 
-    .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
-        @include theme() {
-            background-color: #d0d6dc;
-        }
-    }
-
     .p-multiselect:not(.p-disabled).p-focus {
         @include theme() {
             border: 1px solid theme-get('border-black-400') !important;
@@ -831,10 +819,7 @@ input[type='number'] {
         height: auto;
     }
 
-    .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
-        // background-color: #dfdfdf;
-        background-color: var(--light-400) !important;
-    }
+    
 
     .p-checkbox .p-checkbox-box.p-highlight {
         border-color: blue;
@@ -851,11 +836,6 @@ input[type='number'] {
     }
 }
 
-.darkTheme #filter-modal {
-    .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
-        background-color: var(--dark-400) !important;
-    }
-}
 
 #filter-modal .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight {
     border-color: blue;
@@ -1063,10 +1043,6 @@ input[type='number']::-webkit-outer-spin-button {
 
 .darkTheme#filter-modal .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
     background-color: #212121 !important;
-}
-
-.darkTheme#filter-modal .p-multiselect-panel .p-multiselect-items .p-multiselect-item:not(.p-highlight):not(.p-disabled):hover {
-    background-color: #212121;
 }
 
 .darkTheme .p-multiselect-panel .p-multiselect-header .p-multiselect-filter-container .p-inputtext {
